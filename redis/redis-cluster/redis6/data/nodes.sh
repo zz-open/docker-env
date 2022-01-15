@@ -1,0 +1,1 @@
+declare -A host_2_ip_array=([redis-cluster-node4]="192.168.240.5" [redis-cluster-node5]="192.168.240.3" [redis-cluster-node6]="192.168.240.7" [redis-cluster-node1]="192.168.240.6" [redis-cluster-node2]="192.168.240.2" [redis-cluster-node3]="192.168.240.4" )

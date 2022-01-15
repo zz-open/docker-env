@@ -1,0 +1,121 @@
+version: "3.6"
+
+networks:
+  redis-sentinel-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.11.0.0/24
+
+services:
+  redis-master-1:
+    container_name: redis-master-1
+    hostname: redis-master-1
+    image: redis:${REDIS_VERSION}
+    environment:
+      - TZ=${TZ}
+    ports:
+      - "16379:6379"
+    networks:
+      redis-sentinel-network:
+        ipv4_address: 172.11.0.10
+    command: /usr/local/bin/redis-server  /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./master/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./master/data:/data
+      - ./master/logs:/var/log/redis
+
+  redis-slave-1:
+    container_name: redis-slave-1
+    hostname: redis-slave-1
+    image: redis:${REDIS_VERSION}
+    environment:
+      - TZ=${TZ}
+    ports:
+      - "16378:6379"
+    networks:
+      redis-sentinel-network:
+        ipv4_address: 172.11.0.11
+    command: /usr/local/bin/redis-server  /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./slave1/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./slave1/data:/data
+      - ./slave1/logs:/var/log/redis
+
+  redis-slave-2:
+    container_name: redis-slave-2
+    hostname: redis-slave-2
+    image: redis:${REDIS_VERSION}
+    environment:
+      - TZ=${TZ}
+    ports:
+      - "16377:6379"
+    networks:
+      redis-sentinel-network:
+        ipv4_address: 172.11.0.12
+    command: /usr/local/bin/redis-server  /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./slave2/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./slave2/data:/data
+      - ./slave2/logs:/var/log/redis
+
+  #模拟增加从结点
+  redis-slave-3:
+    container_name: redis-slave-3
+    hostname: redis-slave-3
+    image: redis:${REDIS_VERSION}
+    environment:
+      - TZ=${TZ}
+    ports:
+      - "16376:6379"
+    networks:
+      redis-sentinel-network:
+        ipv4_address: 172.11.0.13
+    command: /usr/local/bin/redis-server  /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./slave3/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./slave3/data:/data
+      - ./slave3/logs:/var/log/redis
+
+  redis-sentinel-1:
+    container_name: redis-sentinel-1
+    hostname: redis-sentinel-1
+    image: bitnami/redis-sentinel:${REDIS_SENTINEL_VERSION}
+    environment:
+      - TZ=${TZ}
+    ports:
+      - '26379:26379'
+    networks:
+      redis-sentinel-network:
+        ipv4_address: 172.11.0.20
+    volumes:
+      - ./sentinel1/conf/sentinel.conf:/bitnami/redis-sentinel/conf/sentinel.conf
+
+  redis-sentinel-2:
+    container_name: redis-sentinel-2
+    hostname: redis-sentinel-2
+    image: bitnami/redis-sentinel:${REDIS_SENTINEL_VERSION}
+    environment:
+      - TZ=${TZ}
+    ports:
+      - '26378:26379'
+    networks:
+      redis-sentinel-network:
+        ipv4_address: 172.11.0.21
+    volumes:
+      - ./sentinel2/conf/sentinel.conf:/bitnami/redis-sentinel/conf/sentinel.conf
+
+  redis-sentinel-3:
+    container_name: redis-sentinel-3
+    hostname: redis-sentinel-3
+    image: bitnami/redis-sentinel:${REDIS_SENTINEL_VERSION}
+    environment:
+      - TZ=${TZ}
+    ports:
+      - '26377:26379'
+    networks:
+      redis-sentinel-network:
+        ipv4_address: 172.11.0.22
+    volumes:
+      - ./sentinel3/conf/sentinel.conf:/bitnami/redis-sentinel/conf/sentinel.conf

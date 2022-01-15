@@ -1,0 +1,57 @@
+version: '3.8'
+
+networks:
+  rocketmq-standalone-network:
+    driver: bridge
+
+services:
+  rocketmq-nameserver1:
+    image: ${ROCKETMQ_IMAGE}:${ROCKETMQ_VERSION}
+    hostname: rocketmq-nameserver1
+    container_name: rocketmq-nameserver1
+    ports:
+      - "9876:9876"
+    environment:
+      - JAVA_OPT_EXT=-Xms256m -Xmx256m
+      - TZ=${TZ}
+    volumes:
+      - ./nameserver1/conf:/opt/rocketmq/conf
+      - ./nameserver1/rocketmqlogs:/root/logs/rocketmqlogs
+    command: sh mqnamesrv
+    networks:
+      - rocketmq-standalone-network
+
+  rocketmq-broker1:
+    image: ${ROCKETMQ_IMAGE}:${ROCKETMQ_VERSION}
+    hostname: rocketmq-broker1
+    container_name: rocketmq-broker1
+    volumes:
+      - ./broker1/store:/root/store
+      - ./broker1/rocketmqlogs:/root/logs/rocketmqlogs
+      - ./broker1/conf:/opt/rocketmq/conf
+    environment:
+      - NAMESRV_ADDR=rocketmq-nameserver1:9876
+      - JAVA_OPT_EXT=-server -Xms256m -Xmx256m -Xmn256m
+      - TZ=${TZ}
+    ports:
+      - "10909:10909"
+      - "10911:10911"
+      - "10912:10912"
+    command: sh mqbroker -c /opt/rocketmq-${ROCKETMQ_VERSION}/conf/broker.conf
+    depends_on:
+      - rocketmq-nameserver1
+    networks:
+      - rocketmq-standalone-network
+
+  rocketmq-dashboard:
+    image: apacherocketmq/rocketmq-dashboard:latest
+    hostname: rocketmq-dashboard
+    container_name: rocketmq-dashboard
+    ports:
+      - "8080:8080"
+    environment:
+      - JAVA_OPTS=-Drocketmq.namesrv.addr=rocketmq-nameserver1:9876; -Xms256m -Xmx256m
+    depends_on:
+      - rocketmq-nameserver1
+    networks:
+      - rocketmq-standalone-network

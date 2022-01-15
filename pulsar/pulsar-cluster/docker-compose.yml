@@ -1,0 +1,158 @@
+version: '3.8'
+
+networks:
+  pulsar-cluster-network:
+    driver: bridge
+
+services:
+  zoo1:
+    image: apachepulsar/pulsar-all:${PULSAR_VERSION}
+    hostname: ${ZOOKEEPER_NAME_1}
+    container_name: ${ZOOKEEPER_NAME_1}
+    volumes:
+      - ./${ZOOKEEPER_NAME_1}/data:/pulsar/data/zookeeper/
+      - ./${ZOOKEEPER_NAME_1}/conf/zookeeper.conf:/pulsar/conf/zookeeper.conf
+    ports:
+      - "2181:2181"
+    environment:
+      - TZ=${TZ}
+    entrypoint:
+      - sh
+      - -c
+      - |
+        mkdir -p data/zookeeper
+        echo 1 > data/zookeeper/myid
+        bin/pulsar zookeeper
+    networks:
+      pulsar-cluster-network:
+
+  pulsar-init-metadata:
+    image: apachepulsar/pulsar-all:${PULSAR_VERSION}
+    hostname: pulsar-init-metadata
+    container_name: pulsar-init-metadata
+    entrypoint: bin/pulsar initialize-cluster-metadata \
+      --cluster pulsar-cluster \
+      --zookeeper zoo1:2181 \
+      --configuration-store zoo1:2181 \
+      --web-service-url http://pulsar-proxy:8080 \
+      --broker-service-url pulsar://pulsar-proxy:6650
+    environment:
+      - TZ=${TZ}
+    depends_on:
+      - ${ZOOKEEPER_NAME_1}
+    networks:
+      pulsar-cluster-network:
+
+  bookeeper1:
+    image: apachepulsar/pulsar-all:${PULSAR_VERSION}
+    hostname: ${BOOKEEPER_NAME_1}
+    container_name: ${BOOKEEPER_NAME_1}
+    ports:
+      - "3181:3181"
+    volumes:
+      - ./${BOOKEEPER_NAME_1}/data:/pulsar/data/bookkeeper/
+      - ./${BOOKEEPER_NAME_1}/conf/bookkeeper.conf:/pulsar/conf/bookkeeper.conf
+    environment:
+      - TZ=${TZ}
+    entrypoint: bin/pulsar bookie
+    depends_on:
+      - pulsar-init-metadata
+    networks:
+      pulsar-cluster-network:
+
+  pulsar1:
+    image: apachepulsar/pulsar-all:${PULSAR_VERSION}
+    hostname: ${PULSAR_NAME_1}
+    container_name: ${PULSAR_NAME_1}
+    volumes:
+      - ./${PULSAR_NAME_1}/data:/pulsar/data
+      - ./${PULSAR_NAME_1}/conf/broker.conf:/pulsar/conf/broker.conf
+    ports:
+      - "6650:6650"
+      - "8095:8080"
+    environment:
+      - TZ=${TZ}
+    command: bin/pulsar standalone
+    networks:
+      pulsar-cluster-network:
+    depends_on:
+      - ${BOOKEEPER_NAME_1}
+
+  pulsar2:
+    image: apachepulsar/pulsar-all:${PULSAR_VERSION}
+    hostname: ${PULSAR_NAME_2}
+    container_name: ${PULSAR_NAME_2}
+    volumes:
+      - ./${PULSAR_NAME_2}/pulsardata:/pulsar/data
+      - ./${PULSAR_NAME_2}/conf/broker.conf:/pulsar/conf/broker.conf
+    ports:
+      - "6650:6650"
+      - "8095:8080"
+    environment:
+      - TZ=${TZ}
+    command: bin/pulsar standalone
+    networks:
+      pulsar-cluster-network:
+    depends_on:
+      - ${BOOKEEPER_NAME_1}
+
+  pulsar3:
+    image: apachepulsar/pulsar-all:${PULSAR_VERSION}
+    hostname: ${PULSAR_NAME_3}
+    container_name: ${PULSAR_NAME_3}
+    volumes:
+      - ./ ${PULSAR_NAME_3}/pulsardata:/pulsar/data
+      - ./${PULSAR_NAME_3}/conf/broker.conf:/pulsar/conf/broker.conf
+    ports:
+      - "6650:6650"
+      - "8095:8080"
+    environment:
+      - TZ=${TZ}
+    command: bin/pulsar standalone
+    networks:
+      pulsar-cluster-network:
+    depends_on:
+      - ${BOOKEEPER_NAME_1}
+
+  pulsar-proxy:
+    image: apachepulsar/pulsar-all:2.7.2
+    hostname: pulsar-proxy
+    container_name: pulsar-proxy
+    ports:
+      - "6650:6650"
+      - "8080:8080"
+    volumes:
+      - ./pulsar-proxy/conf/proxy.conf:/pulsar/conf/proxy.conf
+    networks:
+      pulsar-cluster-network:
+    entrypoint: bin/pulsar proxy
+    depends_on:
+      - pulsar1
+      - pulsar2
+      - pulsar3
+
+
+  pulsar-manager1:
+    image: apachepulsar/pulsar-manager:v0.2.0
+    hostname: pulsar-manager
+    container_name: pulsar-manager
+    ports:
+      - "9527:9527"
+      - "7750:7750"
+    environment:
+      - SPRING_CONFIGURATION_FILE=/pulsar-manager/pulsar-manager/application.properties
+      - TZ=${TZ}
+    volumes:
+      - ./pulsar-manager1/conf/application.properties:/pulsar-manager/pulsar-manager/application.properties
+      - ./pulsar-manager1/conf/bkvm.conf:/pulsar-manager/pulsar-manager/bkvm.conf
+    entrypoint:
+      - sh
+      - -c
+      - |
+        /pulsar-manager/entrypoint.sh &
+        tail -F /pulsar-manager/pulsar-manager/pulsar-manager.log
+    networks:
+      pulsar-cluster-network:
+    depends_on:
+      - pulsar-proxy
+

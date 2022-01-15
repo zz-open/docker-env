@@ -1,0 +1,7 @@
+- module: mysql
+  error:
+    enabled: true
+    var.paths: ["/usr/share/filebeat/logs/mysql/error.log*"]
+  slowlog:
+    enabled: true
+    var.paths: ["/usr/share/filebeat/logs/mysql/mysql-slow.log*"]

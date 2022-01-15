@@ -1,0 +1,5 @@
+.idea/
+.DS_Store
+./elasticsearch/data/*
+./filebeat/data/*
+./filebeat/logs/*

@@ -1,0 +1,21 @@
+version: '3.8'
+
+networks:
+  memcached-network:
+    driver: bridge
+
+services:
+  memcached:
+    build:
+      context: ./dockerfile
+    hostname: memcached
+    container_name: memcached
+    ports:
+      - "${MEMCACHED_HOST_PORT}:11211"
+    privileged: true
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ./data/memcached:/var/lib/memcached
+    networks:
+      memcached-network:

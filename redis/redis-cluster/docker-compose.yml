@@ -1,0 +1,111 @@
+version: '3.8'
+
+networks:
+  redis-cluster-network:
+    driver: bridge
+#    ipam:
+#      driver: default
+#      config:
+#        - subnet: 172.19.0.0/24
+
+services:
+  redis1:
+    container_name: redis1
+    hostname: redis1
+    image: docker.io/bitnami/redis-cluster:${REDIS_CLUSTER_VERSION}
+    volumes:
+      - ./redis1/data:/bitnami/redis/data
+    ports:
+      - "16301:6379"
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_NODES=${REDIS_NODES}
+      - TZ=${TZ}
+    networks:
+      - redis-cluster-network
+
+  redis2:
+    container_name: redis2
+    hostname: redis2
+    image: docker.io/bitnami/redis-cluster:${REDIS_CLUSTER_VERSION}
+    volumes:
+      - ./redis2/data:/bitnami/redis/data
+    ports:
+      - "16302:6379"
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_NODES=${REDIS_NODES}
+      - TZ=${TZ}
+    networks:
+      - redis-cluster-network
+
+  redis3:
+    container_name: redis3
+    hostname: redis3
+    image: docker.io/bitnami/redis-cluster:${REDIS_CLUSTER_VERSION}
+    volumes:
+      - ./redis3/data:/bitnami/redis/data
+    ports:
+      - "16303:6379"
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_NODES=${REDIS_NODES}
+      - TZ=${TZ}
+    networks:
+      - redis-cluster-network
+
+  redis4:
+    container_name: redis4
+    hostname: redis4
+    image: docker.io/bitnami/redis-cluster:${REDIS_CLUSTER_VERSION}
+    volumes:
+      - ./redis4/data:/bitnami/redis/data
+    ports:
+      - "16304:6379"
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_NODES=${REDIS_NODES}
+      - TZ=${TZ}
+    networks:
+      - redis-cluster-network
+
+
+  redis5:
+    container_name: redis5
+    hostname: redis5
+    image: docker.io/bitnami/redis-cluster:${REDIS_CLUSTER_VERSION}
+    volumes:
+      - ./redis5/data:/bitnami/redis/data
+    ports:
+      - "16305:6379"
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_NODES=${REDIS_NODES}
+      - TZ=${TZ}
+    networks:
+      - redis-cluster-network
+
+
+  redis6:
+    container_name: redis6
+    hostname: redi6
+    image: docker.io/bitnami/redis-cluster:${REDIS_CLUSTER_VERSION}
+    volumes:
+      - ./redis6/data:/bitnami/redis/data
+    ports:
+      - "16306:6379"
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDISCLI_AUTH=${REDIS_PASSWORD}
+      - REDIS_NODES=${REDIS_NODES}
+      - REDIS_CLUSTER_REPLICAS=1
+      - REDIS_CLUSTER_CREATOR=yes
+      - TZ=${TZ}
+    depends_on:
+      - redis1
+      - redis2
+      - redis3
+      - redis4
+      - redis5
+    networks:
+      - redis-cluster-network

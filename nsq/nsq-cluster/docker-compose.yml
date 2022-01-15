@@ -1,0 +1,101 @@
+version: '3.8'
+
+networks:
+  nsq-cluster-network:
+    driver: bridge
+
+services:
+  nsqlookupd1:
+    image: nsqio/nsq:latest
+    container_name: nsqlookupd1
+    hostname: nsqlookupd1
+    command: ${NSQ_LOOKUP_COMMAND_1}
+    ports:
+      - ${NSQ_LOOKUP_TCP_PORT_1}:${NSQ_LOOKUP_TCP_PORT_1}
+      - ${NSQ_LOOKUP_HTTP_PORT_1}:${NSQ_LOOKUP_HTTP_PORT_1}
+    environment:
+      - TZ=${TZ}
+    networks:
+      - nsq-cluster-network
+
+  nsqlookupd2:
+    image: nsqio/nsq:latest
+    container_name: nsqlookupd2
+    hostname: nsqlookupd2
+    command: ${NSQ_LOOKUP_COMMAND_2}
+    ports:
+      - ${NSQ_LOOKUP_TCP_PORT_2}:${NSQ_LOOKUP_TCP_PORT_2}
+      - ${NSQ_LOOKUP_HTTP_PORT_2}:${NSQ_LOOKUP_HTTP_PORT_2}
+    environment:
+      - TZ=${TZ}
+    networks:
+      - nsq-cluster-network
+
+  nsq1:
+    image: nsqio/nsq:latest
+    container_name: nsq1
+    hostname: nsq1
+    command: ${NSQ_COMMAND_1}
+    ports:
+      - ${NSQ_TCP_PORT_1}:${NSQ_TCP_PORT_1}
+      - ${NSQ_HTTP_PORT_1}:${NSQ_HTTP_PORT_1}
+    volumes:
+      - ./nsq1/data/:/usr/local/nsq/bin/data
+    environment:
+      - TZ=${TZ}
+    depends_on:
+      - nsqlookupd1
+      - nsqlookupd2
+    networks:
+      - nsq-cluster-network
+
+  nsq2:
+    image: nsqio/nsq:latest
+    container_name: nsq2
+    hostname: nsq2
+    command: ${NSQ_COMMAND_2}
+    ports:
+      - ${NSQ_TCP_PORT_2}:${NSQ_TCP_PORT_2}
+      - ${NSQ_HTTP_PORT_2}:${NSQ_HTTP_PORT_2}
+    volumes:
+      - ./nsq2/data/:/usr/local/nsq/bin/data
+    environment:
+      - TZ=${TZ}
+    depends_on:
+      - nsqlookupd1
+      - nsqlookupd2
+    networks:
+      nsq-cluster-network:
+
+  nsq3:
+    image: nsqio/nsq:latest
+    container_name: nsq3
+    hostname: nsq3
+    command: ${NSQ_COMMAND_3}
+    ports:
+      - ${NSQ_TCP_PORT_3}:${NSQ_TCP_PORT_3}
+      - ${NSQ_HTTP_PORT_3}:${NSQ_HTTP_PORT_3}
+    volumes:
+      - ./nsq3/data/:/usr/local/nsq/bin/data
+    environment:
+      - TZ=${TZ}
+    depends_on:
+      - nsqlookupd1
+      - nsqlookupd2
+    networks:
+      nsq-cluster-network:
+
+  nsqadmin:
+    image: nsqio/nsq:latest
+    container_name: nsqadmin
+    hostname: nsqadmin
+    command: ${NSQ_ADMIN_COMMAND}
+    ports:
+      - ${NSQ_ADMIN_HTTP_PORT}:${NSQ_ADMIN_HTTP_PORT}
+    environment:
+      - TZ=${TZ}
+    networks:
+      nsq-cluster-network:
+    depends_on:
+      - nsqlookupd1
+      - nsqlookupd2

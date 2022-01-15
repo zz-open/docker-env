@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/canal/canal-docker" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/clickhouse/clickhouse-cluster-docker" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/dockprom/dockprom" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/elasticsearch/elk6/docker-elk" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/elasticsearch/elk7/docker-elk-7" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/elk/docker-elk" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/elk/elk6/docker-elk" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/elk/elk7/docker-elk" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/elk/elk7/docker-elk-7" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/kafka-stack/kafka-stack-docker-compose" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/kafka/_kafka-stack-docker-compose" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/kafka/kafka-stack-docker-compose" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/laradock/laradock" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/laradock/mylaradock" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mysql-cluster/ha/mysql-ha-docker" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mysql-cluster/master-slave/mysql-cluster" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mysql-cluster/pxc/mysql-pxc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mysql/ha/mysql-ha-docker" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mysql/master-slave/mysql-cluster" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mysql/pxc/mysql-pxc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/nacod" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/nacos-docker" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/nacos/nacos-docker" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/redis-cluster/cluster/redis-cluster-docker" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/redis-cluster/redis-cluster/redis-cluster-docker" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/redis-cluster/sentinel/redis-cluster-sentinel" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/redis-cluster/sentinel2/redis-sentinel-docker-compose" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/rocketmq/rocketmq-cluster/docker-rocketmq-example" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/rocketmq/rocketmq-cluster2/docker-rocketmq-cluster" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/rocketmq/rocketmq-docker" vcs="Git" />
+  </component>
+</project>

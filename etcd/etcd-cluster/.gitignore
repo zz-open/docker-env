@@ -1,0 +1,5 @@
+.idea/
+.DS_Store
+./etcd1/data/*
+./etcd2/data/*
+./etcd3/data/*
