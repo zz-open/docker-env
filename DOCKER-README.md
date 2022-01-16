@@ -1,8 +1,4 @@
-# container-env
-基于docker-compose构建的工作环境
-
-#该项目放置平时工作中需要的容器配置，方便开发调试
-
+#DOCKER语录
 1.docker inspect -f='{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq) | grep beanstalkd
 2.links不建议使用，使用networks替代
 3.移除没有使用的网络:docker network prune
