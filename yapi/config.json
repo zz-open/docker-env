@@ -1,0 +1,23 @@
+{
+  "port": "3000",
+  "adminAccount": "373045134@qq.com",
+  "versionNotify": true,
+  "db": {
+    "servername": "laradock_mongo_1",
+    "DATABASE": "yapi",
+    "port": 27017,
+    "user": "",
+    "pass": "",
+    "authSource": ""
+  },
+  "mail": {
+    "enable": false,
+    "host": "smtp.163.com",
+    "port": 465,
+    "from": "***@163.com",
+    "auth": {
+      "user": "***@163.com",
+      "pass": "*****"
+    }
+  }
+}

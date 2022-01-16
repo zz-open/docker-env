@@ -7,7 +7,7 @@ networks:
 services:
   mysql:
     build:
-      context: ./dockerfile
+      context: ./mysql
       args:
         - MYSQL_VERSION=${MYSQL_VERSION}
     hostname: mysql

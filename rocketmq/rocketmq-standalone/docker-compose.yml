@@ -10,13 +10,12 @@ services:
     hostname: rocketmq-nameserver1
     container_name: rocketmq-nameserver1
     ports:
-      - "9876:9876"
+      - ${NAMESRV_PORT}:${NAMESRV_PORT}
     environment:
-      - JAVA_OPT_EXT=-Xms256m -Xmx256m
+      - JAVA_OPT_EXT=-Xms256m -Xmx256m -Xmn128m
       - TZ=${TZ}
     volumes:
-      - ./nameserver1/conf:/opt/rocketmq/conf
-      - ./nameserver1/rocketmqlogs:/root/logs/rocketmqlogs
+      - ./nameserver1/logs:/home/rocketmq/logs
     command: sh mqnamesrv
     networks:
       - rocketmq-standalone-network
@@ -26,12 +25,12 @@ services:
     hostname: rocketmq-broker1
     container_name: rocketmq-broker1
     volumes:
-      - ./broker1/store:/root/store
-      - ./broker1/rocketmqlogs:/root/logs/rocketmqlogs
-      - ./broker1/conf:/opt/rocketmq/conf
+      - ./broker1/logs:/home/rocketmq/logs
+      - ./broker1/store:/home/rocketmq/store
+      - ./broker1/conf/broker.conf:/opt/rocketmq-${ROCKETMQ_VERSION}/conf/broker.conf
     environment:
-      - NAMESRV_ADDR=rocketmq-nameserver1:9876
-      - JAVA_OPT_EXT=-server -Xms256m -Xmx256m -Xmn256m
+      - NAMESRV_ADDR=${NAMESRV_ADDR}
+      - JAVA_OPT_EXT=-server -Xms256m -Xmx256m -Xmn128m
       - TZ=${TZ}
     ports:
       - "10909:10909"
@@ -50,7 +49,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - JAVA_OPTS=-Drocketmq.namesrv.addr=rocketmq-nameserver1:9876; -Xms256m -Xmx256m
+      - JAVA_OPTS=-Drocketmq.namesrv.addr=${NAMESRV_ADDR}; -Xms256m -Xmx256m
     depends_on:
       - rocketmq-nameserver1
     networks:

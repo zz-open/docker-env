@@ -2,4 +2,6 @@
 
 docker-compose down
 
-rm -rf ./kafka2/data/*
+rm -rf ./borker1/logs/*
+rm -rf ./borker1/store/*
+rm -rf ./nameserver1/logs/*

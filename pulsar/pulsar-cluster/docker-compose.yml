@@ -67,12 +67,9 @@ services:
     volumes:
       - ./${PULSAR_NAME_1}/data:/pulsar/data
       - ./${PULSAR_NAME_1}/conf/broker.conf:/pulsar/conf/broker.conf
-    ports:
-      - "6650:6650"
-      - "8095:8080"
     environment:
       - TZ=${TZ}
-    command: bin/pulsar standalone
+    command: bin/pulsar broker
     networks:
       pulsar-cluster-network:
     depends_on:
@@ -83,14 +80,11 @@ services:
     hostname: ${PULSAR_NAME_2}
     container_name: ${PULSAR_NAME_2}
     volumes:
-      - ./${PULSAR_NAME_2}/pulsardata:/pulsar/data
+      - ./${PULSAR_NAME_2}/data:/pulsar/data
       - ./${PULSAR_NAME_2}/conf/broker.conf:/pulsar/conf/broker.conf
-    ports:
-      - "6650:6650"
-      - "8095:8080"
     environment:
       - TZ=${TZ}
-    command: bin/pulsar standalone
+    command: bin/pulsar broker
     networks:
       pulsar-cluster-network:
     depends_on:
@@ -101,14 +95,11 @@ services:
     hostname: ${PULSAR_NAME_3}
     container_name: ${PULSAR_NAME_3}
     volumes:
-      - ./ ${PULSAR_NAME_3}/pulsardata:/pulsar/data
+      - ./${PULSAR_NAME_3}/data:/pulsar/data
       - ./${PULSAR_NAME_3}/conf/broker.conf:/pulsar/conf/broker.conf
-    ports:
-      - "6650:6650"
-      - "8095:8080"
     environment:
       - TZ=${TZ}
-    command: bin/pulsar standalone
+    command: bin/pulsar broker
     networks:
       pulsar-cluster-network:
     depends_on:

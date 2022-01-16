@@ -1,7 +1,8 @@
 #Pulsar
 
-https://blog.csdn.net/u010674101/article/details/121117678
 
+#https://blog.csdn.net/u010674101/article/details/121117678
+#https://github.com/perayb/docker-sample/tree/master/pulsar
 
 账号密码：
 pulsar-manager: http://127.0.0.1:9527/#
