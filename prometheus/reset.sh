@@ -2,6 +2,8 @@
 
 docker-compose down
 
-rm -rf ./elasticsearch/data/*
-rm -rf ./filebeat/data/*
-rm -rf ./filebeat/logs/*
+rm -rf ./grafana/data/*
+rm -rf ./grafana/provisioning/dashboards/*
+rm -rf ./grafana/provisioning/datasources/*
+
+rm -rf ./prometheus/data/*

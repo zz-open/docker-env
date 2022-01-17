@@ -7,7 +7,7 @@ networks:
 services:
   haproxy:
     build:
-      context: ./dockerfile
+      context: ./haproxy
     hostname: haproxy
     container_name: haproxy
     ports:
@@ -16,6 +16,6 @@ services:
     environment:
       - TZ=${TZ}
     volumes:
-      - ./data/docker.sock:/var/run/docker.sock
+      - ./haproxy/data/docker.sock:/var/run/docker.sock
     networks:
       haproxy-network:
