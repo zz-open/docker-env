@@ -1,0 +1,23 @@
+version: "3.8"
+
+networks:
+  redismod-network:
+    driver: bridge
+
+services:
+  redismod:
+    build:
+      context: ./redismod
+      args:
+        REDIS_VERSION: ${REDIS_VERSION}
+    container_name: redismod
+    hostname: redismod
+    environment:
+      - TZ=${TZ}
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data:/data
+      - ./logs:/var/log/redis
+    networks:
+      redismod-network:

@@ -1,0 +1,63 @@
+version: "3"
+
+networks:
+  canal-standalone-network:
+
+services:
+  canal-server:
+    build:
+      context: ./canal-server
+      args:
+        CANAL_VERSION: ${CANAL_VERSION}
+    hostname: canal-server
+    container_name: canal-server
+    ports:
+      - "5005:5005"
+      - "11110:11110" # admin
+      - "11111:11111" # canal
+      - "11112:11112" # metrics
+      - "9100:9100"   # exporter
+    volumes:
+      - ./canal-server/conf/test-demo/instance.properties:/home/admin/canal-server/conf/test-demo/instance.properties
+      - ./canal-server/conf/canal.properties:/home/admin/canal-server/conf/canal.properties
+      - ./canal-server/logs:/home/admin/canal-server/logs
+    depends_on:
+      - canal-mysql
+    networks:
+      - canal-standalone-network
+
+  canal-mysql:
+    build:
+      context: ./mysql
+      args:
+        - MYSQL_VERSION=${MYSQL_VERSION}
+    hostname: canal-mysql
+    container_name: canal-mysql
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - ${MYSQL_PORT}:3306
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - TZ=${TZ}
+    networks:
+      - canal-standalone-network
+
+#  canal-adapter:
+#    build:
+#      context: ./canal-adapter
+#      args:
+#        CANAL_VERSION: ${CANAL_VERSION}
+#    hostname: canal-adapter
+#    container_name: canal-adapter
+#    ports:
+#      - "8081:8081"
+#    volumes:
+#      - ./canal-adapter/conf/application.yml:/canal-adapter/conf/application.yml
+#      - ./canal-adapter/conf/bootstrap.yml:/canal-adapter/conf/bootstrap.yml
+#    networks:
+#      - canal-standalone-network

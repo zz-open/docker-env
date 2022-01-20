@@ -122,7 +122,6 @@ services:
       - pulsar2
       - pulsar3
 
-
   pulsar-manager1:
     image: apachepulsar/pulsar-manager:v0.2.0
     hostname: pulsar-manager

@@ -1,0 +1,2 @@
+2022-01-18 01:34:19.244 - clientId:1001 cursor:[mysql-bin.000003,3120,1642440784000,1,] address[canal-mysql/192.168.160.2:3306]
+2022-01-18 01:35:01.169 - clientId:1001 cursor:[mysql-bin.000003,3960,1642440900000,1,] address[canal-mysql/192.168.160.2:3306]

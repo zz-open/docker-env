@@ -1,15 +1,11 @@
 version: "3.8"
 
 networks:
-  etcd-cluster-network:
+  etcd-standalone-network:
     driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: ${SUBNET}
 
 services:
-  etcd:
+  etcd1:
     image: quay.io/coreos/etcd:latest
     entrypoint: /usr/local/bin/etcd
     container_name: ${ETCD_NAME_1}
@@ -33,7 +29,6 @@ services:
       - ${ETCD_PORT_1}:2379
       - ${ETCD_PORT_REVERSE_1}:2380
     networks:
-      etcd-cluster-network:
-        ipv4_address: ${ETCD_IPV4_1}
+      etcd-standalone-network:
     volumes:
-      - ./etcd1/${ETCD_NAME_1}/data:/etcd_data
+      - ./${ETCD_NAME_1}/data:/etcd_data

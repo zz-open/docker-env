@@ -1,0 +1,32 @@
+2022-01-18 00:21:29.034 [main] INFO  com.alibaba.otter.canal.deployer.CanalLauncher - ## set default uncaught exception handler
+2022-01-18 00:21:29.309 [main] INFO  com.alibaba.otter.canal.deployer.CanalLauncher - ## load canal configurations
+2022-01-18 00:21:32.948 [main] ERROR com.alibaba.otter.canal.deployer.CanalLauncher - ## Something goes wrong when starting up the canal Server:
+com.alibaba.otter.canal.common.CanalException: load manager config failed.
+Caused by: java.lang.RuntimeException: requestGet remote error, request : http://canal-admin:8089/api/v1/config/server_polling?ip=192.168.128.3&port=11110&md5=&register=1&cluster=null&name=null
+	at com.alibaba.otter.canal.instance.manager.plain.HttpHelper.get(HttpHelper.java:100) ~[canal.instance.manager-1.1.5.jar:na]
+	at com.alibaba.otter.canal.instance.manager.plain.PlainCanalConfigClient.doQuery(PlainCanalConfigClient.java:121) ~[canal.instance.manager-1.1.5.jar:na]
+	at com.alibaba.otter.canal.instance.manager.plain.PlainCanalConfigClient.queryConfig(PlainCanalConfigClient.java:110) ~[canal.instance.manager-1.1.5.jar:na]
+	at com.alibaba.otter.canal.instance.manager.plain.PlainCanalConfigClient.findServer(PlainCanalConfigClient.java:77) ~[canal.instance.manager-1.1.5.jar:na]
+	at com.alibaba.otter.canal.deployer.CanalLauncher.main(CanalLauncher.java:71) ~[canal.deployer-1.1.5.jar:na]
+Caused by: org.apache.http.conn.HttpHostConnectException: Connect to canal-admin:8089 [canal-admin/192.168.128.4] failed: Connection refused (Connection refused)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:151) ~[httpclient-4.5.1.jar:4.5.1]
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:353) ~[httpclient-4.5.1.jar:4.5.1]
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:380) ~[httpclient-4.5.1.jar:4.5.1]
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236) ~[httpclient-4.5.1.jar:4.5.1]
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:184) ~[httpclient-4.5.1.jar:4.5.1]
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:88) ~[httpclient-4.5.1.jar:4.5.1]
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110) ~[httpclient-4.5.1.jar:4.5.1]
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:184) ~[httpclient-4.5.1.jar:4.5.1]
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82) ~[httpclient-4.5.1.jar:4.5.1]
+	at com.alibaba.otter.canal.instance.manager.plain.HttpHelper.get(HttpHelper.java:90) ~[canal.instance.manager-1.1.5.jar:na]
+	... 4 common frames omitted
+Caused by: java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method) ~[na:1.8.0_181]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350) ~[na:1.8.0_181]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[na:1.8.0_181]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[na:1.8.0_181]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[na:1.8.0_181]
+	at java.net.Socket.connect(Socket.java:589) ~[na:1.8.0_181]
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:74) ~[httpclient-4.5.1.jar:4.5.1]
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:134) ~[httpclient-4.5.1.jar:4.5.1]
+	... 13 common frames omitted

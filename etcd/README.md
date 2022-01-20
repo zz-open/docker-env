@@ -1,3 +1,4 @@
+#学习ETCD
 1.进入容器的命令：
 cd /Users/xulei/jungle/docker-php56/mycontainer/etcd-cluster && docker exec -it etcd1  /bin/sh
 cd /Users/xulei/jungle/docker-php56/mycontainer/etcd-cluster && docker exec -it etcd2  /bin/sh

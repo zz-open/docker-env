@@ -6,7 +6,11 @@ networks:
 
 services:
   rocketmq-nameserver1:
-    image: ${ROCKETMQ_IMAGE}:${ROCKETMQ_VERSION}
+    build:
+      context: ./nameserver1
+      args:
+        ROCKETMQ_IMAGE: ${ROCKETMQ_IMAGE}
+        ROCKETMQ_VERSION: ${ROCKETMQ_VERSION}
     hostname: rocketmq-nameserver1
     container_name: rocketmq-nameserver1
     ports:
@@ -21,7 +25,11 @@ services:
       - rocketmq-standalone-network
 
   rocketmq-broker1:
-    image: ${ROCKETMQ_IMAGE}:${ROCKETMQ_VERSION}
+    build:
+      context: ./broker1
+      args:
+        ROCKETMQ_IMAGE: ${ROCKETMQ_IMAGE}
+        ROCKETMQ_VERSION: ${ROCKETMQ_VERSION}
     hostname: rocketmq-broker1
     container_name: rocketmq-broker1
     volumes:

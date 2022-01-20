@@ -3,40 +3,35 @@ version: "3.8"
 networks:
   etcd-cluster-network:
     driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: ${SUBNET}
 
 services:
-  etcd1:
+  etcd4:
     image: quay.io/coreos/etcd:latest
     entrypoint: /usr/local/bin/etcd
-    container_name: ${ETCD_NAME_1}
-    hostname: ${ETCD_NAME_1}
+    container_name: ${ETCD_NAME_4}
+    hostname: ${ETCD_NAME_4}
     environment:
       - ETCDCTL_API=${ETCDCTL_API}
       - ENDPOINTS=${ETCD_ENDPOINTS}
     command:
-      - --name=${ETCD_NAME_1}
+      - --name=${ETCD_NAME_4}
       - --data-dir=/etcd_data
-      - --initial-advertise-peer-urls=http://${ETCD_NAME_1}:2380
+      - --initial-advertise-peer-urls=http://${ETCD_NAME_4}:2380
       - --listen-peer-urls=http://0.0.0.0:2380
       - --listen-client-urls=http://0.0.0.0:2379
-      - --advertise-client-urls=http://${ETCD_NAME_1}:2379
+      - --advertise-client-urls=http://${ETCD_NAME_4}:2379
       - --heartbeat-interval=${ETCD_HEARTBEAT_INTERVAL}
       - --election-timeout=1250
       - --initial-cluster=${ETCD_CLUSTER}
       - --initial-cluster-state=${ETCD_CLUSTER_STATE}
       - --initial-cluster-token=${ETCD_TOKEN}
     ports:
-      - ${ETCD_PORT_1}:2379
-      - ${ETCD_PORT_REVERSE_1}:2380
+      - ${ETCD_PORT_4}:2379
+      - ${ETCD_PORT_REVERSE_4}:2380
     networks:
       etcd-cluster-network:
-        ipv4_address: ${ETCD_IPV4_1}
     volumes:
-      - ./etcd1/${ETCD_NAME_1}/data:/etcd_data
+      - ./${ETCD_NAME_4}/data:/etcd_data
 
   etcd2:
     image: quay.io/coreos/etcd:latest
@@ -63,9 +58,8 @@ services:
       - ${ETCD_PORT_REVERSE_2}:2380
     networks:
       etcd-cluster-network:
-        ipv4_address: ${ETCD_IPV4_2}
     volumes:
-      - ./etcd2/${ETCD_NAME_2}/data:/etcd_data
+      - ./${ETCD_NAME_2}/data:/etcd_data
 
   etcd3:
     image: quay.io/coreos/etcd:latest
@@ -92,6 +86,5 @@ services:
       - ${ETCD_PORT_REVERSE_3}:2380
     networks:
       etcd-cluster-network:
-        ipv4_address: ${ETCD_IPV4_3}
     volumes:
-      - ./etcd3/${ETCD_NAME_3}/data:/etcd_data
+      - ./${ETCD_NAME_3}/data:/etcd_data

@@ -1,0 +1,4 @@
+ARG CANAL_VERSION
+FROM canal/canal-admin:v${CANAL_VERSION}
+
+
