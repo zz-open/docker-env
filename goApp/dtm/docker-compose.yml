@@ -1,0 +1,20 @@
+version: "3.8"
+
+networks:
+  lanp-network:
+    external: true
+
+services:
+  dtm:
+    build:
+      context: ./dtm
+    hostname: dtm
+    container_name: dtm
+    environment:
+      - TZ=${TZ}
+    ports:
+      - "${DTM_HTTP_PORT}:36789"
+      - "${DTM_GRPC_PORT}:36790"
+    networks:
+      lanp-network:
+        ipv4_address: ${DTM_IP}

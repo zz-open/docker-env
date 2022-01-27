@@ -1,0 +1,34 @@
+# Docs: https://caddyserver.com/docs/caddyfile
+#laradock.test {
+#    root * /var/www/public
+#    php_fastcgi php-fpm:9000
+#    file_server
+
+#    encode gzip
+#    tls internal
+#}
+
+localhost {
+    root * /var/www/public
+    file_server browse
+}
+
+www.caddytls.com {
+    root * /var/www/caddytls
+    log /var/log/caddy/caddytls.log
+    file_server browse
+
+    encode gzip
+    tls 373045134@qq.com {
+        protocols tls1.2
+    }
+}
+
+www.xuleigo.cn {
+    root * /var/www/xuleigocn
+    log /var/log/caddy/xuleigocn.log
+    file_server browse
+
+    encode gzip
+    tls /root/ssl/7167410_www.xuleigo.cn.pem /root/ssl/7167410_www.xuleigo.cn.key
+}

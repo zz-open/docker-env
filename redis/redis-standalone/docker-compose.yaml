@@ -1,8 +1,8 @@
 version: "3.8"
 
 networks:
-  redis-standalone-network:
-    driver: bridge
+  lanp-network:
+    external: true
 
 services:
   redis:
@@ -20,4 +20,5 @@ services:
       - ./data:/data
       - ./logs:/var/log/redis
     networks:
-      redis-standalone-network:
+      lanp-network:
+        ipv4_address: ${REDIS_IP}

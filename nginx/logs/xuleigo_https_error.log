@@ -1,0 +1,4 @@
+2022/01/24 23:47:31 [error] 11#11: *6 directory index of "/var/www/https/" is forbidden, client: 172.18.0.1, server: xuleigo.cn, request: "GET / HTTP/1.1", host: "www.xuleigo.cn"
+2022/01/24 23:47:31 [error] 11#11: *6 rewrite or internal redirection cycle while internally redirecting to "/index.php", client: 172.18.0.1, server: xuleigo.cn, request: "GET /favicon.ico HTTP/1.1", host: "www.xuleigo.cn", referrer: "https://www.xuleigo.cn/"
+2022/01/24 23:49:10 [error] 11#11: *13 rewrite or internal redirection cycle while internally redirecting to "/index.php", client: 172.18.0.1, server: xuleigo.cn, request: "GET /favicon.ico HTTP/1.1", host: "www.xuleigo.cn", referrer: "https://www.xuleigo.cn/"
+2022/01/24 23:49:20 [error] 11#11: *14 rewrite or internal redirection cycle while internally redirecting to "/index.php", client: 172.18.0.1, server: xuleigo.cn, request: "GET /favicon.ico HTTP/1.1", host: "www.xuleigo.cn", referrer: "https://www.xuleigo.cn/"

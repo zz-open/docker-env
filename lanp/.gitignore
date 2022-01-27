@@ -1,0 +1,10 @@
+.idea/
+.DS_Store
+./mysql/data/*
+./mysql/sql/*
+./apache2/logs/*
+./php-fpm/php56/*
+./php-fpm/php74/*
+./php-fpm/php80/*
+./nginx/logs
+./apache2/logs

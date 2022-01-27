@@ -1,0 +1,28 @@
+version: '3.8'
+
+networks:
+  caddy-network:
+    driver: bridge
+
+services:
+  caddy:
+    build: ./caddy
+    hostname: caddy
+    container_name: caddy
+    volumes:
+      - ./www/:/var/www:cached
+      - ./caddy/etc:/etc/caddy
+      - ./caddy/config:/config
+      - ./caddy/logs:/var/log/caddy
+      - ./caddy/data:/root/.caddy
+      - ./caddy/ssl:/root/ssl
+    ports:
+      - "${CADDY_HOST_HTTP_PORT}:80"
+      - "${CADDY_HOST_HTTPS_PORT}:443"
+    environment:
+      - TZ=${TZ}
+      - ADMIN_USER=admin
+      - ADMIN_PASSWORD=admin
+      - ADMIN_PASSWORD_HASH=${ADMIN_PASSWORD_HASH:-JDJhJDE0JE91S1FrN0Z0VEsyWmhrQVpON1VzdHVLSDkyWHdsN0xNbEZYdnNIZm1pb2d1blg4Y09mL0ZP}
+    networks:
+      caddy-network:

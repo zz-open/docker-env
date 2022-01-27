@@ -1,8 +1,8 @@
 version: '3.8'
 
 networks:
-  zookeeper-standalone-network:
-    driver: bridge
+  lanp-network:
+    external: true
 
 services:
   zookeeper:
@@ -19,7 +19,8 @@ services:
       - ZOO_SERVERS=${ZOOKEEPER_SERVERS}
       - TZ=${TZ}
     networks:
-      - kafka-standalone-network
+      lanp-network:
+        ipv4_address: ${ZOOKEEPER_IP}
 
   #zookeeper可视化
   zoonavigator:
@@ -35,4 +36,5 @@ services:
     depends_on:
       - ${ZOOKEEPER_NAME_1}
     networks:
-      - zookeeper-standalone-network
+      lanp-network:
+        ipv4_address: ${ZOONAVIGATOR_IP}

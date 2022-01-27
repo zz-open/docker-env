@@ -1,0 +1,5 @@
+.idea/
+.DS_Store
+./caddy/data/*
+./caddy/logs/*
+./caddy/etc/*

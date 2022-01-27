@@ -1,0 +1,244 @@
+2022-01-21T22:26:21.147411+08:00 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2022-01-21T22:26:21.147464+08:00 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-01-21T22:26:21.147479+08:00 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2022-01-21T22:26:21.158394+08:00 0 [Warning] Setting lower_case_table_names=2 because file system for /var/lib/mysql/ is case insensitive
+2022-01-21T22:26:22.081320+08:00 0 [Warning] InnoDB: New log files created, LSN=45790
+2022-01-21T22:26:22.297078+08:00 0 [Warning] InnoDB: Creating foreign key constraint system tables.
+mysqld: File '/var/lib/mysql/slow-query-log/slow.log' not found (Errcode: 2 - No such file or directory)
+2022-01-21T22:26:22.368572+08:00 0 [ERROR] Could not use /var/lib/mysql/slow-query-log/slow.log for logging (error 2 - No such file or directory). Turning logging off for the server process. To turn it on again: fix the cause, then either restart the query logging by using "SET GLOBAL SLOW_QUERY_LOG=ON" or restart the MySQL server.
+2022-01-21T22:26:22.397432+08:00 0 [Warning] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: 1b6e5ec4-7ac6-11ec-ac50-0242ac1b0002.
+2022-01-21T22:26:22.403123+08:00 0 [Warning] Gtid table is not ready to be used. Table 'mysql.gtid_executed' cannot be opened.
+2022-01-21T22:26:22.410570+08:00 1 [Warning] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2022-01-21T22:26:28.411030+08:00 1 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:28.411611+08:00 1 [Warning] 'user' entry 'mysql.session@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:28.412406+08:00 1 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:28.414761+08:00 1 [Warning] 'db' entry 'performance_schema mysql.session@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:28.415467+08:00 1 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:28.416031+08:00 1 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:28.418081+08:00 1 [Warning] 'tables_priv' entry 'user mysql.session@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:28.418821+08:00 1 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:32.360062+08:00 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2022-01-21T22:26:32.360128+08:00 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-01-21T22:26:32.360149+08:00 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2022-01-21T22:26:32.369690+08:00 0 [Note] mysqld (mysqld 5.7.24-log) starting as process 91 ...
+2022-01-21T22:26:32.379170+08:00 0 [Warning] Setting lower_case_table_names=2 because file system for /var/lib/mysql/ is case insensitive
+2022-01-21T22:26:32.390032+08:00 0 [Note] InnoDB: PUNCH HOLE support available
+2022-01-21T22:26:32.390927+08:00 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+2022-01-21T22:26:32.391742+08:00 0 [Note] InnoDB: Uses event mutexes
+2022-01-21T22:26:32.392306+08:00 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+2022-01-21T22:26:32.392861+08:00 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+2022-01-21T22:26:32.393732+08:00 0 [Note] InnoDB: Using Linux native AIO
+2022-01-21T22:26:32.394988+08:00 0 [Note] InnoDB: Number of pools: 1
+2022-01-21T22:26:32.396220+08:00 0 [Note] InnoDB: Using CPU crc32 instructions
+2022-01-21T22:26:32.400609+08:00 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2022-01-21T22:26:32.418528+08:00 0 [Note] InnoDB: Completed initialization of buffer pool
+2022-01-21T22:26:32.426889+08:00 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+2022-01-21T22:26:32.490965+08:00 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2022-01-21T22:26:32.617578+08:00 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2022-01-21T22:26:32.621424+08:00 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2022-01-21T22:26:32.699907+08:00 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+2022-01-21T22:26:32.708000+08:00 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2022-01-21T22:26:32.709153+08:00 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2022-01-21T22:26:32.710412+08:00 0 [Note] InnoDB: Waiting for purge to start
+2022-01-21T22:26:32.761731+08:00 0 [Note] InnoDB: 5.7.24 started; log sequence number 2592414
+2022-01-21T22:26:32.763857+08:00 0 [Note] Plugin 'FEDERATED' is disabled.
+2022-01-21T22:26:32.763907+08:00 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+mysqld: File '/var/lib/mysql/slow-query-log/slow.log' not found (Errcode: 2 - No such file or directory)
+2022-01-21T22:26:32.789152+08:00 0 [ERROR] Could not use /var/lib/mysql/slow-query-log/slow.log for logging (error 2 - No such file or directory). Turning logging off for the server process. To turn it on again: fix the cause, then either restart the query logging by using "SET GLOBAL SLOW_QUERY_LOG=ON" or restart the MySQL server.
+2022-01-21T22:26:32.837655+08:00 0 [Note] InnoDB: Buffer pool(s) load completed at 220121 22:26:32
+2022-01-21T22:26:32.882756+08:00 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
+2022-01-21T22:26:32.891136+08:00 0 [Warning] CA certificate ca.pem is self signed.
+2022-01-21T22:26:32.898861+08:00 0 [Warning] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2022-01-21T22:26:32.930345+08:00 0 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:32.931120+08:00 0 [Warning] 'user' entry 'mysql.session@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:32.931836+08:00 0 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:32.932523+08:00 0 [Warning] 'db' entry 'performance_schema mysql.session@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:32.933177+08:00 0 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:32.933880+08:00 0 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:32.981097+08:00 0 [Warning] 'tables_priv' entry 'user mysql.session@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:32.981933+08:00 0 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:33.037936+08:00 0 [Note] Failed to start slave threads for channel ''
+2022-01-21T22:26:33.219925+08:00 0 [Note] Event Scheduler: Loaded 0 events
+2022-01-21T22:26:33.221476+08:00 0 [Note] mysqld: ready for connections.
+Version: '5.7.24-log'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server (GPL)
+2022-01-21T22:26:37.695560+08:00 4 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:37.696273+08:00 4 [Warning] 'user' entry 'mysql.session@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:37.697026+08:00 4 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:37.697726+08:00 4 [Warning] 'db' entry 'performance_schema mysql.session@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:37.698977+08:00 4 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:37.699679+08:00 4 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:37.700678+08:00 4 [Warning] 'tables_priv' entry 'user mysql.session@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:37.701636+08:00 4 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:37.774979+08:00 8 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:37.775729+08:00 8 [Warning] 'user' entry 'mysql.session@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:37.776405+08:00 8 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:37.777741+08:00 8 [Warning] 'db' entry 'performance_schema mysql.session@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:37.778379+08:00 8 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:37.779090+08:00 8 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:37.784726+08:00 8 [Warning] 'tables_priv' entry 'user mysql.session@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:37.785368+08:00 8 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:37.797812+08:00 0 [Note] Giving 0 client threads a chance to die gracefully
+2022-01-21T22:26:37.798672+08:00 0 [Note] Shutting down slave threads
+2022-01-21T22:26:37.799244+08:00 0 [Note] Forcefully disconnecting 0 remaining clients
+2022-01-21T22:26:37.799809+08:00 0 [Note] Event Scheduler: Purging the queue. 0 events
+2022-01-21T22:26:37.800472+08:00 0 [Note] Binlog end
+2022-01-21T22:26:37.809194+08:00 0 [Note] Shutting down plugin 'ngram'
+2022-01-21T22:26:37.813269+08:00 0 [Note] Shutting down plugin 'partition'
+2022-01-21T22:26:37.815547+08:00 0 [Note] Shutting down plugin 'BLACKHOLE'
+2022-01-21T22:26:37.817694+08:00 0 [Note] Shutting down plugin 'ARCHIVE'
+2022-01-21T22:26:37.818963+08:00 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+2022-01-21T22:26:37.824210+08:00 0 [Note] Shutting down plugin 'MRG_MYISAM'
+2022-01-21T22:26:37.825044+08:00 0 [Note] Shutting down plugin 'MyISAM'
+2022-01-21T22:26:37.828482+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+2022-01-21T22:26:37.829574+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+2022-01-21T22:26:37.830354+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+2022-01-21T22:26:37.835229+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+2022-01-21T22:26:37.835888+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+2022-01-21T22:26:37.836561+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+2022-01-21T22:26:37.837093+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+2022-01-21T22:26:37.837833+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+2022-01-21T22:26:37.838674+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+2022-01-21T22:26:37.839907+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+2022-01-21T22:26:37.840973+08:00 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+2022-01-21T22:26:37.841636+08:00 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+2022-01-21T22:26:37.842269+08:00 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+2022-01-21T22:26:37.842825+08:00 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+2022-01-21T22:26:37.843830+08:00 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+2022-01-21T22:26:37.844533+08:00 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+2022-01-21T22:26:37.845134+08:00 0 [Note] Shutting down plugin 'INNODB_METRICS'
+2022-01-21T22:26:37.845839+08:00 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+2022-01-21T22:26:37.846410+08:00 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+2022-01-21T22:26:37.847918+08:00 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+2022-01-21T22:26:37.848643+08:00 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+2022-01-21T22:26:37.849279+08:00 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+2022-01-21T22:26:37.850044+08:00 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+2022-01-21T22:26:37.851252+08:00 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+2022-01-21T22:26:37.851998+08:00 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+2022-01-21T22:26:37.852775+08:00 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+2022-01-21T22:26:37.853541+08:00 0 [Note] Shutting down plugin 'INNODB_CMP'
+2022-01-21T22:26:37.854270+08:00 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+2022-01-21T22:26:37.854874+08:00 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+2022-01-21T22:26:37.855401+08:00 0 [Note] Shutting down plugin 'INNODB_TRX'
+2022-01-21T22:26:37.856173+08:00 0 [Note] Shutting down plugin 'InnoDB'
+2022-01-21T22:26:37.856946+08:00 0 [Note] InnoDB: FTS optimize thread exiting.
+2022-01-21T22:26:37.857885+08:00 0 [Note] InnoDB: Starting shutdown...
+2022-01-21T22:26:37.961370+08:00 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+2022-01-21T22:26:37.969359+08:00 0 [Note] InnoDB: Buffer pool(s) dump completed at 220121 22:26:37
+2022-01-21T22:26:39.791863+08:00 0 [Note] InnoDB: Shutdown completed; log sequence number 12372138
+2022-01-21T22:26:39.796301+08:00 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2022-01-21T22:26:39.796997+08:00 0 [Note] Shutting down plugin 'MEMORY'
+2022-01-21T22:26:39.797781+08:00 0 [Note] Shutting down plugin 'CSV'
+2022-01-21T22:26:39.798646+08:00 0 [Note] Shutting down plugin 'sha256_password'
+2022-01-21T22:26:39.799489+08:00 0 [Note] Shutting down plugin 'mysql_native_password'
+2022-01-21T22:26:39.800730+08:00 0 [Note] Shutting down plugin 'binlog'
+2022-01-21T22:26:39.804416+08:00 0 [Note] mysqld: Shutdown complete
+
+2022-01-21T22:26:40.046463+08:00 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2022-01-21T22:26:40.046532+08:00 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-01-21T22:26:40.046547+08:00 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2022-01-21T22:26:40.075821+08:00 0 [Note] mysqld (mysqld 5.7.24-log) starting as process 1 ...
+2022-01-21T22:26:40.084228+08:00 0 [Warning] Setting lower_case_table_names=2 because file system for /var/lib/mysql/ is case insensitive
+2022-01-21T22:26:40.094016+08:00 0 [Note] InnoDB: PUNCH HOLE support available
+2022-01-21T22:26:40.094875+08:00 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+2022-01-21T22:26:40.095721+08:00 0 [Note] InnoDB: Uses event mutexes
+2022-01-21T22:26:40.096418+08:00 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+2022-01-21T22:26:40.097009+08:00 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+2022-01-21T22:26:40.097782+08:00 0 [Note] InnoDB: Using Linux native AIO
+2022-01-21T22:26:40.099113+08:00 0 [Note] InnoDB: Number of pools: 1
+2022-01-21T22:26:40.100796+08:00 0 [Note] InnoDB: Using CPU crc32 instructions
+2022-01-21T22:26:40.103330+08:00 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2022-01-21T22:26:40.114271+08:00 0 [Note] InnoDB: Completed initialization of buffer pool
+2022-01-21T22:26:40.118293+08:00 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+2022-01-21T22:26:40.183116+08:00 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2022-01-21T22:26:40.312912+08:00 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2022-01-21T22:26:40.316478+08:00 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2022-01-21T22:26:40.390990+08:00 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+2022-01-21T22:26:40.397342+08:00 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2022-01-21T22:26:40.398217+08:00 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2022-01-21T22:26:40.399391+08:00 0 [Note] InnoDB: Waiting for purge to start
+2022-01-21T22:26:40.450537+08:00 0 [Note] InnoDB: 5.7.24 started; log sequence number 12372138
+2022-01-21T22:26:40.452521+08:00 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+2022-01-21T22:26:40.452778+08:00 0 [Note] Plugin 'FEDERATED' is disabled.
+mysqld: File '/var/lib/mysql/slow-query-log/slow.log' not found (Errcode: 2 - No such file or directory)
+2022-01-21T22:26:40.482897+08:00 0 [ERROR] Could not use /var/lib/mysql/slow-query-log/slow.log for logging (error 2 - No such file or directory). Turning logging off for the server process. To turn it on again: fix the cause, then either restart the query logging by using "SET GLOBAL SLOW_QUERY_LOG=ON" or restart the MySQL server.
+2022-01-21T22:26:40.571088+08:00 0 [Note] InnoDB: Buffer pool(s) load completed at 220121 22:26:40
+2022-01-21T22:26:40.624849+08:00 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
+2022-01-21T22:26:40.640503+08:00 0 [Warning] CA certificate ca.pem is self signed.
+2022-01-21T22:26:40.643869+08:00 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2022-01-21T22:26:40.644775+08:00 0 [Note] IPv6 is available.
+2022-01-21T22:26:40.646725+08:00 0 [Note]   - '::' resolves to '::';
+2022-01-21T22:26:40.647338+08:00 0 [Note] Server socket created on IP: '::'.
+2022-01-21T22:26:40.650455+08:00 0 [Warning] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2022-01-21T22:26:40.676796+08:00 0 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:40.677502+08:00 0 [Warning] 'user' entry 'mysql.session@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:40.678219+08:00 0 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:40.679104+08:00 0 [Warning] 'db' entry 'performance_schema mysql.session@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:40.680102+08:00 0 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:40.680914+08:00 0 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:40.720357+08:00 0 [Warning] 'tables_priv' entry 'user mysql.session@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:40.720974+08:00 0 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2022-01-21T22:26:40.753885+08:00 0 [Note] Failed to start slave threads for channel ''
+2022-01-21T22:26:40.921435+08:00 0 [Note] Event Scheduler: Loaded 0 events
+2022-01-21T22:26:40.922416+08:00 0 [Note] mysqld: ready for connections.
+Version: '5.7.24-log'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
+2022-01-21T22:27:16.990056+08:00 2 [Note] Access denied for user 'xulei'@'172.27.0.1' (using password: YES)
+2022-01-22T01:25:05.541304+08:00 0 [Note] Giving 2 client threads a chance to die gracefully
+2022-01-22T01:25:05.542450+08:00 0 [Note] Shutting down slave threads
+2022-01-22T01:25:07.546672+08:00 0 [Note] Forcefully disconnecting 2 remaining clients
+2022-01-22T01:25:07.548323+08:00 0 [Warning] mysqld: Forcing close of thread 4  user: 'xulei'
+
+2022-01-22T01:25:07.549751+08:00 0 [Warning] mysqld: Forcing close of thread 5  user: 'xulei'
+
+2022-01-22T01:25:07.551405+08:00 0 [Note] Event Scheduler: Purging the queue. 0 events
+2022-01-22T01:25:07.553577+08:00 0 [Note] Binlog end
+2022-01-22T01:25:07.556892+08:00 0 [Note] Shutting down plugin 'ngram'
+2022-01-22T01:25:07.575414+08:00 0 [Note] Shutting down plugin 'partition'
+2022-01-22T01:25:07.583650+08:00 0 [Note] Shutting down plugin 'BLACKHOLE'
+2022-01-22T01:25:07.588721+08:00 0 [Note] Shutting down plugin 'ARCHIVE'
+2022-01-22T01:25:07.591486+08:00 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+2022-01-22T01:25:07.592259+08:00 0 [Note] Shutting down plugin 'MRG_MYISAM'
+2022-01-22T01:25:07.592990+08:00 0 [Note] Shutting down plugin 'MyISAM'
+2022-01-22T01:25:07.593485+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+2022-01-22T01:25:07.594448+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+2022-01-22T01:25:07.595054+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+2022-01-22T01:25:07.595695+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+2022-01-22T01:25:07.596937+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+2022-01-22T01:25:07.597724+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+2022-01-22T01:25:07.598242+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+2022-01-22T01:25:07.599208+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+2022-01-22T01:25:07.599760+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+2022-01-22T01:25:07.600871+08:00 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+2022-01-22T01:25:07.601662+08:00 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+2022-01-22T01:25:07.602350+08:00 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+2022-01-22T01:25:07.603448+08:00 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+2022-01-22T01:25:07.604055+08:00 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+2022-01-22T01:25:07.604544+08:00 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+2022-01-22T01:25:07.605097+08:00 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+2022-01-22T01:25:07.606092+08:00 0 [Note] Shutting down plugin 'INNODB_METRICS'
+2022-01-22T01:25:07.607025+08:00 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+2022-01-22T01:25:07.607586+08:00 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+2022-01-22T01:25:07.608255+08:00 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+2022-01-22T01:25:07.609464+08:00 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+2022-01-22T01:25:07.610088+08:00 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+2022-01-22T01:25:07.610601+08:00 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+2022-01-22T01:25:07.611299+08:00 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+2022-01-22T01:25:07.611928+08:00 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+2022-01-22T01:25:07.612847+08:00 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+2022-01-22T01:25:07.613462+08:00 0 [Note] Shutting down plugin 'INNODB_CMP'
+2022-01-22T01:25:07.613971+08:00 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+2022-01-22T01:25:07.614650+08:00 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+2022-01-22T01:25:07.615771+08:00 0 [Note] Shutting down plugin 'INNODB_TRX'
+2022-01-22T01:25:07.616540+08:00 0 [Note] Shutting down plugin 'InnoDB'
+2022-01-22T01:25:07.617046+08:00 0 [Note] InnoDB: FTS optimize thread exiting.
+2022-01-22T01:25:07.617808+08:00 0 [Note] InnoDB: Starting shutdown...
+2022-01-22T01:25:07.722141+08:00 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+2022-01-22T01:25:07.732061+08:00 0 [Note] InnoDB: Buffer pool(s) dump completed at 220122  1:25:07
+2022-01-22T01:25:08.954661+08:00 0 [Note] InnoDB: Shutdown completed; log sequence number 12436122
+2022-01-22T01:25:08.960350+08:00 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2022-01-22T01:25:08.961038+08:00 0 [Note] Shutting down plugin 'MEMORY'
+2022-01-22T01:25:08.961730+08:00 0 [Note] Shutting down plugin 'CSV'
+2022-01-22T01:25:08.962350+08:00 0 [Note] Shutting down plugin 'sha256_password'
+2022-01-22T01:25:08.962843+08:00 0 [Note] Shutting down plugin 'mysql_native_password'
+2022-01-22T01:25:08.963599+08:00 0 [Note] Shutting down plugin 'binlog'
+2022-01-22T01:25:08.966982+08:00 0 [Note] mysqld: Shutdown complete
+
