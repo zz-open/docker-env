@@ -2,4 +2,4 @@
 
 docker-compose down
 
-rm -rf ./logs/*
+rm -rf ./nginx/logs/*

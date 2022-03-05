@@ -1,0 +1,22 @@
+version: '3.8'
+
+networks:
+  lanp-network:
+    external: true
+
+services:
+  memcached:
+    build:
+      context: ./dockerfile
+    hostname: memcached
+    container_name: memcached
+    ports:
+      - "${MEMCACHED_HOST_PORT}:11211"
+    privileged: true
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ./memcached:/var/lib/memcached
+    networks:
+      lanp-network:
+        ipv4_address: ${MEMCACHED_IP}

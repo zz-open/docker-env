@@ -7,22 +7,19 @@ networks:
 services:
   openresty:
     build:
-      context: ./
-      args:
-        - CHANGE_SOURCE=${CHANGE_SOURCE}
-        - PHP_UPSTREAM_CONTAINER=${OPENRESTY_PHP_UPSTREAM_CONTAINER}
-        - PHP_UPSTREAM_PORT=${OPENRESTY_PHP_UPSTREAM_PORT}
-        - http_proxy
-        - https_proxy
-        - no_proxy
+      context: ./openresty
+    hostname: openresty
+    container_name: openresty
     volumes:
-      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
-      - ${OPENRESTY_HOST_LOG_PATH}:/var/log/nginx
-      - ${OPENRESTY_SITES_PATH}:/etc/nginx/sites-available
-      - ${OPENRESTY_SSL_PATH}:/etc/nginx/ssl
+      - ./var/www:/var/www:cached
+      - ./openresty/logs/:/usr/local/openresty/nginx/logs
+      - ./openresty/sites/:/etc/nginx/sites-available
+      - ./openresty/ssl/:/etc/nginx/ssl
+      - ./openresty/lua/:/usr/local/openresty/nginx/lua/
+    environment:
+      - TZ=${TZ}
     ports:
-      - "${OPENRESTY_HOST_HTTP_PORT}:80"
-      - "${OPENRESTY_HOST_HTTPS_PORT}:443"
-      - "${VARNISH_BACKEND_PORT}:81"
+      - "80:80"
+      - "443:443"
     networks:
       - openresty-network

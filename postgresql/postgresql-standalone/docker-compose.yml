@@ -1,12 +1,8 @@
 version: '3.8'
 
 networks:
-  postgresql-network:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.12.0.0/24
+  lanp-network:
+    external: true
 
 services:
   postgresql:
@@ -18,8 +14,8 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       PGDATA: /data/postgres
     networks:
-      postgresql-network:
-        ipv4_address: 172.12.0.10
+      lanp-network:
+        ipv4_address: ${POSTGRES_IP}
     volumes:
       - ./postgresql/data:/data/postgres
     ports:
@@ -36,8 +32,8 @@ services:
     volumes:
       - ./pgadmin:/var/lib/pgadmin
     networks:
-      postgresql-network:
-        ipv4_address: 172.12.0.11
+      lanp-network:
+        ipv4_address: ${POSTGRES_ADMIN_IP}
     ports:
       - "${PGADMIN_PORT}:80"
     depends_on:

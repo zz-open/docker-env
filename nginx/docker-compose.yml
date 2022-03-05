@@ -3,6 +3,8 @@ version: '3.8'
 networks:
   nginx-network:
     driver: bridge
+  lanp-network:
+    external: true
 
 services:
   nginx:
@@ -23,3 +25,5 @@ services:
       - ${NGINX_SSL_PATH}:/etc/nginx/ssl
     networks:
       nginx-network:
+      lanp-network:
+        ipv4_address: ${NGINX_STANDALONE_IP}

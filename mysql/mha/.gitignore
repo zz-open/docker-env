@@ -1,0 +1,5 @@
+.idea/
+.DS_Store
+./master1/data/*
+./slave1/data/*
+./slave2/data/*
