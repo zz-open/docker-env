@@ -32,4 +32,4 @@ services:
       lanp-network:
         ipv4_address: ${ETCD_1_IP}
     volumes:
-      - ./${ETCD_NAME_1}/data:/etcd_data
+      - ./etcd1/data:/etcd_data

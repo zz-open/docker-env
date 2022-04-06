@@ -4,7 +4,7 @@
 
 OS_NAME=$(uname -s)
 #JB_PRODUCTS="IntelliJIdea CLion PhpStorm GoLand PyCharm WebStorm Rider DataGrip RubyMine AppCode"
-JB_PRODUCTS="IntelliJIdea CLion"
+JB_PRODUCTS="WebStorm"
 
 if [ "$OS_NAME" = "Darwin" ]; then
 	echo 'macOS:'
