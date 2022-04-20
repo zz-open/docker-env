@@ -1,3 +1,7 @@
 .idea/
 .DS_Store
-./pulsar/data
+./pulsar1/data
+./pulsar2/data
+./pulsar3/data
+./zoo1/data
+./bookeeper1/data
