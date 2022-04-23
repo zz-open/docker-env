@@ -1,0 +1,11 @@
+2022-04-20_09:41:00.79334 506:C 20 Apr 2022 09:41:00.793 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+2022-04-20_09:41:00.79391 506:C 20 Apr 2022 09:41:00.793 # Redis version=6.0.16, bits=64, commit=5895d119, modified=1, pid=506, just started
+2022-04-20_09:41:00.79446 506:C 20 Apr 2022 09:41:00.793 # Configuration loaded
+2022-04-20_09:41:00.79930 506:M 20 Apr 2022 09:41:00.799 * Running mode=standalone, port=0.
+2022-04-20_09:41:00.79972 506:M 20 Apr 2022 09:41:00.799 # Server initialized
+2022-04-20_09:41:00.80103 506:M 20 Apr 2022 09:41:00.800 * The server is now ready to accept connections at /var/opt/gitlab/redis/redis.socket
+2022-04-20_09:46:01.07274 506:M 20 Apr 2022 09:46:01.070 * 10 changes in 300 seconds. Saving...
+2022-04-20_09:46:01.07820 506:M 20 Apr 2022 09:46:01.078 * Background saving started by pid 4352
+2022-04-20_09:46:01.12000 4352:C 20 Apr 2022 09:46:01.119 * DB saved on disk
+2022-04-20_09:46:01.12899 4352:C 20 Apr 2022 09:46:01.125 * RDB: 0 MB of memory used by copy-on-write
+2022-04-20_09:46:01.18916 506:M 20 Apr 2022 09:46:01.189 * Background saving terminated with success

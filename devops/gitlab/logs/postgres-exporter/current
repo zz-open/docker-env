@@ -1,0 +1,3 @@
+2022-04-20_09:45:24.10266 time="2022-04-20T09:45:24Z" level=info msg="Starting Server: localhost:9187" source="postgres_exporter.go:1850"
+2022-04-20_09:45:36.02828 time="2022-04-20T09:45:36Z" level=info msg="Established new database connection to \"/var/opt/gitlab/postgresql:5432\"." source="postgres_exporter.go:983"
+2022-04-20_09:45:36.07409 time="2022-04-20T09:45:36Z" level=info msg="Semantic Version Changed on \"/var/opt/gitlab/postgresql:5432\": 0.0.0 -> 12.7.0" source="postgres_exporter.go:1552"

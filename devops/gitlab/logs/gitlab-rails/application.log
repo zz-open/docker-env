@@ -1,0 +1,141 @@
+# Logfile created on 2022-04-20 09:42:01 +0000 by logger.rb/v1.4.2
+2022-04-20T09:42:01.126Z: ActiveRecord connection established
+2022-04-20T09:42:01.804Z: {:message=>"Syncing dynamic postgres partitions"}
+2022-04-20T09:42:01.843Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:42:01.848Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"audit_events"}
+2022-04-20T09:42:01.858Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:42:01.861Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"web_hook_logs"}
+2022-04-20T09:42:01.865Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:42:01.870Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"loose_foreign_keys_deleted_records"}
+2022-04-20T09:42:01.877Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:42:01.880Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"incident_management_pending_alert_escalations"}
+2022-04-20T09:42:01.884Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:42:01.886Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"incident_management_pending_issue_escalations"}
+2022-04-20T09:42:01.889Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:42:01.892Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"verification_codes"}
+2022-04-20T09:42:01.895Z: {:message=>"Finished sync of dynamic postgres partitions"}
+2022-04-20T09:43:21.115Z: {:message=>"Syncing dynamic postgres partitions"}
+2022-04-20T09:43:21.205Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:43:21.207Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"audit_events"}
+2022-04-20T09:43:21.378Z: {:method=>"with_lock_retries", :class=>"Gitlab::Database::Partitioning::PartitionManager", :message=>"Lock timeout is set", :current_iteration=>1, :lock_timeout_in_ms=>100}
+2022-04-20T09:43:21.775Z: {:message=>"Created partition", :partition_name=>"audit_events_000000", :table_name=>"audit_events"}
+2022-04-20T09:43:21.902Z: {:message=>"Created partition", :partition_name=>"audit_events_202204", :table_name=>"audit_events"}
+2022-04-20T09:43:22.002Z: {:message=>"Created partition", :partition_name=>"audit_events_202205", :table_name=>"audit_events"}
+2022-04-20T09:43:22.096Z: {:message=>"Created partition", :partition_name=>"audit_events_202206", :table_name=>"audit_events"}
+2022-04-20T09:43:22.203Z: {:message=>"Created partition", :partition_name=>"audit_events_202207", :table_name=>"audit_events"}
+2022-04-20T09:43:22.293Z: {:message=>"Created partition", :partition_name=>"audit_events_202208", :table_name=>"audit_events"}
+2022-04-20T09:43:22.414Z: {:message=>"Created partition", :partition_name=>"audit_events_202209", :table_name=>"audit_events"}
+2022-04-20T09:43:22.496Z: {:message=>"Created partition", :partition_name=>"audit_events_202210", :table_name=>"audit_events"}
+2022-04-20T09:43:22.499Z: {:method=>"with_lock_retries", :class=>"Gitlab::Database::Partitioning::PartitionManager", :message=>"Migration finished", :current_iteration=>1, :lock_timeout_in_ms=>100}
+2022-04-20T09:43:22.647Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:43:22.650Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"web_hook_logs"}
+2022-04-20T09:43:22.745Z: {:method=>"with_lock_retries", :class=>"Gitlab::Database::Partitioning::PartitionManager", :message=>"Lock timeout is set", :current_iteration=>1, :lock_timeout_in_ms=>100}
+2022-04-20T09:43:22.930Z: {:message=>"Created partition", :partition_name=>"web_hook_logs_202201", :table_name=>"web_hook_logs"}
+2022-04-20T09:43:23.042Z: {:message=>"Created partition", :partition_name=>"web_hook_logs_202202", :table_name=>"web_hook_logs"}
+2022-04-20T09:43:23.129Z: {:message=>"Created partition", :partition_name=>"web_hook_logs_202203", :table_name=>"web_hook_logs"}
+2022-04-20T09:43:23.219Z: {:message=>"Created partition", :partition_name=>"web_hook_logs_202204", :table_name=>"web_hook_logs"}
+2022-04-20T09:43:23.389Z: {:message=>"Created partition", :partition_name=>"web_hook_logs_202205", :table_name=>"web_hook_logs"}
+2022-04-20T09:43:23.523Z: {:message=>"Created partition", :partition_name=>"web_hook_logs_202206", :table_name=>"web_hook_logs"}
+2022-04-20T09:43:23.624Z: {:message=>"Created partition", :partition_name=>"web_hook_logs_202207", :table_name=>"web_hook_logs"}
+2022-04-20T09:43:23.742Z: {:message=>"Created partition", :partition_name=>"web_hook_logs_202208", :table_name=>"web_hook_logs"}
+2022-04-20T09:43:23.867Z: {:message=>"Created partition", :partition_name=>"web_hook_logs_202209", :table_name=>"web_hook_logs"}
+2022-04-20T09:43:23.992Z: {:message=>"Created partition", :partition_name=>"web_hook_logs_202210", :table_name=>"web_hook_logs"}
+2022-04-20T09:43:23.995Z: {:method=>"with_lock_retries", :class=>"Gitlab::Database::Partitioning::PartitionManager", :message=>"Migration finished", :current_iteration=>1, :lock_timeout_in_ms=>100}
+2022-04-20T09:43:24.085Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:43:24.088Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"loose_foreign_keys_deleted_records"}
+2022-04-20T09:43:24.200Z: {:method=>"with_lock_retries", :class=>"Gitlab::Database::Partitioning::PartitionManager", :message=>"Lock timeout is set", :current_iteration=>1, :lock_timeout_in_ms=>100}
+2022-04-20T09:43:24.354Z: {:message=>"Created partition", :partition_name=>"loose_foreign_keys_deleted_records_1", :table_name=>"loose_foreign_keys_deleted_records"}
+2022-04-20T09:43:24.437Z: {:method=>"with_lock_retries", :class=>"Gitlab::Database::Partitioning::PartitionManager", :message=>"Migration finished", :current_iteration=>1, :lock_timeout_in_ms=>100}
+2022-04-20T09:43:24.483Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:43:24.486Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"incident_management_pending_alert_escalations"}
+2022-04-20T09:43:24.610Z: {:method=>"with_lock_retries", :class=>"Gitlab::Database::Partitioning::PartitionManager", :message=>"Lock timeout is set", :current_iteration=>1, :lock_timeout_in_ms=>100}
+2022-04-20T09:43:24.824Z: {:message=>"Created partition", :partition_name=>"incident_management_pending_alert_escalations_000000", :table_name=>"incident_management_pending_alert_escalations"}
+2022-04-20T09:43:24.948Z: {:message=>"Created partition", :partition_name=>"incident_management_pending_alert_escalations_202204", :table_name=>"incident_management_pending_alert_escalations"}
+2022-04-20T09:43:25.089Z: {:message=>"Created partition", :partition_name=>"incident_management_pending_alert_escalations_202205", :table_name=>"incident_management_pending_alert_escalations"}
+2022-04-20T09:43:25.173Z: {:message=>"Created partition", :partition_name=>"incident_management_pending_alert_escalations_202206", :table_name=>"incident_management_pending_alert_escalations"}
+2022-04-20T09:43:25.289Z: {:message=>"Created partition", :partition_name=>"incident_management_pending_alert_escalations_202207", :table_name=>"incident_management_pending_alert_escalations"}
+2022-04-20T09:43:25.409Z: {:message=>"Created partition", :partition_name=>"incident_management_pending_alert_escalations_202208", :table_name=>"incident_management_pending_alert_escalations"}
+2022-04-20T09:43:25.583Z: {:message=>"Created partition", :partition_name=>"incident_management_pending_alert_escalations_202209", :table_name=>"incident_management_pending_alert_escalations"}
+2022-04-20T09:43:25.690Z: {:message=>"Created partition", :partition_name=>"incident_management_pending_alert_escalations_202210", :table_name=>"incident_management_pending_alert_escalations"}
+2022-04-20T09:43:25.695Z: {:method=>"with_lock_retries", :class=>"Gitlab::Database::Partitioning::PartitionManager", :message=>"Migration finished", :current_iteration=>1, :lock_timeout_in_ms=>100}
+2022-04-20T09:43:25.828Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:43:25.832Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"incident_management_pending_issue_escalations"}
+2022-04-20T09:43:25.930Z: {:method=>"with_lock_retries", :class=>"Gitlab::Database::Partitioning::PartitionManager", :message=>"Lock timeout is set", :current_iteration=>1, :lock_timeout_in_ms=>100}
+2022-04-20T09:43:26.167Z: {:message=>"Created partition", :partition_name=>"incident_management_pending_issue_escalations_000000", :table_name=>"incident_management_pending_issue_escalations"}
+2022-04-20T09:43:26.309Z: {:message=>"Created partition", :partition_name=>"incident_management_pending_issue_escalations_202204", :table_name=>"incident_management_pending_issue_escalations"}
+2022-04-20T09:43:26.384Z: {:message=>"Created partition", :partition_name=>"incident_management_pending_issue_escalations_202205", :table_name=>"incident_management_pending_issue_escalations"}
+2022-04-20T09:43:26.470Z: {:message=>"Created partition", :partition_name=>"incident_management_pending_issue_escalations_202206", :table_name=>"incident_management_pending_issue_escalations"}
+2022-04-20T09:43:26.547Z: {:message=>"Created partition", :partition_name=>"incident_management_pending_issue_escalations_202207", :table_name=>"incident_management_pending_issue_escalations"}
+2022-04-20T09:43:26.636Z: {:message=>"Created partition", :partition_name=>"incident_management_pending_issue_escalations_202208", :table_name=>"incident_management_pending_issue_escalations"}
+2022-04-20T09:43:26.848Z: {:message=>"Created partition", :partition_name=>"incident_management_pending_issue_escalations_202209", :table_name=>"incident_management_pending_issue_escalations"}
+2022-04-20T09:43:26.970Z: {:message=>"Created partition", :partition_name=>"incident_management_pending_issue_escalations_202210", :table_name=>"incident_management_pending_issue_escalations"}
+2022-04-20T09:43:26.973Z: {:method=>"with_lock_retries", :class=>"Gitlab::Database::Partitioning::PartitionManager", :message=>"Migration finished", :current_iteration=>1, :lock_timeout_in_ms=>100}
+2022-04-20T09:43:27.037Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:43:27.040Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"verification_codes"}
+2022-04-20T09:43:27.144Z: {:method=>"with_lock_retries", :class=>"Gitlab::Database::Partitioning::PartitionManager", :message=>"Lock timeout is set", :current_iteration=>1, :lock_timeout_in_ms=>100}
+2022-04-20T09:43:27.282Z: {:message=>"Created partition", :partition_name=>"verification_codes_000000", :table_name=>"verification_codes"}
+2022-04-20T09:43:27.362Z: {:message=>"Created partition", :partition_name=>"verification_codes_202204", :table_name=>"verification_codes"}
+2022-04-20T09:43:27.435Z: {:message=>"Created partition", :partition_name=>"verification_codes_202205", :table_name=>"verification_codes"}
+2022-04-20T09:43:27.494Z: {:message=>"Created partition", :partition_name=>"verification_codes_202206", :table_name=>"verification_codes"}
+2022-04-20T09:43:27.552Z: {:message=>"Created partition", :partition_name=>"verification_codes_202207", :table_name=>"verification_codes"}
+2022-04-20T09:43:27.630Z: {:message=>"Created partition", :partition_name=>"verification_codes_202208", :table_name=>"verification_codes"}
+2022-04-20T09:43:27.720Z: {:message=>"Created partition", :partition_name=>"verification_codes_202209", :table_name=>"verification_codes"}
+2022-04-20T09:43:27.801Z: {:message=>"Created partition", :partition_name=>"verification_codes_202210", :table_name=>"verification_codes"}
+2022-04-20T09:43:27.804Z: {:method=>"with_lock_retries", :class=>"Gitlab::Database::Partitioning::PartitionManager", :message=>"Migration finished", :current_iteration=>1, :lock_timeout_in_ms=>100}
+2022-04-20T09:43:27.897Z: {:message=>"Finished sync of dynamic postgres partitions"}
+2022-04-20T09:43:30.873Z: User "Administrator" (admin@example.com) was created
+2022-04-20T09:43:31.594Z: Group "GitLab Instance" was created
+2022-04-20T09:43:32.023Z: `Namespaces::InviteTeamEmailWorker.perform_in` cannot be called inside a transaction as this can lead to
+race conditions when the worker runs before the transaction is committed and
+tries to access a model that has not been saved yet.
+
+Use an `after_commit` hook, or include `AfterCommitQueue` and use a `run_after_commit` block instead.
+
+2022-04-20T09:43:36.500Z: Unable to save project. Error: 14:failed to connect to all addresses. debug_error_string:{"created":"@1650447816.497875968","description":"Failed to pick subchannel","file":"src/core/ext/filters/client_channel/client_channel.cc","file_line":3952,"referenced_errors":[{"created":"@1650447816.497873761","description":"failed to connect to all addresses","file":"src/core/ext/filters/client_channel/lb_policy/pick_first/pick_first.cc","file_line":394,"grpc_status":14}]} Project ID: 1
+2022-04-20T09:43:37.181Z: Cannot obtain an exclusive lease. There must be another instance already in execution.
+2022-04-20T09:43:57.536Z: ActiveRecord connection established
+2022-04-20T09:43:58.962Z: {:message=>"Syncing dynamic postgres partitions"}
+2022-04-20T09:43:59.012Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:43:59.017Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"audit_events"}
+2022-04-20T09:43:59.140Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:43:59.144Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"web_hook_logs"}
+2022-04-20T09:43:59.205Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:43:59.209Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"loose_foreign_keys_deleted_records"}
+2022-04-20T09:43:59.275Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:43:59.279Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"incident_management_pending_alert_escalations"}
+2022-04-20T09:43:59.332Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:43:59.335Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"incident_management_pending_issue_escalations"}
+2022-04-20T09:43:59.399Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:43:59.401Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"verification_codes"}
+2022-04-20T09:43:59.478Z: {:message=>"Finished sync of dynamic postgres partitions"}
+2022-04-20T09:44:42.891Z: {:message=>"Syncing dynamic postgres partitions"}
+2022-04-20T09:44:42.968Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:44:42.974Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"audit_events"}
+2022-04-20T09:44:43.144Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:44:43.148Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"web_hook_logs"}
+2022-04-20T09:44:43.229Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:44:43.235Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"loose_foreign_keys_deleted_records"}
+2022-04-20T09:44:43.330Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:44:43.333Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"incident_management_pending_alert_escalations"}
+2022-04-20T09:44:43.408Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:44:43.412Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"incident_management_pending_issue_escalations"}
+2022-04-20T09:44:43.537Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:44:43.541Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"verification_codes"}
+2022-04-20T09:44:43.633Z: {:message=>"Finished sync of dynamic postgres partitions"}
+2022-04-20T09:44:57.702Z: {:message=>"Syncing dynamic postgres partitions"}
+2022-04-20T09:44:57.771Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:44:57.777Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"audit_events"}
+2022-04-20T09:44:57.860Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:44:57.865Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"web_hook_logs"}
+2022-04-20T09:44:57.918Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:44:57.938Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"loose_foreign_keys_deleted_records"}
+2022-04-20T09:44:57.980Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:44:57.983Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"incident_management_pending_alert_escalations"}
+2022-04-20T09:44:58.041Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:44:58.044Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"incident_management_pending_issue_escalations"}
+2022-04-20T09:44:58.098Z: {:message=>"Switched database connection", :connection_name=>"main"}
+2022-04-20T09:44:58.102Z: {:message=>"Checking state of dynamic postgres partitions", :table_name=>"verification_codes"}
+2022-04-20T09:44:58.147Z: {:message=>"Finished sync of dynamic postgres partitions"}
+2022-04-20T09:45:30.840Z: ActiveRecord connection disconnected
+2022-04-20T09:45:31.997Z: ActiveRecord connection established
+2022-04-20T09:45:32.040Z: ActiveRecord connection established

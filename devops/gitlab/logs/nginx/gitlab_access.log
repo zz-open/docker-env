@@ -1,0 +1,10 @@
+172.19.0.1 - - [20/Apr/2022:09:45:01 +0000] "GET / HTTP/1.1" 502 2940 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" -
+172.19.0.1 - - [20/Apr/2022:09:45:01 +0000] "GET /favicon.ico HTTP/1.1" 502 2940 "http://192.168.3.34:8929/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" -
+127.0.0.1 - - [20/Apr/2022:09:45:26 +0000] "GET /help HTTP/1.1" 502 2940 "" "curl/7.79.1-DEV" -
+127.0.0.1 - - [20/Apr/2022:09:46:37 +0000] "GET /help HTTP/1.1" 499 0 "" "curl/7.79.1-DEV" -
+127.0.0.1 - - [20/Apr/2022:09:48:11 +0000] "GET /help HTTP/1.1" 499 0 "" "curl/7.79.1-DEV" -
+172.19.0.1 - - [20/Apr/2022:09:49:02 +0000] "GET / HTTP/1.1" 499 0 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" -
+172.19.0.1 - - [20/Apr/2022:09:49:14 +0000] "GET / HTTP/1.1" 499 0 "http://192.168.3.34:8929/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" -
+172.19.0.1 - - [20/Apr/2022:09:49:22 +0000] "GET / HTTP/1.1" 499 0 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" -
+172.19.0.1 - - [20/Apr/2022:09:49:35 +0000] "GET / HTTP/1.1" 499 0 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" -
+127.0.0.1 - - [20/Apr/2022:09:49:51 +0000] "GET /help HTTP/1.1" 200 31652 "" "curl/7.79.1-DEV" -

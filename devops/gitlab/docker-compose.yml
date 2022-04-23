@@ -1,0 +1,27 @@
+version: "3.8"
+
+networks:
+  lanp-network:
+    external: true
+
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    container_name: ${GITLAB_NAME}
+    hostname: ${GITLAB_NAME}
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://localhost:8929'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+      TZ: "Asia/Shanghai"
+    ports:
+      - "8929:8929"
+      - "2224:2224"
+    volumes:
+      - ./config:/etc/gitlab
+      - ./logs:/var/log/gitlab
+      - ./data:/var/opt/gitlab
+    networks:
+      lanp-network:
+        ipv4_address: ${GITLAB_IP}
+    shm_size: '256m'

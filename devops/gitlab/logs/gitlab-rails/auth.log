@@ -1,0 +1,5 @@
+# Logfile created on 2022-04-20 09:42:01 +0000 by logger.rb/v1.4.2
+{"severity":"INFO","time":"2022-04-20T09:42:01.924Z","correlation_id":null,"gitlab_throttle_user_allowlist":[]}
+{"severity":"INFO","time":"2022-04-20T09:43:59.503Z","correlation_id":null,"gitlab_throttle_user_allowlist":[]}
+{"severity":"INFO","time":"2022-04-20T09:44:43.678Z","correlation_id":null,"gitlab_throttle_user_allowlist":[]}
+{"severity":"INFO","time":"2022-04-20T09:44:58.175Z","correlation_id":null,"gitlab_throttle_user_allowlist":[]}

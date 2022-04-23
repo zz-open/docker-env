@@ -1,0 +1,19 @@
+=== puma startup: 2022-04-20 09:45:29 +0000 ===
+{"timestamp":"2022-04-20T09:45:30.850Z","pid":2916,"message":"! Promoting existing objects to old generation..."}
+{"timestamp":"2022-04-20T09:45:31.269Z","pid":2916,"message":"! Compacting..."}
+Note: GC compacting is currently disabled. Refer to `config/initializers_before_autoloader/003_gc_compact.rb` for details.
+{"timestamp":"2022-04-20T09:45:31.271Z","pid":2916,"message":"! Friendly fork preparation complete."}
+{"timestamp":"2022-04-20T09:45:32.051Z","pid":2916,"message":"- Worker 0 (PID: 4091) booted in 0.76s, phase: 0"}
+{"timestamp":"2022-04-20T09:45:32.115Z","pid":2916,"message":"- Worker 1 (PID: 4094) booted in 0.8s, phase: 0"}
+{"timestamp":"2022-04-20T09:45:50.395Z","pid":2916,"message":"PumaWorkerKiller: Consuming 1875.9765625 mb with master and 2 workers."}
+{"timestamp":"2022-04-20T09:46:10.376Z","pid":2916,"message":"PumaWorkerKiller: Consuming 1437.29296875 mb with master and 2 workers."}
+{"timestamp":"2022-04-20T09:46:30.382Z","pid":2916,"message":"PumaWorkerKiller: Consuming 1315.515625 mb with master and 2 workers."}
+{"timestamp":"2022-04-20T09:46:58.478Z","pid":2916,"message":"PumaWorkerKiller: Consuming 1322.984375 mb with master and 2 workers."}
+{"timestamp":"2022-04-20T09:47:20.611Z","pid":2916,"message":"PumaWorkerKiller: Consuming 1305.55078125 mb with master and 2 workers."}
+{"timestamp":"2022-04-20T09:47:40.786Z","pid":2916,"message":"PumaWorkerKiller: Consuming 1302.48828125 mb with master and 2 workers."}
+{"timestamp":"2022-04-20T09:48:01.221Z","pid":2916,"message":"PumaWorkerKiller: Consuming 1297.78125 mb with master and 2 workers."}
+{"timestamp":"2022-04-20T09:48:21.249Z","pid":2916,"message":"PumaWorkerKiller: Consuming 1289.9609375 mb with master and 2 workers."}
+{"timestamp":"2022-04-20T09:48:41.993Z","pid":2916,"message":"PumaWorkerKiller: Consuming 1288.03125 mb with master and 2 workers."}
+{"timestamp":"2022-04-20T09:49:08.482Z","pid":2916,"message":"PumaWorkerKiller: Consuming 1283.8203125 mb with master and 2 workers."}
+{"timestamp":"2022-04-20T09:49:32.308Z","pid":2916,"message":"PumaWorkerKiller: Consuming 1279.26953125 mb with master and 2 workers."}
+{"timestamp":"2022-04-20T09:49:52.309Z","pid":2916,"message":"PumaWorkerKiller: Consuming 1296.68359375 mb with master and 2 workers."}
