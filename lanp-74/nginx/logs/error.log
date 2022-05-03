@@ -1,0 +1,2 @@
+2022/01/26 15:00:43 [warn] 13#13: conflicting server name "bingo.t.store.com" on 0.0.0.0:80, ignored
+2022/01/26 15:00:43 [warn] 13#13: conflicting server name "bingo.t.store.com" on [::]:80, ignored

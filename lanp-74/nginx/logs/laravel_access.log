@@ -1,0 +1,4 @@
+172.19.0.1 - - [03/May/2022:16:04:03 +0000] "HEAD / HTTP/1.1" 200 0 "-" "Go-http-client/1.1"
+172.19.0.1 - - [03/May/2022:16:04:03 +0000] "GET / HTTP/1.1" 200 34 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36"
+172.19.0.1 - - [03/May/2022:16:04:03 +0000] "HEAD / HTTP/1.1" 200 0 "-" "Go-http-client/1.1"
+172.19.0.1 - - [03/May/2022:16:04:03 +0000] "GET /favicon.ico HTTP/1.1" 200 34 "http://yaf.a.cn/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36"

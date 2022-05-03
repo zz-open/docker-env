@@ -1,0 +1,60 @@
+version: '3.8'
+
+networks:
+  lanp-network:
+    external: true
+
+services:
+  nginx:
+    hostname: lanp-74-nginx
+    container_name: lanp-74-nginx
+    build:
+      context: ./nginx
+      args:
+        - CHANGE_SOURCE=${CHANGE_SOURCE}
+        - PHP_UPSTREAM_CONTAINER=${NGINX_PHP_UPSTREAM_CONTAINER}
+        - PHP_UPSTREAM_PORT=${NGINX_PHP_UPSTREAM_PORT}
+        - http_proxy
+        - https_proxy
+        - no_proxy
+    volumes:
+      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+      - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
+      - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
+      - ${NGINX_SSL_PATH}:/etc/nginx/ssl
+    ports:
+      - "${NGINX_HOST_HTTP_PORT}:80"
+      - "${NGINX_HOST_HTTPS_PORT}:443"
+      - "8212:8212"
+      - "8222:8222"
+      - "8211:8211"
+      - "8213:8213"
+      - "8223:8223"
+      - "8231:8231"
+      - "8224:8224"
+      - "8221:8221"
+    networks:
+      lanp-network:
+        ipv4_address: ${LANP_74_NGINX_IP}
+
+  mysql:
+    build:
+      context: ./mysql
+      args:
+        - MYSQL_VERSION=${MYSQL_VERSION}
+    hostname: lanp-74-mysql
+    container_name: lanp-74-mysql
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+    ports:
+      - "${MYSQL_PORT}:3306"
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - TZ=${TZ}
+    networks:
+      lanp-network:
+        ipv4_address: ${LANP_74_MYSQL_IP}
