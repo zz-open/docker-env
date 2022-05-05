@@ -1,17 +1,17 @@
 version: '3.8'
 
 networks:
-  mysql-standalone-network:
+  mysql8-network:
     driver: bridge
 
 services:
-  mysql:
+  mysql8:
     build:
       context: ./mysql
       args:
         - MYSQL_VERSION=${MYSQL_VERSION}
-    hostname: mysql
-    container_name: mysql
+    hostname: mysql8
+    container_name: mysql8
     volumes:
       - ./data:/var/lib/mysql
       - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
@@ -24,4 +24,4 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - TZ=${TZ}
     networks:
-      mysql-standalone-network:
+      mysql8-network:

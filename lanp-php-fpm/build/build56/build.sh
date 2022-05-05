@@ -13,6 +13,7 @@ function containerBuild() {
   cp -rp ./scripts/start.sh ${php56Path}/start.sh && \
   cp -rp ./scripts/util.sh ${php56Path}/util.sh && \
   cp -rp ./docker-compose.yml.example ${php56Path}/docker-compose.yml && \
+  sed -i "" "s/php-fpm:/php-fpm-56:/" ${php56Path}/docker-compose.yml && \
   sed -i "" "s/container_name: php-fpm/container_name: php-fpm-56/" ${php56Path}/docker-compose.yml && \
   sed -i "" "s/hostname: php-fpm/hostname: php-fpm-56/" ${php56Path}/docker-compose.yml && \
   cd ${php56Path} && \
@@ -27,6 +28,7 @@ function containerDown(){
   fi
 
   rm -rf ./*
+  rm -rf .env
 }
 
 function build(){

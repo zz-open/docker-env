@@ -1,8 +1,8 @@
 .idea/
 .DS_Store
 
-./mysql/data/*
-./canal-server1/logs/*
-./canal-server2/logs/*
-./canal-server3/logs/*
-./canal-admin/logs/*
+mysql/data/
+canal-server1/logs/
+canal-server2/logs/
+canal-server3/logs/
+canal-admin/logs/

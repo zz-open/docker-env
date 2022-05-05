@@ -1,4 +1,4 @@
 .idea/
 .DS_Store
-./postgresql/data/*
-./pgadmin/*
+postgresql/data/
+pgadmin/

@@ -1,11 +1,11 @@
 version: '3.8'
 
 networks:
-  mysql-57-network:
+  mysql57-network:
     driver: bridge
 
 services:
-  mysql:
+  mysql57:
     build:
       context: ./mysql
       args:
@@ -24,4 +24,4 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - TZ=${TZ}
     networks:
-      mysql-57-network:
+      mysql57-network:

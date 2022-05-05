@@ -14,6 +14,7 @@ function containerBuild() {
   cp -rp ./scripts/util.sh ${php80Path}/util.sh && \
   cp -rp ./docker-compose.yml.example ${php80Path}/docker-compose.yml && \
   #sed -i "s/PHP_VERSION=请填写版本/PHP_VERSION=8.0/" ${php80Path}/.env && \
+  sed -i "" "s/php-fpm:/php-fpm-80:/" ${php80Path}/docker-compose.yml && \
   sed -i "" "s/container_name: php-fpm/container_name: php-fpm-80/" ${php80Path}/docker-compose.yml && \
   sed -i "" "s/hostname: php-fpm/hostname: php-fpm-80/" ${php80Path}/docker-compose.yml && \
   cd ${php80Path} && \
@@ -28,6 +29,7 @@ function containerDown(){
   fi
 
   rm -rf ./*
+  rm -rf .env
 }
 
 function build(){

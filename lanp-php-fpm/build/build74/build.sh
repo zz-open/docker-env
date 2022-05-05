@@ -14,6 +14,7 @@ function containerBuild() {
   cp -rp ./scripts/util.sh ${php74Path}/util.sh && \
   cp -rp ./docker-compose.yml.example ${php74Path}/docker-compose.yml && \
   sed -i "" "s/PHP_FPM_INSTALL_YAF=false/PHP_FPM_INSTALL_YAF=true/" ${php74Path}/.env && \
+  sed -i "" "s/php-fpm:/php-fpm-74:/" ${php74Path}/docker-compose.yml && \
   sed -i "" "s/container_name: php-fpm/container_name: php-fpm-74/" ${php74Path}/docker-compose.yml && \
   sed -i "" "s/hostname: php-fpm/hostname: php-fpm-74/" ${php74Path}/docker-compose.yml && \
   cd ${php74Path} && \
@@ -28,6 +29,7 @@ function containerDown(){
   fi
 
   rm -rf ./*
+  rm -rf .env
 }
 
 function build(){

@@ -9,3 +9,6 @@ function replaceIp() {
 }
 
 #CreateNetwork
+
+#清除track缓存
+#git rm -r --cached .

@@ -89,3 +89,8 @@ AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/H5/htdocs] does
 [Tue May 03 22:12:28.319213 2022] [core:warn] [pid 23:tid 140158822554560] AH00098: pid file /var/run/apache2/apache2.pid overwritten -- Unclean shutdown of previous Apache run?
 [Tue May 03 22:12:28.322505 2022] [mpm_event:notice] [pid 23:tid 140158822554560] AH00489: Apache/2.4.29 (Ubuntu) OpenSSL/1.1.1 configured -- resuming normal operations
 [Tue May 03 22:12:28.323084 2022] [core:notice] [pid 23:tid 140158822554560] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/branch/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/H5/htdocs] does not exist
+[Wed May 04 15:40:03.274939 2022] [mpm_event:notice] [pid 23:tid 140256429427648] AH00489: Apache/2.4.29 (Ubuntu) OpenSSL/1.1.1 configured -- resuming normal operations
+[Wed May 04 15:40:03.276005 2022] [core:notice] [pid 23:tid 140256429427648] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'

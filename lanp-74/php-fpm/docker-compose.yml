@@ -5,7 +5,7 @@ networks:
     external: true
 
 services:
-  php-fpm:
+  php-fpm-74:
     hostname: php-fpm-74
     container_name: php-fpm-74
     build:

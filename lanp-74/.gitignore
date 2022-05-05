@@ -1,5 +1,8 @@
 .idea/
 .DS_Store
-./mysql/data/*
-./mysql/sql/*
-./nginx/logs
+mysql/data/
+mysql/sql/
+nginx/logs/
+redis/data/
+redis/logs/
+openresty/logs/

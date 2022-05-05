@@ -1,8 +1,8 @@
 version: '3.8'
 
 networks:
-  openresty-network:
-    driver: bridge
+  lanp-network:
+    external: true
 
 services:
   openresty:
@@ -22,4 +22,5 @@ services:
       - "80:80"
       - "443:443"
     networks:
-      - openresty-network
+      lanp-network:
+        ipv4_address: ${OPENRESTY_IP}

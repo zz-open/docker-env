@@ -1,5 +1,5 @@
 .idea/
 .DS_Store
-./nsq1/data/*
-./nsq2/data/*
-./nsq3/data/*
+nsq1/data/
+nsq2/data/
+nsq3/data/

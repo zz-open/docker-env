@@ -1,0 +1,24 @@
+version: '3.8'
+
+networks:
+  lanp-network:
+    driver: bridge
+
+services:
+  solr:
+    build:
+      context: ./solor
+      args:
+        - SOLR_VERSION=${SOLR_VERSION}
+        - SOLR_DATAIMPORTHANDLER_MYSQL=${SOLR_DATAIMPORTHANDLER_MYSQL}
+        - SOLR_DATAIMPORTHANDLER_MSSQL=${SOLR_DATAIMPORTHANDLER_MSSQL}
+    hostname: solr
+    container_name: solr
+    ports:
+      - "${SOLR_PORT}:8983"
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ./mycores:/opt/solr/server/solr/mycores
+    networks:
+      - lanp-network

@@ -5,7 +5,7 @@ networks:
     external: true
 
 services:
-  nginx:
+  lanp-74-nginx:
     hostname: lanp-74-nginx
     container_name: lanp-74-nginx
     build:
@@ -37,7 +37,7 @@ services:
       lanp-network:
         ipv4_address: ${LANP_74_NGINX_IP}
 
-  mysql:
+  lanp-74-mysql:
     build:
       context: ./mysql
       args:
@@ -58,3 +58,39 @@ services:
     networks:
       lanp-network:
         ipv4_address: ${LANP_74_MYSQL_IP}
+
+  lanp-74-redis:
+    build:
+      context: ./redis
+      args:
+        REDIS_VERSION: ${REDIS_VERSION}
+    hostname: lanp-74-redis
+    container_name: lanp-74-redis
+    volumes:
+      - ./redis/data:/data
+      - ./redis/logs:/var/log/redis
+    ports:
+      - "${REDIS_PORT}:6379"
+    networks:
+      lanp-network:
+        ipv4_address: ${LANP_74_REDIS_IP}
+
+  lanp-74-openresty:
+    build:
+      context: ./openresty
+    hostname: lanp-74-openresty
+    container_name: lanp-74-openresty
+    volumes:
+      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+      - ./openresty/logs/:/usr/local/openresty/nginx/logs
+      - ./openresty/sites/:/etc/nginx/sites-available
+      - ./openresty/ssl/:/etc/nginx/ssl
+      - ./openresty/lua/:/usr/local/openresty/nginx/lua/
+    environment:
+      - TZ=${TZ}
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      lanp-network:
+        ipv4_address: ${LANP_74_OPENRESTY_IP}

@@ -1,8 +1,8 @@
 .idea/
 .DS_Store
-./redis1/data/*
-./redis2/data/*
-./redis3/data/*
-./redis4/data/*
-./redis5/data/*
-./redis6/data/*
+redis1/data/
+redis2/data/
+redis3/data/
+redis4/data/
+redis5/data/
+redis6/data/
