@@ -1,9 +1,11 @@
 #!/bin/bash
 
-docker-compose down
+function Reset(){
+  docker-compose down && \
+  rm -rf ./data/* && \
+  rm -rf ./logs/* && \
+  docker-compose build caddy && \
+  docker-compose up -d caddy
+}
 
-rm -rf ./caddy/data/*
-rm -rf ./caddy/logs/*
-rm -rf ./caddy/etc/*
-rm -rf ./caddy/config/*
-rm -rf ./www/*
+Reset

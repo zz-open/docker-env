@@ -1,0 +1,1 @@
+FROM nsqio/nsq:latest

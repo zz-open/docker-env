@@ -1,3 +1,5 @@
 .idea/
 .DS_Store
 www/
+logs/
+apache2/sites/other/

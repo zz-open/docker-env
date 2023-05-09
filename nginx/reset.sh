@@ -1,5 +1,10 @@
 #!/bin/bash
 
-docker-compose down
+function Reset(){
+  docker-compose down && \
+  rm -rf ./logs/* && \
+  docker-compose build nginx && \
+  docker-compose up -d nginx
+}
 
-rm -rf ./nginx/logs/*
+Reset

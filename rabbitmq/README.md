@@ -1,4 +1,4 @@
-###Rabbitmq
+# Rabbitmq
 
 1.producer,consumer,exchange,queue,broker,binding,RoutingKey (路由键) 
 2.参考网址：https://blog.csdn.net/weixin_37717557/article/details/104469749
@@ -8,10 +8,15 @@ https://registry.hub.docker.com/_/rabbitmq?tab=description
 https://www.rabbitmq.com/configure.html#supported-environment-variables
 
 
-2.rabbitmq默认web界面管理插件是关闭的，只要通过命令开启就行
+# web界面
+```text
+rabbitmq默认web界面管理插件是关闭的，只要通过命令开启就行
 docker compose exec rabbitmq1 bash
 rabbitmq-plugins enable rabbitmq_management
+
 http://localhost:15672
+```
+
 
 #镜像模式
 1.把需要的队列做成镜像队列，存在与多个节点属于RabbitMQ的HA方案。
@@ -56,3 +61,37 @@ RabbitMQ会临时在rabbit01、rabbit02间进行消息传输，
 1.queue类型
 Classic：经典镜像队列。
 Quorum：仲裁队列。
+
+# 问题
+```text
+1.RabbitMQ登录提示User can only log in via localhost的解决方案
+RabbitMQ默认只有一个guest帐号，guest帐号只能在RabbitMQ安装服务器上登录，
+在其它服务器用guest登录提示User can only log in via localhost。
+
+2.COOKIE新版本不能通过环境变量设置，需要直接把.erlang.cookie文件赋值，并且注意权限
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

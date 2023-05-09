@@ -1,0 +1,1 @@
+FROM docker.io/bitnami/clickhouse:23

@@ -1,20 +1,23 @@
 version: '3.8'
 
 networks:
-  tomcat-network:
-    driver: bridge
+  backand:
+    external: true
 
 services:
   tomcat:
     build:
-      context: ./
+      context: ./tomcat
+    container_name: tomcat
+    hostname: tomcat
     volumes:
-      - ./tomcat/holy:/usr/local/tomcat/webapps/holy
+      - ${TOMCAT_WEBAPP_PATH}:/usr/local/tomcat/webapps
     environment:
-      TZ: Asia/Shanghai
+      - TZ=${TZ}
     ports:
       - "8080:8080"
       - "8088:8088"
       - "8099:8099"
     networks:
-      - tomcat-network
+      backand:
+        ipv4_address: ${TOMCAT_IP}

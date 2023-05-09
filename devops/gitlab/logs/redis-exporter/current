@@ -1,6 +1,0 @@
-2022-04-20_09:44:50.91469 time="2022-04-20T09:44:50Z" level=info msg="Redis Metrics Exporter 1.17.0    build date:     sha1:     Go: go1.16.9    GOOS: linux    GOARCH: amd64"
-2022-04-20_09:44:50.91647 time="2022-04-20T09:44:50Z" level=info msg="Providing metrics at localhost:9121/metrics"
-2022-04-20_09:47:10.60510 time="2022-04-20T09:47:09Z" level=error msg="Couldn't set client name, err: read unix @->/var/opt/gitlab/redis/redis.socket: i/o timeout"
-2022-04-20_09:47:11.97030 time="2022-04-20T09:47:11Z" level=error msg="Redis INFO err: write unix @->/var/opt/gitlab/redis/redis.socket: use of closed network connection"
-2022-04-20_09:48:52.33797 time="2022-04-20T09:48:52Z" level=error msg="Couldn't set client name, err: read unix @->/var/opt/gitlab/redis/redis.socket: i/o timeout"
-2022-04-20_09:48:53.77893 time="2022-04-20T09:48:53Z" level=error msg="Redis INFO err: write unix @->/var/opt/gitlab/redis/redis.socket: use of closed network connection"

@@ -1,8 +1,8 @@
 version: "3.8"
 
 networks:
-  redismod-network:
-    driver: bridge
+  backand:
+    external: true
 
 services:
   redismod:
@@ -15,9 +15,10 @@ services:
     environment:
       - TZ=${TZ}
     ports:
-      - "6379:6379"
+      - "${REDIS_HOST_PORT}:6379"
     volumes:
       - ./data:/data
       - ./logs:/var/log/redis
     networks:
-      redismod-network:
+      backand:
+        ipv4_address: ${REDIS_MOD_IP}

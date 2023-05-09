@@ -1,0 +1,1 @@
+FROM elkozmon/zoonavigator:latest

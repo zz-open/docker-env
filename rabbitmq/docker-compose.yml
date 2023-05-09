@@ -1,0 +1,25 @@
+version: '3.8'
+
+networks:
+  backand:
+    external: true
+
+services:
+  rabbitmq:
+    build:
+      context: ./rabbitmq
+    hostname: rabbitmq
+    container_name: rabbitmq
+    ports:
+      - "${RABBITMQ_NODE_HOST_PORT}:5672"
+      - "${RABBITMQ_MANAGEMENT_HTTP_HOST_PORT}:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+      - RABBITMQ_NODENAME=${RABBITMQ_NODENAME}
+      - TZ=${TZ}
+    volumes:
+      - ${RABBITMQ_ETC_PATH}:/etc/rabbitmq
+    networks:
+      backand:
+        ipv4_address: ${RABBITMQ_IP}

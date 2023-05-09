@@ -1,9 +1,12 @@
-#学习ETCD
+# ETCD
+
+# 命令
+```text
 1.进入容器的命令：
 cd /Users/xulei/jungle/docker-php56/mycontainer/etcd-cluster && docker exec -it etcd1  /bin/sh
 cd /Users/xulei/jungle/docker-php56/mycontainer/etcd-cluster && docker exec -it etcd2  /bin/sh
 cd /Users/xulei/jungle/docker-php56/mycontainer/etcd-cluster && docker exec -it etcd3  /bin/sh
-
+```
 
 2.查询集群的成员
 etcdctl member list

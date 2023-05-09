@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Start-Class: com.xulei.holy.HolyApplication
-Main-Class: org.springframework.boot.loader.WarLauncher
-

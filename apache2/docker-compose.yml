@@ -1,8 +1,8 @@
 version: '3.8'
 
 networks:
-  apache2-network:
-    driver: bridge
+  backand:
+    external: true
 
 services:
   apache2:
@@ -28,4 +28,5 @@ services:
       - ${APACHE_SITES_PATH}:/etc/apache2/sites-available
       - ${APACHE_SSL_PATH}:/etc/apache2/ssl
     networks:
-      apache2-network:
+      backand:
+        ipv4_address: ${APACHE2_IP}

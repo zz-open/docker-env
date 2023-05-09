@@ -1,0 +1,22 @@
+version: '3.8'
+
+networks:
+  backand:
+    external: true
+
+services:
+  python-latest:
+    build:
+      context: ./python
+    hostname: python
+    container_name: python
+    privileged: true
+    stdin_open: true
+    tty: true
+    volumes:
+      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+    environment:
+      - TZ=${TZ}
+    networks:
+      backand:
+        ipv4_address: ${PYTHON_IP}

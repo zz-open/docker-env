@@ -1,9 +1,7 @@
 version: '3.8'
 
 networks:
-  nginx-network:
-    driver: bridge
-  lanp-network:
+  backand:
     external: true
 
 services:
@@ -12,7 +10,6 @@ services:
       context: ./nginx
     hostname: nginx
     container_name: nginx
-    privileged: true
     environment:
       - TZ=${TZ}
     ports:
@@ -24,6 +21,5 @@ services:
       - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
       - ${NGINX_SSL_PATH}:/etc/nginx/ssl
     networks:
-      nginx-network:
-      lanp-network:
-        ipv4_address: ${NGINX_STANDALONE_IP}
+      backand:
+        ipv4_address: ${NGINX_IP}

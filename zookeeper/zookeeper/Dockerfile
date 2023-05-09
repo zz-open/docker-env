@@ -1,0 +1,1 @@
+FROM zookeeper:${ZOOKEEPER_VERSION}
