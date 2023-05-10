@@ -1,5 +1,16 @@
-#Pulsar
+# Pulsar [官网](https://pulsar.apache.org/docs/3.0.x/standalone-docker/)
 
+docker run -it -p 6650:6650  -p 8080:8080 
+--mount source=pulsardata,target=/pulsar/data 
+--mount source=pulsarconf,target=/pulsar/conf 
+apachepulsar/pulsar:3.0.0 bin/pulsar standalone
+
+
+docker pull apachepulsar/pulsar-manager:v0.3.0
+docker run -it \
+-p 9527:9527 -p 7750:7750 \
+-e SPRING_CONFIGURATION_FILE=/pulsar-manager/pulsar-manager/application.properties \
+apachepulsar/pulsar-manager:v0.3.0
 
 #https://blog.csdn.net/u010674101/article/details/121117678
 #https://github.com/perayb/docker-sample/tree/master/pulsar

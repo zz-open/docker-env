@@ -1,0 +1,24 @@
+version: '3.8'
+
+networks:
+  backand:
+    external: true
+
+services:
+  mongodb:
+    build:
+      context: ./mongodb
+    hostname: mongodb
+    container_name: mongodb
+    ports:
+      - "${MONGODB_PORT}:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
+      - TZ=${TZ}
+    volumes:
+      - ${MONGODB_DATA_PATH}:/data/db
+      - ${MONGODB_LOG_PATH}:/var/log/mongodb
+    networks:
+     backand:
+       ipv4_address: ${MONGODB_IP}

@@ -1,42 +1,26 @@
 version: '3.8'
 
 networks:
-  lanp-network:
+  backand:
     external: true
 
 services:
   zookeeper:
     build:
       context: ./zookeeper
-    container_name: ${ZOOKEEPER_NAME_1}
-    hostname: ${ZOOKEEPER_NAME_1}
+      args:
+        ZOOKEEPER_VERSION: ${ZOOKEEPER_VERSION}
+    container_name: ${ZOOKEEPER_NAME}
+    hostname: ${ZOOKEEPER_NAME}
     ports:
-      - ${ZOOKEEPER_PORT_1}:${ZOOKEEPER_PORT}
+      - "${ZOOKEEPER_PORT}:2181"
     volumes:
-      - ./zookeeper/data:/data
-      - ./zookeeper/datalog:/datalog
+      - ${ZOOKEEPER_DATA_PATH}:/data
+      - ${ZOOKEEPER_DATALOG_PATH}:/datalog
     environment:
-      - ZOO_MY_ID=${ZOOKEEPER_ID_1}
+      - ZOO_MY_ID=${ZOOKEEPER_ID}
       - ZOO_SERVERS=${ZOOKEEPER_SERVERS}
       - TZ=${TZ}
     networks:
-      lanp-network:
+      backand:
         ipv4_address: ${ZOOKEEPER_IP}
-
-  #zookeeper可视化
-  zoonavigator:
-    build:
-      context: ./zoonavigator
-    container_name: zoonavigator
-    hostname: zoonavigator
-    ports:
-      - "9110:9000"
-    environment:
-      - HTTP_PORT=9000
-      - CONNECTION_MYZK_CONN=${KAFKA_ZOOKEEPER_CONNECT}
-      - AUTO_CONNECT_CONNECTION_ID=MYZK
-    depends_on:
-      - ${ZOOKEEPER_NAME_1}
-    networks:
-      lanp-network:
-        ipv4_address: ${ZOONAVIGATOR_IP}

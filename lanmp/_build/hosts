@@ -1,0 +1,26 @@
+#外网访问
+127.0.0.1 test.admin.com
+127.0.0.1 test.client.com
+
+127.0.0.1 holy.com
+127.0.0.1 laravel.test
+127.0.0.1 shell.com
+
+127.0.0.1 dev.ktv.com
+127.0.0.1 mywork.com
+127.0.0.1 laravel.test
+
+127.0.0.1 yaf.a.com
+127.0.0.1 yaf.a.cn
+
+###etcd################
+172.16.238.11 etcd-0
+172.16.238.12 etcd-1
+172.16.238.13 etcd-2
+
+0.0.0.0 activate.navicat.com
+
+#127.0.0.1  nginx.com
+#127.0.0.1  www.xuleigo.cn
+127.0.0.1  www.caddytls.com
+127.0.0.1  resty.com

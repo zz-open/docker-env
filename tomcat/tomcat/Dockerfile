@@ -1,6 +1,6 @@
 FROM tomcat:latest
 
-LABEL maintainer="leixu <373045134@qq.com>"
+LABEL maintainer="zaizai <33045134@qq.com>"
 
 COPY ./conf/ /usr/local/tomcat/conf
 

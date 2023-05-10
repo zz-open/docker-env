@@ -1,5 +1,6 @@
 FROM alpine
-LABEL maintainer="XuLei <373045134@qq.com>"
+
+LABEL maintainer="zaizai <33045134@qq.com>"
 
 COPY ./install.sh /install.sh
 

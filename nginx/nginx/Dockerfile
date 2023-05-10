@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-LABEL maintainer="xulei <373045134@qq.com>"
+LABEL maintainer="zaizai <33045134@qq.com>"
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories
 

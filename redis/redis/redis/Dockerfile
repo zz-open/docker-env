@@ -1,7 +1,7 @@
 ARG REDIS_VERSION
 FROM redis:${REDIS_VERSION}
 
-LABEL maintainer="xulei <373045134@qq.com>"
+LABEL maintainer="zaizai <33045134@qq.com>"
 
 RUN mkdir -p /usr/local/etc/redis
 

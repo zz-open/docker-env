@@ -1,0 +1,1 @@
+FROM apachepulsar/pulsar-manager:v0.3.0

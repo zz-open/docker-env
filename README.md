@@ -25,11 +25,12 @@ TZ=Asia/Shanghai
 
 # redis
 REDIS_IP=172.19.0.11
+
 REDIS_MOD_IP=172.19.0.12
 
 # mysql
-MYSQL_IP=172.19.0.13
-MYSQL_8_IP=172.19.0.14
+- MYSQL_IP=172.19.0.13
+- MYSQL_8_IP=172.19.0.14
 
 # apache
 APACHE2_IP=172.19.0.15
@@ -45,8 +46,8 @@ OPENRESTY_IP=172.19.0.17
 POSTGRES_IP=172.19.0.18
 
 # beanstalkd
-BEANSTALKD_IP=172.19.0.19
-BEANSTALKD_CONSOLE_IP=172.19.0.20
+- BEANSTALKD_IP=172.19.0.19
+- BEANSTALKD_CONSOLE_IP=172.19.0.20
 
 # caddy
 CADDY_IP=172.19.0.21
@@ -67,26 +68,41 @@ TOMCAT_IP=172.19.0.25
 PYTHON_IP=172.19.0.26
 
 # nsq
-NSQ_IP=172.19.0.27
-NSQLOOKUPD_IP=172.19.0.28
-NSQLADMIN_IP=172.19.0.29
+- NSQ_IP=172.19.0.27
+- NSQLOOKUPD_IP=172.19.0.28
+- NSQLADMIN_IP=172.19.0.29
 
 # zookeeper
 ZOOKEEPER_IP=172.19.0.30
 
 # mongodb
-MONGODB_IP=172.19.0.31
+MONGO_IP=172.19.0.31
 
 # memcached
-MEMCACHED_IP=172.19.0.32
+MEMCACHED_IP=172.19.0.33
 
 # golang
-GOLANG_IP=172.19.0.33
+GOLANG_IP=172.19.0.34
 
 # kafka
-KAFKA_IP=172.19.0.34
+KAFKA_IP=172.19.0.35
 
-# 进度
+# pulsar
+PULSAR_IP=172.19.0.36
+PULSAR_MANAGER_IP=172.19.0.37
+
+# dtm
+DTM_IP=172.19.0.38
+
+# lanmp (apache2+nginx+php-fpm)
+LANMP_PHP_FPM_IP=172.19.1.11
+LANMP_APACHE2_IP=172.19.1.12
+LANMP_NGINX_IP=172.19.1.12
+
+# 容器环境清单
+包含以下容器环境
+
+## 单台
 - [x] redis 单台
 - [x] mysql 单台
 - [x] apache 单台
@@ -101,8 +117,11 @@ KAFKA_IP=172.19.0.34
 - [x] tomcat 单台
 - [x] python
 - [x] nsq nsqlookupd nsqadmin 单台
-- [x] zookeeper 单台
+- [ ] zookeeper 单台
 - [x] mongodb 单台
 - [x] memcached 单台
 - [x] golang 单台
 - [x] kafka 单台
+- [x] dtm 单台
+
+## 集群

@@ -1,0 +1,21 @@
+version: '3.8'
+
+networks:
+  backand:
+    external: true
+
+services:
+  memcached:
+    build:
+      context: ./memcached
+    hostname: memcached
+    container_name: memcached
+    ports:
+      - "${MEMCACHED_HOST_PORT}:11211"
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${MEMCACHED_DATA_PATH}:/var/lib/memcached
+    networks:
+      backand:
+        ipv4_address: ${MEMCACHED_IP}

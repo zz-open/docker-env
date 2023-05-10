@@ -1,0 +1,2 @@
+ARG PULSAR_VERSION
+FROM apachepulsar/pulsar:${PULSAR_VERSION}

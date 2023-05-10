@@ -1,0 +1,96 @@
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/Admin/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/Admin/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/Store/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/Clientapi/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/Innerapi/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/Web/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/M/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/branch/bingo/source/App/Admin/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/branch/bingo/source/App/Admin/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/branch/bingo/source/App/Store/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/branch/bingo/source/App/Clientapi/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/branch/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/branch/bingo/source/App/Innerapi/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/carjio/source/App/Admin/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/carjio/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/crm/source/App/Admin/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/crm/source/App/Admin/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/Gauss/source/App/Agent/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/Gauss/source/App/Admin/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/Gauss/source/App/Clientapi/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/Havasu/source/App/Agent/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/Jarvis/source/App/Admin/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/Jarvis/source/App/Innerapi/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/Legion/source/App/Admin/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/Legion/source/App/Agent/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/Legion/source/App/Api/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/Legion/source/App/Clientapi/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/newenglish/source/App/Store/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/newenglish/source/App/Admin/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/newenglish/source/App/Clientapi/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/newenglish/source/App/Web/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/Spark/source/App/Admin/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/Spark/source/App/Admin/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/Spark/source/App/Store/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/Spark/source/App/Store/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/Spark/source/App/Innerapi/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/Spark/source/App/Clientapi/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu/source/App/Admin/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu/source/App/Store/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu/source/App/Clientapi/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/Admin/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/Admin/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/Store/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/Clientapi/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/Innerapi/htdocs] does not exist
+[Wed Jan 26 22:43:38.341730 2022] [mpm_event:notice] [pid 22:tid 140103102569408] AH00489: Apache/2.4.29 (Ubuntu) OpenSSL/1.1.1 configured -- resuming normal operations
+[Wed Jan 26 22:43:38.344112 2022] [core:notice] [pid 22:tid 140103102569408] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/branch/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/H5/htdocs] does not exist
+[Wed Jan 26 23:02:03.083583 2022] [mpm_event:notice] [pid 22:tid 139870997482432] AH00489: Apache/2.4.29 (Ubuntu) OpenSSL/1.1.1 configured -- resuming normal operations
+[Wed Jan 26 23:02:03.084823 2022] [core:notice] [pid 22:tid 139870997482432] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/branch/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/H5/htdocs] does not exist
+[Wed Jan 26 23:38:50.889306 2022] [mpm_event:notice] [pid 23:tid 140670407896000] AH00489: Apache/2.4.29 (Ubuntu) OpenSSL/1.1.1 configured -- resuming normal operations
+[Wed Jan 26 23:38:50.893187 2022] [core:notice] [pid 23:tid 140670407896000] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/branch/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/H5/htdocs] does not exist
+[Thu Jan 27 00:05:30.349045 2022] [mpm_event:notice] [pid 23:tid 140455315938240] AH00489: Apache/2.4.29 (Ubuntu) OpenSSL/1.1.1 configured -- resuming normal operations
+[Thu Jan 27 00:05:30.351409 2022] [core:notice] [pid 23:tid 140455315938240] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/branch/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/H5/htdocs] does not exist
+[Thu Jan 27 00:17:02.560145 2022] [mpm_event:notice] [pid 23:tid 140321324104640] AH00489: Apache/2.4.29 (Ubuntu) OpenSSL/1.1.1 configured -- resuming normal operations
+[Thu Jan 27 00:17:02.563659 2022] [core:notice] [pid 23:tid 140321324104640] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/branch/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/H5/htdocs] does not exist
+[Thu Jan 27 00:28:16.264706 2022] [core:warn] [pid 24:tid 140094309264320] AH00098: pid file /var/run/apache2/apache2.pid overwritten -- Unclean shutdown of previous Apache run?
+[Thu Jan 27 00:28:16.269835 2022] [mpm_event:notice] [pid 24:tid 140094309264320] AH00489: Apache/2.4.29 (Ubuntu) OpenSSL/1.1.1 configured -- resuming normal operations
+[Thu Jan 27 00:28:16.270828 2022] [core:notice] [pid 24:tid 140094309264320] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/branch/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/H5/htdocs] does not exist
+[Thu Jan 27 01:20:39.088085 2022] [mpm_event:notice] [pid 25:tid 140254646053824] AH00489: Apache/2.4.29 (Ubuntu) OpenSSL/1.1.1 configured -- resuming normal operations
+[Thu Jan 27 01:20:39.089319 2022] [core:notice] [pid 25:tid 140254646053824] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/branch/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/H5/htdocs] does not exist
+[Tue May 03 21:59:51.971956 2022] [mpm_event:notice] [pid 23:tid 139738862291904] AH00489: Apache/2.4.29 (Ubuntu) OpenSSL/1.1.1 configured -- resuming normal operations
+[Tue May 03 21:59:51.976150 2022] [core:notice] [pid 23:tid 139738862291904] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/branch/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/H5/htdocs] does not exist
+[Tue May 03 22:12:28.319213 2022] [core:warn] [pid 23:tid 140158822554560] AH00098: pid file /var/run/apache2/apache2.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue May 03 22:12:28.322505 2022] [mpm_event:notice] [pid 23:tid 140158822554560] AH00489: Apache/2.4.29 (Ubuntu) OpenSSL/1.1.1 configured -- resuming normal operations
+[Tue May 03 22:12:28.323084 2022] [core:notice] [pid 23:tid 140158822554560] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+AH00112: Warning: DocumentRoot [/var/www/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/branch/bingo/source/App/H5/htdocs] does not exist
+AH00112: Warning: DocumentRoot [/var/www/xiu1.1/bingo/source/App/H5/htdocs] does not exist
+[Wed May 04 15:40:03.274939 2022] [mpm_event:notice] [pid 23:tid 140256429427648] AH00489: Apache/2.4.29 (Ubuntu) OpenSSL/1.1.1 configured -- resuming normal operations
+[Wed May 04 15:40:03.276005 2022] [core:notice] [pid 23:tid 140256429427648] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'

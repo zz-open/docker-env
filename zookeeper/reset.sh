@@ -1,6 +1,11 @@
 #!/bin/bash
 
-docker-compose down
+function Reset(){
+  docker-compose down && \
+  rm -rf ./data/* && \
+  rm -rf ./datalog/* && \
+  docker-compose build zookeeper && \
+  docker-compose up -d zookeeper
+}
 
-rm -rf ./zookeeper/data/*
-rm -rf ./zookeeper/datalog/*
+Reset

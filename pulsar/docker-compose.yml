@@ -1,0 +1,44 @@
+version: '3.8'
+
+networks:
+  backand:
+    external: true
+
+services:
+  pulsar:
+    build:
+      context: ./pulsar
+      args:
+        PULSAR_VERSION: ${PULSAR_VERSION}
+    hostname: pulsar
+    container_name: pulsar
+    volumes:
+      - ${PULSAR_DATA_PATH}:/pulsar/data
+      - ${PULSAR_CONF_PATH}:/pulsar/conf
+    ports:
+      - "6650:6650"
+      - "8080:8080"
+    environment:
+      - TZ=${TZ}
+    command: bin/pulsar standalone
+    networks:
+      backand:
+       ipv4_address: ${PULSAR_IP}
+
+  pulsar-manager:
+    build:
+      context: ./pulsar-manager
+    hostname: pulsar-manager
+    container_name: pulsar-manager
+    ports:
+      - "9527:9527"
+      - "7750:7750"
+    environment:
+      - SPRING_CONFIGURATION_FILE=/pulsar-manager/pulsar-manager/application.properties
+      - TZ=${TZ}
+    networks:
+      backand:
+        ipv4_address: ${PULSAR_MANAGER_IP}
+    depends_on:
+      - pulsar
+

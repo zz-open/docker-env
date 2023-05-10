@@ -1,0 +1,44 @@
+version: '3.8'
+
+networks:
+  backand:
+    external: true
+
+services:
+  flink:
+    build:
+      context: ./flink
+    hostname: flink
+    container_name: flink
+    ports:
+      - "${flink}:443"
+    privileged: true
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ./www/:/var/www:cached
+    networks:
+      flink-network:
+
+#  jobmanager:
+#    image: flink:1.9.2-scala_2.12
+#    expose:
+#      - "6123"
+#    ports:
+#      - "8081:8081"
+#    command: jobmanager
+#    environment:
+#      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+#
+#    taskmanager:
+#      image: flink:1.9.2-scala_2.12
+#      expose:
+#        - "6121"
+#        - "6122"
+#      depends_on:
+#        - jobmanager
+#      command: taskmanager
+#      links:
+#        - "jobmanager:jobmanager"
+#      environment:
+#        - JOB_MANAGER_RPC_ADDRESS=jobmanager

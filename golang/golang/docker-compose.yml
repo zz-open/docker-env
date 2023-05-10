@@ -1,0 +1,30 @@
+version: "3.8"
+
+networks:
+  backand:
+    external: true
+
+services:
+  go:
+    build:
+      context:  ../_build/
+      args:
+        GOLANG_VERSION: ${GOLANG_VERSION}
+    hostname: golang
+    container_name: golang
+    volumes:
+      - ${APP_CODE_PATH}:${APP_CODE_PATH_CONTAINER}
+    environment:
+      - TZ=${TZ}
+    ports:
+      - "8080:8080"
+      - "8001:8001"
+      - "8002:8002"
+      - "8003:8003"
+      - "9001:9001"
+      - "9002:9002"
+    tty: true
+    stdin_open: true
+    networks:
+      backand:
+        ipv4_address: ${GOLANG_IP}

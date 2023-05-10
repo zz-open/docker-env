@@ -1,6 +1,6 @@
 FROM php:7.4
 
-LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"
+LABEL maintainer="zaizai <33045134@qq.com>"
 
 RUN apt-get update && apt-get install -y curl
 
