@@ -1,7 +1,7 @@
 version: '3.8'
 
 networks:
-  backand:
+  backend:
     external: true
 
 services:
@@ -21,5 +21,5 @@ services:
       - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
       - ${NGINX_SSL_PATH}:/etc/nginx/ssl
     networks:
-      backand:
+      backend:
         ipv4_address: ${NGINX_IP}

@@ -1,7 +1,7 @@
 version: '3.8'
 
 networks:
-  backand:
+  backend:
     external: true
 
 services:
@@ -17,7 +17,7 @@ services:
     environment:
       - TZ=${TZ}
     networks:
-      backand:
+      backend:
         ipv4_address: ${NSQLOOKUPD_IP}
 
   nsq:
@@ -36,7 +36,7 @@ services:
     depends_on:
       - nsqlookupd
     networks:
-      backand:
+      backend:
         ipv4_address: ${NSQ_IP}
 
   nsqadmin:
@@ -50,7 +50,7 @@ services:
     environment:
       - TZ=${TZ}
     networks:
-      backand:
+      backend:
         ipv4_address: ${NSQLADMIN_IP}
     depends_on:
       - nsqlookupd

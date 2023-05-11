@@ -1,7 +1,7 @@
 version: '3.8'
 
 networks:
-  backand:
+  backend:
     external: true
 
 services:
@@ -25,5 +25,5 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - TZ=${TZ}
     networks:
-      backand:
+      backend:
         ipv4_address: ${MYSQL_8_IP}

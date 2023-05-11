@@ -1,8 +1,8 @@
 version: '3.8'
 
 networks:
-  backand:
-    name: backand
+  backend:
+    name: backend
     driver: bridge
     ipam:
       config:
@@ -20,4 +20,4 @@ services:
       context: ./scratch
     container_name: empty
     networks:
-      - backand
+      - backend

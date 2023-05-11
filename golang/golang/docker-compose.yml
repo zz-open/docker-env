@@ -1,7 +1,7 @@
 version: "3.8"
 
 networks:
-  backand:
+  backend:
     external: true
 
 services:
@@ -26,5 +26,5 @@ services:
     tty: true
     stdin_open: true
     networks:
-      backand:
+      backend:
         ipv4_address: ${GOLANG_IP}

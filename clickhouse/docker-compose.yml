@@ -1,7 +1,7 @@
 version: '3.8'
 
 networks:
-  backand:
+  backend:
     external: true
 
 services:
@@ -26,5 +26,5 @@ services:
 #      - ${CLICKHOUSE_LOG_PATH}:/var/log/clickhouse-server/
       - ${CLICKHOUSE_DATA_PATH}:/bitnami/clickhouse
     networks:
-      backand:
+      backend:
         ipv4_address: ${CLICKHOUSE_IP}

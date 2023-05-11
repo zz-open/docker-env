@@ -1,7 +1,7 @@
 version: "3.8"
 
 networks:
-  backand:
+  backend:
     external: true
 
 services:
@@ -20,5 +20,5 @@ services:
       - ./data:/data
       - ./logs:/var/log/redis
     networks:
-      backand:
+      backend:
         ipv4_address: ${REDIS_MOD_IP}

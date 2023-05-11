@@ -1,7 +1,7 @@
 version: '3.8'
 
 networks:
-  backand:
+  backend:
     external: true
 
 services:
@@ -17,5 +17,5 @@ services:
     volumes:
       - ${MEMCACHED_DATA_PATH}:/var/lib/memcached
     networks:
-      backand:
+      backend:
         ipv4_address: ${MEMCACHED_IP}

@@ -1,7 +1,7 @@
 version: "3.8"
 
 networks:
-  backand:
+  backend:
     external: true
 
 services:
@@ -29,7 +29,7 @@ services:
       - "${ETCD_HOST_PORT}:2379"
       - "${ETCD_PORT_REVERSE}:2380"
     networks:
-      backand:
+      backend:
         ipv4_address: ${ETCD_IP}
     volumes:
       - ${ETCD_DATA_PATH}:/etcd_data

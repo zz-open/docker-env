@@ -8,7 +8,7 @@
 2.集群方式
 3.service,hostname,container推荐设置为一致名字，当有多个容器service名字一样的时候，docker-compose down的时候
 会一并销毁。
-4.统一加入backand网络，并设置单独内网ip方便通信
+4.统一加入backend网络，并设置单独内网ip方便通信
 ```
 
 # 源
@@ -95,33 +95,49 @@ PULSAR_MANAGER_IP=172.19.0.37
 DTM_IP=172.19.0.38
 
 # lanmp (apache2+nginx+php-fpm)
-LANMP_PHP_FPM_IP=172.19.1.11
-LANMP_APACHE2_IP=172.19.1.12
-LANMP_NGINX_IP=172.19.1.12
+LANMP_PHP_FPM_56_IP=172.19.1.11
+
+LANMP_PHP_FPM_IP=172.19.1.12
+
+LANMP_APACHE2_IP=172.19.1.13
+
+LANMP_NGINX_IP=172.19.1.14
+
+
+# elasticsearch
+ELASTICSEARCH_IP=172.19.1.15
+
+LOGSTASH_IP=172.19.1.16
+
+KIBANA_IP=172.19.1.17
 
 # 容器环境清单
 包含以下容器环境
 
 ## 单台
-- [x] redis 单台
-- [x] mysql 单台
-- [x] apache 单台
-- [x] nginx 单台
-- [x] openresty 单台
-- [x] postgres 单台
-- [x] beanstalkd 单台
-- [x] caddy 单台
-- [x] clickhouse 单台
-- [x] etcd 单台
-- [x] rabbitmq 单台
-- [x] tomcat 单台
+- [x] redis
+- [x] mysql
+- [x] apache
+- [x] nginx
+- [x] openresty
+- [x] postgres
+- [x] beanstalkd
+- [x] caddy
+- [x] clickhouse
+- [x] etcd
+- [x] rabbitmq
+- [x] tomcat
 - [x] python
-- [x] nsq nsqlookupd nsqadmin 单台
-- [ ] zookeeper 单台
-- [x] mongodb 单台
-- [x] memcached 单台
-- [x] golang 单台
-- [x] kafka 单台
-- [x] dtm 单台
+- [x] nsq nsqlookupd nsqadmin
+- [ ] zookeeper
+- [x] mongodb
+- [x] memcached
+- [x] golang
+- [x] kafka
+- [x] dtm
+- [x] elasticsearch
+
+## 集成环境
+- [x] lanmp
 
 ## 集群

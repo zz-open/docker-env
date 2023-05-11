@@ -1,7 +1,7 @@
 version: '3.8'
 
 networks:
-  backand:
+  backend:
     external: true
 
 services:
@@ -14,9 +14,9 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+      - ${APP_CODE_PATH}:${APP_CODE_PATH_CONTAINER}
     environment:
       - TZ=${TZ}
     networks:
-      backand:
+      backend:
         ipv4_address: ${PYTHON_IP}

@@ -1,7 +1,7 @@
 version: '3.8'
 
 networks:
-  backand:
+  backend:
     external: true
 
 services:
@@ -22,7 +22,7 @@ services:
       - TZ=${TZ}
     command: bin/pulsar standalone
     networks:
-      backand:
+      backend:
        ipv4_address: ${PULSAR_IP}
 
   pulsar-manager:
@@ -37,7 +37,7 @@ services:
       - SPRING_CONFIGURATION_FILE=/pulsar-manager/pulsar-manager/application.properties
       - TZ=${TZ}
     networks:
-      backand:
+      backend:
         ipv4_address: ${PULSAR_MANAGER_IP}
     depends_on:
       - pulsar

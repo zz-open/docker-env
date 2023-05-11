@@ -1,0 +1,71 @@
+version: "3.8"
+
+networks:
+  backend:
+    external: true
+
+services:
+  elasticsearch:
+    build:
+      context: ./elasticsearch
+      args:
+        - ELK_VERSION=${ELK_VERSION}
+    container_name: elasticsearch
+    hostname: elasticsearch
+    volumes:
+      - ${ELASTICSEARCH_DATA_PATH}:/usr/share/elasticsearch/data
+    environment:
+      - cluster.name=laradock-cluster
+      - node.name=laradock-node
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - xpack.security.transport.ssl.enabled=false
+      - indices.id_field_data.enabled=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - cluster.initial_master_nodes=laradock-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    ports:
+      - "${ELASTICSEARCH_HOST_HTTP_PORT}:9200"
+      - "${ELASTICSEARCH_HOST_TRANSPORT_PORT}:9300"
+    networks:
+      backend:
+        ipv4_address: ${ELASTICSEARCH_IP}
+
+  logstash:
+    build:
+      context: ./logstash
+      args:
+        - ELK_VERSION=${ELK_VERSION}
+    volumes:
+      - './logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml'
+      - './logstash/pipeline:/usr/share/logstash/pipeline'
+    ports:
+      - '5001:5001'
+    environment:
+      LS_JAVA_OPTS: '-Xmx1g -Xms1g'
+    env_file:
+      - .env
+    networks:
+      backend:
+        ipv4_address: ${LOGSTASH_IP}
+    depends_on:
+      - elasticsearch
+
+  kibana:
+    build:
+      context: ./kibana
+      args:
+        - ELK_VERSION=${ELK_VERSION}
+    ports:
+      - "${KIBANA_HTTP_PORT}:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      backend:
+        ipv4_address: ${KIBANA_IP}

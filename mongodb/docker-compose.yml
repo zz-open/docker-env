@@ -1,7 +1,7 @@
 version: '3.8'
 
 networks:
-  backand:
+  backend:
     external: true
 
 services:
@@ -20,5 +20,5 @@ services:
       - ${MONGODB_DATA_PATH}:/data/db
       - ${MONGODB_LOG_PATH}:/var/log/mongodb
     networks:
-     backand:
+     backend:
        ipv4_address: ${MONGODB_IP}

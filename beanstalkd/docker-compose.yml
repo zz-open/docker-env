@@ -1,7 +1,7 @@
 version: '3.8'
 
 networks:
-  backand:
+  backend:
     external: true
 
 services:
@@ -17,7 +17,7 @@ services:
     environment:
       - TZ=${TZ}
     networks:
-      backand:
+      backend:
         ipv4_address: ${BEANSTALKD_IP}
 
   beanstalkd-console:
@@ -33,5 +33,5 @@ services:
     depends_on:
       - beanstalkd
     networks:
-      backand:
+      backend:
         ipv4_address: ${BEANSTALKD_CONSOLE_IP}

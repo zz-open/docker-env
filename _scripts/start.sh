@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function CreateNetwork() {
-  docker network create --driver bridge  --subnet=172.19.0.0/16 --gateway=172.19.0.1 backand
+  docker network create --driver bridge  --subnet=172.19.0.0/16 --gateway=172.19.0.1 backend
 }
 
 function ResetDocker() {

@@ -12,6 +12,7 @@ RUN cd /tmp && \
 
 #需要翻墙下载
 #RUN curl -sL https://github.com/ptrofimov/beanstalk_console/archive/1.7.11.tar.gz | tar xvz -C /tmp
+#RUN curl -sL https://github.com/ptrofimov/beanstalk_console/archive/master.tar.gz | tar xvz -C /tmp
 #RUN mv /tmp/beanstalk_console-master /source
 
 RUN apt-get remove --purge -y curl && \
@@ -24,3 +25,4 @@ COPY config.php /source/config.php
 EXPOSE 2080
 
 CMD bash -c 'php -S 0.0.0.0:2080 -t /source/public'
+#CMD bash -c 'BEANSTALK_SERVERS=$BEANSTALKD_PORT_11300_TCP_ADDR:11300 php -S 0.0.0.0:2080 -t /source/public'
