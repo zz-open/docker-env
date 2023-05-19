@@ -24,12 +24,19 @@ ARG LARADOCK_PHP_VERSION
 ENV DEBIAN_FRONTEND noninteractive
 
 # If you're in China, or you need to change sources, will be set CHANGE_SOURCE to true in .env.
-COPY ./sources.list /etc/apt/sources.list
-RUN cat /etc/apt/sources.list
+## 新增 ######
+RUN cat /etc/os-release
+COPY ./_scripts/sources.list /etc/apt/sources.list
 RUN rm -Rf /var/lib/apt/lists/*
-#RUN apt-get update -yqq
+RUN set -xe; \
+     apt-get update -yqq && \
+     apt-get install -yqq \
+     net-tools \
+     vim \
+     iputils-ping \
+     iproute2
 
-ARG CHANGE_SOURCE=false
+#ARG CHANGE_SOURCE=false
 #RUN if [ ${CHANGE_SOURCE} = true ]; then \
 #    # Change application source from deb.debian.org to aliyun source
 #    sed -i 's/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apt/sources.list && \
@@ -39,7 +46,6 @@ ARG CHANGE_SOURCE=false
 
 # always run apt update when start and after add new source list, then clean up at end.
 RUN set -xe; \
-    apt-get update -yqq && \
     pecl channel-update pecl.php.net && \
     apt-get install -yqq \
       apt-utils \

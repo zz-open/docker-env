@@ -17,7 +17,7 @@ services:
 # empty container 用来创建网络
   empty:
     build:
-      context: ./scratch
+      context: ./scratch/scratch
     container_name: empty
     networks:
       - backend

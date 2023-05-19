@@ -19,32 +19,6 @@ ENTRYPOINT ["executable", "param1", "param2"] (exec form, preferred)
 ENTRYPOINT command param1 param2 (shell form)
 ```
 
-
-# ADD copy区别
-```text
-add 和 copy 都是复制文件 / 文件夹
-add 可以从网络 / 本地复制; copy 仅从本地复制, 语义更明确, 推荐使用 copy
-```
-
-
-# WORKDIR
-```text
-1.Dockerfile中的WORKDIR指令用于指定容器的一个目录， 容器启动时执行的命令会在该目录下执行。
-2.WORKDIR指令设置Dockerfile中的任何RUN，CMD，ENTRPOINT，COPY和ADD指令的工作目录。如果WORKDIR指 定的目录不存在，即使随后的指令没有用到这个目录，都会创建。
-单个Dockerfile可以使用多次WORKFDIR。如果提供一个相对路径，当前的工作目录将于上个WORKDIR指令相关。
-    
-WORKDIR /a
-WORKDIR b
-WORKDIR c
-RUN pwd
-pwd命令的输出/a/b/c
-
-WORKDIR可以解析之前由ENV设置的环境变量
-ENV DIRPATH /path
-WORKDIR $DIRPATH/$DIRNAME
-RUN pwd
-```
-
 2.查看具体的volume对应的真实地址
 docker volume inspect mysql
 
@@ -140,3 +114,16 @@ delegated：容器的内容具有权威性。提供最弱保证，由容器执�
 （1）文件：不管是宿主机还是容器内修改，都会相互同步，但容器内不允许删除，会提示Device or resource busy；宿主机删除文件，容器内的不会被同步
 
 （2）文件夹：不管是宿主机还是容器内修改、新增、删除文件，都会相互同步
+
+
+## Error response from daemon: error while removing network: network
+Error response from daemon: error while removing network: network elasticsearch-standalone_es-v7-standalone-network id 
+f957b93e6a684976652e3586c64fe59635a0ed365c7974f8ca57e4134435263a has active endpoints
+```shell
+依次按照实际情况执行
+docker network inspect elasticsearch-standalone_es-v7-standalone-network
+
+docker network disconnect -f elasticsearch-standalone_es-v7-standalone-network kibana-v7
+ 
+docker network rm f957b93e6a68
+```

@@ -1,7 +1,0 @@
-.idea/
-.DS_Store
-mysql/data/
-mysql/sql/
-apache2/logs/
-redis/data/
-redis/logs/

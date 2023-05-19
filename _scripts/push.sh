@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 function setProxy() {
+  # 因为被墙，所以设置代理push
   git config --global http.proxy 'socks5://127.0.0.1:19181'
   git config --global https.proxy 'socks5://127.0.0.1:19181'
 

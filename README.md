@@ -23,93 +23,137 @@ https://hub.docker.com
 # 公共配置
 TZ=Asia/Shanghai
 
-# redis
+# 172.19.0.x
+## redis
 REDIS_IP=172.19.0.11
 
 REDIS_MOD_IP=172.19.0.12
 
-# mysql
+## mysql
 - MYSQL_IP=172.19.0.13
 - MYSQL_8_IP=172.19.0.14
 
-# apache
+## apache
 APACHE2_IP=172.19.0.15
 
-# nginx
+## nginx
 NGINX_IP=172.19.0.16
 
 
-# openresty
+## openresty
 OPENRESTY_IP=172.19.0.17
 
-# postgres
+## postgres
 POSTGRES_IP=172.19.0.18
 
-# beanstalkd
+## beanstalkd
 - BEANSTALKD_IP=172.19.0.19
 - BEANSTALKD_CONSOLE_IP=172.19.0.20
 
-# caddy
+## caddy
 CADDY_IP=172.19.0.21
 
-# clickhouse
+## clickhouse
 CLICKHOUSE_IP=172.19.0.22
 
-# etcd
+## etcd
 ETCD_IP=172.19.0.23
 
-# rabbitmq
+## rabbitmq
 RABBITMQ_IP=172.19.0.24
 
-# tomcat
+## tomcat
 TOMCAT_IP=172.19.0.25
 
-# python3
+## python3
 PYTHON_IP=172.19.0.26
 
-# nsq
+## nsq
 - NSQ_IP=172.19.0.27
 - NSQLOOKUPD_IP=172.19.0.28
 - NSQLADMIN_IP=172.19.0.29
 
-# zookeeper
+## zookeeper
 ZOOKEEPER_IP=172.19.0.30
 
-# mongodb
+## mongodb
 MONGO_IP=172.19.0.31
 
-# memcached
+## memcached
 MEMCACHED_IP=172.19.0.33
 
-# golang
+## golang
 GOLANG_IP=172.19.0.34
 
-# kafka
+## kafka
 KAFKA_IP=172.19.0.35
 
-# pulsar
+## pulsar
 PULSAR_IP=172.19.0.36
 PULSAR_MANAGER_IP=172.19.0.37
 
-# dtm
+## dtm
 DTM_IP=172.19.0.38
 
-# lanmp (apache2+nginx+php-fpm)
-LANMP_PHP_FPM_56_IP=172.19.1.11
+## mailcatcher
+MAILCATCHER_IP=172.19.0.39
 
-LANMP_PHP_FPM_IP=172.19.1.12
+## mailhog
+MAIL_HOG_IP=172.19.0.40
+
+## maildev
+MAIL_DEV_IP=172.19.0.41
+
+## soketi
+SOKETI_IP=172.19.0.42
+
+## ssdb
+SSDB_IP=172.19.0.43
+
+## selenium
+SELENIUM_IP=172.19.0.44
+
+## node
+NODE_IP=172.19.0.45
+
+## supervisord
+SUPERVISORD_IP=172.19.0.46
+
+# 172.19.1.x
+## lanmp (apache2+nginx+php-fpm)
+
+// php5.6版本
+LANMP_PHP_FPM_IP=172.19.1.11
 
 LANMP_APACHE2_IP=172.19.1.13
 
 LANMP_NGINX_IP=172.19.1.14
 
+// php最新版本
+LANMP_PHP_FPM_IP=172.19.1.51
 
-# elasticsearch
-ELASTICSEARCH_IP=172.19.1.15
+LANMP_APACHE2_IP=172.19.1.53
 
-LOGSTASH_IP=172.19.1.16
+LANMP_NGINX_IP=172.19.1.54
 
-KIBANA_IP=172.19.1.17
+# 172.19.2.x
+## elasticsearch
+ELASTICSEARCH_IP=172.19.2.11
+
+LOGSTASH_IP=172.19.2.12
+
+KIBANA_IP=172.19.2.13
+
+DEJAVU_IP=172.19.2.14
+
+# 172.19.3.x
+## rocketmq
+ROCKETMQ_BROKER_IP=172.19.3.11
+
+ROCKETMQ_NAMESRV_IP=172.19.3.12
+
+ROCKETMQ_DASHBOARD_IP=172.19.3.13
+
 
 # 容器环境清单
 包含以下容器环境
@@ -123,7 +167,7 @@ KIBANA_IP=172.19.1.17
 - [x] postgres
 - [x] beanstalkd
 - [x] caddy
-- [x] clickhouse
+- [ ] clickhouse
 - [x] etcd
 - [x] rabbitmq
 - [x] tomcat
@@ -136,8 +180,16 @@ KIBANA_IP=172.19.1.17
 - [x] kafka
 - [x] dtm
 - [x] elasticsearch
+- [x] selenium
+- [x] soketi
+- [ ] ssdb
+- [ ] node
+- [ ] supervisord
 
 ## 集成环境
 - [x] lanmp
+- [x] elasticsearch
+- [x] rocketmq
+- [ ] nacos
 
 ## 集群

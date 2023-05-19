@@ -42,6 +42,8 @@ services:
       context: ./logstash
       args:
         - ELK_VERSION=${ELK_VERSION}
+    container_name: logstash
+    hostname: logstash
     volumes:
       - './logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml'
       - './logstash/pipeline:/usr/share/logstash/pipeline'
@@ -62,6 +64,8 @@ services:
       context: ./kibana
       args:
         - ELK_VERSION=${ELK_VERSION}
+    container_name: kibana
+    hostname: kibana
     ports:
       - "${KIBANA_HTTP_PORT}:5601"
     depends_on:
@@ -69,3 +73,16 @@ services:
     networks:
       backend:
         ipv4_address: ${KIBANA_IP}
+
+  dejavu:
+    build:
+      context: ./dejavu
+    container_name: dejavu
+    hostname: dejavu
+    ports:
+      - "${DEJAVU_HTTP_PORT}:1358"
+    depends_on:
+      - elasticsearch
+    networks:
+      backend:
+        ipv4_address: ${DEJAVU_IP}

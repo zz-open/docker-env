@@ -1,0 +1,20 @@
+version: '3.8'
+
+networks:
+  backend:
+    external: true
+
+services:
+  mailcatcher:
+    build:
+      context: ./mailcatcher
+    hostname: mailcatcher
+    container_name: mailcatcher
+    ports:
+      - "1025:1025"
+      - "1080:1080"
+    environment:
+      - TZ=${TZ}
+    networks:
+      backend:
+        ipv4_address: ${MAILCATCHER_IP}

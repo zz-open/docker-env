@@ -1,0 +1,37 @@
+#deb http://deb.debian.org/debian stretch main
+#deb http://security.debian.org/debian-security stretch/updates main
+#deb http://deb.debian.org/debian stretch-updates main
+
+#deb http://mirrors.volces.com/debian/ bullseye main non-free contrib
+#deb-src http://mirrors.volces.com/debian/ bullseye main non-free contrib
+#deb http://mirrors.volces.com/debian-security/ bullseye-security main
+#deb-src http://mirrors.volces.com/debian-security/ bullseye-security main
+#deb http://mirrors.volces.com/debian/ bullseye-updates main non-free contrib
+#deb-src http://mirrors.volces.com/debian/ bullseye-updates main non-free contrib
+#deb http://mirrors.volces.com/debian/ bullseye-backports main non-free contrib
+#deb-src http://mirrors.volces.com/debian/ bullseye-backports main non-free contrib
+
+#deb https://mirrors.aliyun.com/debian/ bullseye main non-free contrib
+#deb-src https://mirrors.aliyun.com/debian/ bullseye main non-free contrib
+#deb https://mirrors.aliyun.com/debian-security/ bullseye-security main
+#deb-src https://mirrors.aliyun.com/debian-security/ bullseye-security main
+#deb https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
+#deb-src https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib
+#deb https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
+#deb-src https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib
+
+# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free
+deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free
+
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free
+deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free
+
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-backports main contrib non-free
+deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-backports main contrib non-free
+
+# deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-free
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security bullseye-security main contrib non-free
+
+deb https://security.debian.org/debian-security bullseye-security main contrib non-free
+deb-src https://security.debian.org/debian-security bullseye-security main contrib non-free

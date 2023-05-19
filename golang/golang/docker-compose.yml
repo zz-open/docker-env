@@ -7,7 +7,7 @@ networks:
 services:
   go:
     build:
-      context:  ../_build/
+      context:  ../_build/golang
       args:
         GOLANG_VERSION: ${GOLANG_VERSION}
     hostname: golang

@@ -1,0 +1,20 @@
+version: '3.8'
+
+networks:
+  backend:
+    external: true
+
+services:
+  mailhog:
+    build:
+      context: ./mailhog
+    hostname: mailhog
+    container_name: mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    environment:
+      - TZ=${TZ}
+    networks:
+      backend:
+        ipv4_address: ${MAIL_HOG_IP}

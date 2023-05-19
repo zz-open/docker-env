@@ -19,7 +19,9 @@ services:
         soft: 262144
         hard: 262144
     environment:
-      - ALLOW_EMPTY_PASSWORD=yes
+      - ALLOW_EMPTY_PASSWORD=no
+      - CLICKHOUSE_ADMIN_USER=password123
+      - CLICKHOUSE_ADMIN_PASSWORD=password123
     volumes:
 #      - ${CLICKHOUSE_CONFIG_PATH}/config.xml:/etc/clickhouse-server/config.xml:rw
 #      - ${CLICKHOUSE_CONFIG_PATH}/users.xml:/etc/clickhouse-server/users.xml:rw

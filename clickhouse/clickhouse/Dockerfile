@@ -1,1 +1,1 @@
-FROM docker.io/bitnami/clickhouse:23
+FROM docker.io/bitnami/clickhouse:latest

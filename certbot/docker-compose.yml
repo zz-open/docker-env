@@ -1,0 +1,21 @@
+version: '3.8'
+
+networks:
+  backend:
+    external: true
+
+services:
+  certbot:
+    build:
+      context: ./certbot
+    container_name: certbot
+    hostname: certbot
+    volumes:
+      - ./data/certbot/certs/:/var/certs
+      - ./certbot/letsencrypt/:/var/www/letsencrypt
+    environment:
+      - CN="fake.domain.com"
+      - EMAIL="fake.email@gmail.com"
+    networks:
+      backend:
+        ipv4_address: ${CERTBOT_IP}

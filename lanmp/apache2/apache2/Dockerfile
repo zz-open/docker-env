@@ -17,6 +17,16 @@ ENV LOG_STDOUT=/var/log/apache2/access.log
 
 ENV LOG_STDERR=/var/log/apache2/error.log
 
+COPY ./_scripts/sources.list /etc/apt/sources.list
+RUN rm -Rf /var/lib/apt/lists/*
+RUN set -xe; \
+     apt-get update -yqq && \
+     apt-get install -yqq \
+     net-tools \
+     vim \
+     iputils-ping \
+     iproute2
+
 EXPOSE 80 443
 
 WORKDIR /var/www/

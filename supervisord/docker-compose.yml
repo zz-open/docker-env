@@ -1,0 +1,21 @@
+version: '3.8'
+
+networks:
+  backend:
+    external: true
+
+services:
+  supervisord:
+    build:
+      context: ./supervisord
+    container_name: supervisord
+    hostname: supervisord
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ./supervisord/supervisord.d:/etc/supervisord.d
+    extra_hosts:
+      - "dockerhost:${DOCKER_HOST_IP}"
+    networks:
+      backend:
+        ipv4_address: ${SUPERVISORD_IP}
