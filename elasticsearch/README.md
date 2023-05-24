@@ -1,6 +1,6 @@
 # ELASTICSEARCH 
-[elasticsearch 官网](https://www.elastic.co/cn/)
+```text
+8.7.2 elasticsearch+kibana
+```
+说明：经过权衡，统一采用环境变量方式注入，因为容器内部会设置默认值，如果采取配置文件覆盖的话，可能导致默认生成选项丢失，无法启动。
 
-[dejavu 官网](https://github.com/appbaseio/dejavu)
-
-https://blog.csdn.net/txyllyyj/article/details/121481739

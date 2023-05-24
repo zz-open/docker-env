@@ -10,19 +10,23 @@ services:
       context: ./elasticsearch
       args:
         - ELK_VERSION=${ELK_VERSION}
-    container_name: elasticsearch
-    hostname: elasticsearch
+    container_name: ${ELASTICSEARCH_HOSTNAME}
+    hostname: ${ELASTICSEARCH_HOSTNAME}
     volumes:
-      - ${ELASTICSEARCH_DATA_PATH}:/usr/share/elasticsearch/data
+      - ${ELASTICSEARCH_PATH}/data:/usr/share/elasticsearch/data
+      - ${ELASTICSEARCH_PATH}/plugins:/usr/share/elasticsearch/plugins
     environment:
-      - cluster.name=laradock-cluster
-      - node.name=laradock-node
+      - TZ=${TZ}
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=${ES_JAVA_OPTS}
+      - node.name=${ELASTICSEARCH_HOSTNAME}
+      - cluster.name=${ELASTICSEARCH_HOSTNAME}
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - bootstrap.memory_lock=true
-      - xpack.security.enabled=false
-      - xpack.security.transport.ssl.enabled=false
-      - indices.id_field_data.enabled=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - cluster.initial_master_nodes=laradock-node
+      - http.cors.enabled=true
+      - http.cors.allow-origin="*"
+      - http.cors.allow-credentials=true
+      - http.cors.allow-headers="X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization"
     ulimits:
       memlock:
         soft: -1
@@ -37,52 +41,20 @@ services:
       backend:
         ipv4_address: ${ELASTICSEARCH_IP}
 
-  logstash:
-    build:
-      context: ./logstash
-      args:
-        - ELK_VERSION=${ELK_VERSION}
-    container_name: logstash
-    hostname: logstash
-    volumes:
-      - './logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml'
-      - './logstash/pipeline:/usr/share/logstash/pipeline'
-    ports:
-      - '5001:5001'
-    environment:
-      LS_JAVA_OPTS: '-Xmx1g -Xms1g'
-    env_file:
-      - .env
-    networks:
-      backend:
-        ipv4_address: ${LOGSTASH_IP}
-    depends_on:
-      - elasticsearch
-
   kibana:
     build:
       context: ./kibana
       args:
         - ELK_VERSION=${ELK_VERSION}
-    container_name: kibana
-    hostname: kibana
+    container_name: ${KIBANA_HOSTNAME}
+    hostname: ${KIBANA_HOSTNAME}
     ports:
       - "${KIBANA_HTTP_PORT}:5601"
-    depends_on:
-      - elasticsearch
+    volumes:
+      - ${KIBANA_PATH}/data:/usr/share/kibana/data
+    environment:
+      - TZ=${TZ}
+      - I18N_LOCALE="zh-CN"
     networks:
       backend:
         ipv4_address: ${KIBANA_IP}
-
-  dejavu:
-    build:
-      context: ./dejavu
-    container_name: dejavu
-    hostname: dejavu
-    ports:
-      - "${DEJAVU_HTTP_PORT}:1358"
-    depends_on:
-      - elasticsearch
-    networks:
-      backend:
-        ipv4_address: ${DEJAVU_IP}

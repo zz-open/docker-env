@@ -36,4 +36,17 @@ environment:  # 设置环境变量
 查看配置，变量会被解析
 # 清除track缓存
  git rm -r --cached .
+
+## healthcheck
+```text
+healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s --user ${ELASTIC_USERNAME}:${ELASTIC_PASSWORD} http://localhost:9200 | grep -q 'missing authentication credentials'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+```
  

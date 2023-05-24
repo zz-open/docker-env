@@ -1,9 +1,12 @@
 #!/bin/bash
 
-docker-compose down
+function Reset() {
+   docker-compose down && \
+     rm -rf ./kafka/data && \
+     rm -rf ./zookeeper/data && \
+     rm -rf ./zookeeper/datalog && \
+     docker-compose build --no-cache && \
+     docker-compose up -d
+}
 
-rm -rf ./kafka1/data/*
-rm -rf ./kafka1/var/run/*
-
-rm -rf ./zookeeper1/data/*
-rm -rf ./zookeeper1/datalog/*
+Reset

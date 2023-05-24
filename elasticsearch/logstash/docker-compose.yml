@@ -1,0 +1,26 @@
+version: "3.8"
+
+networks:
+  backend:
+    external: true
+
+services:
+  logstash:
+    build:
+      context: ./logstash
+      args:
+        - ELK_VERSION=${ELK_VERSION}
+    container_name: logstash
+    hostname: logstash
+    volumes:
+      - './logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml'
+      - './logstash/pipeline:/usr/share/logstash/pipeline'
+    ports:
+      - '5001:5001'
+    environment:
+      LS_JAVA_OPTS: '-Xmx1g -Xms1g'
+    env_file:
+      - .env
+    networks:
+      backend:
+        ipv4_address: ${LOGSTASH_IP}

@@ -1,8 +1,7 @@
 #!/bin/bash
 
-EnterContainer(){
-#  docker-compose exec zookeeper bash
-  docker-compose exec zoonavigator bash
+function EnterContainer(){
+  docker-compose exec zookeeper bash
 }
 
 EnterContainer

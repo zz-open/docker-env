@@ -1,6 +1,6 @@
 #!/bin/bash
 
-EnterContainer(){
+function EnterContainer(){
   docker exec -it dtm sh
 }
 

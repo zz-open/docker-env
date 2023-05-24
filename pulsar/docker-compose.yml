@@ -10,17 +10,17 @@ services:
       context: ./pulsar
       args:
         PULSAR_VERSION: ${PULSAR_VERSION}
-    hostname: pulsar
-    container_name: pulsar
+    hostname: ${PULSAR_CONTAINER_NAME}
+    container_name: ${PULSAR_CONTAINER_NAME}
     volumes:
-      - ${PULSAR_DATA_PATH}:/pulsar/data
-      - ${PULSAR_CONF_PATH}:/pulsar/conf
+      - ${PULSAR_PATH}/data:/pulsar/data
+#      - ${PULSAR_PATH}/conf:/pulsar/conf
     ports:
       - "6650:6650"
       - "8080:8080"
     environment:
       - TZ=${TZ}
-    command: bin/pulsar standalone
+      - PULSAR_MEM=-Xms512m -Xmx512m -XX:MaxDirectMemorySize=256m
     networks:
       backend:
        ipv4_address: ${PULSAR_IP}
@@ -34,11 +34,11 @@ services:
       - "9527:9527"
       - "7750:7750"
     environment:
-      - SPRING_CONFIGURATION_FILE=/pulsar-manager/pulsar-manager/application.properties
       - TZ=${TZ}
+      - SPRING_CONFIGURATION_FILE=/pulsar-manager/pulsar-manager/application.properties
     networks:
       backend:
         ipv4_address: ${PULSAR_MANAGER_IP}
     depends_on:
-      - pulsar
+      - ${PULSAR_CONTAINER_NAME}
 

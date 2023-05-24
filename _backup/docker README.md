@@ -45,56 +45,43 @@ mysql:
 docker volume rm  etcd1 ...
 
 ```
-
-5.删除指定的容器
+# container
+## 删除指定的容器
 docker rm -f etcd1 ...
 
-6.删除images
-docker rmi 5958914cc558 ...
+# image
+## 删除镜像
+docker rmi 5958914cc558
 
+## 清除无用镜像
+docker image prune -a
+```text
 删除none镜像（这些坏坏的镜像也叫dangling images，空悬镜像。）
 docker rmi $(docker images -f "dangling=true" -q)
 
 docker images | grep '<none>'
+```
 
-7.查看网卡信息
+
+# network
 docker network ls
 docker network inspect 网卡id
 
-8.删除网卡
+## 删除网络
 docker network rm 网卡id
 
 
-9.设置内网IP
+## 设置内网IP
 
-[comment]: <> (networks:)
 
-[comment]: <> (redis-standalone-network:)
-
-[comment]: <> (driver: bridge)
-
-[comment]: <> (#    ipam:)
-
-[comment]: <> (#      driver: default)
-
-[comment]: <> (#      config:)
-
-[comment]: <> (#        - subnet: 172.11.0.0/24)
-
-[comment]: <> (networks:)
-
-[comment]: <> (redis-sentinel-network:)
-
-[comment]: <> (#        ipv4_address: 172.11.0.10)
-
-10.:cached,:delegated,:consistent
+### :cached,:delegated,:consistent
 通过在 docker run -v， --volume 的 option 中指定 cached 或 delegated，可以显着提高 Docker Desktop for Mac 上已装载卷访问的性能。您可以根据情况调整所需的一致性级别：
 
 consistent：默认值，完美的一致性，即主机和容器实时一致。
 cached：主机具有权威性。容器执行的写操作对主机是立即可见的，但是在主机上执行的写操作可能不会立即反应在容器内。
 delegated：容器的内容具有权威性。提供最弱保证，由容器执行的写操作可能不会立即反映在主机文件系统上，提供的性能要比其他配置好得多。
 
-11.rw,ro
+### rw,ro
 而其中的rw、ro和不指定模式，是比较重要的一个环节，关系到宿主机与容器的文件、文件夹变化关系，下面来一一详解
 
 一、不指定

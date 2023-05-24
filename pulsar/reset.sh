@@ -2,8 +2,7 @@
 
 function Reset(){
   docker-compose down && \
-  rm -rf ./data/* && \
-  rm -rf ./conf/* && \
+  rm -rf ./pulsar/data/* && \
   docker-compose build && \
   docker-compose up -d
 }

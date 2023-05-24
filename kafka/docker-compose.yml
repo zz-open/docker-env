@@ -1,112 +1,75 @@
 version: '3.8'
 
 networks:
-  kafka-standalone-network:
-    driver: bridge
+  backend:
+    external: true
 
 services:
-  zookeeper1:
-    image: zookeeper:${ZOOKEEPER_VERSION}
-    container_name: ${ZOOKEEPER_NAME_1}
-    hostname: ${ZOOKEEPER_NAME_1}
+  kafka-zookeeper:
+    build:
+      context: ./zookeeper
+      args:
+        ZOOKEEPER_VERSION: ${ZOOKEEPER_VERSION}
+    container_name: ${ZOOKEEPER_CONTAINER_NAME}
+    hostname: ${ZOOKEEPER_CONTAINER_NAME}
     ports:
-      - ${ZOOKEEPER_PORT_1}:${ZOOKEEPER_PORT}
+      - "${ZOOKEEPER_PORT}:2181"
     volumes:
-      - ./zookeeper1/data:/data
-      - ./zookeeper1/datalog:/datalog
+      - ${ZOOKEEPER_PATH}/data:/data
+      - ${ZOOKEEPER_PATH}/datalog:/datalog
     environment:
-      - ZOO_MY_ID=${ZOOKEEPER_ID_1}
+      - ZOO_MY_ID=${ZOOKEEPER_ID}
       - ZOO_SERVERS=${ZOOKEEPER_SERVERS}
       - TZ=${TZ}
     networks:
-      - kafka-standalone-network
+      backend:
+        ipv4_address: ${KAFKA_ZOOKEEPER_IP}
 
-  #zookeeper可视化
-  zoonavigator:
-    image: elkozmon/zoonavigator:latest
-    container_name: zoonavigator
-    hostname: zoonavigator
-    ports:
-      - "9110:9000"
-    environment:
-      - HTTP_PORT=9000
-      - CONNECTION_MYZK_CONN=${KAFKA_ZOOKEEPER_CONNECT}
-      - AUTO_CONNECT_CONNECTION_ID=MYZK
-    depends_on:
-      - ${ZOOKEEPER_NAME_1}
-    networks:
-      - kafka-standalone-network
-
-  kafka1:
-    image: wurstmeister/kafka:${KAFKA_VERSION}
-    container_name: ${KAFKA_NAME_1}
-    hostname: ${KAFKA_NAME_1}
+  kafka:
+    build:
+      context: ./kafka
+      args:
+        KAFKA_VERSION: ${KAFKA_VERSION}
+    container_name: ${KAFKA_CONTAINER_NAME}
+    hostname: ${KAFKA_CONTAINER_NAME}
     privileged: true
     ports:
-      - ${KAFKA_PORT_1}:${KAFKA_PORT_1}
+      - "9092:9092"
+      - "9093:9093"
     environment:
-      - KAFKA_BROKER_ID=${KAFKA_BROKER_ID_1}
-      - KAFKA_ZOOKEEPER_CONNECT=${KAFKA_ZOOKEEPER_CONNECT}
-      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=${KAFKA_LISTENER_SECURITY_PROTOCOL_MAP}
-      - KAFKA_INTER_BROKER_LISTENER_NAME=${KAFKA_INTER_BROKER_LISTENER_NAME}
-      - KAFKA_LISTENERS=${KAFKA_INTER_BROKER_LISTENER_NAME}://:${KAFKA_PORT},OUTSIDE://:${KAFKA_PORT_1}
-      - KAFKA_ADVERTISED_LISTENERS=${KAFKA_INTER_BROKER_LISTENER_NAME}://${KAFKA_NAME_1}:${KAFKA_PORT},OUTSIDE://${DOCKER_HOST_IP:-127.0.0.1}:${KAFKA_PORT_1}
-      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
-      - KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS=0
-      - KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1
-      - KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
-      - JMX_PORT=${KAFKA_JMX_PORT}
-      - KAFKA_JMX_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=${KAFKA_NAME_1} -Dcom.sun.management.jmxremote.rmi.port=${KAFKA_JMX_PORT}
       - TZ=${TZ}
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_ENABLE_KRAFT=no
+      - KAFKA_BROKER_ID=${KAFKA_BROKER_ID}
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=${KAFKA_ZOOKEEPER_CONNECT}
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=INTERNAL
+      - KAFKA_CFG_LISTENERS=INTERNAL://:9092,EXTERNAL://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://localhost:9092,EXTERNAL://${KAFKA_CONTAINER_NAME}:9093
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=${KAFKA_LISTENER_SECURITY_PROTOCOL_MAP}
     volumes:
-      - ./kafka1/data:/kafka
-      - ./kafka1/var/run/docker.sock:/var/run/docker.sock
+      - ${KAFKA_PATH}/data:/bitnami/kafka
     depends_on:
-      - ${ZOOKEEPER_NAME_1}
+      - ${ZOOKEEPER_CONTAINER_NAME}
     networks:
-      - kafka-standalone-network
-
-  #WEB UI
-  kafdrop:
-    image: obsidiandynamics/kafdrop:latest
-    container_name: kafdrop
-    hostname: kafdrop
-    ports:
-      - "9111:9000"
-    environment:
-      - KAFKA_BROKERCONNECT=${KAFKA_BROKERCONNECT}
-      - JVM_OPTS=-Xms16M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify
-      - TZ=${TZ}
-    depends_on:
-      - kafka1
-    networks:
-      - kafka-standalone-network
-
-  kafka-manager:
-    image: sheepkiller/kafka-manager:latest
-    container_name: kafka-manager
-    hostname: kafka-manager
-    ports:
-      - "9112:9000"
-    environment:
-      - ZK_HOSTS=${KAFKA_ZOOKEEPER_CONNECT}
-      - APPLICATION_SECRET=xulei
-      - KM_ARGS=-Djava.net.preferIPv4Stack=true
-    depends_on:
-      - zookeeper1
-    networks:
-      - kafka-standalone-network
+      backend:
+        ipv4_address: ${KAFKA_IP}
 
   kafka-eagle:
     build:
       context: ./kafka-eagle
+      args:
+        KAFKA_EFAK_VERSION: ${KAFKA_EFAK_VERSION}
     container_name: kafka-eagle
     hostname: kafka-eagle
+    volumes:
+      - ${KAFKA_EFAK_PATH}/system-config.properties:/opt/efak/conf/system-config.properties
     environment:
+      - TZ=${TZ}
       - EFAK_CLUSTER_ZK_LIST=${KAFKA_ZOOKEEPER_CONNECT}
     depends_on:
-      - zookeeper1
+      - ${ZOOKEEPER_CONTAINER_NAME}
     ports:
       - "8048:8048"
     networks:
-      - kafka-standalone-network
+      backend:
+        ipv4_address: ${KAFKA_EFAK_IP}

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-EnterContainer(){
+function EnterContainer(){
   docker exec -it lanmp-2-apache2 bash
 }
 

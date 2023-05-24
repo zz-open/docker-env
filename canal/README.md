@@ -1,31 +1,22 @@
-# canal-docker
+# canal [官网](https://github.com/alibaba/canal)
 
-1.canal-admin内部也有一个mysql,不想自己装的话也可以使用内部提供的
-2.先开启binog
-[mysqld]  
-log-bin=mysql-bin #添加这一行就ok  
-binlog-format=ROW #选择row模式  
-server_id=1 #配置mysql replaction需要定义，不能和canal的slaveId重复  
+## 准备
+- 对于自建 MySQL , 需要先开启 Binlog 写入功能，配置 binlog-format 为 ROW 模式，my.cnf 中配置如下
+```text
+[mysqld]
+log-bin=mysql-bin # 开启 binlog
+binlog-format=ROW # 选择 ROW 模式
+server_id=1 # 配置 MySQL replaction 需要定义，不要和 canal 的 slaveId 重复
+```
+注意：针对阿里云 RDS for MySQL , 默认打开了 binlog , 并且账号默认具有 binlog dump 权限 , 不需要任何权限或者 binlog 设置,可以直接跳过这一步
 
-3.添加canal用户
-CREATE USER canal IDENTIFIED BY 'canal';    
-GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'canal'@'%';  
--- GRANT ALL PRIVILEGES ON *.* TO 'canal'@'%' ;  
-FLUSH PRIVILEGES; 
-
+- 授权 canal 链接 MySQL 账号具有作为 MySQL slave 的权限, 如果已有账户可直接 grant
+```sql
+CREATE USER canal IDENTIFIED BY 'canal';  
+GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'canal'@'%';
+-- GRANT ALL PRIVILEGES ON *.* TO 'canal'@'%' ;
+FLUSH PRIVILEGES;
+    
 或者已有用户
 show grants for 'canal' 
-
-4.使用提供好的sql创建canal_manager database
-
-5.目前conf下会包含canal.properties/canal_local.properties两个文件，考虑历史版本兼容性，默认配置会以canal.properties为主，如果要启动为对接canal-admin模式，可以有两种方式
-
-指定为local配置文件
-sh bin/startup.sh local
-变更默认配置，比如删除canal.properties，重命名canal_local.properties为canal.properties
-
-
-6.修改instance.properties
-slaveID
-username
-password
+```

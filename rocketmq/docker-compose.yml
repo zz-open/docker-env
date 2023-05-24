@@ -2,67 +2,62 @@ version: '3.8'
 
 networks:
   backend:
-    driver: bridge
+    external: true
 
 services:
-  rocketmq-nameserver:
+  rocketmq-namesrv:
     build:
-      context: ./nameserver
+      context: ./namesrv
       args:
-        ROCKETMQ_IMAGE: ${ROCKETMQ_IMAGE}
         ROCKETMQ_VERSION: ${ROCKETMQ_VERSION}
-    hostname: rocketmq-nameserver
-    container_name: rocketmq-nameserver
+    hostname: ${NAMESRV_CONTAINER_NAME}
+    container_name: ${NAMESRV_CONTAINER_NAME}
     ports:
-      - ${NAMESRV_PORT}:${NAMESRV_PORT}
+      - "${NAMESRV_PORT}:9876"
     environment:
-      - JAVA_OPT_EXT=-Xms256m -Xmx256m -Xmn128m
-      - TZ=${TZ}
+      - JAVA_OPT_EXT=-server -Xms256m -Xmx256m -Xmn128m
     volumes:
-      - ./nameserver/logs:/home/rocketmq/logs
-    command: sh mqnamesrv
+      - ${NAMESRV_PATH}/logs:/home/rocketmq/logs
     networks:
       backend:
-        ipv4_address: ${ROCKETMQ_BROKER_IP}
+        ipv4_address: ${ROCKETMQ_NAMESRV_IP}
 
   rocketmq-broker:
     build:
       context: ./broker
       args:
-        ROCKETMQ_IMAGE: ${ROCKETMQ_IMAGE}
         ROCKETMQ_VERSION: ${ROCKETMQ_VERSION}
-    hostname: rocketmq-broker
-    container_name: rocketmq-broker
+    hostname: ${ROCKETMQ_BROKER_CONTAINER_NAME}
+    container_name: ${ROCKETMQ_BROKER_CONTAINER_NAME}
     volumes:
-      - ./broker/logs:/home/rocketmq/logs
-      - ./broker/store:/home/rocketmq/store
-      - ./broker/conf/broker.conf:/opt/rocketmq-${ROCKETMQ_VERSION}/conf/broker.conf
+      - ${ROCKETMQ_BROKER_PATH}/logs:/home/rocketmq/logs
+      - ${ROCKETMQ_BROKER_PATH}/store:/home/rocketmq/store
+      - ${ROCKETMQ_BROKER_PATH}/conf/broker.conf:/opt/rocketmq-${ROCKETMQ_VERSION}/conf/broker.conf
     environment:
-      - NAMESRV_ADDR=${NAMESRV_ADDR}
-      - JAVA_OPT_EXT=-server -Xms256m -Xmx256m -Xmn128m
-      - TZ=${TZ}
+      - NAMESRV_ADDR=${NAMESRV_CONTAINER_NAME}:9876
+      - JAVA_OPTS= -Duser.home=/opt
+      - JAVA_OPT_EXT=-server -Xms512m -Xmx512m -Xmn200m
     ports:
       - "10909:10909"
       - "10911:10911"
       - "10912:10912"
-    command: sh mqbroker -c /opt/rocketmq-${ROCKETMQ_VERSION}/conf/broker.conf
     depends_on:
-      - rocketmq-nameserver
+      - ${NAMESRV_CONTAINER_NAME}
     networks:
       backend:
-        ipv4_address: ${ROCKETMQ_NAMESRV_IP}
+        ipv4_address: ${ROCKETMQ_BROKER_IP}
 
   rocketmq-dashboard:
     build:
-      context: ./rocketmq-dashboard
+      context: ./dashboard
     hostname: rocketmq-dashboard
     container_name: rocketmq-dashboard
     ports:
       - "8080:8080"
     environment:
-      - JAVA_OPTS=-Drocketmq.namesrv.addr=${NAMESRV_ADDR}; -Xms256m -Xmx256m
+      - JAVA_OPTS=-Drocketmq.namesrv.addr=${NAMESRV_CONTAINER_NAME}:9876; -Xms256m -Xmx256m
     depends_on:
-      - rocketmq-nameserver
+      - ${NAMESRV_CONTAINER_NAME}
     networks:
       backend:
         ipv4_address: ${ROCKETMQ_DASHBOARD_IP}

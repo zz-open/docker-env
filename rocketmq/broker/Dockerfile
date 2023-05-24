@@ -1,11 +1,11 @@
 ARG ROCKETMQ_VERSION
-ARG ROCKETMQ_IMAGE
-FROM ${ROCKETMQ_IMAGE}:${ROCKETMQ_VERSION}
+FROM apache/rocketmq:${ROCKETMQ_VERSION}
 
 ENV TZ Asia/Shanghai
 
-USER root
-#为了防止添加失败，加上-U 参数，更新仓储缓存。
+ARG ROCKETMQ_VERSION
+ENV ROCKETMQ_VERSION=${ROCKETMQ_VERSION}
 
-RUN apk add -U tzdata && cp /usr/share/zoneinfo/${TZ} /etc/localtime \
-    && echo ${TZ} > /etc/timezone
+USER root
+
+CMD "sh" "mqbroker" "-c" "/opt/rocketmq-${ROCKETMQ_VERSION}/conf/broker.conf"

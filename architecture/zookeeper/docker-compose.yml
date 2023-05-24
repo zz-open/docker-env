@@ -1,0 +1,69 @@
+version: '3.8'
+
+networks:
+  backend:
+    external: true
+
+services:
+  zookeeper1:
+    build:
+      context: ./zookeeper
+      args:
+        ZOOKEEPER_VERSION: ${ZOOKEEPER_VERSION}
+    container_name: ${ZOOKEEPER_NAME_1}
+    hostname: ${ZOOKEEPER_NAME_1}
+    ports:
+      - "${ZOOKEEPER_PORT_1}:2181"
+    environment:
+      - TZ=${TZ}
+      - ZOO_MY_ID=${ZOOKEEPER_ID_1}
+      - ZOO_SERVERS=${ZOOKEEPER_SERVERS}
+      - ZOO_4LW_COMMANDS_WHITELIST=\* #stat,conf,envi
+    volumes:
+      - ${ZOOKEEPER_PATH_1}/data:/data
+      - ${ZOOKEEPER_PATH_1}/datalog:/datalog
+    networks:
+      backend:
+        ipv4_address: ${ZOOKEEPER_IP_1}
+
+  zookeeper2:
+    build:
+      context: ./zookeeper
+      args:
+        ZOOKEEPER_VERSION: ${ZOOKEEPER_VERSION}
+    container_name: ${ZOOKEEPER_NAME_2}
+    hostname: ${ZOOKEEPER_NAME_2}
+    ports:
+      - "${ZOOKEEPER_PORT_2}:2181"
+    environment:
+      - TZ=${TZ}
+      - ZOO_MY_ID=${ZOOKEEPER_ID_2}
+      - ZOO_SERVERS=${ZOOKEEPER_SERVERS}
+      - ZOO_4LW_COMMANDS_WHITELIST=\* #stat,conf,envi
+    volumes:
+      - ${ZOOKEEPER_PATH_2}/data:/data
+      - ${ZOOKEEPER_PATH_2}/datalog:/datalog
+    networks:
+      backend:
+        ipv4_address: ${ZOOKEEPER_IP_2}
+
+  zookeeper3:
+    build:
+      context: ./zookeeper
+      args:
+        ZOOKEEPER_VERSION: ${ZOOKEEPER_VERSION}
+    container_name: ${ZOOKEEPER_NAME_3}
+    hostname: ${ZOOKEEPER_NAME_3}
+    ports:
+      - "${ZOOKEEPER_PORT_3}:2181"
+    environment:
+      - TZ=${TZ}
+      - ZOO_MY_ID=${ZOOKEEPER_ID_3}
+      - ZOO_SERVERS=${ZOOKEEPER_SERVERS}
+      - ZOO_4LW_COMMANDS_WHITELIST=\* #stat,conf,envi
+    volumes:
+      - ${ZOOKEEPER_PATH_3}/data:/data
+      - ${ZOOKEEPER_PATH_3}/datalog:/datalog
+    networks:
+      backend:
+        ipv4_address: ${ZOOKEEPER_IP_3}

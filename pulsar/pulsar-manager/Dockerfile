@@ -1,1 +1,1 @@
-FROM apachepulsar/pulsar-manager:v0.3.0
+FROM apachepulsar/pulsar-manager:v0.4.0
