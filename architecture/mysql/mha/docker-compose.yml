@@ -1,126 +1,78 @@
 version: '3.8'
 
 networks:
-  lanp-network:
+  backend:
     external: true
 
 services:
-  mysql-m1:
+  mysql-master1:
     build:
-      context: ./master1
+      context: ./mysql
       args:
         - MYSQL_VERSION=${MYSQL_VERSION}
-    hostname: mysql-m1
-    container_name: mysql-m1
+    hostname: ${MYSQL_MASTER_1_CONTAINER_NAME}
+    container_name: ${MYSQL_MASTER_1_CONTAINER_NAME}
     volumes:
-      - ./master1/data:/var/lib/mysql
-      - ./master1/${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+      - ${MYSQL_MASTER_1_PATH}/data:/var/lib/mysql
+      - ${MYSQL_MASTER_1_PATH}/logs:/var/log
+      - ${MYSQL_MASTER_1_PATH}/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ${MYSQL_MASTER_1_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
-      - ${MASTER_PORT_1}:${MYSQL_PORT}
+      - "${MYSQL_MASTER_1_PORT}:3306"
     environment:
+      - TZ=${TZ}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - TZ=${TZ}
     networks:
-      lanp-network:
+      backend:
         ipv4_address: ${MYSQL_MASTER_1_IP}
 
-  mysql-s1:
+  mysql-slave1:
     build:
-      context: ./slave1
+      context: ./mysql
       args:
         - MYSQL_VERSION=${MYSQL_VERSION}
-    hostname: mysql-s1
-    container_name: mysql-s1
+    hostname: ${MYSQL_SLAVE_1_CONTAINER_NAME}
+    container_name: ${MYSQL_SLAVE_1_CONTAINER_NAME}
     volumes:
-      - ./slave1/data:/var/lib/mysql
-      - ./slave1/${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+      - ${MYSQL_SLAVE_1_PATH}/data:/var/lib/mysql
+      - ${MYSQL_SLAVE_1_PATH}/logs:/var/log
+      - ${MYSQL_MASTER_1_PATH}/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ${MYSQL_SLAVE_1_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
-      - ${SLAVE_PORT_1}:${MYSQL_PORT}
+      - "${MYSQL_SLAVE_1_PORT}:3306"
     environment:
+      - TZ=${TZ}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - TZ=${TZ}
     networks:
-      lanp-network:
+      backend:
         ipv4_address: ${MYSQL_SLAVE_1_IP}
-    depends_on:
-      - mysql-m1
 
-  mysql-s2:
+  mysql-slave2:
     build:
-      context: ./slave2
+      context: ./mysql
       args:
         - MYSQL_VERSION=${MYSQL_VERSION}
-    hostname: mysql-s2
-    container_name: mysql-s2
+    hostname: ${MYSQL_SLAVE_2_CONTAINER_NAME}
+    container_name: ${MYSQL_SLAVE_2_CONTAINER_NAME}
     volumes:
-      - ./slave2/data:/var/lib/mysql
-      - ./slave2/${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+      - ${MYSQL_SLAVE_2_PATH}/data:/var/lib/mysql
+      - ${MYSQL_SLAVE_2_PATH}/logs:/var/log
+      - ${MYSQL_SLAVE_2_PATH}/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ${MYSQL_SLAVE_2_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
-      - ${SLAVE_PORT_2}:${MYSQL_PORT}
+      - "${MYSQL_SLAVE_2_PORT}:3306"
     environment:
+      - TZ=${TZ}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - TZ=${TZ}
     networks:
-      lanp-network:
+      backend:
         ipv4_address: ${MYSQL_SLAVE_2_IP}
-    depends_on:
-      - mysql-m1
-
-
-#  proxysql:
-#    hostname: proxysql
-#    image: severalnines/proxysql:latest
-#    ports:
-#      - 3306:3306
-#      - 3307:3307
-#      - 3308:3308
-#      - 6032:6032
-#    volumes:
-#      - ./config/proxysql.cnf:/etc/proxysql.cnf
-#      - type: volume
-#        source: proxysql
-#        target: /var/lib/proxysql
-#        volume:
-#          nocopy: true
-#    command: [ 'proxysql', '-f', '--reload', '-c', '/etc/proxysql.cnf' ]
-#    networks:
-#      cluster:
-#        ipv4_address: 172.56.0.4
-#    depends_on:
-#      - mysqlmaster
-#      - mysqlslave
-
-
-#    orchestrator:
-#      hostname: orchestrator
-#      image: openarkcode/orchestrator:latest
-#      command:
-#        - /bin/bash
-#        - -c
-#        - |
-#          sleep 60
-#          /usr/local/orchestrator/orchestrator -c clusters
-#          /usr/local/orchestrator/orchestrator -c discover -i mysqlmaster:3306
-#          /usr/local/orchestrator/orchestrator -c discover -i mysqlslave:3306
-#          /usr/local/orchestrator/orchestrator http
-#      volumes:
-#        - ./config/orchestrator.conf.json:/etc/orchestrator.conf.json
-#        - type: volume
-#          source: orchestrator
-#          target: /app/data
-#          volume:
-#            nocopy: true
-#      networks:
-#        cluster:
-#          ipv4_address: 172.56.0.7
-#      ports:
-#        - "3000:3000"

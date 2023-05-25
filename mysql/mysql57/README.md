@@ -11,3 +11,12 @@ flush privileges;
 参考：https://blog.csdn.net/qq_34777982/article/details/117445859
 参考：https://i.vycc.cn/article/1139499.html
 ```
+```text
+#####redo log##################
+#innodb_flush_log_at_trx_commit=1
+
+#####undo log##############
+#innodb_undo_tablespaces=4
+#innodb_undo_directory=/var/lib/mysql/undo_log
+#innodb_undo_log_truncate=1
+```

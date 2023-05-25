@@ -16,4 +16,4 @@
 
 本地连接： 127.0.0.1:12181,127.0.0.1:12182,127.0.0.1:12183
 
-
+sudo xattr -rd com.apple.quarantine /Applications/ZooKeeper\ Assistant.app

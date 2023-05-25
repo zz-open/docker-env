@@ -15,9 +15,11 @@ networks:
 
 services:
 # empty container 用来创建网络
-  empty:
+  container-env-setup:
     build:
       context: ./scratch/scratch
-    container_name: empty
+    container_name: container-env-setup
+    hostname: container-env-setup
     networks:
-      - backend
+      backend:
+        ipv4_address: ${CONTAINER_ENV_SETUP_IP}

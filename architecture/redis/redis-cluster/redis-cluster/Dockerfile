@@ -1,0 +1,2 @@
+ARG REDIS_CLUSTER_VERSION
+FROM docker.io/bitnami/redis-cluster:${REDIS_CLUSTER_VERSION}

@@ -1,9 +1,15 @@
 #!/bin/bash
 
-docker-compose down
-rm -rf ./node1/data
-rm -rf ./node2/data
-rm -rf ./node3/data
-rm -rf ./node4/data
-rm -rf ./node5/data
-rm -rf ./node6/data
+function Reset() {
+    docker-compose down && \
+    rm -rf ./master/data && \
+    rm -rf ./master/logs && \
+    rm -rf ./slave1/data && \
+    rm -rf ./slave1/logs && \
+    rm -rf ./slave2/data && \
+    rm -rf ./slave2/logs && \
+    rm -rf ./slave3/data && \
+    rm -rf ./slave4/logs
+}
+
+Reset

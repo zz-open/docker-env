@@ -1,3 +1,7 @@
+# redis 集群环境
+```text
+redis主从+sentinel
+```
 1.尽量使用最新版本的redis
 2.从github拷贝一份最新的redis.conf,链接：https://github.com/redis/redis/blob/6.2/redis.conf
 3.修改master的redis.conf,只设置密码:requirepass

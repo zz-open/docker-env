@@ -1,13 +1,2 @@
 .idea/
 .DS_Store
-slave1/data/
-slave1/logs/
-
-slave2/data/
-slave2/logs/
-
-slave3/data/
-slave3/logs/
-
-master/data/
-master/logs/

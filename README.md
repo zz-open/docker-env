@@ -21,6 +21,9 @@
 TZ=Asia/Shanghai
 
 # 172.19.0.x
+## container-env-setup
+CONTAINER_ENV_SETUP_IP=172.19.0.10
+
 ## redis
 REDIS_IP=172.19.0.11
 
@@ -178,6 +181,50 @@ ZOOKEEPER_IP_2=172.19.6.12
 
 ZOOKEEPER_IP_3=172.19.6.13
 
+# 172.19.7.x
+## mysql 集群
+MYSQL_MASTER_1_IP=172.19.7.11
+
+MYSQL_SLAVE_1_IP=172.19.7.12
+
+MYSQL_SLAVE_2_IP=172.19.7.13
+
+# 172.19.8.x
+## memcached 集群
+MEMCACHED_1_IP=172.19.8.11
+
+MEMCACHED_2_IP=172.19.8.12
+
+MEMCACHED_3_IP=172.19.8.13
+
+# 172.19.9.x
+## redis cluster 集群
+REDIS_1_IP=172.19.9.11
+
+REDIS_2_IP=172.19.9.12
+
+REDIS_3_IP=172.19.9.13
+
+REDIS_4_IP=172.19.9.14
+
+REDIS_5_IP=172.19.9.15
+
+REDIS_6_IP=172.19.9.16
+
+## redis sentinel 集群
+REDIS_MASTER_1_IP=172.19.9.21
+
+REDIS_SLAVE_1_IP=172.19.9.22
+
+REDIS_SLAVE_2_IP=172.19.9.23
+
+REDIS_SLAVE_3_IP=172.19.9.24
+
+REDIS_SENTINEL_1_IP=172.19.9.25
+
+REDIS_SENTINEL_2_IP=172.19.9.26
+
+REDIS_SENTINEL_3_IP=172.19.9.27
 
 # 容器环境清单
 包含以下容器环境
@@ -216,5 +263,9 @@ ZOOKEEPER_IP_3=172.19.6.13
 - [x] canal_server+canal_admin
 - [x] nsq nsqlookupd nsqadmin
 - [ ] clickhouse
+- [x] memcached
+- [x] redis+sentinel
+- [x] redis+cluster
+- [x] mha
 
 ## 集群

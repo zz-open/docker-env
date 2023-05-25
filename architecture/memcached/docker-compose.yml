@@ -1,0 +1,51 @@
+version: '3.8'
+
+networks:
+  backend:
+    external: true
+
+services:
+  memcached1:
+    build:
+      context: ./memcached
+    hostname: ${MEMCACHED_1_CONTAINER_NAME}
+    container_name: ${MEMCACHED_1_CONTAINER_NAME}
+    ports:
+      - "${MEMCACHED_1_HOST_PORT}:11211"
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${MEMCACHED_1_PATH}/data:/var/lib/memcached
+    networks:
+      backend:
+        ipv4_address: ${MEMCACHED_1_IP}
+
+  memcached2:
+    build:
+      context: ./memcached
+    hostname: ${MEMCACHED_2_CONTAINER_NAME}
+    container_name: ${MEMCACHED_2_CONTAINER_NAME}
+    ports:
+      - "${MEMCACHED_2_HOST_PORT}:11211"
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${MEMCACHED_2_PATH}/data:/var/lib/memcached
+    networks:
+      backend:
+        ipv4_address: ${MEMCACHED_2_IP}
+
+  memcached3:
+    build:
+      context: ./memcached
+    hostname: ${MEMCACHED_3_CONTAINER_NAME}
+    container_name: ${MEMCACHED_3_CONTAINER_NAME}
+    ports:
+      - "${MEMCACHED_3_HOST_PORT}:11211"
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${MEMCACHED_3_PATH}/data:/var/lib/memcached
+    networks:
+      backend:
+        ipv4_address: ${MEMCACHED_3_IP}
