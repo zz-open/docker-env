@@ -3,7 +3,7 @@
 [清华源](https://mirrors.tuna.tsinghua.edu.cn/help)
 [阿里源](https://mirrors.tuna.tsinghua.edu.cn/help)
 [网易源](https://mirrors.tuna.tsinghua.edu.cn/help)
-[火山源](https://mirrors.tuna.tsinghua.edu.cn/help)
+[火山源](https://developer.volcengine.com/articles/7119384305456906277)
 [docker hub](https://hub.docker.com)
 
 ```text
@@ -226,6 +226,16 @@ REDIS_SENTINEL_2_IP=172.19.9.26
 
 REDIS_SENTINEL_3_IP=172.19.9.27
 
+
+# 172.19.10.x
+## etcd 集群
+ETCD_1_IP=172.19.10.11
+
+ETCD_2_IP=172.19.10.12
+
+ETCD_3_IP=172.19.10.13
+
+
 # 容器环境清单
 包含以下容器环境
 
@@ -267,5 +277,6 @@ REDIS_SENTINEL_3_IP=172.19.9.27
 - [x] redis+sentinel
 - [x] redis+cluster
 - [x] mha
+- [x] etcd
 
 ## 集群

@@ -39,7 +39,7 @@ services:
     volumes:
       - ${MYSQL_SLAVE_1_PATH}/data:/var/lib/mysql
       - ${MYSQL_SLAVE_1_PATH}/logs:/var/log
-      - ${MYSQL_MASTER_1_PATH}/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ${MYSQL_SLAVE_1_PATH}/my.cnf:/etc/mysql/conf.d/my.cnf
       - ${MYSQL_SLAVE_1_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
       - "${MYSQL_SLAVE_1_PORT}:3306"

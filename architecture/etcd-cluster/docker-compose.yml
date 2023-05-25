@@ -1,90 +1,99 @@
 version: "3.8"
 
 networks:
-  etcd-cluster-network:
-    driver: bridge
+  backend:
+   external: true
 
 services:
-  etcd4:
-    image: quay.io/coreos/etcd:latest
-    entrypoint: /usr/local/bin/etcd
-    container_name: ${ETCD_NAME_4}
-    hostname: ${ETCD_NAME_4}
+  etcd1:
+    build:
+      context: ./etcd
+      args:
+        ETCD_VERSION: ${ETCD_VERSION}
+    container_name: ${ETCD_1_NAME}
+    hostname: ${ETCD_1_NAME}
     environment:
       - ETCDCTL_API=${ETCDCTL_API}
       - ENDPOINTS=${ETCD_ENDPOINTS}
     command:
-      - --name=${ETCD_NAME_4}
+      - --name=${ETCD_1_NAME}
+      - --initial-advertise-peer-urls=http://${ETCD_1_NAME}:2380
+      - --advertise-client-urls=http://${ETCD_1_NAME}:2379
       - --data-dir=/etcd_data
-      - --initial-advertise-peer-urls=http://${ETCD_NAME_4}:2380
       - --listen-peer-urls=http://0.0.0.0:2380
       - --listen-client-urls=http://0.0.0.0:2379
-      - --advertise-client-urls=http://${ETCD_NAME_4}:2379
       - --heartbeat-interval=${ETCD_HEARTBEAT_INTERVAL}
       - --election-timeout=1250
       - --initial-cluster=${ETCD_CLUSTER}
       - --initial-cluster-state=${ETCD_CLUSTER_STATE}
       - --initial-cluster-token=${ETCD_TOKEN}
     ports:
-      - ${ETCD_PORT_4}:2379
-      - ${ETCD_PORT_REVERSE_4}:2380
+      - "12379:2379"
+      - "12380:2380"
     networks:
-      etcd-cluster-network:
+      backend:
+        ipv4_address: ${ETCD_1_IP}
     volumes:
-      - ./${ETCD_NAME_4}/data:/etcd_data
+      - ${ETCD_1_PATH}/data:/etcd_data
 
   etcd2:
-    image: quay.io/coreos/etcd:latest
-    entrypoint: /usr/local/bin/etcd
-    container_name: ${ETCD_NAME_2}
-    hostname: ${ETCD_NAME_2}
+    build:
+      context: ./etcd
+      args:
+        ETCD_VERSION: ${ETCD_VERSION}
+    container_name: ${ETCD_2_NAME}
+    hostname: ${ETCD_2_NAME}
     environment:
       - ETCDCTL_API=${ETCDCTL_API}
       - ENDPOINTS=${ETCD_ENDPOINTS}
     command:
-      - --name=${ETCD_NAME_2}
+      - --name=${ETCD_2_NAME}
+      - --initial-advertise-peer-urls=http://${ETCD_2_NAME}:2380
+      - --advertise-client-urls=http://${ETCD_2_NAME}:2379
       - --data-dir=/etcd_data
-      - --advertise-client-urls=http://${ETCD_NAME_2}:2379
-      - --listen-client-urls=http://0.0.0.0:2379
-      - --initial-advertise-peer-urls=http://${ETCD_NAME_2}:2380
       - --listen-peer-urls=http://0.0.0.0:2380
+      - --listen-client-urls=http://0.0.0.0:2379
       - --heartbeat-interval=${ETCD_HEARTBEAT_INTERVAL}
       - --election-timeout=1250
       - --initial-cluster=${ETCD_CLUSTER}
       - --initial-cluster-state=${ETCD_CLUSTER_STATE}
       - --initial-cluster-token=${ETCD_TOKEN}
     ports:
-      - ${ETCD_PORT_2}:2379
-      - ${ETCD_PORT_REVERSE_2}:2380
+      - "12381:2379"
+      - "12382:2380"
     networks:
-      etcd-cluster-network:
+      backend:
+        ipv4_address: ${ETCD_2_IP}
     volumes:
-      - ./${ETCD_NAME_2}/data:/etcd_data
+      - ${ETCD_2_PATH}/data:/etcd_data
 
   etcd3:
-    image: quay.io/coreos/etcd:latest
-    entrypoint: /usr/local/bin/etcd
-    container_name: ${ETCD_NAME_3}
-    hostname: ${ETCD_NAME_3}
+    build:
+      context: ./etcd
+      args:
+        ETCD_VERSION: ${ETCD_VERSION}
+    container_name: ${ETCD_3_NAME}
+    hostname: ${ETCD_3_NAME}
     environment:
       - ETCDCTL_API=${ETCDCTL_API}
       - ENDPOINTS=${ETCD_ENDPOINTS}
     command:
-      - --name=${ETCD_NAME_3}
+      - --name=${ETCD_3_NAME}
+      - --initial-advertise-peer-urls=http://${ETCD_3_NAME}:2380
+      - --advertise-client-urls=http://${ETCD_3_NAME}:2379
       - --data-dir=/etcd_data
-      - --advertise-client-urls=http://${ETCD_NAME_3}:2379
-      - --listen-client-urls=http://0.0.0.0:2379
-      - --initial-advertise-peer-urls=http://${ETCD_NAME_3}:2380
       - --listen-peer-urls=http://0.0.0.0:2380
+      - --listen-client-urls=http://0.0.0.0:2379
       - --heartbeat-interval=${ETCD_HEARTBEAT_INTERVAL}
       - --election-timeout=1250
       - --initial-cluster=${ETCD_CLUSTER}
       - --initial-cluster-state=${ETCD_CLUSTER_STATE}
       - --initial-cluster-token=${ETCD_TOKEN}
     ports:
-      - ${ETCD_PORT_3}:2379
-      - ${ETCD_PORT_REVERSE_3}:2380
+      - "12383:2379"
+      - "12384:2380"
     networks:
-      etcd-cluster-network:
+      backend:
+        ipv4_address: ${ETCD_3_IP}
     volumes:
-      - ./${ETCD_NAME_3}/data:/etcd_data
+      - ${ETCD_3_PATH}/data:/etcd_data

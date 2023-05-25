@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
-source ./util.sh
+source ./body.sh
+
+function StopSlave() {
+  docker exec -it ${MYSQL_SLAVE1_CONTAINER_NAME} bash -c "${CMD_STOP_SLAVE}";
+
+  docker exec -it ${MYSQL_SLAVE2_CONTAINER_NAME} bash -c "${CMD_STOP_SLAVE}";
+}
 
 StopSlave

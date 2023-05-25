@@ -1,4 +1,10 @@
 # DOCKER语录
+
+# 安装
+[CentOS 安装 Docker](https://docs.docker.com/engine/install/centos/)
+[Ubuntu 安装 Docker](https://docs.docker.com/engine/install/ubuntu/)
+[安装 Docker Compose](https://docs.docker.com/compose/install/standalone/)
+
 ```text
 1.docker inspect -f='{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq) | grep beanstalkd
 2.links不建议使用，使用networks替代
@@ -113,4 +119,12 @@ docker network inspect elasticsearch-standalone_es-v7-standalone-network
 docker network disconnect -f elasticsearch-standalone_es-v7-standalone-network kibana-v7
  
 docker network rm f957b93e6a68
+```
+
+## 重置docker
+```text
+docker system df
+docker system prune -a
+docker image prune -a
+docker volume prune -a
 ```
