@@ -1,0 +1,54 @@
+version: '3.8'
+
+networks:
+  backend:
+    external: true
+
+services:
+  prometheus:
+    build:
+      context: ./prometheus
+      args:
+        PROMETHEUS_VERSION: ${PROMETHEUS_VERSION}
+    container_name: ${PROMETHEUS_CONTAINER_NAME}
+    hostname: ${PROMETHEUS_CONTAINER_NAME}
+    volumes:
+      - ${PROMETHEUS_PATH}/etc/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ${MONITOR_PATH}/prometheus_data:/prometheus
+    ports:
+      - "${PROMETHEUS_PORT}:9090"
+    networks:
+      backend:
+        ipv4_address: ${PROMETHEUS_IP}
+
+  grafana:
+    build:
+      context: ./grafana
+      args:
+        GRAFANA_VERSION: ${GRAFANA_VERSION}
+    hostname: ${GRAFANA_CONTAINER_NAME}
+    container_name: ${GRAFANA_CONTAINER_NAME}
+    volumes:
+      - ${MONITOR_PATH}/grafana_data:/var/lib/grafana
+    environment:
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_SECURITY_ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_SECURITY_ADMIN_PASSWORD}
+    ports:
+      - "${GRAFANA_PORT}:3000"
+    networks:
+      backend:
+        ipv4_address: ${GRAFANA_IP}
+
+  node-exporter:
+    build:
+      context: ./node-exporter
+      args:
+        NODE_EXPORTER_VERSION: ${NODE_EXPORTER_VERSION}
+    container_name: ${NODE_EXPORTER_CONTAINER_NAME}
+    hostname: ${NODE_EXPORTER_CONTAINER_NAME}
+    ports:
+      - "${NODE_EXPORTER_PORT}:9100"
+    networks:
+      backend:
+        ipv4_address: ${NODE_EXPORTER_IP}

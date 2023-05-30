@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function ResetElasticSearch(){
   docker-compose stop elasticsearch && \

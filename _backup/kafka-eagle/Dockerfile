@@ -1,0 +1,3 @@
+ARG KAFKA_EFAK_VERSION
+
+FROM nickzurich/efak:${KAFKA_EFAK_VERSION}

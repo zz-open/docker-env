@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 EnablePlugin(){
   #启用WEB控制台

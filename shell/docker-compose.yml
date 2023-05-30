@@ -1,0 +1,17 @@
+version: '3.8'
+
+networks:
+  backend:
+    external: true
+
+services:
+  my-shell:
+    build:
+      context: ./shell
+    container_name: ${CONTAINER_NAME}
+    hostname: ${CONTAINER_NAME}
+    environment:
+      - TZ=${TZ}
+    networks:
+      backend:
+        ipv4_address: ${CONTAINER_IP}

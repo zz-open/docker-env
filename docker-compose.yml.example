@@ -1,0 +1,106 @@
+version: '3.8'
+
+networks:
+  backend:
+    external: true
+### KAFKA-EFAK ########################################
+KAFKA_EFAK_VERSION=3.0.1
+KAFKA_EFAK_CONTAINER_NAME=kazoo-kafka-eagle
+
+KAZOO_KAFKA_EFAK_IP=172.19.4.13
+
+### MYSQL #################################################
+MYSQL_VERSION=8.0.33
+MYSQL_DATABASE=test
+MYSQL_USER=zaizai
+MYSQL_PASSWORD=zz123456?
+MYSQL_HOST_PORT=3306
+MYSQL_ROOT_PASSWORD=zz123456?
+MYSQL_CONTAINER_NAME=kazoo-mysql
+MYSQL_PATH=./mysql
+
+KAZOO_MYSQL_IP=172.19.4.14
+
+services:
+  kazoo-kafka-eagle:
+    build:
+      context: ../kafka-eagle
+      args:
+        KAFKA_EFAK_VERSION: ${KAFKA_EFAK_VERSION}
+    container_name: ${KAFKA_EFAK_CONTAINER_NAME}
+    hostname: ${KAFKA_EFAK_CONTAINER_NAME}
+    environment:
+      - TZ=${TZ}
+      - EFAK_CLUSTER_ZK_LIST=${KAFKA_ZOOKEEPER_CONNECT}
+      - EFAK_DB_DRIVER=com.mysql.cj.jdbc.Driver
+      - EFAK_DB_URL=jdbc:mysql://kazoo-mysql:3306/ke?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+      - EFAK_DB_USERNAME=${MYSQL_USER}
+      - EFAK_DB_PASSWORD=${MYSQL_PASSWORD}
+    depends_on:
+      - ${ZOOKEEPER_CONTAINER_NAME}
+    ports:
+      - "8048:8048"
+    networks:
+      backend:
+        ipv4_address: ${KAZOO_KAFKA_EFAK_IP}
+
+  kazoo-mysql:
+    build:
+      context: ../mysql
+      args:
+        MYSQL_VERSION: ${MYSQL_VERSION}
+    hostname: ${MYSQL_CONTAINER_NAME}
+    container_name: ${MYSQL_CONTAINER_NAME}
+    volumes:
+      - ${MYSQL_PATH}/data:/var/lib/mysql
+      - ${MYSQL_PATH}/logs:/var/log
+      - ${MYSQL_PATH}/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ${MYSQL_PATH}/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - "${MYSQL_HOST_PORT}:3306"
+    environment:
+      - TZ=${TZ}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    networks:
+      backend:
+        ipv4_address: ${KAZOO_MYSQL_IP}
+
+   #zookeeper可视化
+     zoonavigator1:
+       image: elkozmon/zoonavigator:latest
+       container_name: zoonavigator1
+       hostname: zoonavigator1
+       ports:
+         - "9110:9000"
+       environment:
+         - HTTP_PORT=9000
+         - CONNECTION_MYZK_CONN=${KAFKA_ZOOKEEPER_CONNECT}
+         - AUTO_CONNECT_CONNECTION_ID=MYZK
+       depends_on:
+         - ${ZOOKEEPER_NAME_5}
+       networks:
+         - kafka-cluster-network
+
+   #WEB UI
+     kafdrop1:
+       image: obsidiandynamics/kafdrop:latest
+       container_name: kafdrop1
+       hostname: kafdrop1
+       ports:
+         - "9111:9000"
+       environment:
+         - KAFKA_BROKERCONNECT=${KAFKA_BROKERCONNECT}
+         - JVM_OPTS=-Xms16M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify
+         - TZ=${TZ}
+       depends_on:
+         - kafka2
+         - kafka3
+         - kafka4
+       networks:
+         - kafka-cluster-network
+
+  - JMX_PORT=${KAFKA_JMX_PORT}
+        - KAFKA_JMX_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=${KAFKA_NAME_4} -Dcom.sun.management.jmxremote.rmi.port=${KAFKA_JMX_PORT}

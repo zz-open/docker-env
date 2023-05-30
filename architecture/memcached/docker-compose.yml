@@ -4,16 +4,24 @@ networks:
   backend:
     external: true
 
+x-memcached-env: &memcached-env
+  TZ: ${TZ}
+
+x-memcached-build: &memcached-build
+  build:
+    context: ./memcached
+    args:
+      MEMCACHED_VERSION: ${MEMCACHED_VERSION}
+
 services:
   memcached1:
-    build:
-      context: ./memcached
+    <<: *memcached-build
     hostname: ${MEMCACHED_1_CONTAINER_NAME}
     container_name: ${MEMCACHED_1_CONTAINER_NAME}
     ports:
       - "${MEMCACHED_1_HOST_PORT}:11211"
     environment:
-      - TZ=${TZ}
+      <<: *memcached-env
     volumes:
       - ${MEMCACHED_1_PATH}/data:/var/lib/memcached
     networks:
@@ -21,14 +29,13 @@ services:
         ipv4_address: ${MEMCACHED_1_IP}
 
   memcached2:
-    build:
-      context: ./memcached
+    <<: *memcached-build
     hostname: ${MEMCACHED_2_CONTAINER_NAME}
     container_name: ${MEMCACHED_2_CONTAINER_NAME}
     ports:
       - "${MEMCACHED_2_HOST_PORT}:11211"
     environment:
-      - TZ=${TZ}
+      <<: *memcached-env
     volumes:
       - ${MEMCACHED_2_PATH}/data:/var/lib/memcached
     networks:
@@ -36,14 +43,13 @@ services:
         ipv4_address: ${MEMCACHED_2_IP}
 
   memcached3:
-    build:
-      context: ./memcached
+    <<: *memcached-build
     hostname: ${MEMCACHED_3_CONTAINER_NAME}
     container_name: ${MEMCACHED_3_CONTAINER_NAME}
     ports:
       - "${MEMCACHED_3_HOST_PORT}:11211"
     environment:
-      - TZ=${TZ}
+      <<: *memcached-env
     volumes:
       - ${MEMCACHED_3_PATH}/data:/var/lib/memcached
     networks:

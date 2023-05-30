@@ -5,12 +5,11 @@ MYSQL_USER=root
 MYSQL_PASSWORD=$(sed '/MYSQL_PASSWORD/!d;s/.*=//' ${ENV_PATH})
 REPL_USER=$(sed '/REPLICATION_USER/!d;s/.*=//' ${ENV_PATH})
 REPL_PASSWORD=$(sed '/REPLICATION_PASSWORD/!d;s/.*=//' ${ENV_PATH})
-
-MYSQL_MASTER1_CONTAINER_NAME=mysql-master1
+MYSQL_MASTER1_CONTAINER_NAME=$(sed '/MYSQL_MASTER_1_CONTAINER_NAME/!d;s/.*=//' ${ENV_PATH})
 MySQL_MASTER1_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${MYSQL_MASTER1_CONTAINER_NAME})
-MYSQL_SLAVE1_CONTAINER_NAME=mysql-slave1
+MYSQL_SLAVE1_CONTAINER_NAME=$(sed '/MYSQL_SLAVE_1_CONTAINER_NAME/!d;s/.*=//' ${ENV_PATH})
 MySQL_SLAVE1_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${MYSQL_SLAVE1_CONTAINER_NAME})
-MYSQL_SLAVE2_CONTAINER_NAME=mysql-slave2
+MYSQL_SLAVE2_CONTAINER_NAME=$(sed '/MYSQL_SLAVE_2_CONTAINER_NAME/!d;s/.*=//' ${ENV_PATH})
 MySQL_SLAVE2_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${MYSQL_SLAVE2_CONTAINER_NAME})
 
 CMD_STOP_SLAVE="mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} -e \"STOP SLAVE;\""

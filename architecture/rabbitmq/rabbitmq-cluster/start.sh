@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #docker-compose up -d rabbitmq1 rabbitmq2 rabbitmq3
 

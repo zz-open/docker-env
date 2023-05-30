@@ -4,119 +4,134 @@ networks:
   backend:
     external: true
 
+x-redis-cluster-env: &redis-cluster-env
+#  ALLOW_EMPTY_PASSWORD: yes
+  TZ: ${TZ}
+  REDIS_PASSWORD: ${REDIS_PASSWORD}
+  REDIS_NODES: ${REDIS_NODES}
+  REDIS_CLUSTER_ANNOUNCE_IP: ${PUBLIC_IP}
+  REDIS_CLUSTER_DYNAMIC_IPS: no
+
+x-redis-cluster-build: &redis-cluster-build
+  build:
+    context: ./redis-cluster
+    args:
+      REDIS_CLUSTER_VERSION: ${REDIS_CLUSTER_VERSION}
+
 services:
   redis1:
-    build:
-      context: ./redis-cluster
-      args:
-        REDIS_CLUSTER_VERSION: ${REDIS_CLUSTER_VERSION}
+    <<: *redis-cluster-build
     container_name: ${REDIS_1_CONTAINER_NAME}
     hostname: ${REDIS_1_CONTAINER_NAME}
     volumes:
       - ${REDIS_1_PATH}/data:/bitnami/redis/data
     ports:
-      - "${REDIS_1_PORT}:6379"
+      - "${REDIS_1_PORT}:${REDIS_1_PORT}"
+      - "${REDIS_1_ANNOUNCE_BUS_PORT}:${REDIS_1_ANNOUNCE_BUS_PORT}"
     environment:
-      - TZ=${TZ}
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
-      - REDIS_NODES=${REDIS_NODES}
+      <<: *redis-cluster-env
+      REDIS_PORT_NUMBER: ${REDIS_1_PORT}
+      REDIS_CLUSTER_ANNOUNCE_PORT: ${REDIS_1_PORT}
+      REDIS_CLUSTER_ANNOUNCE_BUS_PORT: ${REDIS_1_ANNOUNCE_BUS_PORT}
     networks:
       backend:
         ipv4_address: ${REDIS_1_IP}
 
   redis2:
-    build:
-      context: ./redis-cluster
-      args:
-        REDIS_CLUSTER_VERSION: ${REDIS_CLUSTER_VERSION}
+    <<: *redis-cluster-build
     container_name: ${REDIS_2_CONTAINER_NAME}
     hostname: ${REDIS_2_CONTAINER_NAME}
     volumes:
       - ${REDIS_2_PATH}/data:/bitnami/redis/data
     ports:
-      - "${REDIS_2_PORT}:6379"
+      - "${REDIS_2_PORT}:${REDIS_2_PORT}"
+      - "${REDIS_2_ANNOUNCE_BUS_PORT}:${REDIS_2_ANNOUNCE_BUS_PORT}"
     environment:
-      - TZ=${TZ}
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
-      - REDIS_NODES=${REDIS_NODES}
+      <<: *redis-cluster-env
+      REDIS_PORT_NUMBER: ${REDIS_2_PORT}
+      REDIS_CLUSTER_ANNOUNCE_PORT: ${REDIS_2_PORT}
+      REDIS_CLUSTER_ANNOUNCE_BUS_PORT: ${REDIS_2_ANNOUNCE_BUS_PORT}
     networks:
       backend:
         ipv4_address: ${REDIS_2_IP}
 
   redis3:
-    build:
-      context: ./redis-cluster
-      args:
-        REDIS_CLUSTER_VERSION: ${REDIS_CLUSTER_VERSION}
+    <<: *redis-cluster-build
     container_name: ${REDIS_3_CONTAINER_NAME}
     hostname: ${REDIS_3_CONTAINER_NAME}
     volumes:
       - ${REDIS_3_PATH}/data:/bitnami/redis/data
     ports:
-      - "${REDIS_3_PORT}:6379"
+      - "${REDIS_3_PORT}:${REDIS_3_PORT}"
+      - "${REDIS_3_ANNOUNCE_BUS_PORT}:${REDIS_3_ANNOUNCE_BUS_PORT}"
     environment:
-      - TZ=${TZ}
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
-      - REDIS_NODES=${REDIS_NODES}
+      <<: *redis-cluster-env
+      REDIS_PORT_NUMBER: ${REDIS_3_PORT}
+      REDIS_CLUSTER_ANNOUNCE_PORT: ${REDIS_3_PORT}
+      REDIS_CLUSTER_ANNOUNCE_BUS_PORT: ${REDIS_3_ANNOUNCE_BUS_PORT}
     networks:
       backend:
         ipv4_address: ${REDIS_3_IP}
 
   redis4:
-    build:
-      context: ./redis-cluster
-      args:
-        REDIS_CLUSTER_VERSION: ${REDIS_CLUSTER_VERSION}
+    <<: *redis-cluster-build
     container_name: ${REDIS_4_CONTAINER_NAME}
     hostname: ${REDIS_4_CONTAINER_NAME}
     volumes:
       - ${REDIS_4_PATH}/data:/bitnami/redis/data
     ports:
-      - "${REDIS_4_PORT}:6379"
+      - "${REDIS_4_PORT}:${REDIS_4_PORT}"
+      - "${REDIS_4_ANNOUNCE_BUS_PORT}:${REDIS_4_ANNOUNCE_BUS_PORT}"
     environment:
-      - TZ=${TZ}
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
-      - REDIS_NODES=${REDIS_NODES}
+      <<: *redis-cluster-env
+      REDIS_PORT_NUMBER: ${REDIS_4_PORT}
+      REDIS_CLUSTER_ANNOUNCE_PORT: ${REDIS_4_PORT}
+      REDIS_CLUSTER_ANNOUNCE_BUS_PORT: ${REDIS_4_ANNOUNCE_BUS_PORT}
     networks:
       backend:
         ipv4_address: ${REDIS_4_IP}
 
   redis5:
-    build:
-      context: ./redis-cluster
-      args:
-        REDIS_CLUSTER_VERSION: ${REDIS_CLUSTER_VERSION}
+    <<: *redis-cluster-build
     container_name: ${REDIS_5_CONTAINER_NAME}
     hostname: ${REDIS_5_CONTAINER_NAME}
     volumes:
       - ${REDIS_5_PATH}/data:/bitnami/redis/data
     ports:
-      - "${REDIS_5_PORT}:6379"
+      - "${REDIS_5_PORT}:${REDIS_5_PORT}"
+      - "${REDIS_5_ANNOUNCE_BUS_PORT}:${REDIS_5_ANNOUNCE_BUS_PORT}"
     environment:
-      - TZ=${TZ}
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
-      - REDIS_NODES=${REDIS_NODES}
+      <<: *redis-cluster-env
+      REDIS_PORT_NUMBER: ${REDIS_5_PORT}
+      REDIS_CLUSTER_ANNOUNCE_PORT: ${REDIS_5_PORT}
+      REDIS_CLUSTER_ANNOUNCE_BUS_PORT: ${REDIS_5_ANNOUNCE_BUS_PORT}
     networks:
       backend:
         ipv4_address: ${REDIS_5_IP}
 
   redis6:
-    build:
-      context: ./redis-cluster
-      args:
-        REDIS_CLUSTER_VERSION: ${REDIS_CLUSTER_VERSION}
+    <<: *redis-cluster-build
     container_name: ${REDIS_6_CONTAINER_NAME}
     hostname: ${REDIS_6_CONTAINER_NAME}
     volumes:
       - ${REDIS_6_PATH}/data:/bitnami/redis/data
     ports:
-      - "${REDIS_6_PORT}:6379"
+      - "${REDIS_6_PORT}:${REDIS_6_PORT}"
+      - "${REDIS_6_ANNOUNCE_BUS_PORT}:${REDIS_6_ANNOUNCE_BUS_PORT}"
     environment:
-      - TZ=${TZ}
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
-      - REDIS_NODES=${REDIS_NODES}
-      - REDIS_CLUSTER_REPLICAS=1
-      - REDIS_CLUSTER_CREATOR=yes
+      <<: *redis-cluster-env
+      REDIS_PORT_NUMBER: ${REDIS_6_PORT}
+      REDIS_CLUSTER_ANNOUNCE_PORT: ${REDIS_6_PORT}
+      REDIS_CLUSTER_ANNOUNCE_BUS_PORT: ${REDIS_6_ANNOUNCE_BUS_PORT}
+      REDISCLI_AUTH: ${REDIS_PASSWORD}
+      REDIS_CLUSTER_REPLICAS: 1
+      REDIS_CLUSTER_CREATOR: yes
+    depends_on:
+      - ${REDIS_1_CONTAINER_NAME}
+      - ${REDIS_2_CONTAINER_NAME}
+      - ${REDIS_3_CONTAINER_NAME}
+      - ${REDIS_4_CONTAINER_NAME}
+      - ${REDIS_5_CONTAINER_NAME}
     networks:
       backend:
         ipv4_address: ${REDIS_6_IP}

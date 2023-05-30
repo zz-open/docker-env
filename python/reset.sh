@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function Reset(){
   docker-compose down && \
-  docker-compose build python && \
-  docker-compose up -d python
+  docker-compose build python
 }
 
 Reset

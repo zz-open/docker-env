@@ -1,11 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function Reset(){
   docker-compose down && \
   rm -rf ./data/* && \
   rm -rf ./logs/* && \
-  docker-compose build caddy && \
-  docker-compose up -d caddy
+  docker-compose build caddy
 }
 
 Reset

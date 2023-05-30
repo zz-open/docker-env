@@ -1,0 +1,94 @@
+version: '3.8'
+
+networks:
+  backend:
+    external: true
+
+x-kafka-env: &kafka-env
+  TZ: ${TZ}
+  ALLOW_PLAINTEXT_LISTENER: yes
+  KAFKA_ENABLE_KRAFT: no
+  KAFKA_CFG_ZOOKEEPER_CONNECT: ${KAFKA_ZOOKEEPER_CONNECT}
+  KAFKA_CFG_INTER_BROKER_LISTENER_NAME: INTERNAL
+  KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+
+x-kafka-build: &kafka-build
+  build:
+    context: ../kafka
+    args:
+      KAFKA_VERSION: ${KAFKA_VERSION}
+
+services:
+  kc-zookeeper:
+    build:
+      context: ../zookeeper
+      args:
+        ZOOKEEPER_VERSION: ${ZOOKEEPER_VERSION}
+    container_name: ${ZOOKEEPER_CONTAINER_NAME}
+    hostname: ${ZOOKEEPER_CONTAINER_NAME}
+    ports:
+      - "2181:2181"
+    volumes:
+      - ${ZOOKEEPER_PATH}/data:/data
+      - ${ZOOKEEPER_PATH}/datalog:/datalog
+    environment:
+      - TZ=${TZ}
+      - ZOO_MY_ID=${ZOOKEEPER_ID}
+      - ZOO_SERVERS=${ZOOKEEPER_SERVERS}
+    networks:
+      backend:
+        ipv4_address: ${KC_ZOOKEEPER_IP}
+
+  kafka1:
+    <<: *kafka-build
+    container_name: ${KAFKA_1_CONTAINER_NAME}
+    hostname: ${KAFKA_1_CONTAINER_NAME}
+    privileged: true
+    ports:
+      - "${KAFKA_1_EXTERNAL_PORT}:${KAFKA_1_EXTERNAL_PORT}"
+    environment:
+      <<: *kafka-env
+      KAFKA_BROKER_ID: ${KAFKA_1_BROKER_ID}
+      KAFKA_CFG_LISTENERS: "INTERNAL://:9092,EXTERNAL://:${KAFKA_1_EXTERNAL_PORT}" # 内网访问,外网访问
+      KAFKA_CFG_ADVERTISED_LISTENERS: "INTERNAL://${KAFKA_1_CONTAINER_NAME}:9092,EXTERNAL://${PUBLIC_IP}:${KAFKA_1_EXTERNAL_PORT}" #公网ip
+    volumes:
+      - ${KAFKA_1_PATH}/data:/bitnami/kafka
+    networks:
+      backend:
+        ipv4_address: ${KAFKA_1_IP}
+
+  kafka2:
+    <<: *kafka-build
+    container_name: ${KAFKA_2_CONTAINER_NAME}
+    hostname: ${KAFKA_2_CONTAINER_NAME}
+    privileged: true
+    ports:
+      - "${KAFKA_2_EXTERNAL_PORT}:${KAFKA_2_EXTERNAL_PORT}"
+    environment:
+      <<: *kafka-env
+      KAFKA_BROKER_ID: ${KAFKA_2_BROKER_ID}
+      KAFKA_CFG_LISTENERS: "INTERNAL://:9092,EXTERNAL://:${KAFKA_2_EXTERNAL_PORT}" # 内网访问,外网访问
+      KAFKA_CFG_ADVERTISED_LISTENERS: "INTERNAL://${KAFKA_2_CONTAINER_NAME}:9092,EXTERNAL://${PUBLIC_IP}:${KAFKA_2_EXTERNAL_PORT}" #公网ip
+    volumes:
+      - ${KAFKA_2_PATH}/data:/bitnami/kafka
+    networks:
+      backend:
+        ipv4_address: ${KAFKA_2_IP}
+
+  kafka3:
+    <<: *kafka-build
+    container_name: ${KAFKA_3_CONTAINER_NAME}
+    hostname: ${KAFKA_3_CONTAINER_NAME}
+    privileged: true
+    ports:
+      - "${KAFKA_3_EXTERNAL_PORT}:${KAFKA_3_EXTERNAL_PORT}"
+    environment:
+      <<: *kafka-env
+      KAFKA_BROKER_ID: ${KAFKA_3_BROKER_ID}
+      KAFKA_CFG_LISTENERS: "INTERNAL://:9092,EXTERNAL://:${KAFKA_3_EXTERNAL_PORT}" # 内网访问,外网访问
+      KAFKA_CFG_ADVERTISED_LISTENERS: "INTERNAL://${KAFKA_3_CONTAINER_NAME}:9092,EXTERNAL://${PUBLIC_IP}:${KAFKA_3_EXTERNAL_PORT}" #公网ip
+    volumes:
+      - ${KAFKA_3_PATH}/data:/bitnami/kafka
+    networks:
+      backend:
+        ipv4_address: ${KAFKA_3_IP}

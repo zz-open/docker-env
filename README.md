@@ -158,13 +158,21 @@ ROCKETMQ_NAMESRV_IP=172.19.3.12
 ROCKETMQ_DASHBOARD_IP=172.19.3.13
 
 # 172.19.4.x
-## kafka
-KAFKA_IP=172.19.4.11
+## kafka(zookeeper模式)
+KAZOO_KAFKA_IP=172.19.4.11
 
-KAFKA_ZOOKEEPER_IP=172.19.4.12
+KAZOO_ZOOKEEPER_IP=172.19.4.12
 
-KAFKA_EFAK_IP=172.19.4.13
+KAZOO_KAFKA_EFAK_IP=172.19.4.13
 
+KAZOO_MYSQL_IP=172.19.4.14
+
+## kafka(kraft模式)
+KRAFT_KAFKA_IP=172.19.4.21
+
+KRAFT_KAFKA_EFAK_IP=172.19.4.23
+
+KRAFT_MYSQL_IP=172.19.4.24
 
 # 172.19.5.x
 ## pulsar
@@ -235,6 +243,25 @@ ETCD_2_IP=172.19.10.12
 
 ETCD_3_IP=172.19.10.13
 
+# 172.19.11.x
+## kafka 集群
+KAFKA_1_IP=172.19.11.11
+
+KAFKA_2_IP=172.19.11.12
+
+KAFKA_3_IP=172.19.11.13
+
+KC_ZOOKEEPER_IP=172.19.11.14
+
+# 172.19.12.x
+## monitor 监控相关服务
+PROMETHEUS_IP=172.19.12.11
+
+GRAFANA_IP=172.19.12.12
+
+JAEGER_IP=172.19.12.13
+
+NODE_EXPORTER_IP=172.19.12.14
 
 # 容器环境清单
 包含以下容器环境
@@ -263,20 +290,21 @@ ETCD_3_IP=172.19.10.13
 - [ ] supervisord
 
 ## 集成环境
-- [x] lanmp
-- [x] elasticsearch
+- [x] lanmp(apache2+nginx+php-fpm)
+- [x] elasticsearch(es+kibana+logstash)
 - [x] rabbitmq
 - [x] rocketmq
-- [ ] nacos
-- [x] kafka
-- [x] pulsar
-- [x] canal_server+canal_admin
+- [x] kafka+zookeeper
+- [x] pulsar(pulsar+manager)
+- [x] canal(server+admin)
 - [x] nsq nsqlookupd nsqadmin
 - [ ] clickhouse
-- [x] memcached
-- [x] redis+sentinel
-- [x] redis+cluster
-- [x] mha
 - [x] etcd
+- [ ] monitor(prometheus+grafana等)
 
 ## 集群
+- [x] kafka
+- [ ] redis cluster
+- [ ] redis sentinel
+- [x] mha
+- [x] memcached

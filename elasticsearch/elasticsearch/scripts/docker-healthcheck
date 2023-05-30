@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eo pipefail
 
 host="$(hostname --ip-address || echo '127.0.0.1')"
