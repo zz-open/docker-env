@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 EnablePlugin(){
-  #启用WEB控制台
+  #启用WEB控制台, rabbitmq默认web界面管理插件是关闭的
   docker exec rabbitmq /bin/bash -c 'rabbitmq-plugins enable rabbitmq_management'
   #启用延迟队列插件
   docker exec rabbitmq /bin/bash -c 'rabbitmq-plugins enable rabbitmq_delayed_message_exchange'
@@ -20,7 +20,5 @@ EnablePlugin(){
 
   docker exec rabbitmq /bin/bash -c 'rabbitmq-plugins list'
 }
-#https://blog.csdn.net/wxb880114/article/details/113245119 设置时区
-#https://cloud.tencent.com/developer/article/1626811
 
 EnablePlugin

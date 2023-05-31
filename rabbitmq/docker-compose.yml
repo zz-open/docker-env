@@ -19,7 +19,7 @@ services:
       - RABBITMQ_NODENAME=${RABBITMQ_NODENAME}
       - TZ=${TZ}
     volumes:
-      - ${RABBITMQ_ETC_PATH}:/etc/rabbitmq
+      - ${RABBITMQ_PATH}/etc:/etc/rabbitmq
     networks:
       backend:
         ipv4_address: ${RABBITMQ_IP}

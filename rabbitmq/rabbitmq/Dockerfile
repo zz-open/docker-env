@@ -1,5 +1,6 @@
 FROM rabbitmq:management
 
+USER root
 #Ubunton镜像设置时区
 ENV TZ=Asia/Shanghai \
     DEBIAN_FRONTEND=noninteractive
