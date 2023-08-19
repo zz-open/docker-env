@@ -26,7 +26,8 @@ ENV DEBIAN_FRONTEND noninteractive
 # If you're in China, or you need to change sources, will be set CHANGE_SOURCE to true in .env.
 ## 新增 ######
 RUN cat /etc/os-release
-COPY ./_scripts/sources.list /etc/apt/sources.list
+COPY ./_scripts/debian12.sources.list /etc/apt/sources.list
+RUN cat  /etc/apt/sources.list
 RUN rm -Rf /var/lib/apt/lists/*
 RUN set -xe; \
      apt-get update -yqq && \

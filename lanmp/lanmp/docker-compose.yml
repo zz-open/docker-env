@@ -139,6 +139,7 @@ services:
       - "8224:8224"
       - "8221:8221"
       - "8242:8242"
+      - "7777:7777"
     volumes:
       - ${APP_CODE_PATH}:${APP_CODE_PATH_CONTAINER}
       - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
