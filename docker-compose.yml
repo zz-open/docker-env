@@ -1,25 +1,20 @@
 version: '3.8'
 
 networks:
-  backend:
-    name: backend
+  zznetwork:
+    name: zznetwork
     driver: bridge
     ipam:
       config:
         - subnet: ${SUBNET}
           gateway: ${SUBNET_GATEWAY}
 
-#volumes:
-#  redis:
-#    driver: local
-
 services:
-# empty container 用来创建网络
-  container-env-setup:
+  setup: # empty container 用来创建网络
     build:
       context: ./scratch/scratch
-    container_name: container-env-setup
-    hostname: container-env-setup
+    container_name: setup
+    hostname: setup
     networks:
-      backend:
-        ipv4_address: ${CONTAINER_ENV_SETUP_IP}
+      zznetwork:
+        ipv4_address: ${SETUP_IP}

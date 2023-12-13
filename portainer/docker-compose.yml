@@ -1,0 +1,24 @@
+version: '3.8'
+
+networks:
+  zznetwork:
+    external: true
+
+services:
+  portainer:
+    build:
+      context: ./portainer
+      args:
+        - PORTAINER_VERSION=${PORTAINER_VERSION}
+    container_name: portainer
+    hostname: portainer
+    volumes:
+      - ${DOCKER_HOST_SOCK_PATH}:/var/run/docker.sock
+      - ${PORTAINER_DATA_PATH}:/data
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+      - "9443:9443"
+    networks:
+      zznetwork:
+        ipv4_address: ${PORTAINER_IP}

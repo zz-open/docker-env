@@ -1,28 +1,30 @@
 # container-env
+- [清华源](https://mirrors.tuna.tsinghua.edu.cn/help)
+- [阿里源](https://mirrors.tuna.tsinghua.edu.cn/help)
+- [网易源](https://mirrors.tuna.tsinghua.edu.cn/help)
+- [火山源](https://developer.volcengine.com/articles/7119384305456906277)
+- [docker hub](https://hub.docker.com)
 
-[清华源](https://mirrors.tuna.tsinghua.edu.cn/help)
-[阿里源](https://mirrors.tuna.tsinghua.edu.cn/help)
-[网易源](https://mirrors.tuna.tsinghua.edu.cn/help)
-[火山源](https://developer.volcengine.com/articles/7119384305456906277)
-[docker hub](https://hub.docker.com)
+基于docker-compose构建的个人工作环境
 
-```text
-基于docker-compose构建的工作环境
+## 介绍
 使用docker-compose方式组织，方便构建各种工作环境，节省时间提高效率
 
-1.单节点容器方便平时工作
-2.集群方式
-3.service,hostname,container推荐设置为一致名字，当有多个容器service名字一样的时候，docker-compose down的时候
-会一并销毁。
-4.统一加入backend网络，并设置单独内网ip方便通信
+## 约定
+- 单节点容器
+- 集群容器
+- service,hostname,container推荐设置为相同名字
+- 统一加入zznetwork 网络，方便相互通信
+
+### 初始化docker网络
+```shell
+bash _scripts/init-network.sh
 ```
 
-# 公共配置
+### 公共配置
+```text
 TZ=Asia/Shanghai
-
-# 172.19.0.x
-## container-env-setup
-CONTAINER_ENV_SETUP_IP=172.19.0.10
+```
 
 ## redis
 REDIS_IP=172.19.0.11
@@ -263,10 +265,9 @@ JAEGER_IP=172.19.12.13
 
 NODE_EXPORTER_IP=172.19.12.14
 
-# 容器环境清单
-包含以下容器环境
 
-## 单台
+## 目标
+### 单台
 - [x] redis
 - [x] mysql
 - [x] apache
@@ -289,7 +290,7 @@ NODE_EXPORTER_IP=172.19.12.14
 - [ ] node
 - [ ] supervisord
 
-## 集成环境
+### 集成环境
 - [x] lanmp(apache2+nginx+php-fpm)
 - [x] elasticsearch(es+kibana+logstash)
 - [x] rabbitmq
@@ -302,7 +303,7 @@ NODE_EXPORTER_IP=172.19.12.14
 - [x] etcd
 - [ ] monitor(prometheus+grafana等)
 
-## 集群
+### 集群
 - [x] kafka
 - [ ] redis cluster
 - [ ] redis sentinel
