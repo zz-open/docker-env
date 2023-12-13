@@ -1,0 +1,10 @@
+version: '3.8'
+
+networks:
+  zznetwork:
+    name: zznetwork
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${SUBNET}
+          gateway: ${SUBNET_GATEWAY}
