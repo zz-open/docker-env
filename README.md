@@ -1,19 +1,19 @@
 # docker-env
 - [docker-compose 文档](https://docs.docker.com/compose/compose-file/)
 
-基于docker-compose搭建的开发环境
+Full development environment based on Docker.
 
-## 工具脚本
+### 工具脚本
 
 初始化docker网络
 ```shell
-bash _scripts/init-network.sh
+bash _common/scripts/init-network.sh
 ```
 
-## network列表
+### network列表
 - [network](./network.md)
 
-# 目标
+### 目标
 - [x] busybox
 - [x] gitlab
 - [x] jenkins

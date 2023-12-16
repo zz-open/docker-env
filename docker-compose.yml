@@ -35,7 +35,7 @@ x-common-build-args: &common-build-args
 
 services:
 
-### Busybox ##################################
+### Busybox ################################################
   busybox:
     build:
       context: ./busybox
@@ -52,7 +52,7 @@ services:
       backend:
         ipv4_address: ${BUSYBOX_BACKEND_IP}
 
-### Jenkins ##################################
+### Jenkins ################################################
   jenkins:
     build:
       context: ./jenkins
@@ -79,7 +79,7 @@ services:
       backend:
         ipv4_address: ${JENKINS_BACKEND_IP}
 
-### Gitlab ##################################
+### Gitlab ################################################
   gitlab:
     build:
       context: ./gitlab
@@ -120,3 +120,67 @@ services:
         ipv4_address: ${GITLAB_FRONTEND_IP}
       backend:
         ipv4_address: ${GITLAB_BACKEND_IP}
+
+### Gitlab Runner ########################################
+  gitlab-runner:
+      image: gitlab/gitlab-runner:latest
+      environment:
+        - CI_SERVER_URL=${GITLAB_CI_SERVER_URL}
+        - REGISTRATION_TOKEN=${GITLAB_RUNNER_REGISTRATION_TOKEN}
+        - RUNNER_NAME=${COMPOSE_PROJECT_NAME}-runner
+        - REGISTER_NON_INTERACTIVE=${GITLAB_REGISTER_NON_INTERACTIVE}
+        - RUNNER_EXECUTOR=shell
+      volumes:
+        - ${DATA_PATH_HOST}/gitlab/runner:/etc/gitlab-runner
+        - /var/run/docker.sock:/var/run/docker.sock:rw
+      restart: always
+
+### Portainer ############################################
+  portainer:
+    build:
+      context: ./portainer
+    volumes:
+      - ${DATA_PATH_HOST}/portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    extra_hosts:
+      - "dockerhost:${DOCKER_HOST_IP}"
+    ports:
+      - 9010:9000
+    networks:
+      - backend
+
+### Mysql ################################################
+### Apache Server ########################################
+### Nginx Server #########################################
+### Soketi Server ########################################
+### OpenResty Server #####################################
+### PostgreSQL ###########################################
+### pgAdmin ##############################################
+### Redis ################################################
+### Certbot ##############################################
+### tomcat ###############################################
+### Nats #################################################
+### MongoDB ##############################################
+### Memcached ############################################
+### Beanstalkd ###########################################
+### Beanstalkd Console ###################################
+### RabbitMQ #############################################
+### Caddy Server #########################################
+### ElasticSearch ########################################
+### Logstash #############################################
+### Kibana ###############################################
+### Grafana ##############################################
+### IPython ##############################################
+### JupyterHub ###########################################
+### Docker-in-Docker #####################################
+### Metabase #############################################
+### DOCKER-REGISTRY ######################################
+### DOCKER-WEB-UI ########################################
+### TRAEFIK ##############################################
+### SONARQUBE ############################################
+### kafka ################################################
+### kafka-manager ########################################
+### keycloak #############################################
+### tarantool ###########################################
+### REDISWEBUI ###########################################
+### MongoWebUI ###########################################
