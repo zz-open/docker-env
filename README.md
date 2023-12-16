@@ -1,5 +1,6 @@
 # docker-env
 - [docker-compose 文档](https://docs.docker.com/compose/compose-file/)
+
 基于docker-compose搭建的开发环境
 
 ## 工具脚本
@@ -9,8 +10,8 @@
 bash _scripts/init-network.sh
 ```
 
-## ip列表
-- [ip](./ip.md)
+## network列表
+- [network](./network.md)
 
 # 目标
 - [x] busybox
