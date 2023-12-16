@@ -1,0 +1,122 @@
+version: "3.8"
+
+networks:
+  frontend:
+    name: "${FRONTEND_NETWORK_NAME}"
+    driver: ${NETWORKS_DRIVER}
+    ipam:
+      config:
+        - subnet: "${FRONTEND_SUBNET}"
+          gateway: "${FRONTEND_SUBNET_GATEWAY}"
+
+  backend:
+    name: "${BACKEND_NETWORK_NAME}"
+    driver: ${NETWORKS_DRIVER}
+    ipam:
+      config:
+        - subnet: "${BACKEND_SUBNET}"
+          gateway: "${BACKEND_SUBNET_GATEWAY}"
+
+volumes:
+  gitlab:
+    driver: ${VOLUMES_DRIVER}
+  jenkins:
+    driver: ${VOLUMES_DRIVER}
+
+configs:
+  gitlab_rb:
+    file: ./gitlab/config/gitlab.rb
+secrets:
+  gitlab_root_password:
+    file: ./gitlab/config/root_password.txt
+
+x-common-build-args: &common-build-args
+    DO_TIME_SYNC: ${DO_TIME_SYNC}
+
+services:
+
+### Busybox ##################################
+  busybox:
+    build:
+      context: ./busybox
+      args:
+        - BUSYBOX_VERSION=${BUSYBOX_VERSION}
+    container_name: ${BUSYBOX_CONTAINER_NAME}
+    hostname: ${BUSYBOX_HOSTNAME}
+    privileged: true
+    stdin_open: true
+    tty: true
+    networks:
+      frontend:
+          ipv4_address: ${BUSYBOX_FRONTEND_IP}
+      backend:
+        ipv4_address: ${BUSYBOX_BACKEND_IP}
+
+### Jenkins ##################################
+  jenkins:
+    build:
+      context: ./jenkins
+      args:
+        JENKINS_SOURCES_LIST_HOST: ${JENKINS_SOURCES_LIST_HOST}
+        JENKINS_REPLACE_SOURCES: ${JENKINS_REPLACE_SOURCES}
+        JENKINS_ADD_DOCKER_SOURCES: ${JENKINS_ADD_DOCKER_SOURCES}
+        JENKINS_VERSION: ${JENKINS_VERSION}
+        <<: *common-build-args
+    environment:
+      JAVA_OPTS: "-Djava.awt.headless=true"
+    container_name: ${JENKINS_CONTAINER_NAME}
+    hostname: ${JENKINS_HOSTNAME}
+    privileged: true
+    ports:
+      - "${JENKINS_HOST_SLAVE_AGENT_PORT}:50000"
+      - "${JENKINS_HOST_HTTP_PORT}:8080"
+    volumes:
+      - ${DATA_PATH_HOST}/jenkins/${JENKINS_HOME}:/var/jenkins_home
+      - ${DOCKER_SOCK_HOST}:/var/run/docker.sock
+    networks:
+      frontend:
+        ipv4_address: ${JENKINS_FRONTEND_IP}
+      backend:
+        ipv4_address: ${JENKINS_BACKEND_IP}
+
+### Gitlab ##################################
+  gitlab:
+    build:
+      context: ./gitlab
+      args:
+        - GITLAB_VERSION=${GITLAB_VERSION}
+    container_name: ${GITLAB_CONTAINER_NAME}
+    hostname: ${GITLAB_HOSTNAME}
+    environment:
+      # GITLAB_OMNIBUS_CONFIG: "from_file('/omnibus_config.rb')"
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url '${GITLAB_DOMAIN_NAME}'
+        gitlab_rails['initial_root_password'] = '${GITLAB_ROOT_PASSWORD}'
+        gitlab_rails['gitlab_shell_ssh_port'] = ${GITLAB_HOST_SSH_PORT}
+        gitlab_rails['time_zone'] = 'Asia/Shanghai'
+        gitlab_rails['gravatar_plain_url'] = 'http://sdn.geekzu.org/avatar/%{hash}?s=%{size}&d=identicon'
+        gitlab_rails['gravatar_ssl_url'] = 'https://sdn.geekzu.org/avatar/%{hash}?s=%{size}&d=identicon'
+    configs:
+      - source: gitlab_rb
+        target: /omnibus_config.rb
+    secrets:
+      - gitlab_root_password
+    ports:
+      - "${GITLAB_HOST_HTTP_PORT}:80"
+      - "${GITLAB_HOST_HTTPS_PORT}:443"
+      - "${GITLAB_HOST_SSH_PORT}:22"
+    volumes:
+      - ${DATA_PATH_HOST}/gitlab/config:/etc/gitlab
+      - ${DATA_PATH_HOST}/gitlab/data:/var/opt/gitlab
+      - ${GITLAB_HOST_LOG_PATH}:/var/log/gitlab
+    shm_size: '1gb'
+    logging: 
+      driver: "json-file"
+      options: 
+        max-size: "2g"
+        max-file: "2"
+    networks:
+      frontend:
+        ipv4_address: ${GITLAB_FRONTEND_IP}
+      backend:
+        ipv4_address: ${GITLAB_BACKEND_IP}

@@ -1,11 +1,24 @@
 #!/usr/bin/env bash
 
-initNetwork() {
-  local networkName="zznetwork"
-  local subnet="172.19.150.0/24"
-  local gateway="172.19.150.1"
+source './common.sh'
 
-  docker network create --driver bridge --subnet=${subnet} --gateway=${gateway} ${networkName}
+initFrontendNetwork() {
+  local networkName=${FRONTEND_NETWORK_NAME}
+  local subnet="${FRONTEND_SUBNET}"
+  local gateway="${FRONTEND_SUBNET_GATEWAY}"
+  local driver="${NETWORKS_DRIVER}"
+
+  docker network create --driver ${driver} --subnet=${subnet} --gateway=${gateway} ${networkName}
 }
 
-initNetwork
+initBackendNetwork(){
+  local networkName=${BACKEND_NETWORK_NAME}
+  local subnet="${BACKEND_SUBNET}"
+  local gateway="${BACKEND_SUBNET_GATEWAY}"
+  local driver="${NETWORKS_DRIVER}"
+
+  docker network create --driver ${driver} --subnet=${subnet} --gateway=${gateway} ${networkName}
+}
+
+initFrontendNetwork
+initBackendNetwork
