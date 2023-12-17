@@ -10,7 +10,7 @@ include:
   - ./_compose/docker-compose-mysql57.yml
   - ./_compose/docker-compose-mysql.yml
   - ./_compose/docker-compose-redis.yml
-  - ./_compose/docker-compose-redismod.yml
+  - ./_compose/docker-compose-redis-stack.yml
 
 
 

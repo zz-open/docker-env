@@ -1,4 +1,4 @@
-ARG REDIS_VERSION
+ARG REDIS_VERSION=latest
 FROM redis:${REDIS_VERSION}
 
 LABEL maintainer="zaizai <33045134@qq.com>"

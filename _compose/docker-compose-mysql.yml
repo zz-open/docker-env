@@ -14,10 +14,11 @@ services:
         - MYSQL_VERSION=${MYSQL_VERSION}
     hostname: ${MYSQL_HOSTNAME}
     container_name: ${MYSQL_CONTAINER_NAME}
+    privileged: true
     volumes:
       - ${DATA_PATH_HOST}/mysql/data:/var/lib/mysql
       - ${DATA_PATH_HOST}/mysql/logs:/var/log
-      - ${MYSQL57_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+      - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
       - "${MYSQL_PORT}:3306"
     environment:

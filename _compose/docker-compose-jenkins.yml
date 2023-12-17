@@ -9,13 +9,13 @@ services:
 ### Jenkins ################################################
   jenkins:
     build:
-      context: ./jenkins
+      context: ../jenkins
       args:
-        JENKINS_SOURCES_LIST_HOST: ${JENKINS_SOURCES_LIST_HOST}
-        JENKINS_REPLACE_SOURCES: ${JENKINS_REPLACE_SOURCES}
-        JENKINS_ADD_DOCKER_SOURCES: ${JENKINS_ADD_DOCKER_SOURCES}
-        JENKINS_VERSION: ${JENKINS_VERSION}
-        DO_TIME_SYNC: ${DO_TIME_SYNC}
+        - JENKINS_SOURCES_LIST=${JENKINS_SOURCES_LIST}
+        - JENKINS_REPLACE_SOURCES=${JENKINS_REPLACE_SOURCES}
+        - JENKINS_ADD_DOCKER_SOURCES=${JENKINS_ADD_DOCKER_SOURCES}
+        - JENKINS_VERSION=${JENKINS_VERSION}
+        - JENKINS_DO_TIME_SYNC=${JENKINS_DO_TIME_SYNC}
     environment:
       JAVA_OPTS: "-Djava.awt.headless=true"
     container_name: ${JENKINS_CONTAINER_NAME}

@@ -27,14 +27,14 @@ services:
         external_url '${GITLAB_DOMAIN_NAME}'
         gitlab_rails['initial_root_password'] = '${GITLAB_ROOT_PASSWORD}'
         gitlab_rails['gitlab_shell_ssh_port'] = ${GITLAB_HOST_SSH_PORT}
-        gitlab_rails['time_zone'] = 'Asia/Shanghai'
+        gitlab_rails['time_zone'] = '${TZ}'
         gitlab_rails['gravatar_plain_url'] = 'http://sdn.geekzu.org/avatar/%{hash}?s=%{size}&d=identicon'
         gitlab_rails['gravatar_ssl_url'] = 'https://sdn.geekzu.org/avatar/%{hash}?s=%{size}&d=identicon'
-    configs:
-      - source: gitlab_rb
-        target: /omnibus_config.rb
-    secrets:
-      - gitlab_root_password
+    # configs:
+    #   - source: gitlab_rb
+    #     target: /omnibus_config.rb
+    # secrets:
+    #   - gitlab_root_password
     ports:
       - "${GITLAB_HOST_HTTP_PORT}:80"
       - "${GITLAB_HOST_HTTPS_PORT}:443"
@@ -42,7 +42,7 @@ services:
     volumes:
       - ${DATA_PATH_HOST}/gitlab/config:/etc/gitlab
       - ${DATA_PATH_HOST}/gitlab/data:/var/opt/gitlab
-      - ${GITLAB_HOST_LOG_PATH}:/var/log/gitlab
+      - ${DATA_PATH_HOST}/gitlab/logs:/var/log/gitlab
     shm_size: '1gb'
     logging: 
       driver: "json-file"

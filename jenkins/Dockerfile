@@ -7,33 +7,37 @@ USER root
 
 # 自定义 START ############################################
 
-ARG DO_TIME_SYNC=false
+ARG JENKINS_DO_TIME_SYNC=true
 ARG JENKINS_REPLACE_SOURCES=false
 ARG JENKINS_ADD_DOCKER_SOURCES=false
-ARG JENKINS_SOURCES_LIST_HOST=
+ARG JENKINS_SOURCES_LIST=/etc/apt/custom.sources.list
 
-RUN if [ ${DO_TIME_SYNC} = true ]; then \
-    TimeZone=Asia/Shanghai; \
-    ln -snf /usr/share/zoneinfo/$TimeZone /etc/localtime && echo $TimeZone > /etc/timezone; \
+RUN if [ ${JENKINS_DO_TIME_SYNC} = true ]; then \
+    TimeZone=Asia/Shanghai \
+    ln -snf /usr/share/zoneinfo/$TimeZone /etc/localtime && \
+    echo $TimeZone > /etc/timezone \
 ;fi
+
+COPY ./sources.list ${JENKINS_SOURCES_LIST}
 
 RUN if [ ${JENKINS_REPLACE_SOURCES} = true ]; then \
-    cat ./${JENKINS_SOURCES_LIST_HOST}/sources.list > /etc/apt/sources.list && \
-    cat /etc/apt/sources.list && \
+    cat ${JENKINS_SOURCES_LIST} > /etc/apt/sources.list && \
     apt install apt-transport-https ca-certificates && \
-    apt-get update \
+    apt-get update && \ 
+    apt-get install -y lsb-release \
 ;fi
+
+# https://download.docker.com/linux/debian
 
 RUN if [ ${JENKINS_ADD_DOCKER_SOURCES} = true ]; then \
     curl -fsSLo /usr/share/keyrings/docker-archive-keyring.asc \
-    # https://download.docker.com/linux/debian
     https://download.docker.com/linux/debian/gpg && \
     echo "deb [arch=$(dpkg --print-architecture) \
         signed-by=/usr/share/keyrings/docker-archive-keyring.asc] \
         https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/debian \
         $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list && \
     apt-get update && \
-    apt-get install -y lsb-release docker-ce-cli \
+    apt-get install -y docker-ce-cli \
 ;fi
 
 # 自定义 END ############################################

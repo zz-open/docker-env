@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source './common.sh'
+source  $(dirname $0)/common.sh
 
 initFrontendNetwork() {
   local networkName=${FRONTEND_NETWORK_NAME}

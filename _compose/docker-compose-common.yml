@@ -1,4 +1,7 @@
 version: "3.8"
 
-x-build-args: &build-args
-    DO_TIME_SYNC: ${DO_TIME_SYNC}
+# configs:
+#   sources-qinghua-debian-bullseye:
+#     file: ../_common/sources/qinghua/debian-bullseye/sources.list
+
+# x-build-args: &build-args

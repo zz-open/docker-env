@@ -11,9 +11,10 @@ services:
     build:
       context: ../mysql/mysql57
       args:
-        - MYSQL57_VERSION=${MYSQL_VERSION}
+        - MYSQL_VERSION=${MYSQL57_VERSION}
     hostname: ${MYSQL57_HOSTNAME}
     container_name: ${MYSQL57_CONTAINER_NAME}
+    privileged: true
     volumes:
       - ${DATA_PATH_HOST}/mysql57/data:/var/lib/mysql
       - ${DATA_PATH_HOST}/mysql57/logs:/var/log
