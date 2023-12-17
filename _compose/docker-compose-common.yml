@@ -1,0 +1,4 @@
+version: "3.8"
+
+x-build-args: &build-args
+    DO_TIME_SYNC: ${DO_TIME_SYNC}

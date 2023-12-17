@@ -1,0 +1,28 @@
+version: '3.8'
+
+volumes:
+  redis:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### Redis ################################################
+  redis:
+    build:
+      context: ../redis/redis
+      args:
+        - REDIS_VERSION=${REDIS_VERSION}
+    hostname: ${REDIS_HOSTNAME}
+    container_name: ${REDIS_CONTAINER_NAME}
+    volumes:
+      - ${DATA_PATH_HOST}/redis/data:/data
+      - ${DATA_PATH_HOST}/redis/logs:/var/log/redis
+    ports:
+      - "${REDIS_PORT}:6379"
+    environment:
+      - TZ=${TZ}
+    networks:
+      frontend:
+        ipv4_address: ${REDIS_FRONTEND_IP}
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP}

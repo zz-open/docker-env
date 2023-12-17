@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-function Reset(){
-  docker-compose down && \
-  rm -rf ./data/* && \
-  docker-compose build memcached
-}
-
-Reset

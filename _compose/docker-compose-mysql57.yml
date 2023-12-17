@@ -1,0 +1,33 @@
+version: '3.8'
+
+volumes:
+  mysql57:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### Mysql57 ################################################
+  mysql57:
+    build:
+      context: ../mysql/mysql57
+      args:
+        - MYSQL57_VERSION=${MYSQL_VERSION}
+    hostname: ${MYSQL57_HOSTNAME}
+    container_name: ${MYSQL57_CONTAINER_NAME}
+    volumes:
+      - ${DATA_PATH_HOST}/mysql57/data:/var/lib/mysql
+      - ${DATA_PATH_HOST}/mysql57/logs:/var/log
+      - ${MYSQL57_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+    ports:
+      - "${MYSQL57_PORT}:3306"
+    environment:
+      - MYSQL_DATABASE=${MYSQL57_DATABASE}
+      - MYSQL_USER=${MYSQL57_USER}
+      - MYSQL_PASSWORD=${MYSQL57_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL57_ROOT_PASSWORD}
+      - TZ=${TZ}
+    networks:
+      frontend:
+        ipv4_address: ${MYSQL57_FRONTEND_IP}
+      backend:
+        ipv4_address: ${MYSQL57_BACKEND_IP}

@@ -1,0 +1,26 @@
+version: '3.8'
+
+volumes:
+  portainer:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### Portainer ############################################
+  portainer:
+    build:
+      context: ../portainer
+      args:
+        - PORTAINER_VERSION=${PORTAINER_VERSION}
+    container_name: ${PORTAINER_CONTAINER_NAME}
+    hostname: ${PORTAINER_HOSTNAME}
+    volumes:
+      - ${DOCKER_SOCK_HOST}:/var/run/docker.sock
+      - ${DATA_PATH_HOST}/portainer/${PORTAINER_DATA_PATH}:/data
+    ports:
+      - "${PORTAINER_BROWSER_PORT}:9000"
+    networks:
+      frontend:
+        ipv4_address: ${PORTAINER_FRONTEND_IP}
+      backend:
+        ipv4_address: ${PORTAINER_BACKEND_IP}

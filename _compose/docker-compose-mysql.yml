@@ -1,0 +1,33 @@
+version: '3.8'
+
+volumes:
+  mysql:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### Mysql ################################################
+  mysql:
+    build:
+      context: ../mysql/mysql
+      args:
+        - MYSQL_VERSION=${MYSQL_VERSION}
+    hostname: ${MYSQL_HOSTNAME}
+    container_name: ${MYSQL_CONTAINER_NAME}
+    volumes:
+      - ${DATA_PATH_HOST}/mysql/data:/var/lib/mysql
+      - ${DATA_PATH_HOST}/mysql/logs:/var/log
+      - ${MYSQL57_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+    ports:
+      - "${MYSQL_PORT}:3306"
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - TZ=${TZ}
+    networks:
+      frontend:
+        ipv4_address: ${MYSQL_FRONTEND_IP}
+      backend:
+        ipv4_address: ${MYSQL_BACKEND_IP}
