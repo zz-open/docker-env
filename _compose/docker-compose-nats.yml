@@ -11,14 +11,15 @@ services:
     build:
       context: ../nats
       args:
-        - BUSYBOX_VERSION=${BUSYBOX_VERSION}
-    container_name: ${BUSYBOX_CONTAINER_NAME}
-    hostname: ${BUSYBOX_HOSTNAME}
-    privileged: true
-    stdin_open: true
-    tty: true
+        - NATS_VERSION=${NATS_VERSION}
+    container_name: ${NATS_CONTAINER_NAME}
+    hostname: ${NATS_HOSTNAME}
+    ports:
+      - "${NATS_CLIENT_HOST_PORT}:4222"
+      - "${NATS_MONITORING_HOST_PORT}:6222"
+      - "${NATS_ROUTE_HOST_PORT}:8222"
     networks:
       frontend:
-          ipv4_address: ${BUSYBOX_FRONTEND_IP}
+        ipv4_address: ${NATS_FRONTEND_IP}
       backend:
-        ipv4_address: ${BUSYBOX_BACKEND_IP}
+        ipv4_address: ${NATS_BACKEND_IP}

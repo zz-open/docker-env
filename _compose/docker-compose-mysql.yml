@@ -20,7 +20,7 @@ services:
       - ${DATA_PATH_HOST}/mysql/logs:/var/log
       - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
-      - "${MYSQL_PORT}:3306"
+      - "${MYSQL_HOST_PORT}:3306"
     environment:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}

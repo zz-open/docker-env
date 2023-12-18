@@ -11,6 +11,24 @@ include:
   - ./_compose/docker-compose-mysql.yml
   - ./_compose/docker-compose-redis.yml
   - ./_compose/docker-compose-redis-stack.yml
+  - ./_compose/docker-compose-memcached.yml
+  - ./_compose/docker-compose-beanstalkd.yml
+  - ./_compose/docker-compose-beanstalkd-console.yml
+  - ./_compose/docker-compose-certbot.yml
+  - ./_compose/docker-compose-traefik.yml
+  - ./_compose/docker-compose-nats.yml
+  - ./_compose/docker-compose-tomcat8.yml
+  - ./_compose/docker-compose-postgres.yml
+  - ./_compose/docker-compose-postgis.yml
+  - ./_compose/docker-compose-pgadmin.yml
+  - ./_compose/docker-compose-nginx.yml
+  - ./_compose/docker-compose-apache.yml
+  - ./_compose/docker-compose-php-fpm.yml
+  - ./_compose/docker-compose-phpmyadmin.yml
+  - ./_compose/docker-compose-docker-in-docker.yml
+  - ./_compose/docker-compose-mongo.yml
+  - ./_compose/docker-compose-rabbitmq.yml
+  - ./_compose/docker-compose-docker-registry.yml
 
 
 

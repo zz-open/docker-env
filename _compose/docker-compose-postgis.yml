@@ -1,0 +1,30 @@
+version: '3.8'
+
+volumes:
+  postgis:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### PostgreSQL Postgis ###########################################
+  postgis:
+    build:
+      context: ../postgis
+      args:
+        - POSTGIS_VERSION=${POSTGIS_VERSION}
+        - INSTALL_PGSQL_HTTP_FOR_POSTGIS13=${POSTGIS_INSTALL_PGSQL_HTTP_FOR_POSTGIS13}
+    container_name: ${POSTGIS_CONTAINER_NAME}
+    hostname: ${POSTGIS_HOSTNAME}
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - ${DATA_PATH_HOST}/postgres:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_HOST_PORT}:5432"
+    networks:
+      frontend:
+        ipv4_address: ${POSTGIS_FRONTEND_IP}
+      backend:
+        ipv4_address: ${POSTGIS_BACKEND_IP}

@@ -14,11 +14,14 @@ services:
         - PORTAINER_VERSION=${PORTAINER_VERSION}
     container_name: ${PORTAINER_CONTAINER_NAME}
     hostname: ${PORTAINER_HOSTNAME}
+    privileged: true
     volumes:
-      - ${DOCKER_SOCK_HOST}:/var/run/docker.sock
-      - ${DATA_PATH_HOST}/portainer/${PORTAINER_DATA_PATH}:/data
+      - ${DOCKER_SOCK_PATH_HOST}:/var/run/docker.sock
+      - ${DATA_PATH_HOST}/portainer/data:/data
+    extra_hosts:
+      - "dockerhost:${DOCKER_HOST_IP}"
     ports:
-      - "${PORTAINER_BROWSER_PORT}:9000"
+      - "${PORTAINER_HOST_PORT}:9000"
     networks:
       frontend:
         ipv4_address: ${PORTAINER_FRONTEND_IP}

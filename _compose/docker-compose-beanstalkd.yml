@@ -1,24 +1,26 @@
 version: '3.8'
 
 volumes:
-  busybox:
+  beanstalkd:
     driver: ${VOLUMES_DRIVER}
 
 services:
 
 ### Beanstalkd ###########################################
-  apache2:
+  beanstalkd:
     build:
-      context: ../busybox
+      context: ../beanstalkd
       args:
-        - BUSYBOX_VERSION=${BUSYBOX_VERSION}
-    container_name: ${BUSYBOX_CONTAINER_NAME}
-    hostname: ${BUSYBOX_HOSTNAME}
+        - BEANSTALKD_VERSION=${BEANSTALKD_VERSION}
+    container_name: ${BEANSTALKD_CONTAINER_NAME}
+    hostname: ${BEANSTALKD_HOSTNAME}
     privileged: true
-    stdin_open: true
-    tty: true
+    ports:
+      - "${BEANSTALKD_HOST_PORT}:11300"
+    environment:
+      - TZ=${TZ}
     networks:
       frontend:
-          ipv4_address: ${BUSYBOX_FRONTEND_IP}
+          ipv4_address: ${BEANSTALKD_FRONTEND_IP}
       backend:
-        ipv4_address: ${BUSYBOX_BACKEND_IP}
+        ipv4_address: ${BEANSTALKD_BACKEND_IP}

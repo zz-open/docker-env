@@ -14,14 +14,15 @@ services:
         - MEMCACHED_VERSION=${MEMCACHED_VERSION}
     container_name: ${MEMCACHED_CONTAINER_NAME}
     hostname: ${MEMCACHED_HOSTNAME}
+    privileged: true
     ports:
-      - "${MEMCACHED_PORT}:11211"
+      - "${MEMCACHED_HOST_PORT}:11211"
     environment:
       - TZ=${TZ}
     volumes:
-      - ${DATA_PATH_HOST}/memcached/${MEMCACHED_DATA_PATH}:/var/lib/memcached
+      - ${DATA_PATH_HOST}/memcached/data:/var/lib/memcached
     networks:
       frontend:
-          ipv4_address: ${MEMCACHED_FRONTEND_IP}
+        ipv4_address: ${MEMCACHED_FRONTEND_IP}
       backend:
         ipv4_address: ${MEMCACHED_BACKEND_IP}

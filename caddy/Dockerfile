@@ -1,0 +1,4 @@
+ARG CADDY_VERSION=latest
+FROM caddy/caddy:${CADDY_VERSION}
+
+EXPOSE 80 443

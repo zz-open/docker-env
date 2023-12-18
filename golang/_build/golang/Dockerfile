@@ -1,6 +1,6 @@
 ARG GOLANG_VERSION=latest
 FROM golang:${GOLANG_VERSION}
-LABEL maintainer="zaizai <33045134@qq.com>"
+LABEL maintainer="zz <373045134@qq.com>"
 
 # 环境变量
 ENV GOPROXY https://goproxy.cn,direct

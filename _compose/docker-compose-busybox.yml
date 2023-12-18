@@ -19,6 +19,6 @@ services:
     tty: true
     networks:
       frontend:
-          ipv4_address: ${BUSYBOX_FRONTEND_IP}
+        ipv4_address: ${BUSYBOX_FRONTEND_IP}
       backend:
         ipv4_address: ${BUSYBOX_BACKEND_IP}

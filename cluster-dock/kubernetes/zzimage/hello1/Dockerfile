@@ -1,5 +1,5 @@
 FROM golang:1.21.4-alpine as builder
-LABEL maintainer="zaizai <33045134@qq.com>"
+LABEL maintainer="zz <373045134@qq.com>"
 
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \

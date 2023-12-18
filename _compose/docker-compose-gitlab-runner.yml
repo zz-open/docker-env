@@ -22,7 +22,7 @@ services:
         - RUNNER_EXECUTOR=shell
       volumes:
         - ${DATA_PATH_HOST}/gitlab-runner/runner:/etc/gitlab-runner
-        - ${DOCKER_SOCK_HOST}:/var/run/docker.sock:rw
+        - ${DOCKER_SOCK_PATH_HOST}:/var/run/docker.sock:rw
       networks:
         frontend:
           ipv4_address: ${GITLAB_RUNNER_FRONTEND_IP}

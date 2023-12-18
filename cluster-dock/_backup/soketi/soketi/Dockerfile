@@ -1,6 +1,6 @@
 FROM quay.io/soketi/soketi:latest
 
-LABEL maintainer="zaizai <373045134@qq.com>"
+LABEL maintainer="zz <373045134@qq.com>"
 
 CMD ["node /app/bin/server.js start"]
 

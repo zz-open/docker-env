@@ -1,0 +1,4 @@
+ARG TOMCAT_VERSION=8.5.43
+FROM tomcat:${TOMCAT_VERSION}
+
+LABEL maintainer="zz <373045134@qq.com>"

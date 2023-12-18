@@ -1,24 +1,29 @@
 version: '3.8'
 
 volumes:
-  busybox:
+  docker-in-docker:
     driver: ${VOLUMES_DRIVER}
 
 services:
 
-### Docker-in-Docker #####################################
-  apache2:
+### Docker-in-Docker ################################################
+  docker-in-docker:
     build:
-      context: ../busybox
+      context: ../docker-in-docker
       args:
-        - BUSYBOX_VERSION=${BUSYBOX_VERSION}
-    container_name: ${BUSYBOX_CONTAINER_NAME}
-    hostname: ${BUSYBOX_HOSTNAME}
+        - DIND_VERSION=${DIND_VERSION}
+    container_name: ${DIND_CONTAINER_NAME}
+    hostname: ${DIND_HOSTNAME}
+    environment:
+      DOCKER_TLS_SAN: DNS:docker-in-docker
     privileged: true
-    stdin_open: true
-    tty: true
+    volumes:
+      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+      - ${DATA_PATH_HOST}/docker-in-docker/certs/client:/certs/client
+    expose:
+      - 2375
     networks:
       frontend:
-          ipv4_address: ${BUSYBOX_FRONTEND_IP}
+        ipv4_address: ${BUSYBOX_FRONTEND_IP}
       backend:
         ipv4_address: ${BUSYBOX_BACKEND_IP}

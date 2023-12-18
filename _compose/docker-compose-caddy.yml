@@ -1,24 +1,37 @@
 version: '3.8'
 
 volumes:
-  busybox:
+  caddy:
     driver: ${VOLUMES_DRIVER}
 
 services:
 
 ### Caddy Server #########################################
-  apache2:
+  caddy:
     build:
-      context: ../busybox
+      context: ../caddy
       args:
-        - BUSYBOX_VERSION=${BUSYBOX_VERSION}
-    container_name: ${BUSYBOX_CONTAINER_NAME}
-    hostname: ${BUSYBOX_HOSTNAME}
-    privileged: true
-    stdin_open: true
-    tty: true
+        - CADDY_VERSION=${CADDY_VERSION}
+    hostname: ${CADDY_HOSTNAME}
+    container_name: ${CADDY_CONTAINER_NAME}
+    volumes:
+      - "${CADDY_PATH_HOST}/etc:/etc/caddy"
+      - "${CADDY_PATH_HOST}:/config"
+      - "${CADDY_PATH_HOST}/ssl:/root/ssl"
+      - "${LOG_PATH_HOST}/caddy:/var/log/caddy"
+      - "${DATA_PATH_HOST}/caddy:/root/.caddy"
+      - "${CADDY_PATH_HOST}/www:/var/www:cached"
+      #- ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
+    ports:
+      - "${CADDY_HOST_HTTP_PORT}:80"
+      - "${CADDY_HOST_HTTPS_PORT}:443"
+    environment:
+      - TZ=${TZ}
+      - ADMIN_USER=admin
+      - ADMIN_PASSWORD=admin
+      - ADMIN_PASSWORD_HASH=${ADMIN_PASSWORD_HASH:-JDJhJDE0JE91S1FrN0Z0VEsyWmhrQVpON1VzdHVLSDkyWHdsN0xNbEZYdnNIZm1pb2d1blg4Y09mL0ZP}
     networks:
       frontend:
-          ipv4_address: ${BUSYBOX_FRONTEND_IP}
+        ipv4_address: ${CADDY_FRONTEND_IP}
       backend:
-        ipv4_address: ${BUSYBOX_BACKEND_IP}
+        ipv4_address: ${CADDY_BACKEND_IP}

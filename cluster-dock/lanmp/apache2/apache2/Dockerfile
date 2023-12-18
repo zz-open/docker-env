@@ -1,6 +1,6 @@
 FROM webdevops/apache:ubuntu-18.04
 
-LABEL maintainer="zaizai <33045134@qq.com>"
+LABEL maintainer="zz <373045134@qq.com>"
 
 ARG DOCUMENT_ROOT=/var/www/
 ARG PHP_UPSTREAM_CONTAINER=php-fpm

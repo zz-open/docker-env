@@ -1,24 +1,36 @@
 version: '3.8'
 
 volumes:
-  busybox:
+  rabbitmq:
     driver: ${VOLUMES_DRIVER}
 
 services:
 
 ### RabbitMQ #############################################
-  apache2:
+  rabbitmq:
     build:
-      context: ../busybox
+      context: ../rabbitmq
       args:
-        - BUSYBOX_VERSION=${BUSYBOX_VERSION}
-    container_name: ${BUSYBOX_CONTAINER_NAME}
-    hostname: ${BUSYBOX_HOSTNAME}
+        - RABBITMQ_VERSION=${RABBITMQ_VERSION}
+    container_name: ${RABBITMQ_CONTAINER_NAME}
+    hostname: ${RABBITMQ_HOSTNAME}
     privileged: true
-    stdin_open: true
-    tty: true
+    ports:
+      - "${RABBITMQ_NODE_HOST_PORT}:5672"
+      - "${RABBITMQ_MANAGEMENT_HTTP_HOST_PORT}:15672"
+      - "${RABBITMQ_MANAGEMENT_HTTPS_HOST_PORT}:15671"
+      - "${RABBITMQ_WEB_STOMP_HOST_PORT}:15674"
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+      - RABBITMQ_NODENAME=${RABBITMQ_NODENAME}
+      - TZ=${TZ}
+    volumes:
+      - "${DATA_PATH_HOST}/rabbitmq:/var/lib/rabbitmq"
+      - "${RABBITMQ_CONF_PATH_HOST}/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf"
+      - "${RABBITMQ_CONF_PATH_HOST}/management_agent.disable_metrics_collector.conf:/etc/rabbitmq/conf.d/management_agent.disable_metrics_collector.conf"
     networks:
       frontend:
-          ipv4_address: ${BUSYBOX_FRONTEND_IP}
+        ipv4_address: ${RABBITMQ_FRONTEND_IP}
       backend:
-        ipv4_address: ${BUSYBOX_BACKEND_IP}
+        ipv4_address: ${RABBITMQ_BACKEND_IP}

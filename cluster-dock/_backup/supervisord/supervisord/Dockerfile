@@ -1,6 +1,6 @@
 FROM alpine
 
-LABEL maintainer="zaizai <373045134@qq.com>"
+LABEL maintainer="zz <373045134@qq.com>"
 
 # Add a non-root user:
 ARG PUID=1000

@@ -11,11 +11,11 @@ services:
     build:
       context: ../jenkins
       args:
-        - JENKINS_SOURCES_LIST=${JENKINS_SOURCES_LIST}
-        - JENKINS_REPLACE_SOURCES=${JENKINS_REPLACE_SOURCES}
-        - JENKINS_ADD_DOCKER_SOURCES=${JENKINS_ADD_DOCKER_SOURCES}
+        - JENKINS_SOURCES_LIST_PATH_CONTAINER=${JENKINS_SOURCES_LIST_PATH_CONTAINER}
+        - JENKINS_CHANGE_SOURCES=${JENKINS_CHANGE_SOURCES}
+        - JENKINS_INSTALL_DOCKER=${JENKINS_INSTALL_DOCKER}
         - JENKINS_VERSION=${JENKINS_VERSION}
-        - JENKINS_DO_TIME_SYNC=${JENKINS_DO_TIME_SYNC}
+        - JENKINS_SYNC_TIME=${JENKINS_SYNC_TIME}
     environment:
       JAVA_OPTS: "-Djava.awt.headless=true"
     container_name: ${JENKINS_CONTAINER_NAME}
@@ -25,8 +25,8 @@ services:
       - "${JENKINS_HOST_SLAVE_AGENT_PORT}:50000"
       - "${JENKINS_HOST_HTTP_PORT}:8080"
     volumes:
-      - ${DATA_PATH_HOST}/jenkins/${JENKINS_HOME}:/var/jenkins_home
-      - ${DOCKER_SOCK_HOST}:/var/run/docker.sock
+      - ${DOCKER_SOCK_PATH_HOST}:/var/run/docker.sock
+      - ${DATA_PATH_HOST}/jenkins/jenkins_home:/var/jenkins_home
     networks:
       frontend:
         ipv4_address: ${JENKINS_FRONTEND_IP}

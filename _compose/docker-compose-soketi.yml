@@ -11,14 +11,17 @@ services:
     build:
       context: ../soketi
       args:
-        - BUSYBOX_VERSION=${BUSYBOX_VERSION}
-    container_name: ${BUSYBOX_CONTAINER_NAME}
-    hostname: ${BUSYBOX_HOSTNAME}
+        - SOKETI_VERSION=${SOKETI_VERSION}
+    container_name: ${SOKETI_CONTAINER_NAME}
+    hostname: ${SOKETI_HOSTNAME}
     privileged: true
-    stdin_open: true
-    tty: true
+    volumes:
+      - "${SOKETI_PATH_HOST}/config.json:/app/bin/config.json:ro"
+    ports:
+      - "${SOKETI_HOST_PORT}:6001"
+      - "${SOKETI_METRICS_SERVER_PORT}:9601"
     networks:
       frontend:
-          ipv4_address: ${BUSYBOX_FRONTEND_IP}
+        ipv4_address: ${SOKETI_FRONTEND_IP}
       backend:
-        ipv4_address: ${BUSYBOX_BACKEND_IP}
+        ipv4_address: ${SOKETI_BACKEND_IP}

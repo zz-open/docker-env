@@ -11,14 +11,17 @@ services:
     build:
       context: ../certbot
       args:
-        - BUSYBOX_VERSION=${BUSYBOX_VERSION}
-    container_name: ${BUSYBOX_CONTAINER_NAME}
-    hostname: ${BUSYBOX_HOSTNAME}
-    privileged: true
-    stdin_open: true
-    tty: true
+        - CERTBOT_VERSION=${CERTBOT_VERSION}
+    container_name: ${CERTBOT_CONTAINER_NAME}
+    hostname: ${CERTBOT_HOSTNAME}
+    volumes:
+      - "${DATA_PATH_HOST}/certbot/certs:/var/certs"
+      - "${CERTBOT_LETSENCRYPT_PATH_HOST}:/var/www/letsencrypt"
+    environment:
+      - CN=${CERTBOT_CN}
+      - EMAIL=${CERTBOT_EMAIL}
     networks:
       frontend:
-          ipv4_address: ${BUSYBOX_FRONTEND_IP}
+        ipv4_address: ${CERTBOT_FRONTEND_IP}
       backend:
-        ipv4_address: ${BUSYBOX_BACKEND_IP}
+        ipv4_address: ${CERTBOT_BACKEND_IP}
