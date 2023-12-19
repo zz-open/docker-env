@@ -1,0 +1,6 @@
+version: "3.8"
+
+include:
+  - ../all-compose-file/docker-compose-integration-common.yml
+  - ./docker-compose-gitlab.yml
+  - ./docker-compose-jenkins.yml

@@ -1,7 +1,0 @@
-version: "3.8"
-
-# configs:
-#   sources-qinghua-debian-bullseye:
-#     file: ../_common/sources/qinghua/debian-bullseye/sources.list
-
-# x-build-args: &build-args

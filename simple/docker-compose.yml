@@ -1,0 +1,40 @@
+version: "3.8"
+
+include:
+  - ../all-compose-file/docker-compose-common.yml
+  - ../all-compose-file/docker-compose-busybox.yml
+  - ../all-compose-file/docker-compose-portainer.yml
+  - ../all-compose-file/docker-compose-mysql57.yml
+  - ../all-compose-file/docker-compose-mysql.yml
+  - ../all-compose-file/docker-compose-redis.yml
+  - ../all-compose-file/docker-compose-redis-stack.yml
+  - ../all-compose-file/docker-compose-memcached.yml
+  - ../all-compose-file/docker-compose-beanstalkd.yml
+  - ../all-compose-file/docker-compose-beanstalkd-console.yml
+  - ../all-compose-file/docker-compose-certbot.yml
+  - ../all-compose-file/docker-compose-traefik.yml
+  - ../all-compose-file/docker-compose-nats.yml
+  - ../all-compose-file/docker-compose-tomcat8.yml
+  - ../all-compose-file/docker-compose-postgres.yml
+  - ../all-compose-file/docker-compose-postgis.yml
+  - ../all-compose-file/docker-compose-pgadmin.yml
+  - ../all-compose-file/docker-compose-phpmyadmin.yml
+  - ../all-compose-file/docker-compose-docker-in-docker.yml
+  - ../all-compose-file/docker-compose-mongo.yml
+  - ../all-compose-file/docker-compose-rabbitmq.yml
+
+
+### Grafana ##############################################
+
+
+### MongoWebUI ###########################################
+### JupyterHub ###########################################
+### OpenResty Server #####################################
+### Metabase #############################################
+### SONARQUBE ############################################
+
+### kafka ################################################
+### kafka-manager ########################################
+
+### keycloak #############################################
+### tarantool ###########################################

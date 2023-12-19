@@ -1,0 +1,78 @@
+127.0.0.1 jarvis.admin.cn
+
+127.0.0.1 inner-s.gsudev.cn
+127.0.0.1 inner-d.gsudev.cn
+127.0.0.1 inner-t.gsudev.cn
+#39.105.50.248 inner-t.gsudev.cn
+
+127.0.0.1 spark.store.cn
+127.0.0.1 spark.admin.cn
+127.0.0.1 spark.api.cn
+
+127.0.0.1 xiu.agent.cn
+127.0.0.1 xiu.agent.com
+127.0.0.1 xiu.admin.cn
+127.0.0.1 xiu.admin.com
+
+127.0.0.1 inner-d.gsudev.cn
+127.0.0.1 inner-t.gsudev.cn
+
+127.0.0.1 bingo.s.inner.com
+127.0.0.1 bingo.s.store.com
+127.0.0.1 bingo.s.admin.com
+127.0.0.1 bingo.s.client.com
+127.0.0.1 bingo.s.store.cn
+127.0.0.1 bingo.admin.com
+127.0.0.1 bingo.admin.cn
+127.0.0.1 bingo.client.com
+127.0.0.1 bingo.store.com
+127.0.0.1 bingo.inner.com
+127.0.0.1 bingo.t.store.com
+127.0.0.1 bingo.t.store.cn
+127.0.0.1 bingo.t.h5.com
+127.0.0.1 bingo.t.inner.com
+127.0.0.1 bingo.t.client.com
+127.0.0.1 bingo.my.admin.com
+127.0.0.1 bingo.my.store.com
+127.0.0.1 bingo.my.h5.com
+127.0.0.1 bingo.my.inner.com
+127.0.0.1 bingo.my.client.com
+127.0.0.1 bingo.a.admin.com
+127.0.0.1 bingo.a.store.com
+127.0.0.1 bingo.a.h5.com
+127.0.0.1 bingo.a.inner.com
+127.0.0.1 bingo.a.client.com
+127.0.0.1 bingo.web.com
+127.0.0.1 bingo.h5.com
+127.0.0.1 bingo.dist.store.com
+
+127.0.0.1 legion.admin.cn
+127.0.0.1 legion.admin.com
+127.0.0.1 legion.agent.com
+127.0.0.1 legion.agent.cn
+127.0.0.1 legion.api.com
+127.0.0.1 legion.client.com
+
+127.0.0.1 gauss.admin.com
+127.0.0.1 gauss.agent.com
+127.0.0.1 gauss.client.com
+
+127.0.0.1 havasu.agent.com
+127.0.0.1 havasu.admin.com
+
+127.0.0.1 crm.admin.com
+127.0.0.1 crminner-d.gsudev.cn
+127.0.0.1 crminner-t.gsudev.cn
+127.0.0.1 crminner-s.gsudev.cn
+
+127.0.0.1 newenglish.store.com
+127.0.0.1 newenglish.admin.com
+127.0.0.1 newenglish.client.com
+127.0.0.1 newenglish.web.com
+
+127.0.0.1 yaf.a.com
+127.0.0.1 yaf.a.cn
+
+### 车匠 ###
+127.0.0.1 carjio.admin.cn
+127.0.0.1 carjio.ding.cn
