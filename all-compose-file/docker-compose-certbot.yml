@@ -9,7 +9,7 @@ services:
 ### Certbot ##############################################
   certbot:
     build:
-      context: ../certbot
+      context: ${CERTBOT_HOST_PATH}
       args:
         - CERTBOT_VERSION=${CERTBOT_VERSION}
     container_name: ${CERTBOT_CONTAINER_NAME}

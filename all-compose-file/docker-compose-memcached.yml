@@ -9,7 +9,7 @@ services:
 ### Memcached ############################################
   memcached:
     build:
-      context: ../memcached
+      context: ${MEMCACHED_HOST_PATH}
       args:
         - MEMCACHED_VERSION=${MEMCACHED_VERSION}
     container_name: ${MEMCACHED_CONTAINER_NAME}

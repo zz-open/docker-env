@@ -9,7 +9,7 @@ services:
 ### Mysql ################################################
   mysql:
     build:
-      context: ../mysql/mysql
+      context: ${MYSQL_HOST_PATH}
       args:
         - MYSQL_VERSION=${MYSQL_VERSION}
     hostname: ${MYSQL_HOSTNAME}
@@ -17,7 +17,7 @@ services:
     privileged: true
     volumes:
       - ${DATA_PATH_HOST}/mysql/data:/var/lib/mysql
-      - ${DATA_PATH_HOST}/mysql/logs:/var/log
+      - ${LOG_PATH_HOST}/mysql:/var/log
       - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
       - "${MYSQL_HOST_PORT}:3306"

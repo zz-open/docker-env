@@ -1,4 +1,4 @@
-ARG DIND_VERSION=20.10-dind
+ARG DIND_VERSION=dind
 FROM docker:${DIND_VERSION}
 
 LABEL maintainer="zz <373045134@qq.com>"

@@ -9,13 +9,13 @@ services:
 ### Docker-in-Docker ################################################
   docker-in-docker:
     build:
-      context: ../docker-in-docker
+      context: ${DIND_HOST_PATH}
       args:
         - DIND_VERSION=${DIND_VERSION}
     container_name: ${DIND_CONTAINER_NAME}
     hostname: ${DIND_HOSTNAME}
     environment:
-      DOCKER_TLS_SAN: DNS:docker-in-docker
+      DOCKER_TLS_SAN: DNS:${DIND_CONTAINER_NAME}
     privileged: true
     volumes:
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}

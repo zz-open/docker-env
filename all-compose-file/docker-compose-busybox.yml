@@ -9,7 +9,7 @@ services:
 ### Busybox ################################################
   busybox:
     build:
-      context: ../busybox
+      context: ${BUSYBOX_HOST_PATH}
       args:
         - BUSYBOX_VERSION=${BUSYBOX_VERSION}
     container_name: ${BUSYBOX_CONTAINER_NAME}

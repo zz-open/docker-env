@@ -9,7 +9,7 @@ services:
 ### Redis Stack ##############################################
   redis-stack:
     build:
-      context: ../redis-stack
+      context: ${REDIS_STACK_HOST_PATH}
       args:
         - REDIS_STACK_VERSION=${REDIS_STACK_VERSION}
     hostname: ${REDIS_STACK_HOSTNAME}
@@ -17,7 +17,7 @@ services:
     privileged: true
     volumes:
       - ${DATA_PATH_HOST}/redis-stack/data:/data
-      - ${DATA_PATH_HOST}/redis-stack/logs:/var/log/redis
+      - ${LOG_PATH_HOST}/redis-stack:/var/log/redis
       - ${REDIS_STACK_CONF_PATH_HOST}:/redis-stack.conf
     ports:
       - "${REDIS_STACK_HOST_PORT}:6379"

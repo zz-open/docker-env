@@ -9,7 +9,7 @@ services:
 ### Mysql57 ################################################
   mysql57:
     build:
-      context: ../mysql/mysql57
+      context: ${MYSQL57_HOST_PATH}
       args:
         - MYSQL_VERSION=${MYSQL57_VERSION}
     hostname: ${MYSQL57_HOSTNAME}
@@ -17,7 +17,7 @@ services:
     privileged: true
     volumes:
       - ${DATA_PATH_HOST}/mysql57/data:/var/lib/mysql
-      - ${DATA_PATH_HOST}/mysql57/logs:/var/log
+      - ${LOG_PATH_HOST}/mysql57:/var/log
       - ${MYSQL57_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
       - "${MYSQL57_HOST_PORT}:3306"

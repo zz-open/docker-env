@@ -15,4 +15,4 @@ networks:
     ipam:
       config:
         - subnet: "${BACKEND_SUBNET}"
-          gateway: "${BACKEND_SUBNET_GATEWAY}
+          gateway: "${BACKEND_SUBNET_GATEWAY}"
