@@ -1,0 +1,31 @@
+version: '3.8'
+
+volumes:
+  postgres:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### PostgreSQL ###########################################
+  postgres:
+    build:
+      context: ${POSTGRES_HOST_PATH}
+      args:
+        - POSTGRES_VERSION=${POSTGRES_VERSION}
+    container_name: ${POSTGRES_CONTAINER_NAME}
+    hostname: ${POSTGRES_HOSTNAME}
+    privileged: true
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - ${DATA_PATH_HOST}/postgres/data:/var/lib/postgresql/data
+      - ${POSTGRES_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+    ports:
+      - "${POSTGRES_HOST_PORT}:5432"
+    networks:
+      frontend:
+        ipv4_address: ${POSTGRES_FRONTEND_IP}
+      backend:
+        ipv4_address: ${POSTGRES_BACKEND_IP}

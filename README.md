@@ -7,6 +7,7 @@
 - [清华 ubuntu](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
 - [清华 debian](https://mirrors.tuna.tsinghua.edu.cn/help/debian/)
 - [清华 centos](https://mirrors.tuna.tsinghua.edu.cn/help/centos/)
+- [清华 alpine](https://mirrors.tuna.tsinghua.edu.cn/help/alpine/)
 
 Full development environment based on Docker.
 
@@ -35,23 +36,21 @@ bash _common/scripts/prepare.sh
 | docker-in-docker | 172.19.150.10 | 172.19.140.10 | latest |
 | postgres | 172.19.150.11 | 172.19.140.11 | latest |
 | pgadmin | 172.19.150.12 | 172.19.140.12 | latest |
-| phpmyadmin | 172.19.150.13 | 172.19.140.13 | latest |
-| certbot | 172.19.150.14 | 172.19.140.14 | latest |
-| nats | 172.19.150.15 | 172.19.140.15 | latest |
+| certbot | 172.19.150.13 | 172.19.140.13 | latest |
+| phpmyadmin | 172.19.150.14 | 172.19.140.14 | latest |
+| tomcat8 | 172.19.150.15 | 172.19.140.15 | 8.5.97 |
+| mongo | 172.19.150.16 | 172.19.140.16 | latest |
+| rabbitmq | 172.19.150.17 | 172.19.140.17 | latest |
+| soketi | 172.19.150.18 | 172.19.140.18 | latest |
+| nats | 172.19.150.19 | 172.19.140.19 | latest |
+| caddy | 172.19.150.20 | 172.19.140.20 | latest |\
+| postgres-postgis | 172.19.150.21 | 172.19.140.21 | latest |
+| beanstalkd | 172.19.150.22 | 172.19.140.22 | latest |
+| beanstalkd-console | 172.19.150.23 | 172.19.140.23 | latest |
 
 
 
-
-
-
-| beanstalkd | 172.19.150.13 | 172.19.140.13 | latest |
-| beanstalkd-console | 172.19.150.14 | 172.19.140.14 | latest |
 | traefik | 172.19.150.16 | 172.19.140.16 | latest |
-| tomcat8 | 172.19.150.18 | 172.19.140.18 | latest |
-| postgis | 172.19.150.20 | 172.19.140.20 | latest |
-| mongo | 172.19.150.27 | 172.19.140.27 | latest |
-| rabbitmq | 172.19.150.28 | 172.19.140.28 | latest |
-| soketi | 172.19.150.29 | 172.19.140.29 | latest |
 | golang | 172.19.150.26 | 172.19.140.26 | latest |
 
 ### DevOps (172.19.150.110)
@@ -84,7 +83,12 @@ bash _common/scripts/prepare.sh
 | go-stash | 172.19.150.133 | 172.19.140.133 | latest |
 | filebeat | 172.19.150.134 | 172.19.140.134 | latest |
 
-
+### ETCD CLUSTER (172.19.150.140)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| etcd-node1 | 172.19.150.140 | 172.19.140.140 | latest | |
+| etcd-node2 | 172.19.150.141 | 172.19.140.141 | latest | |
+| etcd-node3 | 172.19.150.142 | 172.19.140.142 | latest | |
 
 ## portainer
 密码最少12个字符

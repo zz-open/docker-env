@@ -9,7 +9,7 @@ services:
 ### Gitlab Runner ########################################
   gitlab-runner:
       build:
-        context: ../gitlab-runner
+        context: ${GITLAB_RUNNER_HOST_PATH}
         args:
           - GITLAB_RUNNER_VERSION=${GITLAB_RUNNER_VERSION}
       container_name: ${GITLAB_RUNNER_CONTAINER_NAME}

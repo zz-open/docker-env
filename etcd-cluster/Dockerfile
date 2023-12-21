@@ -1,0 +1,2 @@
+ARG ETCD_VERSION=latest
+FROM bitnami/etcd:${ETCD_VERSION}

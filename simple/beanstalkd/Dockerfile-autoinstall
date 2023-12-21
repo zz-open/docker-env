@@ -1,0 +1,12 @@
+FROM alpine
+
+LABEL maintainer="zz <373045134@qq.com>"
+
+COPY preInstall.sh /preInstall.sh
+RUN chmod +x /preInstall.sh && sh /install.sh
+
+VOLUME ["/var/lib/beanstalkd"]
+
+ENTRYPOINT ["/usr/bin/beanstalkd", "-b", "/var/lib/beanstalkd/"]
+
+EXPOSE 11300

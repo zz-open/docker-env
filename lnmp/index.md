@@ -1,3 +1,5 @@
 # nginx
-1. nginx.conf记得添加underscores_in_headers on;
-2. include /etc/nginx/sites-available/other/*.conf;
+
+## 修改
+- nginx.conf记得添加underscores_in_headers on;
+- include /etc/nginx/sites-available/other/*.conf;

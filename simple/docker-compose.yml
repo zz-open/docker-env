@@ -2,26 +2,31 @@ version: "3.8"
 
 include:
   - ../all-compose-file/docker-compose-common.yml
-  - ../all-compose-file/docker-compose-busybox.yml
-  - ../all-compose-file/docker-compose-portainer.yml
-  - ../all-compose-file/docker-compose-mysql57.yml
-  - ../all-compose-file/docker-compose-mysql.yml
-  - ../all-compose-file/docker-compose-redis.yml
-  - ../all-compose-file/docker-compose-redis-stack.yml
-  - ../all-compose-file/docker-compose-memcached.yml
-  # - ../all-compose-file/docker-compose-beanstalkd.yml
-  # - ../all-compose-file/docker-compose-beanstalkd-console.yml
-  # - ../all-compose-file/docker-compose-certbot.yml
-  # - ../all-compose-file/docker-compose-traefik.yml
-  # - ../all-compose-file/docker-compose-nats.yml
-  # - ../all-compose-file/docker-compose-tomcat8.yml
-  # - ../all-compose-file/docker-compose-postgres.yml
-  # - ../all-compose-file/docker-compose-postgis.yml
-  # - ../all-compose-file/docker-compose-pgadmin.yml
-  # - ../all-compose-file/docker-compose-phpmyadmin.yml
-  # - ../all-compose-file/docker-compose-docker-in-docker.yml
-  # - ../all-compose-file/docker-compose-mongo.yml
-  # - ../all-compose-file/docker-compose-rabbitmq.yml
+  - ./docker-compose-busybox.yml
+  - ./docker-compose-portainer.yml
+  - ./docker-compose-mysql57.yml
+  - ./docker-compose-mysql.yml
+  - ./docker-compose-redis.yml
+  - ./docker-compose-redis-stack.yml
+  - ./docker-compose-memcached.yml
+  # - ./docker-compose-docker-in-docker.yml
+  - ./docker-compose-postgres.yml
+  - ./docker-compose-pgadmin.yml
+  - ./docker-compose-certbot.yml
+  - ./docker-compose-phpmyadmin.yml
+  - ./docker-compose-tomcat8.yml
+  - ./docker-compose-mongo.yml
+  - ./docker-compose-rabbitmq.yml
+  - ./docker-compose-soketi.yml
+  - ./docker-compose-nats.yml
+  - ./docker-compose-caddy.yml
+  - ./docker-compose-postgres-postgis.yml
+  - ./docker-compose-beanstalkd.yml
+  - ./docker-compose-beanstalk_console.yml
+  # - ./docker-compose-traefik.yml
+
+
+
 
 
 

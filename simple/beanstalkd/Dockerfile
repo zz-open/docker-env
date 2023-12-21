@@ -2,14 +2,12 @@ FROM alpine
 
 LABEL maintainer="zz <373045134@qq.com>"
 
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
+
 RUN apk add --no-cache beanstalkd
-ENTRYPOINT ["/usr/bin/beanstalkd"]
 
-# COPY ./install.sh /install.sh
-# RUN chmod +x /install.sh && sh /install.sh && rm /install.sh
+VOLUME ["/var/lib/beanstalkd"]
 
-# EXPOSE 11300
+EXPOSE 11300
 
-# VOLUME ["/var/lib/beanstalkd"]
-
-# ENTRYPOINT /usr/bin/beanstalkd -b /var/lib/beanstalkd/
+ENTRYPOINT ["/usr/bin/beanstalkd", "-b", "/var/lib/beanstalkd/"]

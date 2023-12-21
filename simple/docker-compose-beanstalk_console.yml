@@ -1,0 +1,30 @@
+version: '3.8'
+
+volumes:
+  beanstalk_console:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### Beanstalkd Console ###################################
+  beanstalk_console:
+    build:
+      context: ${BEANSTALK_CONSOLE_HOST_PATH}
+      args:
+        - BEANSTALK_CONSOLE_VERSION=${BEANSTALK_CONSOLE_VERSION}
+    container_name: ${BEANSTALK_CONSOLE_CONTAINER_NAME}
+    hostname: ${BEANSTALK_CONSOLE_HOSTNAME}
+    ports:
+      - "${BEANSTALK_CONSOLE_HOST_PORT}:2080"
+    environment:
+      - TZ=${TZ}
+      - BEANSTALK_SERVERS=${BEANSTALKD_CONTAINER_NAME}:${BEANSTALKD_HOST_PORT}
+      - BEANSTALKD_HOST=${BEANSTALKD_CONTAINER_NAME}
+      - BEANSTALKD_PORT=${BEANSTALKD_HOST_PORT}
+    depends_on:
+      - "${BEANSTALKD_CONTAINER_NAME}"
+    networks:
+      frontend:
+        ipv4_address: ${BEANSTALK_CONSOLE_FRONTEND_IP}
+      backend:
+        ipv4_address: ${BEANSTALK_CONSOLE_BACKEND_IP}

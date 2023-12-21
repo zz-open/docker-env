@@ -1,0 +1,4 @@
+*
+!.gitignore
+!.gitkeep
+!tomcat-users.xml

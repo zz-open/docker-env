@@ -9,7 +9,7 @@ services:
 ### Apache Server ########################################
   apache:
     build:
-      context: ../apache
+      context: ${APACHE_HOST_PATH}
       args:
         - PHP_UPSTREAM_CONTAINER=${APACHE_PHP_UPSTREAM_CONTAINER}
         - PHP_UPSTREAM_PORT=${APACHE_PHP_UPSTREAM_PORT}

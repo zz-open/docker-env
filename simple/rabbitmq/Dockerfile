@@ -1,25 +1,24 @@
-FROM rabbitmq:management
+FROM rabbitmq:3-management
 
 USER root
-#Ubunton镜像设置时区
-ENV TZ=Asia/Shanghai \
+
+ENV TZ=${TZ} \
     DEBIAN_FRONTEND=noninteractive
 
 RUN apt update \
-    && apt install -y tzdata \
+    && apt install -y tzdata wget \
     && ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && dpkg-reconfigure --frontend noninteractive tzdata \
     && rm -rf /var/lib/apt/lists/*
 
-#这两行不能分开写，必须挨着执行
-COPY ./pkg/.erlang.cookie /var/lib/rabbitmq/.erlang.cookie
-RUN chmod 600 /var/lib/rabbitmq/.erlang.cookie
+RUN rabbitmq-plugins enable --offline rabbitmq_management
 
-COPY ./pkg/rabbitmq_delayed_message_exchange-3.9.0.ez /plugins/
+ARG RABBITMQ_ENABLE_DELAY_PLUGIN=false
+RUN set -eux; \
+    if [ ${RABBITMQ_ENABLE_DELAY_PLUGIN} = true ]; then \
+        wget -O "/plugins/rabbitmq_delayed_message_exchange-3.12.0.ez" "https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases/download/v3.12.0/rabbitmq_delayed_message_exchange-3.12.0.ez" && \
+        rabbitmq-plugins enable rabbitmq_delayed_message_exchange \
+    ;fi
 
-RUN rabbitmq-plugins enable rabbitmq_management
-RUN rabbitmq-plugins enable rabbitmq_delayed_message_exchange
-RUN rabbitmq-plugins enable rabbitmq_tracing
-RUN rabbitmq-plugins enable rabbitmq_stream
-RUN rabbitmq-plugins enable rabbitmq_stream_management
+EXPOSE 4369 5671 5672 15671 15672 25672

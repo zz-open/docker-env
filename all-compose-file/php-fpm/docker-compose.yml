@@ -87,6 +87,7 @@ x-php-fpm-build-args: &php-fpm-build-args
   INSTALL_DOCKER_CLIENT: ${PHP_FPM_INSTALL_DOCKER_CLIENT}
   INSTALL_DNSUTILS: ${PHP_FPM_INSTALL_DNSUTILS}
   INSTALL_POPPLER_UTILS: ${PHP_FPM_INSTALL_POPPLER_UTILS}
+  TZ: ${TZ}
   http_proxy:
   https_proxy:
   no_proxy:
@@ -104,8 +105,8 @@ services:
 ### PHP-FPM ##############################################
   php-fpm:
     build:
-      context: ${PHP_FPM_INIT_PATH_HOST}
-        #dockerfile: Dockerfile
+      context: ${PHP_FPM_HOST_PATH}
+      dockerfile: Dockerfile
       args:
         <<: *php-fpm-build-args
         LARADOCK_PHP_VERSION: ${PHP_FPM_VERSION}
@@ -114,7 +115,7 @@ services:
     hostname: ${PHP_FPM_HOSTNAME}
     volumes:
       - "${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}"
-      - "${PHP_FPM_INIT_PATH_HOST}/php${PHP_FPM_VERSION}.ini:/usr/local/etc/php/php.ini"
+      - "${PHP_FPM_HOST_PATH}/php${PHP_FPM_VERSION}.ini:/usr/local/etc/php/php.ini"
     expose:
       - "${PHP_FPM_HOST_PORT}:9000"
     extra_hosts:
