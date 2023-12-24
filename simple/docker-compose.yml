@@ -1,7 +1,7 @@
 version: "3.8"
 
 include:
-  - ../all-compose-file/docker-compose-common.yml
+  - ../_common/docker-compose-common.yml
   - ./docker-compose-busybox.yml
   - ./docker-compose-portainer.yml
   - ./docker-compose-mysql57.yml

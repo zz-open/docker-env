@@ -1,65 +1,6 @@
 version: '3.8'
 
-networks:
-  backend:
-    external: true
-
-x-zookeeper-env: &zookeeper-env
-  TZ: ${TZ}
-  ZOO_SERVERS: ${ZOOKEEPER_SERVERS}
-  ZOO_4LW_COMMANDS_WHITELIST: \* #stat,conf,envi
-
-x-zookeeper-build: &zookeeper-build
-  build:
-    context: ./zookeeper
-    args:
-      ZOOKEEPER_VERSION: ${ZOOKEEPER_VERSION}
-
-services:
-  zoo1:
-    <<: *zookeeper-build
-    container_name: ${ZOOKEEPER_NAME_1}
-    hostname: ${ZOOKEEPER_NAME_1}
-    ports:
-      - "${ZOOKEEPER_PORT_1}:2181"
-    environment:
-      <<: *zookeeper-env
-      ZOO_MY_ID: ${ZOOKEEPER_ID_1}
-    volumes:
-      - ${ZOOKEEPER_PATH_1}/data:/data
-      - ${ZOOKEEPER_PATH_1}/datalog:/datalog
-    networks:
-      backend:
-        ipv4_address: ${ZOOKEEPER_IP_1}
-
-  zoo2:
-    <<: *zookeeper-build
-    container_name: ${ZOOKEEPER_NAME_2}
-    hostname: ${ZOOKEEPER_NAME_2}
-    ports:
-      - "${ZOOKEEPER_PORT_2}:2181"
-    environment:
-      <<: *zookeeper-env
-      ZOO_MY_ID: ${ZOOKEEPER_ID_2}
-    volumes:
-      - ${ZOOKEEPER_PATH_2}/data:/data
-      - ${ZOOKEEPER_PATH_2}/datalog:/datalog
-    networks:
-      backend:
-        ipv4_address: ${ZOOKEEPER_IP_2}
-
-  zoo3:
-    <<: *zookeeper-build
-    container_name: ${ZOOKEEPER_NAME_3}
-    hostname: ${ZOOKEEPER_NAME_3}
-    ports:
-      - "${ZOOKEEPER_PORT_3}:2181"
-    environment:
-      <<: *zookeeper-env
-      ZOO_MY_ID: ${ZOOKEEPER_ID_3}
-    volumes:
-      - ${ZOOKEEPER_PATH_3}/data:/data
-      - ${ZOOKEEPER_PATH_3}/datalog:/datalog
-    networks:
-      backend:
-        ipv4_address: ${ZOOKEEPER_IP_3}
+include:
+  - ../_common/docker-compose-common.yml
+  - ./docker-compose-zookeeper.yml
+  - ./docker-compose-zoonavigator.yml

@@ -1,0 +1,63 @@
+version: '3.8'
+
+x-env: &env
+  TZ: ${TZ}
+  REDIS_PASSWORD: ${REDIS_PASSWORD}
+  REDIS_NODES: ${REDIS_NODES}
+  REDIS_CLUSTER_ANNOUNCE_IP: ${PUBLIC_IP}
+  REDIS_CLUSTER_DYNAMIC_IPS: no
+
+x-build: &build
+  build:
+    context: ${REDIS_CLUSTER_HOST_PATH}
+    args:
+      REDIS_CLUSTER_VERSION: ${REDIS_CLUSTER_VERSION}
+
+services:
+### REDIS NODE1 ##############################################
+  redis1:
+    <<: *build
+    container_name: ${REDIS_CONTAINER_NAME_NODE1}
+    hostname: ${REDIS_HOSTNAME_NODE1}
+    volumes:
+      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE1}/data:/bitnami/redis/data
+    ports:
+      - "${REDIS_HOST_PORT_NODE1}:${REDIS_1_PORT}"
+    environment:
+      <<: *redis-cluster-env
+      REDIS_PORT_NUMBER: ${REDIS_HOST_PORT_NODE1}
+      REDIS_CLUSTER_ANNOUNCE_PORT: ${REDIS_HOST_PORT_NODE1}
+      REDIS_CLUSTER_ANNOUNCE_BUS_PORT: ${REDIS_HOST_PORT_NODE1}
+    networks:
+      frontend:
+        ipv4_address: ${REDIS_FRONTEND_IP_NODE1}
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP_NODE1}
+
+
+  # redis6:
+  #   <<: *redis-cluster-build
+  #   container_name: ${REDIS_6_CONTAINER_NAME}
+  #   hostname: ${REDIS_6_CONTAINER_NAME}
+  #   volumes:
+  #     - ${REDIS_6_PATH}/data:/bitnami/redis/data
+  #   ports:
+  #     - "${REDIS_6_PORT}:${REDIS_6_PORT}"
+  #     - "${REDIS_6_ANNOUNCE_BUS_PORT}:${REDIS_6_ANNOUNCE_BUS_PORT}"
+  #   environment:
+  #     <<: *redis-cluster-env
+  #     REDIS_PORT_NUMBER: ${REDIS_6_PORT}
+  #     REDIS_CLUSTER_ANNOUNCE_PORT: ${REDIS_6_PORT}
+  #     REDIS_CLUSTER_ANNOUNCE_BUS_PORT: ${REDIS_6_ANNOUNCE_BUS_PORT}
+  #     REDISCLI_AUTH: ${REDIS_PASSWORD}
+  #     REDIS_CLUSTER_REPLICAS: 1
+  #     REDIS_CLUSTER_CREATOR: yes
+  #   depends_on:
+  #     - ${REDIS_1_CONTAINER_NAME}
+  #     - ${REDIS_2_CONTAINER_NAME}
+  #     - ${REDIS_3_CONTAINER_NAME}
+  #     - ${REDIS_4_CONTAINER_NAME}
+  #     - ${REDIS_5_CONTAINER_NAME}
+  #   networks:
+  #     backend:
+  #       ipv4_address: ${REDIS_6_IP}

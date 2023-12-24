@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+### HAPROXY ##############################################
+  haproxy:
+    build:
+      context: ${HAPROXY_HOST_PATH}
+    hostname: ${HAPROXY_HOSTNAME}
+    container_name: ${HAPROXY_CONTAINER_NAME}
+    privileged: true
+    ports:
+      - "${HAPROXY_HOST_HTTP_PORT}:8085"
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ./haproxy/data/docker.sock:/var/run/docker.sock
+    networks:
+      frontend:
+        ipv4_address: ${HAPROXY_FRONTEND_IP}
+      backend:
+        ipv4_address: ${HAPROXY_BACKEND_IP}

@@ -1,51 +1,5 @@
 version: "3.8"
 
 include:
-  - ../all-compose-file/docker-compose-common.yml
-  
-volumes:
-  etcd-node1:
-    driver: ${VOLUMES_DRIVER}
-  etcd-node2:
-    driver: ${VOLUMES_DRIVER}
-  etcd-node3:
-    driver: ${VOLUMES_DRIVER}
-
-services:
-
-### Certbot ##############################################
-  etcd-node1:
-    build:
-      context: ${ETCD_HOST_PATH}
-      args:
-        - ETCD_VERSION=${ETCD_VERSION}
-    container_name: ${ETCD_CONTAINER_NAME}
-    hostname: ${ETCD_HOSTNAME}
-    privileged: true
-    command:
-      - --name=${ETCD_NAME}
-      - --data-dir=/etcd_data
-      - --initial-advertise-peer-urls=http://${ETCD_NAME}:2380
-      - --listen-peer-urls=http://0.0.0.0:2380
-      - --listen-client-urls=http://0.0.0.0:2379
-      - --advertise-client-urls=http://${ETCD_NAME}:2379
-      - --heartbeat-interval=${ETCD_HEARTBEAT_INTERVAL}
-      - --election-timeout=1250
-      - --initial-cluster=${ETCD_CLUSTER}
-      - --initial-cluster-state=${ETCD_CLUSTER_STATE}
-      - --initial-cluster-token=${ETCD_TOKEN}
-    volumes:
-      - "${DATA_PATH_HOST}/etcd:/bitnami/etcd"
-      - "${ETCD_HOST_PATH}/etcd.conf.yml:/opt/bitnami/etcd/conf/etcd.conf.yml"
-    environment:
-      - ETCDCTL_API=${ETCDCTL_API}
-      - ALLOW_NONE_AUTHENTICATION=${ETCD_ALLOW_NONE_AUTHENTICATION}
-      - ETCD_ADVERTISE_CLIENT_URLS=${ETCD_ADVERTISE_CLIENT_URLS}
-    ports:
-      - "${ETCD_HOST_PORT}:2379"
-      - "${ETCD_PORT_REVERSE}:2380"
-    networks:
-      frontend:
-        ipv4_address: ${ETCD_FRONTEND_IP}
-      backend:
-        ipv4_address: ${ETCD_BACKEND_IP}
+  - ../_common/docker-compose-common.yml
+  - ./docker-compose-etcd.yml

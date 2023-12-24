@@ -11,16 +11,17 @@
 
 Full development environment based on Docker.
 
-### 工具脚本
+### Makefile
+所有项目使用Makefile管理常用命令，因为Makefile可以分别定义PHONY执行，SHELL相对麻烦
 
-初始化docker网络
+- 初始化docker网络
 ```shell
-bash _common/scripts/init-network.sh
+make init_network
 ```
 
-初始化数据目录
+- 初始化数据目录
 ```shell
-bash _common/scripts/prepare.sh
+make init_data_dir
 ```
 
 ### Simple (172.19.150.3)
@@ -61,6 +62,7 @@ bash _common/scripts/prepare.sh
 | jenkins | 172.19.150.112 | 172.19.140.112 | latest | |
 | promethus | 172.19.150.113 | 172.19.140.113 | latest | |
 | grafana | 172.19.150.114 | 172.19.140.114 | latest | |
+| application | 172.19.150.115 | 172.19.140.115 | latest | |
 
 ### LNMP (172.19.150.120)
 | service | backend ip | frontend ip | version | 备注 |
@@ -86,9 +88,48 @@ bash _common/scripts/prepare.sh
 ### ETCD CLUSTER (172.19.150.140)
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| etcd-node1 | 172.19.150.140 | 172.19.140.140 | latest | |
-| etcd-node2 | 172.19.150.141 | 172.19.140.141 | latest | |
-| etcd-node3 | 172.19.150.142 | 172.19.140.142 | latest | |
+| etcd1 | 172.19.150.140 | 172.19.140.140 | v3.5.2 | |
+| etcd2 | 172.19.150.141 | 172.19.140.141 | v3.5.2 | |
+| etcd3 | 172.19.150.142 | 172.19.140.142 | v3.5.2 | |
+| etcd可视化 | 172.19.150.143 | 172.19.140.143 | | |
+
+### ZOOKEEPER CLUSTER (172.19.150.150)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| zoo1 | 172.19.150.150 | 172.19.140.150 | latest | |
+| zoo2 | 172.19.150.151 | 172.19.140.151 | latest | |
+| zoo3 | 172.19.150.152 | 172.19.140.152 | latest | |
+| zoo可视化 | 172.19.150.153 | 172.19.140.143 | | |
+
+### REDIS SENTINEL (172.19.150.160)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| master | 172.19.150.160 | 172.19.140.160 | latest | |
+| slave1 | 172.19.150.161 | 172.19.140.161 | latest | |
+| slave2 | 172.19.150.162 | 172.19.140.162 | latest | |
+| slave3 | 172.19.150.163 | 172.19.140.163 | latest | |
+| sentinel1 | 172.19.150.164 | 172.19.140.164 | latest | |
+| sentinel2 | 172.19.150.165 | 172.19.140.165 | latest | |
+| sentinel3 | 172.19.150.166 | 172.19.140.166 | latest | |
+
+### REDIS CLUSTER (172.19.150.170)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| redis1 | 172.19.150.170 | 172.19.140.170 | latest | |
+| redis2 | 172.19.150.171 | 172.19.140.171 | latest | |
+| redis3 | 172.19.150.172 | 172.19.140.172 | latest | |
+| redis4 | 172.19.150.173 | 172.19.140.173 | latest | |
+| redis5 | 172.19.150.174 | 172.19.140.174 | latest | |
+| redis6 | 172.19.150.175 | 172.19.140.175 | latest | |
+
+### MEMCACHED CLUSTER (172.19.150.180)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| memcached1 | 172.19.150.180 | 172.19.140.180 | latest | |
+| memcached2 | 172.19.150.181 | 172.19.140.181 | latest | |
+| memcached3 | 172.19.150.182 | 172.19.140.182 | latest | |
+| haproxy1 | 172.19.150.183 | 172.19.140.183 | latest | |
+
 
 ## portainer
 密码最少12个字符

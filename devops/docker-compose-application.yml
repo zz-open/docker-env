@@ -1,31 +1,29 @@
 version: '3.8'
 
 volumes:
-  jenkins:
+  hello:
     driver: ${VOLUMES_DRIVER}
 
 services:
 
-### Jenkins ################################################
-  jenkins:
+### Go Application ################################################
+  hello:
     build:
-      context: ${JENKINS_HOST_PATH}
+      context: ${APPLICATION_HOST_PATH}
       args:
-        - JENKINS_VERSION=${JENKINS_VERSION}
-    environment:
-      - JAVA_OPTS="-Djava.awt.headless=true"
-      - TZ=${TZ}
-    container_name: ${JENKINS_CONTAINER_NAME}
-    hostname: ${JENKINS_HOSTNAME}
+        - APPLICATION_VERSION=${APPLICATION_VERSION}
+        - GO_VERSION=${APPLICATION_GO_VERSION}
+        - APPLICATION_CODE_PATH_HOST=${APPLICATION_CODE_PATH_HOST}
+        - APPLICATION_MAIN_NAME=${APPLICATION_MAIN_NAME}
+    container_name: ${APPLICATION_CONTAINER_NAME}
+    hostname: ${APPLICATION_HOSTNAME}
     privileged: true
+    environment:
+      - TZ=${TZ}
     ports:
-      - "${JENKINS_HOST_SLAVE_AGENT_PORT}:50000"
-      - "${JENKINS_HOST_HTTP_PORT}:8080"
-    volumes:
-      - ${DOCKER_SOCK_PATH_HOST}:/var/run/docker.sock
-      - ${DATA_PATH_HOST}/jenkins/jenkins_home:/var/jenkins_home
+      - "${APPLICATION_HOST_HTTP_PORT}:12000"
     networks:
       frontend:
-        ipv4_address: ${JENKINS_FRONTEND_IP}
+        ipv4_address: ${APPLICATION_FRONTEND_IP}
       backend:
-        ipv4_address: ${JENKINS_BACKEND_IP}
+        ipv4_address: ${APPLICATION_BACKEND_IP}

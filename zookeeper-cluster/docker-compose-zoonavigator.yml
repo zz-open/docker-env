@@ -1,0 +1,27 @@
+version: '3.8'
+  
+volumes:
+  zoonavigator:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+### ZOONAVIGATOR ##############################################
+  zoonavigator:
+    build:
+      context: ${ZOONAVIGATOR_HOST_PATH}
+      args:
+        - ZOONAVIGATOR_VERSION=${ZOONAVIGATOR_VERSION}
+    container_name: ${ZOONAVIGATOR_CONTAINER_NAME}
+    hostname: ${ZOONAVIGATOR_HOSTNAME}
+    privileged: true
+    ports:
+      - "${ZOONAVIGATOR_HOST_PORT}:9000"
+    environment:
+      - TZ=${TZ}
+      - CONNECTION_LOCALZK_NAME=${ZOONAVIGATOR_CONNECTION_LOCALZK_NAME}
+      - CONNECTION_LOCALZK_CONN=${ZOONAVIGATOR_CONNECTION_LOCALZK_CONN}
+    networks:
+      frontend:
+        ipv4_address: ${ZOONAVIGATOR_FRONTEND_IP}
+      backend:
+        ipv4_address: ${ZOONAVIGATOR_BACKEND_IP}

@@ -1,1 +1,0 @@
-FROM zz.harbor.com/zz/zz-hello:v1.0.0
