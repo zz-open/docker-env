@@ -1,0 +1,126 @@
+version: '3.8'
+
+volumes:
+  minio1:
+    driver: ${VOLUMES_DRIVER}
+  minio2:
+    driver: ${VOLUMES_DRIVER}
+  minio3:
+    driver: ${VOLUMES_DRIVER}
+  minio4:
+    driver: ${VOLUMES_DRIVER}
+
+x-env: &env
+  TZ: ${TZ}
+  MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+  MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+
+x-healthcheck: &healthcheck
+    test: ["CMD", "curl", "-f", "http://localhost:${MINIO_CONSOLE_PORT_CONTAINER}/minio/health/live"]
+    interval: 30s
+    timeout: 20s
+    retries: 3
+
+x-build: &build
+  build:
+    context: ${MINIO_HOST_PATH}
+    args:
+      MINIO_VERSION: ${MINIO_VERSION}
+
+x-variable:
+  command: &command 'server http://${MINIO_CONTAINER_NAME_PREFIX}{1...4}/${MINIO_DATA_DIR_NAME_PREFIX}{1...2} --console-address ":${MINIO_CONSOLE_PORT_CONTAINER}"
+'
+  extra_hosts: &extra_hosts
+    - "${MINIO_CONTAINER_NAME_NODE1}:${MINIO_BACKEND_IP_NODE1}"
+    - "${MINIO_CONTAINER_NAME_NODE2}:${MINIO_BACKEND_IP_NODE2}"
+    - "${MINIO_CONTAINER_NAME_NODE3}:${MINIO_BACKEND_IP_NODE3}"
+    - "${MINIO_CONTAINER_NAME_NODE4}:${MINIO_BACKEND_IP_NODE4}"
+
+services:
+### MINIO NODE1 ##############################################
+  minio1:
+    <<: *build
+    container_name: ${MINIO_CONTAINER_NAME_NODE1}
+    hostname: ${MINIO_HOSTNAME_NODE1}
+    command: *command
+    extra_hosts: *extra_hosts
+    ports:
+      - "${MINIO_CONSOLE_HOST_PORT_NODE1}:${MINIO_CONSOLE_PORT_CONTAINER}"
+    volumes:
+      - ${DATA_PATH_HOST}/${MINIO_CONTAINER_NAME_NODE1}/${MINIO_DATA_DIR_NAME_PREFIX}1:/${MINIO_DATA_DIR_NAME_PREFIX}1
+      - ${DATA_PATH_HOST}/${MINIO_CONTAINER_NAME_NODE1}/${MINIO_DATA_DIR_NAME_PREFIX}2:/${MINIO_DATA_DIR_NAME_PREFIX}2
+    environment:
+      <<: *env
+    healthcheck:
+      <<: *healthcheck
+    networks:
+      frontend:
+        ipv4_address: ${MINIO_FRONTEND_IP_NODE1}
+      backend:
+        ipv4_address: ${MINIO_BACKEND_IP_NODE1}
+
+### MINIO NODE2 ##############################################
+  minio2:
+    <<: *build
+    container_name: ${MINIO_CONTAINER_NAME_NODE2}
+    hostname: ${MINIO_HOSTNAME_NODE2}
+    command: *command
+    extra_hosts: *extra_hosts
+    ports:
+      - "${MINIO_CONSOLE_HOST_PORT_NODE2}:${MINIO_CONSOLE_PORT_CONTAINER}"
+    volumes:
+      - ${DATA_PATH_HOST}/${MINIO_CONTAINER_NAME_NODE2}/${MINIO_DATA_DIR_NAME_PREFIX}1:/${MINIO_DATA_DIR_NAME_PREFIX}1
+      - ${DATA_PATH_HOST}/${MINIO_CONTAINER_NAME_NODE2}/${MINIO_DATA_DIR_NAME_PREFIX}2:/${MINIO_DATA_DIR_NAME_PREFIX}2
+    environment:
+      <<: *env
+    healthcheck:
+      <<: *healthcheck
+    networks:
+      frontend:
+        ipv4_address: ${MINIO_FRONTEND_IP_NODE2}
+      backend:
+        ipv4_address: ${MINIO_BACKEND_IP_NODE2}
+
+### MINIO NODE3 ##############################################
+  minio3:
+    <<: *build
+    container_name: ${MINIO_CONTAINER_NAME_NODE3}
+    hostname: ${MINIO_HOSTNAME_NODE3}
+    command: *command
+    extra_hosts: *extra_hosts
+    ports:
+      - "${MINIO_CONSOLE_HOST_PORT_NODE3}:${MINIO_CONSOLE_PORT_CONTAINER}"
+    volumes:
+      - ${DATA_PATH_HOST}/${MINIO_CONTAINER_NAME_NODE3}/${MINIO_DATA_DIR_NAME_PREFIX}1:/${MINIO_DATA_DIR_NAME_PREFIX}1
+      - ${DATA_PATH_HOST}/${MINIO_CONTAINER_NAME_NODE3}/${MINIO_DATA_DIR_NAME_PREFIX}2:/${MINIO_DATA_DIR_NAME_PREFIX}2
+    environment:
+      <<: *env
+    healthcheck:
+      <<: *healthcheck
+    networks:
+      frontend:
+        ipv4_address: ${MINIO_FRONTEND_IP_NODE3}
+      backend:
+        ipv4_address: ${MINIO_BACKEND_IP_NODE3}
+
+### MINIO NODE4 ##############################################
+  minio4:
+    <<: *build
+    container_name: ${MINIO_CONTAINER_NAME_NODE4}
+    hostname: ${MINIO_HOSTNAME_NODE4}
+    command: *command
+    extra_hosts: *extra_hosts
+    ports:
+      - "${MINIO_CONSOLE_HOST_PORT_NODE4}:${MINIO_CONSOLE_PORT_CONTAINER}"
+    volumes:
+      - ${DATA_PATH_HOST}/${MINIO_CONTAINER_NAME_NODE4}/${MINIO_DATA_DIR_NAME_PREFIX}1:/${MINIO_DATA_DIR_NAME_PREFIX}1
+      - ${DATA_PATH_HOST}/${MINIO_CONTAINER_NAME_NODE4}/${MINIO_DATA_DIR_NAME_PREFIX}2:/${MINIO_DATA_DIR_NAME_PREFIX}2
+    environment:
+      <<: *env
+    healthcheck:
+      <<: *healthcheck
+    networks:
+      frontend:
+        ipv4_address: ${MINIO_FRONTEND_IP_NODE4}
+      backend:
+        ipv4_address: ${MINIO_BACKEND_IP_NODE4}

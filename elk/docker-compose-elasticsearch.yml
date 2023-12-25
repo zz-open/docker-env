@@ -1,11 +1,7 @@
 version: "3.8"
 
-networks:
-  backend:
-    external: true
-
-services:
-  elasticsearch:
+### ElasticSearch ########################################
+elasticsearch:
     build:
       context: ./elasticsearch
       args:

@@ -130,6 +130,38 @@ make init_data_dir
 | memcached3 | 172.19.150.182 | 172.19.140.182 | latest | |
 | haproxy1 | 172.19.150.183 | 172.19.140.183 | latest | |
 
+### MINIO CLUSTER (172.19.150.190)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| minio1 | 172.19.150.190 | 172.19.140.190 | latest | |
+| minio2 | 172.19.150.191 | 172.19.140.191 | latest | |
+| minio3 | 172.19.150.192 | 172.19.140.192 | latest | |
+| nginx | 172.19.150.193 | 172.19.140.193 | latest | |
+
+### NSQ CLUSTER (172.19.150.200)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| nsqlookupd1 | 172.19.150.200 | 172.19.140.200 | latest | |
+| nsqlookupd2 | 172.19.150.201 | 172.19.140.201 | latest | |
+| nsqd1 | 172.19.150.202 | 172.19.140.202 | latest | |
+| nsqd2 | 172.19.150.203 | 172.19.140.203 | latest | |
+| nsqd3 | 172.19.150.204 | 172.19.140.204 | latest | |
+| nsqadmin | 172.19.150.205 | 172.19.140.205 | latest | |
+
+### RABBITMQ CLUSTER (172.19.150.210)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| rabbitmq1 | 172.19.150.210 | 172.19.140.210 | latest | |
+| rabbitmq2 | 172.19.150.211 | 172.19.140.211 | latest | |
+| rabbitmq3 | 172.19.150.212 | 172.19.140.212 | latest | |
+
+### ROCKETMQ CLUSTER (172.19.150.220)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| rocketmq1 | 172.19.150.220 | 172.19.140.220 | latest | |
+| rocketmq2 | 172.19.150.220 | 172.19.140.220 | latest | |
+| rocketmq3 | 172.19.150.220 | 172.19.140.220 | latest | |
+
 
 ## portainer
 密码最少12个字符

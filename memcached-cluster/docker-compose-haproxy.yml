@@ -1,5 +1,9 @@
 version: '3.8'
 
+volumes:
+  haproxy:
+    driver: ${VOLUMES_DRIVER}
+
 services:
 ### HAPROXY ##############################################
   haproxy:

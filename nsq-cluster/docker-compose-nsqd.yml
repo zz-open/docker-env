@@ -1,0 +1,96 @@
+version: '3.8'
+
+volumes:
+  nsq1:
+    driver: ${VOLUMES_DRIVER}
+  nsq2:
+    driver: ${VOLUMES_DRIVER}
+  nsq3:
+    driver: ${VOLUMES_DRIVER}
+
+x-env: &env
+  TZ: ${TZ}
+
+x-build: &build
+  build:
+    context: ${NSQ_HOST_PATH}
+    args:
+      NSQ_VERSION: ${NSQ_VERSION}
+
+services:
+### NSQ NODE1 ##############################################
+  nsq1:
+    <<: *build
+    container_name: ${NSQ_CONTAINER_NAME_NODE1}
+    hostname: ${NSQ_HOSTNAME_NODE1}
+    command: "/nsqd -broadcast-address=192.168.3.200 --lookupd-tcp-address=nsqlookupd1:4160 --lookupd-tcp-address=nsqlookupd1:5160 -tcp-address=0.0.0.0:5150 -data-path=${NSQ_DATA_PATH_CONTAINER} -http-address=0.0.0.0:5151"
+    extra_hosts: *extra_hosts
+    ports:
+      - ${NSQ_TCP_PORT_1}:${NSQ_TCP_PORT_1}
+      - ${NSQ_HTTP_PORT_1}:${NSQ_HTTP_PORT_1}
+    volumes:
+      - ${DATA_PATH_HOST}/${MINIO_CONTAINER_NAME_NODE1}/${MINIO_DATA_DIR_NAME_PREFIX}1:/${MINIO_DATA_DIR_NAME_PREFIX}1
+      - ${DATA_PATH_HOST}/${MINIO_CONTAINER_NAME_NODE1}/${MINIO_DATA_DIR_NAME_PREFIX}2:/${MINIO_DATA_DIR_NAME_PREFIX}2
+    environment:
+      <<: *env
+    healthcheck:
+      <<: *healthcheck
+    networks:
+      frontend:
+        ipv4_address: ${MINIO_FRONTEND_IP_NODE1}
+      backend:
+        ipv4_address: ${MINIO_BACKEND_IP_NODE1}
+
+  nsq1:
+    image: nsqio/nsq:latest
+    container_name: nsq1
+    hostname: nsq1
+    command: ${NSQ_COMMAND_1}
+    ports:
+      - ${NSQ_TCP_PORT_1}:${NSQ_TCP_PORT_1}
+      - ${NSQ_HTTP_PORT_1}:${NSQ_HTTP_PORT_1}
+    volumes:
+      - ./nsq1/data/:/usr/local/nsq/bin/data
+    environment:
+      - TZ=${TZ}
+    depends_on:
+      - nsqlookupd1
+      - nsqlookupd2
+    networks:
+      - nsq-cluster-network
+
+  nsq2:
+    image: nsqio/nsq:latest
+    container_name: nsq2
+    hostname: nsq2
+    command: ${NSQ_COMMAND_2}
+    ports:
+      - ${NSQ_TCP_PORT_2}:${NSQ_TCP_PORT_2}
+      - ${NSQ_HTTP_PORT_2}:${NSQ_HTTP_PORT_2}
+    volumes:
+      - ./nsq2/data/:/usr/local/nsq/bin/data
+    environment:
+      - TZ=${TZ}
+    depends_on:
+      - nsqlookupd1
+      - nsqlookupd2
+    networks:
+      nsq-cluster-network:
+
+  nsq3:
+    image: nsqio/nsq:latest
+    container_name: nsq3
+    hostname: nsq3
+    command: ${NSQ_COMMAND_3}
+    ports:
+      - ${NSQ_TCP_PORT_3}:${NSQ_TCP_PORT_3}
+      - ${NSQ_HTTP_PORT_3}:${NSQ_HTTP_PORT_3}
+    volumes:
+      - ./nsq3/data/:/usr/local/nsq/bin/data
+    environment:
+      - TZ=${TZ}
+    depends_on:
+      - nsqlookupd1
+      - nsqlookupd2
+    networks:
+      nsq-cluster-network:

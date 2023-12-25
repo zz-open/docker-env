@@ -1,0 +1,25 @@
+version: "3.8"
+
+networks:
+  backend:
+    external: true
+
+services:
+  dtm:
+    build:
+      context: ./dtm
+    hostname: dtm
+    container_name: dtm
+    environment:
+      TZ: ${TZ}
+      STORE_DRIVER: mysql
+      STORE_HOST: localhost
+      STORE_USER: root
+      STORE_PASSWORD: ''
+      STORE_PORT: 3306
+    ports:
+      - "${DTM_HTTP_PORT}:36789"
+      - "${DTM_GRPC_PORT}:36790"
+    networks:
+      backend:
+        ipv4_address: ${DTM_IP}

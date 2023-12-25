@@ -1,0 +1,2 @@
+ARG NSQ_VERSION=latest
+FROM nsqio/nsq:${NSQ_VERSION}
