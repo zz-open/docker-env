@@ -1,5 +1,9 @@
 version: '3.8'
 
+volumes:
+  redis1:
+    driver: ${VOLUMES_DRIVER}
+
 x-env: &env
   TZ: ${TZ}
   REDIS_PASSWORD: ${REDIS_PASSWORD}
@@ -9,9 +13,9 @@ x-env: &env
 
 x-build: &build
   build:
-    context: ${REDIS_CLUSTER_HOST_PATH}
+    context: ${REDIS_HOST_PATH}
     args:
-      REDIS_CLUSTER_VERSION: ${REDIS_CLUSTER_VERSION}
+      REDIS_VERSION: ${REDIS_VERSION}
 
 services:
 ### REDIS NODE1 ##############################################
@@ -20,44 +24,167 @@ services:
     container_name: ${REDIS_CONTAINER_NAME_NODE1}
     hostname: ${REDIS_HOSTNAME_NODE1}
     volumes:
-      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE1}/data:/bitnami/redis/data
+      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE1}:/data
+      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE1}:/var/log/redis
+      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
     ports:
-      - "${REDIS_HOST_PORT_NODE1}:${REDIS_1_PORT}"
+      - "${REDIS_HOST_PORT_NODE1}:6379"
     environment:
-      <<: *redis-cluster-env
-      REDIS_PORT_NUMBER: ${REDIS_HOST_PORT_NODE1}
-      REDIS_CLUSTER_ANNOUNCE_PORT: ${REDIS_HOST_PORT_NODE1}
-      REDIS_CLUSTER_ANNOUNCE_BUS_PORT: ${REDIS_HOST_PORT_NODE1}
+      <<: *env
     networks:
       frontend:
         ipv4_address: ${REDIS_FRONTEND_IP_NODE1}
       backend:
         ipv4_address: ${REDIS_BACKEND_IP_NODE1}
+### REDIS NODE2 ##############################################
+  redis2:
+    <<: *build
+    container_name: ${REDIS_CONTAINER_NAME_NODE2}
+    hostname: ${REDIS_HOSTNAME_NODE2}
+    volumes:
+      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE2}:/data
+      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE2}:/var/log/redis
+      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+    ports:
+      - "${REDIS_HOST_PORT_NODE2}:6379"
+    environment:
+      <<: *env
+    networks:
+      frontend:
+        ipv4_address: ${REDIS_FRONTEND_IP_NODE2}
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP_NODE2}
+
+### REDIS NODE3 ##############################################
+  redis3:
+    <<: *build
+    container_name: ${REDIS_CONTAINER_NAME_NODE3}
+    hostname: ${REDIS_HOSTNAME_NODE3}
+    volumes:
+      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE3}:/data
+      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE3}:/var/log/redis
+      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+    ports:
+      - "${REDIS_HOST_PORT_NODE3}:6379"
+    environment:
+      <<: *env
+    networks:
+      frontend:
+        ipv4_address: ${REDIS_FRONTEND_IP_NODE3}
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP_NODE3}
+
+### REDIS NODE4 ##############################################
+  redis4:
+    <<: *build
+    container_name: ${REDIS_CONTAINER_NAME_NODE4}
+    hostname: ${REDIS_HOSTNAME_NODE4}
+    volumes:
+      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE4}:/data
+      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE4}:/var/log/redis
+      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+    ports:
+      - "${REDIS_HOST_PORT_NODE4}:6379"
+    environment:
+      <<: *env
+    networks:
+      frontend:
+        ipv4_address: ${REDIS_FRONTEND_IP_NODE4}
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP_NODE4}
+
+### REDIS NODE5 ##############################################
+  redis5:
+    <<: *build
+    container_name: ${REDIS_CONTAINER_NAME_NODE5}
+    hostname: ${REDIS_HOSTNAME_NODE5}
+    volumes:
+      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE5}:/data
+      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE5}:/var/log/redis
+      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+    ports:
+      - "${REDIS_HOST_PORT_NODE5}:6379"
+    environment:
+      <<: *env
+    networks:
+      frontend:
+        ipv4_address: ${REDIS_FRONTEND_IP_NODE5}
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP_NODE5}
+
+### REDIS NODE6 ##############################################
+  redis6:
+    <<: *build
+    container_name: ${REDIS_CONTAINER_NAME_NODE6}
+    hostname: ${REDIS_HOSTNAME_NODE6}
+    volumes:
+      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE6}:/data
+      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE6}:/var/log/redis
+      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+    ports:
+      - "${REDIS_HOST_PORT_NODE6}:6379"
+    environment:
+      <<: *env
+    networks:
+      frontend:
+        ipv4_address: ${REDIS_FRONTEND_IP_NODE6}
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP_NODE6}
+
+### REDIS NODE7 ##############################################
+  redis7:
+    <<: *build
+    container_name: ${REDIS_CONTAINER_NAME_NODE7}
+    hostname: ${REDIS_HOSTNAME_NODE7}
+    volumes:
+      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE7}:/data
+      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE7}:/var/log/redis
+      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+    ports:
+      - "${REDIS_HOST_PORT_NODE7}:6379"
+    environment:
+      <<: *env
+    networks:
+      frontend:
+        ipv4_address: ${REDIS_FRONTEND_IP_NODE7}
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP_NODE7}
 
 
-  # redis6:
-  #   <<: *redis-cluster-build
-  #   container_name: ${REDIS_6_CONTAINER_NAME}
-  #   hostname: ${REDIS_6_CONTAINER_NAME}
-  #   volumes:
-  #     - ${REDIS_6_PATH}/data:/bitnami/redis/data
-  #   ports:
-  #     - "${REDIS_6_PORT}:${REDIS_6_PORT}"
-  #     - "${REDIS_6_ANNOUNCE_BUS_PORT}:${REDIS_6_ANNOUNCE_BUS_PORT}"
-  #   environment:
-  #     <<: *redis-cluster-env
-  #     REDIS_PORT_NUMBER: ${REDIS_6_PORT}
-  #     REDIS_CLUSTER_ANNOUNCE_PORT: ${REDIS_6_PORT}
-  #     REDIS_CLUSTER_ANNOUNCE_BUS_PORT: ${REDIS_6_ANNOUNCE_BUS_PORT}
-  #     REDISCLI_AUTH: ${REDIS_PASSWORD}
-  #     REDIS_CLUSTER_REPLICAS: 1
-  #     REDIS_CLUSTER_CREATOR: yes
-  #   depends_on:
-  #     - ${REDIS_1_CONTAINER_NAME}
-  #     - ${REDIS_2_CONTAINER_NAME}
-  #     - ${REDIS_3_CONTAINER_NAME}
-  #     - ${REDIS_4_CONTAINER_NAME}
-  #     - ${REDIS_5_CONTAINER_NAME}
-  #   networks:
-  #     backend:
-  #       ipv4_address: ${REDIS_6_IP}
+  ### REDIS NODE8 ##############################################
+  redis8:
+    <<: *build
+    container_name: ${REDIS_CONTAINER_NAME_NODE8}
+    hostname: ${REDIS_HOSTNAME_NODE8}
+    volumes:
+      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE8}:/data
+      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE8}:/var/log/redis
+      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+    ports:
+      - "${REDIS_HOST_PORT_NODE8}:6379"
+    environment:
+      <<: *env
+    networks:
+      frontend:
+        ipv4_address: ${REDIS_FRONTEND_IP_NODE8}
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP_NODE8}
+
+  ### REDIS NODE9 ##############################################
+  redis9:
+    <<: *build
+    container_name: ${REDIS_CONTAINER_NAME_NODE9}
+    hostname: ${REDIS_HOSTNAME_NODE9}
+    volumes:
+      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE9}:/data
+      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE9}:/var/log/redis
+      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+    ports:
+      - "${REDIS_HOST_PORT_NODE9}:6379"
+    environment:
+      <<: *env
+    networks:
+      frontend:
+        ipv4_address: ${REDIS_FRONTEND_IP_NODE9}
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP_NODE9}

@@ -10,7 +10,7 @@ help:
 	@echo "    help                     : Show help"
 	@echo "    test                     : Test ..."
 	@echo "    build      				: build"
-	@echo "    start                    : 启动集群"
+	@echo "    start                    : 启动所有服务"
 	@echo "    start-zoonavigator       : 启动zoonavigator可视化"
 
 test:

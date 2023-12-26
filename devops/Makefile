@@ -23,10 +23,10 @@ test:
 
 .PHONY: gitlab_initial_root_password jenkins_initial_admin_password
 gitlab_initial_root_password:
-	@${DOCKER_COMPOSE_EXEC} -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
+	@${DOCKER_COMPOSE_EXEC} gitlab grep 'Password:' /etc/gitlab/initial_root_password
 
 jenkins_initial_admin_password:
-	@${DOCKER_COMPOSE_EXEC} -it jenkins bash -c "cat /var/jenkins_home/secrets/initialAdminPassword"
+	@${DOCKER_COMPOSE_EXEC} jenkins bash -c "cat /var/jenkins_home/secrets/initialAdminPassword"
 
 .PHONY: replace_conf build tag push
 replace_conf:

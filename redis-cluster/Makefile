@@ -1,7 +1,7 @@
 include .env
 include ../_common/common.mk
 
-CONTAINERS=${REDIS_CONTAINER_NAME_NODE1} ${REDIS_CONTAINER_NAME_NODE2} ${REDIS_CONTAINER_NAME_NODE3} ${REDIS_CONTAINER_NAME_NODE4} ${REDIS_CONTAINER_NAME_NODE5} ${REDIS_CONTAINER_NAME_NODE6}
+CONTAINERS=${REDIS_CONTAINER_NAME_NODE1} ${REDIS_CONTAINER_NAME_NODE2} ${REDIS_CONTAINER_NAME_NODE3} ${REDIS_CONTAINER_NAME_NODE4} ${REDIS_CONTAINER_NAME_NODE5} ${REDIS_CONTAINER_NAME_NODE6} ${REDIS_CONTAINER_NAME_NODE7} ${REDIS_CONTAINER_NAME_NODE8} ${REDIS_CONTAINER_NAME_NODE9} 
 
 .PHONY: help test
 help:
@@ -9,8 +9,8 @@ help:
 	@echo "options and effects:"
 	@echo "    help                     : Show help"
 	@echo "    test                     : Test ..."
-	@echo "    build      				: build"
-	@echo "    start                    : 启动集群"
+	@echo "    build                    : build"
+	@echo "    start                    : 启动所有服务"
 
 test:
 	@echo "test ..."

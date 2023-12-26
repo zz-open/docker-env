@@ -13,6 +13,7 @@ services:
         NGINX_VERSION: ${NGINX_VERSION}
     container_name: ${NGINX_CONTAINER_NAME}
     hostname: ${NGINX_HOSTNAME}
+    privileged: true
     ports:
       - "${NGINX_HOST_HTTP_PORT}:9000"
     volumes:

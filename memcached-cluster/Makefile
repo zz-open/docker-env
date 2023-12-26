@@ -9,8 +9,8 @@ help:
 	@echo "options and effects:"
 	@echo "    help                     : Show help"
 	@echo "    test                     : Test ..."
-	@echo "    build      				: build"
-	@echo "    start                    : 启动集群"
+	@echo "    build                    : build"
+	@echo "    start                    : 启动所有服务"
 
 test:
 	@echo "test ..."

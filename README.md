@@ -3,6 +3,7 @@
 - [清华 docker](https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/)
 - [阿里 docker](https://developer.aliyun.com/mirror/docker-ce?spm=a2c6h.13651102.0.0.57e31b11IGkBRU)
 - [网易 docker](https://mirrors.163.com/docker-ce)
+- [网易 debian](https://mirrors.163.com/.help/debian.html)
 - [火山 docker](https://developer.volcengine.com/articles/7119384305456906277)
 - [清华 ubuntu](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
 - [清华 debian](https://mirrors.tuna.tsinghua.edu.cn/help/debian/)
@@ -23,8 +24,8 @@ make init_network
 ```shell
 make init_data_dir
 ```
-
-### Simple (172.19.150.3)
+## 服务清单
+### SIMPLE (172.19.150.3)
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | busybox | 172.19.150.3 | 172.19.140.3 | latest | |
@@ -43,18 +44,12 @@ make init_data_dir
 | mongo | 172.19.150.16 | 172.19.140.16 | latest |
 | rabbitmq | 172.19.150.17 | 172.19.140.17 | latest |
 | soketi | 172.19.150.18 | 172.19.140.18 | latest |
-| nats | 172.19.150.19 | 172.19.140.19 | latest |
 | caddy | 172.19.150.20 | 172.19.140.20 | latest |\
 | postgres-postgis | 172.19.150.21 | 172.19.140.21 | latest |
 | beanstalkd | 172.19.150.22 | 172.19.140.22 | latest |
 | beanstalkd-console | 172.19.150.23 | 172.19.140.23 | latest |
 
-
-
-| traefik | 172.19.150.16 | 172.19.140.16 | latest |
-| golang | 172.19.150.26 | 172.19.140.26 | latest |
-
-### DevOps (172.19.150.110)
+### DEVOPS (172.19.150.110)
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | gitlab | 172.19.150.110 | 172.19.140.110 | latest | |
@@ -99,7 +94,7 @@ make init_data_dir
 | zoo1 | 172.19.150.150 | 172.19.140.150 | latest | |
 | zoo2 | 172.19.150.151 | 172.19.140.151 | latest | |
 | zoo3 | 172.19.150.152 | 172.19.140.152 | latest | |
-| zoo可视化 | 172.19.150.153 | 172.19.140.143 | | |
+| zoonavagitor | 172.19.150.153 | 172.19.140.143 | | |
 
 ### REDIS SENTINEL (172.19.150.160)
 | service | backend ip | frontend ip | version | 备注 |
@@ -121,6 +116,10 @@ make init_data_dir
 | redis4 | 172.19.150.173 | 172.19.140.173 | latest | |
 | redis5 | 172.19.150.174 | 172.19.140.174 | latest | |
 | redis6 | 172.19.150.175 | 172.19.140.175 | latest | |
+| redis7 | 172.19.150.176 | 172.19.140.176 | latest | |
+| redis8 | 172.19.150.177 | 172.19.140.177 | latest | |
+| redis9 | 172.19.150.178 | 172.19.140.178 | latest | |
+| redis-box | 172.19.150.179 | 172.19.140.179 | latest | |
 
 ### MEMCACHED CLUSTER (172.19.150.180)
 | service | backend ip | frontend ip | version | 备注 |
@@ -161,6 +160,22 @@ make init_data_dir
 | rocketmq1 | 172.19.150.220 | 172.19.140.220 | latest | |
 | rocketmq2 | 172.19.150.220 | 172.19.140.220 | latest | |
 | rocketmq3 | 172.19.150.220 | 172.19.140.220 | latest | |
+
+### NATS CLUSTER (172.19.150.230)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| nats1 | 172.19.150.230 | 172.19.140.230 | latest | |
+| nats2 | 172.19.150.231 | 172.19.140.231 | latest | |
+| nats3 | 172.19.150.232 | 172.19.140.232 | latest | |
+| nats-box | 172.19.150.233 | 172.19.140.233 | latest | |
+
+### TRAEFIK (172.19.150.240)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| traefik | 172.19.150.240 | 172.19.140.240 | latest |
+| app1 | 172.19.150.241 | 172.19.140.241 | latest |
+| app2 | 172.19.150.242 | 172.19.140.242 | latest |
+| app3 | 172.19.150.243 | 172.19.140.243 | latest |
 
 
 ## portainer

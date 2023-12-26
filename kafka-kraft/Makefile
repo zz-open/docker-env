@@ -10,7 +10,7 @@ help:
 	@echo "    help                     : Show help"
 	@echo "    test                     : Test ..."
 	@echo "    build      				: build"
-	@echo "    start                    : 启动集群"
+	@echo "    start                    : 启动所有服务"
 
 test:
 	@echo "test ..."

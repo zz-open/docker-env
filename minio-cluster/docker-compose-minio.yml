@@ -27,14 +27,21 @@ x-build: &build
     args:
       MINIO_VERSION: ${MINIO_VERSION}
 
-x-variable:
-  command: &command 'server http://${MINIO_CONTAINER_NAME_PREFIX}{1...4}/${MINIO_DATA_DIR_NAME_PREFIX}{1...2} --console-address ":${MINIO_CONSOLE_PORT_CONTAINER}"
-'
-  extra_hosts: &extra_hosts
-    - "${MINIO_CONTAINER_NAME_NODE1}:${MINIO_BACKEND_IP_NODE1}"
-    - "${MINIO_CONTAINER_NAME_NODE2}:${MINIO_BACKEND_IP_NODE2}"
-    - "${MINIO_CONTAINER_NAME_NODE3}:${MINIO_BACKEND_IP_NODE3}"
-    - "${MINIO_CONTAINER_NAME_NODE4}:${MINIO_BACKEND_IP_NODE4}"
+x-command: &command "server --console-address ':${MINIO_CONSOLE_PORT_CONTAINER}' http://${MINIO_CONTAINER_NAME_PREFIX}{1...4}/${MINIO_DATA_DIR_NAME_PREFIX}{1...2}"
+
+x-labels: &labels
+  - "traefik.enable=true"
+  - "traefik.http.routers.minio.entrypoints=${TRAEFIK_ENTRYPOINTS_MINIO_API}"
+  - "traefik.http.routers.minio.rule=Host(`localhost`)"
+  - "traefik.http.services.minio.loadbalancer.server.port=${MINIO_CONSOLE_PORT_CONTAINER}"
+  - "traefik.http.services.minio.loadbalancer.server.scheme=http"
+  - "traefik.http.services.minio.loadbalancer.passhostheader=true"
+
+x-extra_hosts: &extra_hosts
+  - "${MINIO_CONTAINER_NAME_NODE1}:${MINIO_BACKEND_IP_NODE1}"
+  - "${MINIO_CONTAINER_NAME_NODE2}:${MINIO_BACKEND_IP_NODE2}"
+  - "${MINIO_CONTAINER_NAME_NODE3}:${MINIO_BACKEND_IP_NODE3}"
+  - "${MINIO_CONTAINER_NAME_NODE4}:${MINIO_BACKEND_IP_NODE4}"
 
 services:
 ### MINIO NODE1 ##############################################
@@ -43,7 +50,9 @@ services:
     container_name: ${MINIO_CONTAINER_NAME_NODE1}
     hostname: ${MINIO_HOSTNAME_NODE1}
     command: *command
+    labels: *labels
     extra_hosts: *extra_hosts
+    privileged: true
     ports:
       - "${MINIO_CONSOLE_HOST_PORT_NODE1}:${MINIO_CONSOLE_PORT_CONTAINER}"
     volumes:
@@ -66,6 +75,7 @@ services:
     hostname: ${MINIO_HOSTNAME_NODE2}
     command: *command
     extra_hosts: *extra_hosts
+    privileged: true
     ports:
       - "${MINIO_CONSOLE_HOST_PORT_NODE2}:${MINIO_CONSOLE_PORT_CONTAINER}"
     volumes:
@@ -88,6 +98,7 @@ services:
     hostname: ${MINIO_HOSTNAME_NODE3}
     command: *command
     extra_hosts: *extra_hosts
+    privileged: true
     ports:
       - "${MINIO_CONSOLE_HOST_PORT_NODE3}:${MINIO_CONSOLE_PORT_CONTAINER}"
     volumes:
@@ -110,6 +121,7 @@ services:
     hostname: ${MINIO_HOSTNAME_NODE4}
     command: *command
     extra_hosts: *extra_hosts
+    privileged: true
     ports:
       - "${MINIO_CONSOLE_HOST_PORT_NODE4}:${MINIO_CONSOLE_PORT_CONTAINER}"
     volumes:

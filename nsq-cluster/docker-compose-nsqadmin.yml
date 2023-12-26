@@ -12,6 +12,7 @@ services:
     container_name: ${NSQADMIN_CONTAINER_NAME}
     hostname: ${NSQADMIN_HOSTNAME}
     command: "/nsqadmin --lookupd-http-address=${NSQLOOPUPD_CONTAINER_NAME_NODE1}:${NSQLOOKUPD_HTTP_PORT_CONTAINER} --lookupd-http-address=${NSQLOOPUPD_CONTAINER_NAME_NODE2}:${NSQLOOKUPD_HTTP_PORT_CONTAINER}"
+    privileged: true
     ports:
       - "${NSQADMIN_HOST_HTTP_PORT}:4171"
     environment:

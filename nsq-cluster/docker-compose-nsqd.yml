@@ -25,6 +25,7 @@ services:
     hostname: ${NSQ_HOSTNAME_NODE1}
     command: "/nsqd -broadcast-address=192.168.3.200 --lookupd-tcp-address=nsqlookupd1:4160 --lookupd-tcp-address=nsqlookupd1:5160 -tcp-address=0.0.0.0:5150 -data-path=${NSQ_DATA_PATH_CONTAINER} -http-address=0.0.0.0:5151"
     extra_hosts: *extra_hosts
+    privileged: true
     ports:
       - ${NSQ_TCP_PORT_1}:${NSQ_TCP_PORT_1}
       - ${NSQ_HTTP_PORT_1}:${NSQ_HTTP_PORT_1}

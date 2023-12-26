@@ -15,7 +15,7 @@ help:
 	@echo "    help                     : Show help"
 	@echo "    test                     : Test ..."
 	@echo "    build      				: build"
-	@echo "    start                    : 启动集群"
+	@echo "    start                    : 启动所有服务"
 	@echo "    list_cluster_member      : 列出集群Member"
 	@echo "    etcd_ip                  : 获取所有etcd容器ip"
 	@echo "    ca                       : 生成 root ca"

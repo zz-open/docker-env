@@ -4,7 +4,7 @@ volumes:
   php-fpm:
     driver: ${VOLUMES_DRIVER}
 
-x-php-fpm-build-args: &php-fpm-build-args
+x-build-args: &build-args
   BASE_IMAGE_TAG_PREFIX: ${PHP_FPM_BASE_IMAGE_TAG_PREFIX}
   LARADOCK_PHALCON_VERSION: ${PHALCON_VERSION}
   INSTALL_BZ2: ${PHP_FPM_INSTALL_BZ2}
@@ -92,7 +92,7 @@ x-php-fpm-build-args: &php-fpm-build-args
   https_proxy:
   no_proxy:
 
-x-php-fpm-environment: &php-fpm-environment
+x-env: &env
   PHP_IDE_CONFIG: ${PHP_IDE_CONFIG}
   DOCKER_HOST: tcp://docker-in-docker:2376
   DOCKER_TLS_VERIFY: 1
@@ -108,7 +108,7 @@ services:
       context: ${PHP_FPM_HOST_PATH}
       dockerfile: Dockerfile
       args:
-        <<: *php-fpm-build-args
+        <<: *build-args
         LARADOCK_PHP_VERSION: ${PHP_FPM_VERSION}
         CHANGE_SOURCE: ${PHP_FPM_CHANGE_SOURCE}
     container_name: ${PHP_FPM_CONTAINER_NAME}
@@ -121,7 +121,7 @@ services:
     extra_hosts:
       - "dockerhost:${DOCKER_HOST_IP}"
     environment:
-      <<: *php-fpm-environment
+      <<: *env
     networks:
       frontend:
         ipv4_address: ${PHP_FPM_FRONTEND_IP}

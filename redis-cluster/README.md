@@ -3,6 +3,8 @@
 [Dockerfile github](https://github.com/bitnami/containers/blob/main/bitnami/redis-cluster/README.md)
 redis cluster方式搭建集群
 
+## 特点
+- 三主六从
 
 # 问题
 ## 如何支持外网访问

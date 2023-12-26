@@ -3,4 +3,4 @@ version: '3.8'
 include:
   - ../_common/docker-compose-common.yml
   - ./docker-compose-minio.yml
-  - ./docker-compose-nginx.yml
+  - ./docker-compose-traefik.yml

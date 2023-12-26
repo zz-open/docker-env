@@ -1,0 +1,6 @@
+deb http://mirrors.aliyun.com/debian-archive/debian stretch main contrib non-free
+deb http://mirrors.aliyun.com/debian-archive/debian stretch-backports main
+deb http://mirrors.aliyun.com/debian-archive/debian-security stretch/updates main
+deb-src http://mirrors.aliyun.com/debian-archive/debian stretch main
+deb-src http://mirrors.aliyun.com/debian-archive/debian stretch-backports main
+deb-src http://mirrors.aliyun.com/debian-archive/debian-security stretch/updates main

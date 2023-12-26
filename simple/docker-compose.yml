@@ -18,12 +18,10 @@ include:
   - ./docker-compose-mongo.yml
   - ./docker-compose-rabbitmq.yml
   - ./docker-compose-soketi.yml
-  - ./docker-compose-nats.yml
   - ./docker-compose-caddy.yml
   - ./docker-compose-postgres-postgis.yml
   - ./docker-compose-beanstalkd.yml
   - ./docker-compose-beanstalk_console.yml
-  # - ./docker-compose-traefik.yml
 
 
 

@@ -3,7 +3,7 @@ redis 主从架构+sentinel
 
 ## 说明
 - 采用redis-stack-server镜像
-
+- 一主三从三哨兵
 
 
 

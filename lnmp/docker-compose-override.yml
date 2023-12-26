@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  nginx:
+    ports:
+      - "8211:8211"
+      - "8212:8212"
+      - "8213:8213"
+      - "8221:8221"
+      - "8222:8222"
+      - "8223:8223"
+      - "8224:8224"
+      - "8231:8231"
+      - "8242:8242"
+    extra_hosts:
+      - "dist.bingo.store.com:172.19.150.121"
+      - "legion.admin.com:172.19.150.121"
+      - "legion.agent.com:172.19.150.121"
+      - "legion.api.com:172.19.150.121"
+      - "legion.client.com:172.19.150.121"
+      - "crm.admin.com:172.19.150.121"
+      - "crminner-d.gsudev.cn:172.19.150.121"
+      - "crminner-t.gsudev.cn:172.19.150.121"
+      - "crminner-s.gsudev.cn:172.19.150.121"
+      - "newenglish.store.com:172.19.150.121"
+      - "newenglish.admin.com:172.19.150.121"
+      - "newenglish.client.com:172.19.150.121"
+      - "newenglish.web.com:172.19.150.121"
+      - "yaf.a.com:172.19.150.121"
+      - "yaf.a.cn:172.19.150.121"

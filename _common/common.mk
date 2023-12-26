@@ -1,5 +1,3 @@
-MV=mv
-
 # Docker ############################################################
 DOCKER=/usr/bin/docker
 DOCKER_INSPECT=${DOCKER} inspect
@@ -24,3 +22,6 @@ CFSSL_JSON_BARE=${CFSSL_JSON} -bare
 # Harbor ############################################################
 HARBOR_HOST=zz.harbor.com
 PRIVATE_HARBOR_PROJECT=zz
+
+# Linux ############################################################
+MV=mv
