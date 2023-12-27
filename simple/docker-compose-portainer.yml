@@ -17,7 +17,7 @@ services:
     privileged: true
     volumes:
       - ${DOCKER_SOCK_PATH_HOST}:/var/run/docker.sock
-      - ${DATA_PATH_HOST}/portainer/data:/data
+      - ${DATA_PATH_HOST}/${PORTAINER_CONTAINER_NAME}:/data
     extra_hosts:
       - "dockerhost:${DOCKER_HOST_IP}"
     ports:

@@ -32,7 +32,7 @@ services:
       <<: *env
       ZOO_MY_ID: ${ZOOKEEPER_ID_NODE1}
     volumes:
-      - ${DATA_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE1}/data:/data
+      - ${DATA_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE1}:/data
       - ${LOG_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE1}:/datalog
     networks:
       frontend:
@@ -51,7 +51,7 @@ services:
       <<: *env
       ZOO_MY_ID: ${ZOOKEEPER_ID_NODE2}
     volumes:
-      - ${DATA_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE2}/data:/data
+      - ${DATA_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE2}:/data
       - ${LOG_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE2}:/datalog
     networks:
       frontend:
@@ -70,7 +70,7 @@ services:
       <<: *env
       ZOO_MY_ID: ${ZOOKEEPER_ID_NODE3}
     volumes:
-      - ${DATA_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE3}/data:/data
+      - ${DATA_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE3}:/data
       - ${LOG_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE3}:/datalog
     networks:
       frontend:

@@ -16,8 +16,8 @@ services:
     container_name: ${MYSQL_CONTAINER_NAME}
     privileged: true
     volumes:
-      - ${DATA_PATH_HOST}/mysql/data:/var/lib/mysql
-      - ${LOG_PATH_HOST}/mysql:/var/log
+      - ${DATA_PATH_HOST}/${MYSQL_CONTAINER_NAME}:/var/lib/mysql
+      - ${LOG_PATH_HOST}/${MYSQL_CONTAINER_NAME}:/var/log
       - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
       - "${MYSQL_HOST_PORT}:3306"

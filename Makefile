@@ -1,5 +1,5 @@
 include _common/common.mk
-include .env
+include _common/.env
 
 .PHONY: help test
 help:
@@ -32,3 +32,10 @@ init_mysql_data_dir:
 
 download_redis_conf:
 	@wget -O "./redis.conf" "https://github.com/redis/redis/blob/7.2/redis.conf"
+
+
+reset-docker:
+  ${DOCKER} system prune -a
+  ${DOCKER} network prune -a
+  ${DOCKER} images purge -a
+  ${DOCKER} volume prune -a

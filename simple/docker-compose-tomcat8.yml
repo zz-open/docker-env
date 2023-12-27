@@ -17,7 +17,7 @@ services:
     privileged: true
     volumes:
       - ${TOMCAT8_WEBAPP_PATH}:/usr/local/tomcat/webapps
-      - ${LOG_PATH_HOST}/tomcat8:/usr/local/tomcat/logs
+      - ${LOG_PATH_HOST}/${TOMCAT8_CONTAINER_NAME}:/usr/local/tomcat/logs
       - ${TOMCAT8_CONF_PATH}:/usr/local/tomcat/conf
     environment:
       - TZ=${TZ}

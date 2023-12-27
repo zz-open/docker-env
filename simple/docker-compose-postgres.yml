@@ -20,7 +20,7 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
-      - ${DATA_PATH_HOST}/postgres/data:/var/lib/postgresql/data
+      - ${DATA_PATH_HOST}/${POSTGRES_CONTAINER_NAME}:/var/lib/postgresql/data
       - ${POSTGRES_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
       - "${POSTGRES_HOST_PORT}:5432"

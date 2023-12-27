@@ -17,8 +17,8 @@ services:
     command: "--requirepass ${REDIS_PASSWORD}"
     privileged: true
     volumes:
-      - ${DATA_PATH_HOST}/redis/data:/data
-      - ${LOG_PATH_HOST}/redis:/var/log/redis
+      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME}:/data
+      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME}:/var/log/redis
     ports:
       - "${REDIS_HOST_PORT}:6379"
     environment:

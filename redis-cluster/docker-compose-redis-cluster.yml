@@ -6,10 +6,6 @@ volumes:
 
 x-env: &env
   TZ: ${TZ}
-  REDIS_PASSWORD: ${REDIS_PASSWORD}
-  REDIS_NODES: ${REDIS_NODES}
-  REDIS_CLUSTER_ANNOUNCE_IP: ${PUBLIC_IP}
-  REDIS_CLUSTER_DYNAMIC_IPS: no
 
 x-build: &build
   build:
@@ -23,12 +19,13 @@ services:
     <<: *build
     container_name: ${REDIS_CONTAINER_NAME_NODE1}
     hostname: ${REDIS_HOSTNAME_NODE1}
+    privileged: true
     volumes:
       - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE1}:/data
       - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE1}:/var/log/redis
-      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+      - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE1}.conf:/redis-stack.conf
     ports:
-      - "${REDIS_HOST_PORT_NODE1}:6379"
+      - "${REDIS_HOST_PORT_NODE1}:${REDIS_CONTAINER_PORT}"
     environment:
       <<: *env
     networks:
@@ -41,12 +38,13 @@ services:
     <<: *build
     container_name: ${REDIS_CONTAINER_NAME_NODE2}
     hostname: ${REDIS_HOSTNAME_NODE2}
+    privileged: true
     volumes:
       - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE2}:/data
       - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE2}:/var/log/redis
-      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+      - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE2}.conf:/redis-stack.conf
     ports:
-      - "${REDIS_HOST_PORT_NODE2}:6379"
+      - "${REDIS_HOST_PORT_NODE2}:${REDIS_CONTAINER_PORT}"
     environment:
       <<: *env
     networks:
@@ -60,12 +58,13 @@ services:
     <<: *build
     container_name: ${REDIS_CONTAINER_NAME_NODE3}
     hostname: ${REDIS_HOSTNAME_NODE3}
+    privileged: true
     volumes:
       - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE3}:/data
       - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE3}:/var/log/redis
-      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+      - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE3}.conf:/redis-stack.conf
     ports:
-      - "${REDIS_HOST_PORT_NODE3}:6379"
+      - "${REDIS_HOST_PORT_NODE3}:${REDIS_CONTAINER_PORT}"
     environment:
       <<: *env
     networks:
@@ -79,12 +78,13 @@ services:
     <<: *build
     container_name: ${REDIS_CONTAINER_NAME_NODE4}
     hostname: ${REDIS_HOSTNAME_NODE4}
+    privileged: true
     volumes:
       - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE4}:/data
       - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE4}:/var/log/redis
-      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+      - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE4}.conf:/redis-stack.conf
     ports:
-      - "${REDIS_HOST_PORT_NODE4}:6379"
+      - "${REDIS_HOST_PORT_NODE4}:${REDIS_CONTAINER_PORT}"
     environment:
       <<: *env
     networks:
@@ -98,12 +98,13 @@ services:
     <<: *build
     container_name: ${REDIS_CONTAINER_NAME_NODE5}
     hostname: ${REDIS_HOSTNAME_NODE5}
+    privileged: true
     volumes:
       - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE5}:/data
       - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE5}:/var/log/redis
-      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+      - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE5}.conf:/redis-stack.conf
     ports:
-      - "${REDIS_HOST_PORT_NODE5}:6379"
+      - "${REDIS_HOST_PORT_NODE5}:${REDIS_CONTAINER_PORT}"
     environment:
       <<: *env
     networks:
@@ -117,12 +118,13 @@ services:
     <<: *build
     container_name: ${REDIS_CONTAINER_NAME_NODE6}
     hostname: ${REDIS_HOSTNAME_NODE6}
+    privileged: true
     volumes:
       - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE6}:/data
       - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE6}:/var/log/redis
-      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+      - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE6}.conf:/redis-stack.conf
     ports:
-      - "${REDIS_HOST_PORT_NODE6}:6379"
+      - "${REDIS_HOST_PORT_NODE6}:${REDIS_CONTAINER_PORT}"
     environment:
       <<: *env
     networks:
@@ -136,12 +138,13 @@ services:
     <<: *build
     container_name: ${REDIS_CONTAINER_NAME_NODE7}
     hostname: ${REDIS_HOSTNAME_NODE7}
+    privileged: true
     volumes:
       - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE7}:/data
       - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE7}:/var/log/redis
-      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+      - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE7}.conf:/redis-stack.conf
     ports:
-      - "${REDIS_HOST_PORT_NODE7}:6379"
+      - "${REDIS_HOST_PORT_NODE7}:${REDIS_CONTAINER_PORT}"
     environment:
       <<: *env
     networks:
@@ -156,12 +159,13 @@ services:
     <<: *build
     container_name: ${REDIS_CONTAINER_NAME_NODE8}
     hostname: ${REDIS_HOSTNAME_NODE8}
+    privileged: true
     volumes:
       - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE8}:/data
       - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE8}:/var/log/redis
-      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+      - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE8}.conf:/redis-stack.conf
     ports:
-      - "${REDIS_HOST_PORT_NODE8}:6379"
+      - "${REDIS_HOST_PORT_NODE8}:${REDIS_CONTAINER_PORT}"
     environment:
       <<: *env
     networks:
@@ -175,12 +179,13 @@ services:
     <<: *build
     container_name: ${REDIS_CONTAINER_NAME_NODE9}
     hostname: ${REDIS_HOSTNAME_NODE9}
+    privileged: true
     volumes:
       - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE9}:/data
       - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE9}:/var/log/redis
-      - ${REDIS_HOST_PATH}/redis.conf:/redis-stack.conf
+      - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE9}.conf:/redis-stack.conf
     ports:
-      - "${REDIS_HOST_PORT_NODE9}:6379"
+      - "${REDIS_HOST_PORT_NODE9}:${REDIS_CONTAINER_PORT}"
     environment:
       <<: *env
     networks:

@@ -16,14 +16,14 @@ services:
     container_name: ${REDIS_STACK_CONTAINER_NAME}
     privileged: true
     volumes:
-      - ${DATA_PATH_HOST}/redis-stack/data:/data
-      - ${LOG_PATH_HOST}/redis-stack:/var/log/redis
-      - ${REDIS_STACK_HOST_PATH}/redis-stack.conf:/redis-stack.conf
+      - ${DATA_PATH_HOST}/${REDIS_STACK_CONTAINER_NAME}:/data
+      - ${LOG_PATH_HOST}/${REDIS_STACK_CONTAINER_NAME}:/var/log/redis
     ports:
       - "${REDIS_STACK_HOST_PORT}:6379"
       - "${REDIS_STACK_INSIGHT_PORT}:8001"
     environment:
-      - TZ=${TZ}
+      - "TZ=${TZ}"
+      - "REDIS_ARGS=--requirepass ${REDIS_STACK_PASSWORD}"
     networks:
       frontend:
         ipv4_address: ${REDIS_STACK_FRONTEND_IP}

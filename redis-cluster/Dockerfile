@@ -1,2 +1,0 @@
-ARG REDIS_CLUSTER_VERSION=latest
-FROM bitnami/redis-cluster:${REDIS_CLUSTER_VERSION}

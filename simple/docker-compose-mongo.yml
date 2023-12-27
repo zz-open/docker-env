@@ -21,8 +21,8 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
     volumes:
-      - ${DATA_PATH_HOST}/mongo/db:/data/db
-      - ${DATA_PATH_HOST}/mongo/configdb:/data/configdb
+      - ${DATA_PATH_HOST}/${MONGO_CONTAINER_NAME}/db:/data/db
+      - ${DATA_PATH_HOST}/${MONGO_CONTAINER_NAME}/configdb:/data/configdb
     networks:
       frontend:
         ipv4_address: ${MONGO_FRONTEND_IP}

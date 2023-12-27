@@ -20,7 +20,7 @@ services:
     environment:
       - TZ=${TZ}
     volumes:
-      - ${DATA_PATH_HOST}/memcached/data:/var/lib/memcached
+      - ${DATA_PATH_HOST}/${MEMCACHED_CONTAINER_NAME}:/var/lib/memcached
     networks:
       frontend:
         ipv4_address: ${MEMCACHED_FRONTEND_IP}

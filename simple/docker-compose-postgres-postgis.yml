@@ -20,7 +20,7 @@ services:
       - POSTGRES_USER=${POSTGIS_POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGIS_POSTGRES_PASSWORD}
     volumes:
-      - ${DATA_PATH_HOST}/postgis/postgres:/var/lib/postgresql/data
+      - ${DATA_PATH_HOST}/${POSTGIS_CONTAINER_NAME}/postgres:/var/lib/postgresql/data
     ports:
       - "${POSTGIS_HOST_PORT}:5432"
     networks:

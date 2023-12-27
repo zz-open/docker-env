@@ -8,6 +8,7 @@ DOCKER_COMPOSE=/usr/local/bin/docker-compose
 DOCKER_COMPOSE_EXEC=${DOCKER_COMPOSE} exec -it
 DOCKER_COMPOSE_BUILD=${DOCKER_COMPOSE} build
 DOCKER_COMPOSE_UP=${DOCKER_COMPOSE} up
+DOCKER_COMPOSE_STOP=${DOCKER_COMPOSE} stop
 
 DOCKER_SEARCH_IP=${DOCKER_INSPECT} -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{println}}{{end}}'
 
