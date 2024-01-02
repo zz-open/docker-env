@@ -23,7 +23,9 @@ services:
       - "${JENKINS_HOST_HTTP_PORT}:8080"
     volumes:
       - ${DOCKER_SOCK_PATH_HOST}:/var/run/docker.sock
-      - ${DATA_PATH_HOST}/jenkins/jenkins_home:/var/jenkins_home
+      - ${DOCKER_BIN_PATH_HOST}:/usr/bin/docker
+      - ${DOCKER_DAEMON_PATH_HOST}:/etc/docker/daemon.json
+      - ${DATA_PATH_HOST}/${JENKINS_CONTAINER_NAME}/jenkins_home:/var/jenkins_home
     networks:
       frontend:
         ipv4_address: ${JENKINS_FRONTEND_IP}

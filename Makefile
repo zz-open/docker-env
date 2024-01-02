@@ -13,11 +13,11 @@ help:
 test:
 	@echo "test ..."
 
-.PHONY: build start
+.PHONY: init_network init_data_dir init_mysql_data_dir download_redis_conf reset_docker
 init_network:
-	@docker network create --driver ${NETWORKS_DRIVER} --subnet=${FRONTEND_SUBNET} --gateway=${FRONTEND_SUBNET_GATEWAY} ${FRONTEND_NETWORK_NAME}
-	
-	docker network create --driver ${NETWORKS_DRIVER} --subnet=${BACKEND_SUBNET} --gateway=${BACKEND_SUBNET_GATEWAY} ${BACKEND_NETWORK_NAME}
+	@${DOCKER} network create --driver ${NETWORKS_DRIVER} --subnet=${FRONTEND_SUBNET} --gateway=${FRONTEND_SUBNET_GATEWAY} ${FRONTEND_NETWORK_NAME}
+	${DOCKER} network create --driver ${NETWORKS_DRIVER} --subnet=${BACKEND_SUBNET} --gateway=${BACKEND_SUBNET_GATEWAY} ${BACKEND_NETWORK_NAME}
+	${DOCKER} network ls
 
 init_data_dir:
 	@mkdir -p ${DATA_PATH_HOST} && chmod 777 -R ${DATA_PATH_HOST}
@@ -33,9 +33,8 @@ init_mysql_data_dir:
 download_redis_conf:
 	@wget -O "./redis.conf" "https://github.com/redis/redis/blob/7.2/redis.conf"
 
-
-reset-docker:
-  ${DOCKER} system prune -a
-  ${DOCKER} network prune -a
-  ${DOCKER} images purge -a
-  ${DOCKER} volume prune -a
+reset_docker:
+	@${DOCKER} system prune -a
+	${DOCKER} network prune -a
+	${DOCKER} image purge -a
+	${DOCKER} volume prune -a

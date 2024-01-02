@@ -1,4 +1,4 @@
-module zzimage/hello1
+module zz-application/hello
 
 go 1.21.4
 

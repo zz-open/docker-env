@@ -48,6 +48,17 @@ services:
         ipv4_address: ${GITLAB_FRONTEND_IP}
       backend:
         ipv4_address: ${GITLAB_BACKEND_IP}
-    depends_on:
-      - ${REDIS_CONTAINER_NAME}
-      - ${POSTGRES_CONTAINER_NAME}
+
+  
+  node-exporter:
+    build:
+      context: ./node-exporter
+      args:
+        NODE_EXPORTER_VERSION: ${NODE_EXPORTER_VERSION}
+    container_name: ${NODE_EXPORTER_CONTAINER_NAME}
+    hostname: ${NODE_EXPORTER_CONTAINER_NAME}
+    ports:
+      - "${NODE_EXPORTER_PORT}:9100"
+    networks:
+      backend:
+        ipv4_address: ${NODE_EXPORTER_IP}

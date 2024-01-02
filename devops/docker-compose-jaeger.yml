@@ -48,6 +48,3 @@ services:
         ipv4_address: ${GITLAB_FRONTEND_IP}
       backend:
         ipv4_address: ${GITLAB_BACKEND_IP}
-    depends_on:
-      - ${REDIS_CONTAINER_NAME}
-      - ${POSTGRES_CONTAINER_NAME}

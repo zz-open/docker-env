@@ -48,6 +48,19 @@ services:
         ipv4_address: ${GITLAB_FRONTEND_IP}
       backend:
         ipv4_address: ${GITLAB_BACKEND_IP}
-    depends_on:
-      - ${REDIS_CONTAINER_NAME}
-      - ${POSTGRES_CONTAINER_NAME}
+
+  prometheus:
+    build:
+      context: ./prometheus
+      args:
+        PROMETHEUS_VERSION: ${PROMETHEUS_VERSION}
+    container_name: ${PROMETHEUS_CONTAINER_NAME}
+    hostname: ${PROMETHEUS_CONTAINER_NAME}
+    volumes:
+      - ${PROMETHEUS_PATH}/etc/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ${MONITOR_PATH}/prometheus_data:/prometheus
+    ports:
+      - "${PROMETHEUS_PORT}:9090"
+    networks:
+      backend:
+        ipv4_address: ${PROMETHEUS_IP}

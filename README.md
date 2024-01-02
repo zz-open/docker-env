@@ -9,6 +9,7 @@
 - [清华 debian](https://mirrors.tuna.tsinghua.edu.cn/help/debian/)
 - [清华 centos](https://mirrors.tuna.tsinghua.edu.cn/help/centos/)
 - [清华 alpine](https://mirrors.tuna.tsinghua.edu.cn/help/alpine/)
+- [北大 debian](https://mirrors.pku.edu.cn/Help/Debian)
 
 Full development environment based on Docker.
 

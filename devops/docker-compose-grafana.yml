@@ -48,6 +48,23 @@ services:
         ipv4_address: ${GITLAB_FRONTEND_IP}
       backend:
         ipv4_address: ${GITLAB_BACKEND_IP}
-    depends_on:
-      - ${REDIS_CONTAINER_NAME}
-      - ${POSTGRES_CONTAINER_NAME}
+
+
+   grafana:
+    build:
+      context: ./grafana
+      args:
+        GRAFANA_VERSION: ${GRAFANA_VERSION}
+    hostname: ${GRAFANA_CONTAINER_NAME}
+    container_name: ${GRAFANA_CONTAINER_NAME}
+    volumes:
+      - ${MONITOR_PATH}/grafana_data:/var/lib/grafana
+    environment:
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_SECURITY_ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_SECURITY_ADMIN_PASSWORD}
+    ports:
+      - "${GRAFANA_PORT}:3000"
+    networks:
+      backend:
+        ipv4_address: ${GRAFANA_IP}

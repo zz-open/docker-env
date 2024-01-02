@@ -14,9 +14,9 @@ services:
         - DIND_VERSION=${DIND_VERSION}
     container_name: ${DIND_CONTAINER_NAME}
     hostname: ${DIND_HOSTNAME}
+    privileged: true
     environment:
       DOCKER_TLS_SAN: DNS:${DIND_CONTAINER_NAME}
-    privileged: true
     volumes:
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
       - ${DATA_PATH_HOST}/docker-in-docker/certs/client:/certs/client
@@ -24,6 +24,6 @@ services:
       - 2375
     networks:
       frontend:
-        ipv4_address: ${BUSYBOX_FRONTEND_IP}
+        ipv4_address: ${DIND_FRONTEND_IP}
       backend:
-        ipv4_address: ${BUSYBOX_BACKEND_IP}
+        ipv4_address: ${DIND_BACKEND_IP}
