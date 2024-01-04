@@ -1,20 +1,17 @@
 version: '3.8'
 
 volumes:
-  hello:
+  app:
     driver: ${VOLUMES_DRIVER}
 
 services:
 
 ### Go Application ################################################
-  hello:
+  app:
     build:
       context: ${APPLICATION_HOST_PATH}
       args:
         - APPLICATION_VERSION=${APPLICATION_VERSION}
-        - GO_VERSION=${APPLICATION_GO_VERSION}
-        - APPLICATION_CODE_PATH_HOST=${APPLICATION_CODE_PATH_HOST}
-        - APPLICATION_MAIN_NAME=${APPLICATION_MAIN_NAME}
     container_name: ${APPLICATION_CONTAINER_NAME}
     hostname: ${APPLICATION_HOSTNAME}
     privileged: true
