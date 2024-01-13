@@ -1,2 +1,2 @@
 ARG APPLICATION_VERSION=latest
-FROM alpine:${APPLICATION_VERSION}
+FROM registry.cn-hangzhou.aliyuncs.com/zzimage/zz-hello:${APPLICATION_VERSION}
