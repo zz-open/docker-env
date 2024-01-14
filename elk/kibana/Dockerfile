@@ -1,4 +1,2 @@
-ARG ELK_VERSION
-FROM kibana:${ELK_VERSION}
-
-EXPOSE 5601
+ARG KIBANA_VERSION=latest
+FROM docker.elastic.co/kibana/kibana:${KIBANA_VERSION}

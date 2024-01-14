@@ -2,4 +2,6 @@ version: '3.8'
 
 include:
   - ../_common/docker-compose-common.yml
-  - ./docker-compose-redis-cluster.yml
+  - ./docker-compose-elasticsearch.yml
+  - ./docker-compose-kibana.yml
+  - ./docker-compose-logstash.yml

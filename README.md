@@ -76,8 +76,8 @@ make init_data_dir
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | elasticsearch | 172.19.150.130 | 172.19.140.130 | latest |
-| logstash | 172.19.150.131 | 172.19.140.131 | latest |
-| kibana | 172.19.150.132 | 172.19.140.132 | latest |
+| kibana | 172.19.150.131 | 172.19.140.131 | latest |
+| logstash | 172.19.150.132 | 172.19.140.132 | latest |
 | go-stash | 172.19.150.133 | 172.19.140.133 | latest |
 | filebeat | 172.19.150.134 | 172.19.140.134 | latest |
 

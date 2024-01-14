@@ -1,8 +1,8 @@
-ARG ELK_VERSION
-FROM elasticsearch:${ELK_VERSION}
+ARG ELASTICSEARCH_VERSION=latest
+FROM docker.elastic.co/elasticsearch/elasticsearch:${ELASTICSEARCH_VERSION}
 
 # Add healthcheck
 #COPY ./scripts/docker-healthcheck .
 #HEALTHCHECK CMD sh ./docker-healthcheck
 
-EXPOSE 9200 9300
+# EXPOSE 9200 9300

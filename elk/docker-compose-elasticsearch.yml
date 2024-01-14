@@ -1,23 +1,32 @@
 version: "3.8"
 
+volumes:
+  elasticsearch:
+    driver: ${VOLUMES_DRIVER}
+
+services:
 ### ElasticSearch ########################################
-elasticsearch:
+  elasticsearch:
     build:
-      context: ./elasticsearch
+      context: ${ES_PATH}
       args:
-        - ELK_VERSION=${ELK_VERSION}
-    container_name: ${ELASTICSEARCH_HOSTNAME}
-    hostname: ${ELASTICSEARCH_HOSTNAME}
+        - ELASTICSEARCH_VERSION=${ELK_VERSION}
+    container_name: ${ES_CONTAINER_NAME}
+    hostname: ${ES_HOSTNAME}
+    privileged: true
+    mem_limit: "1g"
     volumes:
-      - ${ELASTICSEARCH_PATH}/data:/usr/share/elasticsearch/data
-      - ${ELASTICSEARCH_PATH}/plugins:/usr/share/elasticsearch/plugins
+      - ${DATA_PATH_HOST}/elasticsearch:/usr/share/elasticsearch/data
+      - ${LOG_PATH_HOST}/elasticsearch:/usr/share/elasticsearch/logs
+      # - ${ELASTICSEARCH_PLUGIN_PATH}:/usr/share/elasticsearch/plugins
+      # - ${ELASTICSEARCH_CONFIG_PATH}/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     environment:
       - TZ=${TZ}
+      - ELASTIC_PASSWORD=${ES_PASSWORD}
+      - node.name=${ES_HOSTNAME}
+      - cluster.name=${ES_HOSTNAME}
       - discovery.type=single-node
-      - ES_JAVA_OPTS=${ES_JAVA_OPTS}
-      - node.name=${ELASTICSEARCH_HOSTNAME}
-      - cluster.name=${ELASTICSEARCH_HOSTNAME}
-      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - ES_JAVA_OPTS="-Xms1g -Xmx1g"
       - bootstrap.memory_lock=true
       - http.cors.enabled=true
       - http.cors.allow-origin="*"
@@ -28,29 +37,20 @@ elasticsearch:
         soft: -1
         hard: -1
       nofile:
-        soft: 65536
-        hard: 65536
+        soft: 65535
+        hard: 65535
     ports:
-      - "${ELASTICSEARCH_HOST_HTTP_PORT}:9200"
-      - "${ELASTICSEARCH_HOST_TRANSPORT_PORT}:9300"
+      - "${ES_HOST_HTTP_PORT}:9200"
+      - "${ES_HOST_TRANSPORT_PORT}:9300"
+    # healthcheck:
+    #   test:
+    #   - "CMD"
+    #   - "curl -s --user ${ELASTIC_USERNAME}:${ELASTIC_PASSWORD} http://localhost:9200 | grep -q 'missing authentication credentials'"
+    #  interval: 10s
+    #  timeout: 10s
+    #  retries: 120
     networks:
+      frontend:
+        ipv4_address: ${ES_FRONTEND_IP}
       backend:
-        ipv4_address: ${ELASTICSEARCH_IP}
-
-  kibana:
-    build:
-      context: ./kibana
-      args:
-        - ELK_VERSION=${ELK_VERSION}
-    container_name: ${KIBANA_HOSTNAME}
-    hostname: ${KIBANA_HOSTNAME}
-    ports:
-      - "${KIBANA_HTTP_PORT}:5601"
-    volumes:
-      - ${KIBANA_PATH}/data:/usr/share/kibana/data
-    environment:
-      - TZ=${TZ}
-      - I18N_LOCALE="zh-CN"
-    networks:
-      backend:
-        ipv4_address: ${KIBANA_IP}
+        ipv4_address: ${ES_BACKEND_IP}

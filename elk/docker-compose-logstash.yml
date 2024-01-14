@@ -1,10 +1,16 @@
 version: "3.8"
+
+volumes:
+  logstash:
+    driver: ${VOLUMES_DRIVER}
+
+services:
 ### Logstash #############################################  
-logstash:
+  logstash:
     build:
-      context: ./logstash
+      context: ${LOGSTASH_PATH}
       args:
-        - ELK_VERSION=${ELK_VERSION}
+        - LOGSTASH_VERSION=${ELK_VERSION}
     container_name: logstash
     hostname: logstash
     volumes:

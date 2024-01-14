@@ -1,4 +1,34 @@
-
 version: "3.8"
 
+volumes:
+  kibana:
+    driver: ${VOLUMES_DRIVER}
+
+services:
 ### Kibana ###############################################
+  kibana:
+    build:
+      context: ${KIBANA_PATH}
+      args:
+        - KIBNAN_VERSION=${ELK_VERSION}
+    container_name: ${KIBANA_CONTAINER_NAME}
+    hostname: ${KIBANA_HOSTNAME}
+    privileged: true
+    ports:
+      - "${KIBANA_HTTP_PORT}:5601"
+    volumes:
+      - ${DATA_PATH_HOST}/kibana:/usr/share/kibana/data
+      #- ${KIBANA_CONFIG_PATH}/kibana.yml:/usr/share/kibana/config/kibana.yml
+    environment:
+      - TZ=${TZ}
+      - I18N_LOCALE="zh-CN"
+      - ELASTIC_PASSWORD=${KIBANA_PASSWORD}
+      #  ELASTICSEARCH_HOSTS: '["http://${ELASTICSEARCH_HOSTNAME}:9200"]'
+      #ELASTICSEARCH_USERNAME: ${KIBANA_USERNAME}
+    networks:
+      frontend:
+        ipv4_address: ${KIBANA_FRONTEND_IP}
+      backend:
+        ipv4_address: ${KIBANA_BACKEND_IP}
+    depends_on:
+      - ${ELASTICSEARCH_CONTAINER_NAME}
