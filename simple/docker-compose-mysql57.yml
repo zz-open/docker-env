@@ -23,11 +23,11 @@ services:
     ports:
       - "${MYSQL57_HOST_PORT}:3306"
     environment:
+      - TZ=${TZ}
       - MYSQL_DATABASE=${MYSQL57_DATABASE}
       - MYSQL_USER=${MYSQL57_USER}
       - MYSQL_PASSWORD=${MYSQL57_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${MYSQL57_ROOT_PASSWORD}
-      - TZ=${TZ}
     networks:
       backend:
         ipv4_address: ${MYSQL57_BACKEND_IP}
