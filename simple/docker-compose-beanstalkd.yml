@@ -21,7 +21,5 @@ services:
     environment:
       - TZ=${TZ}
     networks:
-      frontend:
-        ipv4_address: ${BEANSTALKD_FRONTEND_IP}
       backend:
         ipv4_address: ${BEANSTALKD_BACKEND_IP}

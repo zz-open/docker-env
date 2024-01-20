@@ -34,8 +34,6 @@ services:
     ports:
       - "${REDIS_HOST_PORT_NODE1}:${REDIS_CONTAINER_PORT}"
     networks:
-      frontend:
-        ipv4_address: ${REDIS_FRONTEND_IP_NODE1}
       backend:
         ipv4_address: ${REDIS_BACKEND_IP_NODE1}
 
@@ -55,8 +53,6 @@ services:
     ports:
       - "${REDIS_HOST_PORT_NODE2}:${REDIS_CONTAINER_PORT}"
     networks:
-      frontend:
-        ipv4_address: ${REDIS_FRONTEND_IP_NODE2}
       backend:
         ipv4_address: ${REDIS_BACKEND_IP_NODE2}
 
@@ -76,8 +72,6 @@ services:
     ports:
       - "${REDIS_HOST_PORT_NODE3}:${REDIS_CONTAINER_PORT}"
     networks:
-      frontend:
-        ipv4_address: ${REDIS_FRONTEND_IP_NODE3}
       backend:
         ipv4_address: ${REDIS_BACKEND_IP_NODE3}
 
@@ -97,7 +91,5 @@ services:
     ports:
       - "${REDIS_HOST_PORT_NODE4}:${REDIS_CONTAINER_PORT}"
     networks:
-      frontend:
-        ipv4_address: ${REDIS_FRONTEND_IP_NODE4}
       backend:
         ipv4_address: ${REDIS_BACKEND_IP_NODE4}

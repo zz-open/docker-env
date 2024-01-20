@@ -21,7 +21,5 @@ services:
       - CONNECTION_LOCALZK_NAME=${ZOONAVIGATOR_CONNECTION_LOCALZK_NAME}
       - CONNECTION_LOCALZK_CONN=${ZOONAVIGATOR_CONNECTION_LOCALZK_CONN}
     networks:
-      frontend:
-        ipv4_address: ${ZOONAVIGATOR_FRONTEND_IP}
       backend:
         ipv4_address: ${ZOONAVIGATOR_BACKEND_IP}

@@ -18,8 +18,6 @@ services:
     environment:
       - TZ=${TZ}
     networks:
-      frontend:
-        ipv4_address: ${NSQADMIN_FRONTEND_IP}
       backend:
         ipv4_address: ${NSQADMIN_BACKEND_IP}
     depends_on:

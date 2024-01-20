@@ -24,7 +24,5 @@ services:
     environment:
       - TZ=${TZ}
     networks:
-      frontend:
-        ipv4_address: ${REDIS_FRONTEND_IP}
       backend:
         ipv4_address: ${REDIS_BACKEND_IP}

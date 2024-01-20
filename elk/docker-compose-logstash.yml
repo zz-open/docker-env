@@ -8,20 +8,21 @@ services:
 ### Logstash #############################################  
   logstash:
     build:
-      context: ${LOGSTASH_PATH}
+      context: ${LOGSTASH_HOST_PATH}
       args:
-        - LOGSTASH_VERSION=${ELK_VERSION}
-    container_name: logstash
-    hostname: logstash
+        - LOGSTASH_VERSION=${ELASTIC_STACK_VERSION}
+    container_name: ${LOGSTASH_CONTAINER_NAME}
+    hostname: ${LOGSTASH_HOSTNAME}
+    privileged: true
+    user: root
     volumes:
-      - './logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml'
-      - './logstash/pipeline:/usr/share/logstash/pipeline'
-    ports:
-      - '5001:5001'
+      - ${LOGSTASH_PATH}/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ${LOGSTASH_PATH}/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
+      - ${LOGSTASH_PATH}/pipeline/:/usr/share/logstash/pipeline/
     environment:
-      LS_JAVA_OPTS: '-Xmx1g -Xms1g'
-    env_file:
-      - .env
+      http.host: "0.0.0.0"
+      MONITORING_ENABLED: false
+    mem_limit: ${MEM_LIMIT}
     networks:
       backend:
-        ipv4_address: ${LOGSTASH_IP}
+        ipv4_address: ${LOGSTASH_BACKEND_IP}

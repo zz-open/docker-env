@@ -25,7 +25,5 @@ services:
     depends_on:
       - "${PGADMIN_DB_ENGINE}"
     networks:
-      frontend:
-        ipv4_address: ${PGADMIN_FRONTEND_IP}
       backend:
         ipv4_address: ${PGADMIN_BACKEND_IP}

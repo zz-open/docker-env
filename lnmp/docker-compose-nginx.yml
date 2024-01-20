@@ -33,7 +33,5 @@ services:
     depends_on:
       - php-fpm
     networks:
-      frontend:
-        ipv4_address: ${NGINX_FRONTEND_IP}
       backend:
         ipv4_address: ${NGINX_BACKEND_IP}

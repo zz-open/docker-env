@@ -37,8 +37,6 @@ services:
     healthcheck:
       <<: *healthcheck
     networks:
-      frontend:
-        ipv4_address: ${MINIO_FRONTEND_IP_NODE1}
       backend:
         ipv4_address: ${MINIO_BACKEND_IP_NODE1}
 

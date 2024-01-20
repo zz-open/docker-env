@@ -21,6 +21,9 @@ Full development environment based on Docker.
 make init_network
 ```
 
+- backend: 后端服务网络
+- frontend: 前端服务网络（暂时无用）
+
 - 初始化数据目录
 ```shell
 make init_data_dir
@@ -50,6 +53,27 @@ make init_data_dir
 | beanstalkd | 172.19.150.22 | 172.19.140.22 | latest |
 | beanstalkd-console | 172.19.150.23 | 172.19.140.23 | latest |
 
+
+### DTM (172.19.150.90)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| dtm1 | 172.19.150.90 | 172.19.140.90 | latest |
+| dtm2 | 172.19.150.91 | 172.19.140.91 | latest |
+| dtm3 | 172.19.150.92 | 172.19.140.92 | latest |
+| mysql | 172.19.150.96 | 172.19.140.96 | latest |
+| redis | 172.19.150.97 | 172.19.140.97 | latest |
+
+### ELK (172.19.150.100)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| es-init | 172.19.150.100 | 172.19.140.100 | latest |
+| es | 172.19.150.101 | 172.19.140.101 | latest |
+| kibana | 172.19.150.102 | 172.19.140.102 | latest |
+| logstash | 172.19.150.103 | 172.19.140.103 | latest |
+| elk-box | 172.19.150.104 | 172.19.140.104 | latest |
+| filebeat | 172.19.150.105 | 172.19.140.105 | latest |
+| go-stash | 172.19.150.106 | 172.19.140.106 | latest |
+
 ### DEVOPS (172.19.150.110)
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
@@ -72,14 +96,14 @@ make init_data_dir
 | apache | 172.19.150.122 | 172.19.140.122 | latest |
 | php-fpm | 172.19.150.123 | 172.19.140.123 | latest |
 
-### ELK (172.19.150.130)
+### ELASTIC STACK (172.19.150.130)
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| elasticsearch | 172.19.150.130 | 172.19.140.130 | latest |
-| kibana | 172.19.150.131 | 172.19.140.131 | latest |
-| logstash | 172.19.150.132 | 172.19.140.132 | latest |
-| go-stash | 172.19.150.133 | 172.19.140.133 | latest |
-| filebeat | 172.19.150.134 | 172.19.140.134 | latest |
+| es-setup | 172.19.150.130 | 172.19.140.130 | latest |
+| es01 | 172.19.150.131 | 172.19.140.131 | latest |
+| es02 | 172.19.150.132 | 172.19.140.132 | latest |
+| es03 | 172.19.150.133 | 172.19.140.133 | latest |
+| kibana | 172.19.150.134 | 172.19.140.134 | latest |
 
 ### ETCD CLUSTER (172.19.150.140)
 | service | backend ip | frontend ip | version | 备注 |

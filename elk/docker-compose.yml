@@ -5,3 +5,6 @@ include:
   - ./docker-compose-elasticsearch.yml
   - ./docker-compose-kibana.yml
   - ./docker-compose-logstash.yml
+  - ./docker-compose-busybox.yml
+  # - ./docker-compose-filebeat.yml
+  # - ./docker-compose-metricbeat.yml

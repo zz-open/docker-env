@@ -21,8 +21,6 @@ services:
     environment:
       - TZ=${TZ}
     networks:
-      frontend:
-        ipv4_address: ${NSQLOOKUPD_FRONTEND_IP_NODE1}
       backend:
         ipv4_address: ${NSQLOOKUPD_BACKEND_IP_NODE1}
 
@@ -40,7 +38,5 @@ services:
     environment:
       - TZ=${TZ}
     networks:
-      frontend:
-        ipv4_address: ${NSQLOOKUPD_FRONTEND_IP_NODE2}
       backend:
         ipv4_address: ${NSQLOOKUPD_BACKEND_IP_NODE2}

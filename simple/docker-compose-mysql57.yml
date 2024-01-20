@@ -15,8 +15,9 @@ services:
     hostname: ${MYSQL57_HOSTNAME}
     container_name: ${MYSQL57_CONTAINER_NAME}
     privileged: true
+    user: root
     volumes:
-      - ${DATA_PATH_HOST}/${MYSQL57_CONTAINER_NAME}:/var/lib/mysql
+      - ${DATA_PATH_HOST}/${MYSQL57_CONTAINER_NAME}:/var/lib/mysql # 需要777权限
       - ${LOG_PATH_HOST}/${MYSQL57_CONTAINER_NAME}:/var/log
       - ${MYSQL57_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
@@ -28,7 +29,5 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL57_ROOT_PASSWORD}
       - TZ=${TZ}
     networks:
-      frontend:
-        ipv4_address: ${MYSQL57_FRONTEND_IP}
       backend:
         ipv4_address: ${MYSQL57_BACKEND_IP}

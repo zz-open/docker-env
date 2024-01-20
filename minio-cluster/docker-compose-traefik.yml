@@ -40,8 +40,6 @@ services:
       interval: 3s
       retries: 10
     networks:
-      frontend:
-        ipv4_address: ${TRAEFIK_FRONTEND_IP}
       backend:
         ipv4_address: ${TRAEFIK_BACKEND_IP}
     depends_on:

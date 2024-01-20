@@ -24,7 +24,5 @@ services:
       - ${DATA_PATH_HOST}/${MONGO_CONTAINER_NAME}/db:/data/db
       - ${DATA_PATH_HOST}/${MONGO_CONTAINER_NAME}/configdb:/data/configdb
     networks:
-      frontend:
-        ipv4_address: ${MONGO_FRONTEND_IP}
       backend:
         ipv4_address: ${MONGO_BACKEND_IP}

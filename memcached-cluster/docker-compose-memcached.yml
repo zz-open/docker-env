@@ -31,8 +31,6 @@ services:
     volumes:
      - ${DATA_PATH_HOST}/${MEMCACHED_CONTAINER_NAME_NODE1}/data:/var/lib/memcached
     networks:
-      frontend:
-        ipv4_address: ${MEMCACHED_FRONTEND_IP_NODE1}
       backend:
         ipv4_address: ${MEMCACHED_BACKEND_IP_NODE1}
 
@@ -49,8 +47,6 @@ services:
     volumes:
      - ${DATA_PATH_HOST}/${MEMCACHED_CONTAINER_NAME_NODE2}/data:/var/lib/memcached
     networks:
-      frontend:
-        ipv4_address: ${MEMCACHED_FRONTEND_IP_NODE2}
       backend:
         ipv4_address: ${MEMCACHED_BACKEND_IP_NODE2}
 
@@ -67,7 +63,5 @@ services:
     volumes:
      - ${DATA_PATH_HOST}/${MEMCACHED_CONTAINER_NAME_NODE3}/data:/var/lib/memcached
     networks:
-      frontend:
-        ipv4_address: ${MEMCACHED_FRONTEND_IP_NODE3}
       backend:
         ipv4_address: ${MEMCACHED_BACKEND_IP_NODE3}

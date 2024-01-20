@@ -22,7 +22,5 @@ services:
       - CN=${CERTBOT_CN}
       - EMAIL=${CERTBOT_EMAIL}
     networks:
-      frontend:
-        ipv4_address: ${CERTBOT_FRONTEND_IP}
       backend:
         ipv4_address: ${CERTBOT_BACKEND_IP}

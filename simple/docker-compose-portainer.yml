@@ -23,7 +23,5 @@ services:
     ports:
       - "${PORTAINER_HOST_PORT}:9000"
     networks:
-      frontend:
-        ipv4_address: ${PORTAINER_FRONTEND_IP}
       backend:
         ipv4_address: ${PORTAINER_BACKEND_IP}

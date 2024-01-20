@@ -35,8 +35,6 @@ services:
     ports:
       - "${REDIS_HOST_PORT_SENTINEL1}:${SENTINEL_PORT_CONTAINER}"
     networks:
-      frontend:
-        ipv4_address: ${REDIS_FRONTEND_IP_SENTINEL1}
       backend:
         ipv4_address: ${REDIS_BACKEND_IP_SENTINEL1}
 
@@ -52,8 +50,6 @@ services:
     ports:
       - "${REDIS_HOST_PORT_SENTINEL2}:${SENTINEL_PORT_CONTAINER}"
     networks:
-      frontend:
-        ipv4_address: ${REDIS_FRONTEND_IP_SENTINEL2}
       backend:
         ipv4_address: ${REDIS_BACKEND_IP_SENTINEL2}
 
@@ -69,7 +65,5 @@ services:
     ports:
       - "${REDIS_HOST_PORT_SENTINEL3}:${SENTINEL_PORT_CONTAINER}"
     networks:
-      frontend:
-        ipv4_address: ${REDIS_FRONTEND_IP_SENTINEL3}
       backend:
         ipv4_address: ${REDIS_BACKEND_IP_SENTINEL3}

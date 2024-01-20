@@ -24,7 +24,5 @@ services:
     ports:
       - "${POSTGIS_HOST_PORT}:5432"
     networks:
-      frontend:
-        ipv4_address: ${POSTGIS_FRONTEND_IP}
       backend:
         ipv4_address: ${POSTGIS_BACKEND_IP}

@@ -44,8 +44,6 @@ services:
         max-size: "2g"
         max-file: "2"
     networks:
-      frontend:
-        ipv4_address: ${GITLAB_FRONTEND_IP}
       backend:
         ipv4_address: ${GITLAB_BACKEND_IP}
     depends_on:

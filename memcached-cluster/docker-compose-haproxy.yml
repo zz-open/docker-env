@@ -24,7 +24,5 @@ services:
     volumes:
       - "${HAPROXY_HOST_PATH}/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
     networks:
-      frontend:
-        ipv4_address: ${HAPROXY_FRONTEND_IP_NODE1}
       backend:
         ipv4_address: ${HAPROXY_BACKEND_IP_NODE1}

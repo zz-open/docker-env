@@ -1,3 +1,0 @@
-ARG CANAL_VERSION
-
-FROM canal/canal-server:${CANAL_VERSION}

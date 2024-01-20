@@ -36,7 +36,5 @@ services:
       - "${RABBITMQ_HOST_PATH}/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf"
       - "${RABBITMQ_HOST_PATH}/management_agent.disable_metrics_collector.conf:/etc/rabbitmq/conf.d/management_agent.disable_metrics_collector.conf"
     networks:
-      frontend:
-        ipv4_address: ${RABBITMQ_FRONTEND_IP}
       backend:
         ipv4_address: ${RABBITMQ_BACKEND_IP}

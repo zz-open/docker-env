@@ -20,7 +20,5 @@ services:
     ports:
       - "${APPLICATION_HOST_HTTP_PORT}:12000"
     networks:
-      frontend:
-        ipv4_address: ${APPLICATION_FRONTEND_IP}
       backend:
         ipv4_address: ${APPLICATION_BACKEND_IP}

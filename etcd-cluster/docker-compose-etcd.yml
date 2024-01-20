@@ -69,8 +69,6 @@ services:
       - "${ETCD_HOST_PORT_NODE1}:2379"
       - "${ETCD_HOST_REVERSE_PORT_NODE1}:2380"
     networks:
-      frontend:
-        ipv4_address: ${ETCD_FRONTEND_IP_NODE1}
       backend:
         ipv4_address: ${ETCD_BACKEND_IP_NODE1}
 
@@ -110,8 +108,6 @@ services:
       - "${ETCD_HOST_PORT_NODE2}:2379"
       - "${ETCD_HOST_REVERSE_PORT_NODE2}:2380"
     networks:
-      frontend:
-        ipv4_address: ${ETCD_FRONTEND_IP_NODE2}
       backend:
         ipv4_address: ${ETCD_BACKEND_IP_NODE2}
 
@@ -152,7 +148,5 @@ services:
       - "${ETCD_HOST_PORT_NODE3}:2379"
       - "${ETCD_HOST_REVERSE_PORT_NODE3}:2380"
     networks:
-      frontend:
-        ipv4_address: ${ETCD_FRONTEND_IP_NODE3}
       backend:
         ipv4_address: ${ETCD_BACKEND_IP_NODE3}

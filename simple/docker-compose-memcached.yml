@@ -22,7 +22,5 @@ services:
     volumes:
       - ${DATA_PATH_HOST}/${MEMCACHED_CONTAINER_NAME}:/var/lib/memcached
     networks:
-      frontend:
-        ipv4_address: ${MEMCACHED_FRONTEND_IP}
       backend:
         ipv4_address: ${MEMCACHED_BACKEND_IP}

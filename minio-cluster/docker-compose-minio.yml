@@ -63,8 +63,6 @@ services:
     healthcheck:
       <<: *healthcheck
     networks:
-      frontend:
-        ipv4_address: ${MINIO_FRONTEND_IP_NODE1}
       backend:
         ipv4_address: ${MINIO_BACKEND_IP_NODE1}
 
@@ -86,8 +84,6 @@ services:
     healthcheck:
       <<: *healthcheck
     networks:
-      frontend:
-        ipv4_address: ${MINIO_FRONTEND_IP_NODE2}
       backend:
         ipv4_address: ${MINIO_BACKEND_IP_NODE2}
 
@@ -109,8 +105,6 @@ services:
     healthcheck:
       <<: *healthcheck
     networks:
-      frontend:
-        ipv4_address: ${MINIO_FRONTEND_IP_NODE3}
       backend:
         ipv4_address: ${MINIO_BACKEND_IP_NODE3}
 
@@ -132,7 +126,5 @@ services:
     healthcheck:
       <<: *healthcheck
     networks:
-      frontend:
-        ipv4_address: ${MINIO_FRONTEND_IP_NODE4}
       backend:
         ipv4_address: ${MINIO_BACKEND_IP_NODE4}

@@ -24,7 +24,5 @@ services:
     ports:
       - "${TOMCAT8_HOST_HTTP_PORT}:8080"
     networks:
-      frontend:
-        ipv4_address: ${TOMCAT8_FRONTEND_IP}
       backend:
         ipv4_address: ${TOMCAT8_BACKEND_IP}

@@ -25,7 +25,5 @@ services:
     depends_on:
       - "${PMA_DB_ENGINE}"
     networks:
-      frontend:
-        ipv4_address: ${PMA_FRONTEND_IP}
       backend:
         ipv4_address: ${PMA_BACKEND_IP}

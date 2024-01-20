@@ -41,8 +41,6 @@ services:
     environment:
       <<: *env
     networks:
-      frontend:
-        ipv4_address: ${NATS_FRONTEND_IP_NODE1}
       backend:
         ipv4_address: ${NATS_BACKEND_IP_NODE1}
 
@@ -60,8 +58,6 @@ services:
     environment:
       <<: *env
     networks:
-      frontend:
-        ipv4_address: ${NATS_FRONTEND_IP_NODE2}
       backend:
         ipv4_address: ${NATS_BACKEND_IP_NODE2}
     depends_on:
@@ -81,8 +77,6 @@ services:
     environment:
       <<: *env
     networks:
-      frontend:
-        ipv4_address: ${NATS_FRONTEND_IP_NODE3}
       backend:
         ipv4_address: ${NATS_BACKEND_IP_NODE3}
     depends_on:

@@ -35,8 +35,6 @@ services:
       - ${DATA_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE1}:/data
       - ${LOG_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE1}:/datalog
     networks:
-      frontend:
-        ipv4_address: ${ZOOKEEPER_FRONTEND_IP_NODE1}
       backend:
         ipv4_address: ${ZOOKEEPER_BACKEND_IP_NODE1}
 ### ZOOKEEPER NODE2 ##############################################
@@ -54,8 +52,6 @@ services:
       - ${DATA_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE2}:/data
       - ${LOG_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE2}:/datalog
     networks:
-      frontend:
-        ipv4_address: ${ZOOKEEPER_FRONTEND_IP_NODE2}
       backend:
         ipv4_address: ${ZOOKEEPER_BACKEND_IP_NODE2}
 ### ZOOKEEPER NODE3 ##############################################
@@ -73,7 +69,5 @@ services:
       - ${DATA_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE3}:/data
       - ${LOG_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE3}:/datalog
     networks:
-      frontend:
-        ipv4_address: ${ZOOKEEPER_FRONTEND_IP_NODE3}
       backend:
         ipv4_address: ${ZOOKEEPER_BACKEND_IP_NODE3}

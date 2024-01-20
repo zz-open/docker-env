@@ -27,7 +27,5 @@ services:
       - ${DOCKER_DAEMON_PATH_HOST}:/etc/docker/daemon.json
       - ${DATA_PATH_HOST}/${JENKINS_CONTAINER_NAME}/jenkins_home:/var/jenkins_home
     networks:
-      frontend:
-        ipv4_address: ${JENKINS_FRONTEND_IP}
       backend:
         ipv4_address: ${JENKINS_BACKEND_IP}
