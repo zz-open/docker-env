@@ -17,14 +17,14 @@ help:
 test:
 	@echo "test ..."
 
-.PHONY: build start create-data-dir reset
+.PHONY: build start create_data_dir reset
 build:
 	@${DOCKER_COMPOSE_BUILD} ${CONTAINERS}
 
 start:
 	@${DOCKER_COMPOSE_UP} -d ${CONTAINERS}
 
-create-data-dir:
+create_data_dir:
 	mkdir -p ${DATA_PATH_HOST}/${ES_CONTAINER_NAME}/*
 	mkdir -p ${DATA_PATH_HOST}/${KIBANA_CONTAINER_NAME}/*
 
@@ -39,26 +39,26 @@ reset:
 	@${DOCKER_COMPOSE_DOWN}
 
 # Elasticsearch ############################################
-.PHONY: es-en es-runing es-reset-password kibana-enrollment-token es-copy-ca es-service-token logstash-en
-es-en:
+.PHONY: es_en es_runing es_reset_password kibana_enrollment_token es_copy_ca es_service_token logstash_en
+es_en:
 	${DOCKER_COMPOSE_EXEC} ${ES_CONTAINER_NAME} bash
-es-runing:
+es_runing:
 	@${DOCKER_COMPOSE_EXEC} ${ES_CONTAINER_NAME} curl --cacert ${CONTAINER_CA_CRT_PATH} -u elastic:${ELASTIC_PASSWORD} https://localhost:9200
-es-reset-password:
+es_reset_password:
 	@${DOCKER_COMPOSE_EXEC} ${ES_CONTAINER_NAME} /usr/share/elasticsearch/bin/elasticsearch-reset-password -u ${ELASTIC_USERNAME}
-kibana-enrollment-token:
+kibana_enrollment_token:
 	@${DOCKER_COMPOSE_EXEC} -u root ${ES_CONTAINER_NAME} /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana
-es-copy-ca:
+es_copy_ca:
 	@${DOCKER} cp ${ES_CONTAINER_NAME}:/usr/share/elasticsearch/config/certs/http_ca.crt ${ES_PATH}
-es-service-token:
+es_service_token:
 	@${DOCKER_COMPOSE_EXEC} ${ES_CONTAINER_NAME} /usr/share/elasticsearch/bin/elasticsearch-service-tokens create elastic/kibana my-token
-logstash-en:
+logstash_en:
 	${DOCKER_COMPOSE_EXEC} ${LOGSTASH_CONTAINER_NAME} bash
-elk-box-en:
+elk_box_en:
 	${DOCKER_COMPOSE_EXEC} ${ELK_BOX_CONTAINER_NAME} sh
 # Kibana ###################################################
-.PHONY:  kibana-en kibana-verification-code
-kibana-en:
+.PHONY:  kibana_en kibana_verification_code
+kibana_en:
 	${DOCKER_COMPOSE_EXEC} ${KIBANA_CONTAINER_NAME} bash
-kibana-verification-code:
+kibana_verification_code:
 	${DOCKER_COMPOSE_EXEC} ${KIBANA_CONTAINER_NAME} /bin/kibana-verification-code

@@ -15,7 +15,8 @@ services:
     hostname: ${ES_HOSTNAME_INIT}
     volumes:
       - ${ES_PATH}/certs:/usr/share/elasticsearch/config/certs
-    user: "0"
+    privileged: true
+    user: root
     command: >
       bash -c '
         if [ x${ELASTIC_PASSWORD} == x ]; then

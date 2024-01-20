@@ -36,4 +36,32 @@ services:
         ipv4_address: ${DTM_BACKEND_IP_NODE1}
 
 ### DTM NODE2 ################################################
+  dtm2:
+    <<: *build
+    hostname: ${DTM_HOSTNAME_NODE2}
+    container_name: ${DTM_CONTAINER_NAME_NODE2}
+    privileged: true
+    user: root
+    environment:
+      <<: *env
+    ports:
+      - "${DTM_HTTP_PORT_NODE2}:36789"
+      - "${DTM_GRPC_PORT_NODE2}:36790"
+    networks:
+      backend:
+        ipv4_address: ${DTM_BACKEND_IP_NODE2}
 ### DTM NODE3 ################################################
+  dtm2:
+    <<: *build
+    hostname: ${DTM_HOSTNAME_NODE3}
+    container_name: ${DTM_CONTAINER_NAME_NODE3}
+    privileged: true
+    user: root
+    environment:
+      <<: *env
+    ports:
+      - "${DTM_HTTP_PORT_NODE3}:36789"
+      - "${DTM_GRPC_PORT_NODE3}:36790"
+    networks:
+      backend:
+        ipv4_address: ${DTM_BACKEND_IP_NODE3}

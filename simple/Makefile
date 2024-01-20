@@ -12,4 +12,6 @@ help:
 test:
 	@echo "test ..."
 
-.PHONY: build
+.PHONY: download_redis_conf
+download_redis_conf:
+	@wget -O "./redis.conf" "https://github.com/redis/redis/blob/7.2/redis.conf"

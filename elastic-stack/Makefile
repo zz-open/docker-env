@@ -19,14 +19,14 @@ help:
 test:
 	@echo "test ..."
 
-.PHONY: build start create-data-dir reset
+.PHONY: build start create_data_dir reset
 build:
 	@${DOCKER_COMPOSE_BUILD} ${CONTAINERS}
 
 start:
 	@${DOCKER_COMPOSE_UP} -d ${ES_CONTAINERS}
 
-create-data-dir:
+create_data_dir:
 	mkdir -p ${DATA_PATH_HOST}/${ES_CONTAINER_NAME_NODE1}/*
 	mkdir -p ${DATA_PATH_HOST}/${ES_CONTAINER_NAME_NODE2}/*
 	mkdir -p ${DATA_PATH_HOST}/${ES_CONTAINER_NAME_NODE3}/*
@@ -47,8 +47,8 @@ reset:
 	@${DOCKER_COMPOSE_DOWN}
 
 # Elasticsearch ############################################
-.PHONY: es1-en es1-runing
-es1-en:
+.PHONY: es1_en es1_runing
+es1_en:
 	${DOCKER_COMPOSE_EXEC} ${ES_CONTAINER_NAME_NODE1} bash
-es1-runing:
+es1_runing:
 	@${DOCKER_COMPOSE_EXEC} ${ES_CONTAINER_NAME_NODE1} curl --cacert ${CONTAINER_CA_CRT_PATH} -u elastic:${ELASTIC_PASSWORD} https://localhost:9200

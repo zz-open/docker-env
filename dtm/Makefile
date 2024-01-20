@@ -29,8 +29,8 @@ reset:
 	@${DOCKER_COMPOSE_DOWN}
 
 # DTM ##############################################
-.PHONY: dtm1-en redis-en
-dtm1-en:
+.PHONY: dtm1_en redis_en
+dtm1_en:
 	${DOCKER_COMPOSE_EXEC} ${DTM_CONTAINER_NAME_NODE1} bash
-redis-en:
+redis_en:
 	${DOCKER_COMPOSE_EXEC} ${REDIS_STACK_CONTAINER_NAME} bash
