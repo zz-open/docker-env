@@ -1,13 +1,13 @@
 version: '3.8'
 
 volumes:
-  dtm-mysql:
+  spider-mysql:
     driver: ${VOLUMES_DRIVER}
 
 services:
 
 ### Mysql ################################################
-  dtm-mysql:
+  spider-mysql:
     build:
       context: ${MYSQL_HOST_PATH}
       args:

@@ -53,6 +53,12 @@ make init_data_dir
 | beanstalkd | 172.19.150.22 | 172.19.140.22 | latest |
 | beanstalkd-console | 172.19.150.23 | 172.19.140.23 | latest |
 
+### Spider (172.19.150.80)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| mysql | 172.19.150.80 | 172.19.140.80 | latest |
+| redis | 172.19.150.81 | 172.19.140.81 | latest |
+
 ### DTM (172.19.150.90)
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
