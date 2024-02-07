@@ -58,6 +58,7 @@ make init_data_dir
 |---|---|---|---|---|
 | mysql | 172.19.150.80 | 172.19.140.80 | latest |
 | redis | 172.19.150.81 | 172.19.140.81 | latest |
+| mongo | 172.19.150.82 | 172.19.140.82 | latest |
 
 ### DTM (172.19.150.90)
 | service | backend ip | frontend ip | version | 备注 |
