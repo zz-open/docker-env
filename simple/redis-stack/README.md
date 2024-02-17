@@ -5,6 +5,6 @@
 ## 问题
 - 脚本中的环境变量不生效
 ```shell
-REDIS_ARGS="--requirepass redis-stack"
+REDIS_ARGS="--requirepass redis-stack --appendonly yes"
 ```
 - COPY redis.conf不生效，通过volume挂载就生效，暂时不清楚原理

@@ -23,7 +23,7 @@ services:
       - "${REDIS_INSIGHT_PORT}:8001"
     environment:
       - "TZ=${TZ}"
-      - "REDIS_ARGS=--requirepass ${REDIS_PASSWORD}"
+      - "REDIS_ARGS=--requirepass ${REDIS_PASSWORD} --appendonly yes"
     networks:
       frontend:
         ipv4_address: ${REDIS_FRONTEND_IP}

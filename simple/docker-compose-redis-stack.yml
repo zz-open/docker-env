@@ -23,7 +23,7 @@ services:
       - "${REDIS_STACK_INSIGHT_PORT}:8001"
     environment:
       - "TZ=${TZ}"
-      - "REDIS_ARGS=--requirepass ${REDIS_STACK_PASSWORD}"
+      - "REDIS_ARGS=--requirepass ${REDIS_STACK_PASSWORD} --appendonly yes"
     networks:
       backend:
         ipv4_address: ${REDIS_STACK_BACKEND_IP}
