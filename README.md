@@ -47,7 +47,6 @@ make init_data_dir
 | phpmyadmin | 172.11.4.14 | 172.10.4.14 | latest |
 | tomcat8 | 172.11.4.15 | 172.10.4.15 | 8.5.97 |
 | mongo | 172.11.4.16 | 172.10.4.16 | latest |
-| rabbitmq | 172.11.4.17 | 172.10.4.17 | latest |
 | soketi | 172.11.4.18 | 172.10.4.18 | latest |
 | caddy | 172.11.4.20 | 172.10.4.20 | latest |
 | postgres-postgis | 172.11.4.21 | 172.10.4.21 | latest |
@@ -84,25 +83,25 @@ make init_data_dir
 ### RABBITMQ LOCAL (172.11.2.30) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| rabbitmq | 172.11.2.30 | 172.10.2.30 | latest | |
+| rabbitmq | 172.11.2.30 | 172.10.2.30 | 5.1 | |
 
 ### RABBITMQ CLUSTER (172.11.2.40) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| rabbitmq1 | 172.11.2.40 | 172.10.2.40 | latest | |
-| rabbitmq2 | 172.11.2.41 | 172.10.2.41 | latest | |
-| rabbitmq3 | 172.11.2.42 | 172.10.2.42 | latest | |
+| rabbitmq1 | 172.11.2.40 | 172.10.2.40 | 5.1 | |
+| rabbitmq2 | 172.11.2.41 | 172.10.2.41 | 5.1 | |
+| rabbitmq3 | 172.11.2.42 | 172.10.2.42 | 5.1 | |
 
 ### Pulsar Local (172.11.2.60) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| pulsar-manager | 172.11.2.60 | 172.10.2.60 | latest |
+| pulsar-manager | 172.11.2.60 | 172.10.2.60 | 0.4.0 |
 | pulsar | 172.11.2.61 | 172.10.2.61 | latest |
 
 ### Pulsar Cluster (172.11.2.80) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| pulsar-manager | 172.11.2.82 | 172.10.2.82 | latest |
+| pulsar-manager | 172.11.2.82 | 172.10.2.82 | 0.4.0 |
 | pulsar-zookeeper | 172.11.2.81 | 172.10.2.81 | latest |
 | pulsar-init | 172.11.2.80 | 172.10.2.80 | latest |
 | pulsar-bookie1 | 172.11.2.83 | 172.10.2.83 | latest |
@@ -176,26 +175,26 @@ make init_data_dir
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | kl-kafka-ui | 172.11.2.200 | 172.10.2.200 | latest | |
-| kl-zoonavagitor | 172.11.2.201 | 172.10.2.201 | | |
+| kl-zoonavagitor | 172.11.2.201 | 172.10.2.201 | latest | |
 | kl-zoo | 172.11.2.202 | 172.10.2.202 | latest | |
-| kl-kafka | 172.11.2.203 | 172.10.2.203 | latest | |
+| kl-kafka | 172.11.2.203 | 172.10.2.203 | 3.6 | |
 
 ### KAFKA KRAFT LOCAL (172.11.2.205) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | krl-kafka-ui | 172.11.2.205 | 172.10.2.205 | latest | |
-| krl-kafka | 172.11.2.206 | 172.10.2.206 | latest | |
+| krl-kafka | 172.11.2.206 | 172.10.2.206 | 3.6 | |
 
 ### KAFKA KRAFT CLUSTER (172.11.2.210) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| krc-kafka-ui | 172.11.2.210 | 172.10.2.210 | latest | |
-| krc-kafka1 | 172.11.2.211 | 172.10.2.211 | latest | |
-| krc-kafka2 | 172.11.2.212 | 172.10.2.212 | latest | |
-| krc-kafka3 | 172.11.2.213 | 172.10.2.213 | latest | |
-| krc-kafka4 | 172.11.2.214 | 172.10.2.214 | latest | |
-| krc-kafka5 | 172.11.2.215 | 172.10.2.215 | latest | |
-| krc-kafka6 | 172.11.2.216 | 172.10.2.216 | latest | |
+| krc-kafka-ui | 172.11.2.210 | 172.10.2.210 | 3.6 | |
+| krc-kafka1 | 172.11.2.211 | 172.10.2.211 | 3.6 | |
+| krc-kafka2 | 172.11.2.212 | 172.10.2.212 | 3.6 | |
+| krc-kafka3 | 172.11.2.213 | 172.10.2.213 | 3.6 | |
+| krc-kafka4 | 172.11.2.214 | 172.10.2.214 | 3.6 | |
+| krc-kafka5 | 172.11.2.215 | 172.10.2.215 | 3.6 | |
+| krc-kafka6 | 172.11.2.216 | 172.10.2.216 | 3.6 | |
 
 ### KAFKA CLUSTER (172.11.2.220) [完成]
 | service | backend ip | frontend ip | version | 备注 |
