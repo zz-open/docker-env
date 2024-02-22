@@ -16,7 +16,6 @@ include:
   - ./docker-compose-phpmyadmin.yml
   - ./docker-compose-tomcat8.yml
   - ./docker-compose-mongo.yml
-  - ./docker-compose-rabbitmq.yml
   - ./docker-compose-soketi.yml
   - ./docker-compose-caddy.yml
   - ./docker-compose-postgres-postgis.yml

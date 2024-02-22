@@ -1,0 +1,37 @@
+version: "3.8"
+
+volumes:
+  rocketmq-proxy1:
+    driver: ${VOLUMES_DRIVER}
+
+x-build: &build
+  build:
+    context: ${ROCKETMQ_HOST_PATH}
+    args:
+      ROCKETMQ_VERSION: ${ROCKETMQ_VERSION}
+
+x-proxy-env: &proxy-env
+  TZ: ${TZ}
+
+x-command: &command "sh mqproxy -n ${ROCKETMQ_NAMESRV_ADDRESS} -pc /home/rocketmq/rmq-proxy.json"
+
+services:
+
+### ROCKETMQ PROXY NODE1 ##############################################
+  rocketmq-proxy1:
+    <<: *build
+    container_name: ${ROCKETMQ_PROXY_CONTAINER_NAME_NODE1}
+    hostname: ${ROCKETMQ_PROXY_HOSTNAME_NODE1}
+    user: root
+    privileged: true
+    command: *command
+    volumes:
+      - "${LOG_PATH_HOST}/${ROCKETMQ_PROXY_CONTAINER_NAME_NODE1}:/home/rocketmq/logs"
+      - "${ROCKETMQ_CONF_HOST_PATH}/rmq-proxy.json:/home/rocketmq/rmq-proxy.json"
+    environment:
+      <<: *proxy-env
+    networks:
+      backend:
+        ipv4_address: ${ROCKETMQ_PROXY_BACKEND_IP_NODE1}
+    depends_on:
+      - ${ROCKETMQ_BROKER_CONTAINER_NAME_NODE1}

@@ -29,38 +29,207 @@ make init_network
 make init_data_dir
 ```
 ## 服务清单
-### SIMPLE (172.19.150.3)
+
+### SIMPLE (172.11.4.3)
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| busybox | 172.19.150.3 | 172.19.140.3 | latest | |
-| portainer | 172.19.150.4 | 172.19.140.4 | latest | |
-| mysql57 | 172.19.150.5 | 172.19.140.5 | 5.7 | |
-| mysql | 172.19.150.6 | 172.19.140.6 | 8.0 | |
-| redis | 172.19.150.7 | 172.19.140.7 | 7.2 | |
-| redis-stack | 172.19.150.8 | 172.19.140.8 | 7.2 | |
-| memcached | 172.19.150.9 | 172.19.140.9 | latest | |
-| docker-in-docker | 172.19.150.10 | 172.19.140.10 | latest |
-| postgres | 172.19.150.11 | 172.19.140.11 | latest |
-| pgadmin | 172.19.150.12 | 172.19.140.12 | latest |
-| certbot | 172.19.150.13 | 172.19.140.13 | latest |
-| phpmyadmin | 172.19.150.14 | 172.19.140.14 | latest |
-| tomcat8 | 172.19.150.15 | 172.19.140.15 | 8.5.97 |
-| mongo | 172.19.150.16 | 172.19.140.16 | latest |
-| rabbitmq | 172.19.150.17 | 172.19.140.17 | latest |
-| soketi | 172.19.150.18 | 172.19.140.18 | latest |
-| caddy | 172.19.150.20 | 172.19.140.20 | latest |\
-| postgres-postgis | 172.19.150.21 | 172.19.140.21 | latest |
-| beanstalkd | 172.19.150.22 | 172.19.140.22 | latest |
-| beanstalkd-console | 172.19.150.23 | 172.19.140.23 | latest |
+| busybox | 172.11.4.3 | 172.10.4.3 | latest | |
+| portainer | 172.11.4.4 | 172.10.4.4 | latest | |
+| mysql57 | 172.11.4.5 | 172.10.4.5 | 5.7 | |
+| mysql | 172.11.4.6 | 172.10.4.6 | 8.0 | |
+| redis | 172.11.4.7 | 172.10.4.7 | 7.2 | |
+| redis-stack | 172.11.4.8 | 172.10.4.8 | 7.2 | |
+| memcached | 172.11.4.9 | 172.10.4.9 | latest | |
+| docker-in-docker | 172.11.4.10 | 172.10.4.10 | latest |
+| postgres | 172.11.4.11 | 172.10.4.11 | latest |
+| pgadmin | 172.11.4.12 | 172.10.4.12 | latest |
+| certbot | 172.11.4.13 | 172.10.4.13 | latest |
+| phpmyadmin | 172.11.4.14 | 172.10.4.14 | latest |
+| tomcat8 | 172.11.4.15 | 172.10.4.15 | 8.5.97 |
+| mongo | 172.11.4.16 | 172.10.4.16 | latest |
+| rabbitmq | 172.11.4.17 | 172.10.4.17 | latest |
+| soketi | 172.11.4.18 | 172.10.4.18 | latest |
+| caddy | 172.11.4.20 | 172.10.4.20 | latest |
+| postgres-postgis | 172.11.4.21 | 172.10.4.21 | latest |
+| beanstalkd | 172.11.4.22 | 172.10.4.22 | latest |
+| beanstalkd-console | 172.11.4.23 | 172.10.4.23 | latest |
 
-### Spider (172.19.150.80)
+### ROCKETMQ LOCAL (172.11.2.3)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| rocketmq-namesrv | 172.11.2.3 | 172.10.2.3 | latest | |
+| rocketmq-broker | 172.11.2.4 | 172.10.2.4 | latest | |
+| rocketmq-dashboard | 172.11.2.5 | 172.10.2.5 | latest | |
+
+### ROCKETMQ CLUSTER (172.11.2.11)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| rocketmq-namesrv1 | 172.11.2.11 | 172.10.2.3 | latest | |
+| rocketmq-namesrv2 | 172.11.2.11 | 172.10.2.4 | latest | |
+| rocketmq-namesrv3 | 172.11.2.11 | 172.10.2.5 | latest | |
+| rocketmq-proxy1 | 172.11.2.11 | 172.10.3.6 | latest | |
+| rocketmq-proxy2 | 172.11.2.11 | 172.10.3.7 | latest | |
+| rocketmq-proxy3 | 172.11.2.11 | 172.10.3.8 | latest | |
+| rocketmq-controller1 | 172.11.2.11 | 172.10.3.9 | latest | |
+| rocketmq-controller2 | 172.11.2.11 | 172.10.3.10 | latest | |
+| rocketmq-controller3 | 172.11.2.11 | 172.10.3.11 | latest | |
+| rocketmq-broker1 | 172.11.2.11 | 172.10.3.12 | latest | |
+| rocketmq-broker2 | 172.11.2.11 | 172.10.3.13 | latest | |
+| rocketmq-broker3 | 172.11.3.14 | 172.10.3.14 | latest | |
+| rocketmq-broker4 | 172.11.3.15 | 172.10.3.15 | latest | |
+| rocketmq-broker5 | 172.11.3.16 | 172.10.3.16 | latest | |
+| rocketmq-broker6 | 172.11.3.17 | 172.10.3.17 | latest | |
+| rocketmq-dashboard | 172.11.3.18 | 172.10.3.18 | latest | |
+
+### RABBITMQ LOCAL (172.11.2.30)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| rabbitmq | 172.11.2.30 | 172.10.2.30 | latest | |
+
+### RABBITMQ CLUSTER (172.11.2.40)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| rabbitmq1 | 172.11.2.40 | 172.10.2.40 | latest | |
+| rabbitmq2 | 172.11.2.41 | 172.10.2.41 | latest | |
+| rabbitmq3 | 172.11.2.42 | 172.10.2.42 | latest | |
+
+### Pulsar Local (172.11.2.60)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| pulsar-manager | 172.11.2.60 | 172.10.2.60 | latest |
+| pulsar | 172.11.2.61 | 172.10.2.61 | latest |
+
+### Pulsar Cluster (172.11.2.80)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| pulsar-manager | 172.11.2.82 | 172.10.2.82 | latest |
+| pulsar-zookeeper | 172.11.2.81 | 172.10.2.81 | latest |
+| pulsar-init | 172.11.2.80 | 172.10.2.80 | latest |
+| pulsar-bookie1 | 172.11.2.83 | 172.10.2.83 | latest |
+| pulsar-bookie2 | 172.11.2.84 | 172.10.2.84 | latest |
+| pulsar-bookie3 | 172.11.2.85 | 172.10.2.85 | latest |
+| pulsar-broker1 | 172.11.2.86 | 172.10.2.86 | latest |
+| pulsar-broker2 | 172.11.2.87 | 172.10.2.87 | latest |
+| pulsar-broker3 | 172.11.2.88 | 172.10.2.88 | latest |
+
+### NSQ LOCAL (172.11.2.100)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| nsqadmin | 172.11.2.102 | 172.10.2.102 | latest | |
+| nsqlookupd | 172.11.2.100 | 172.10.2.100 | latest | |
+| nsqd | 172.11.2.101 | 172.10.2.101 | latest | |
+
+
+### NSQ CLUSTER (172.11.2.110)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| nsqadmin | 172.11.2.102 | 172.10.2.102 | latest | |
+| nsqlookupd1 | 172.11.2.100 | 172.10.2.100 | latest | |
+| nsqlookupd2 | 172.11.2.100 | 172.10.2.100 | latest | |
+| nsqd1 | 172.11.2.101 | 172.10.2.101 | latest | |
+| nsqd2 | 172.11.2.101 | 172.10.2.101 | latest | |
+| nsqd3 | 172.11.2.101 | 172.10.2.101 | latest | |
+
+
+### NATS LOCAL (172.11.2.130)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| nats-box | 172.11.2.130 | 172.10.2.130 | latest | |
+| nats | 172.11.2.131 | 172.10.2.131 | latest | |
+
+### NATS CLUSTER (172.11.2.140)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| nats-box | 172.19.150.240 | 172.19.140.240 | latest | |
+| nats1 | 172.19.150.241 | 172.19.140.241 | latest | |
+| nats2 | 172.19.150.242 | 172.19.140.242 | latest | |
+| nats3 | 172.19.150.243 | 172.19.140.243 | latest | |
+
+
+### ETCD LOCAL (172.11.2.160)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| etcd可视化 | 172.11.150.143 | 172.11.140.143 | | |
+| etcd | 172.11.150.140 | 172.11.140.140 | v3.5.2 | |
+
+### ETCD CLUSTER (172.11.2.170)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| etcd可视化 | 172.11.150.143 | 172.11.140.143 | | |
+| etcd1 | 172.11.150.140 | 172.11.140.140 | v3.5.2 | |
+| etcd2 | 172.11.150.141 | 172.11.140.141 | v3.5.2 | |
+| etcd3 | 172.11.150.142 | 172.11.140.142 | v3.5.2 | |
+
+### ZOOKEEPER LOCAL (172.11.2.180)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| zoonavagitor | 172.11.150.153 | 172.11.140.143 | | |
+| zoo | 172.11.150.150 | 172.11.140.150 | latest | |
+
+### ZOOKEEPER CLUSTER (172.11.2.190)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| zoonavagitor | 172.11.2.153 | 172.10.2.143 | | |
+| zoo1 | 172.11.2.150 | 172.10.2.150 | latest | |
+| zoo2 | 172.11.2.151 | 172.10.2.151 | latest | |
+| zoo3 | 172.11.2.152 | 172.10.2.152 | latest | |
+
+### KAFKA LOCAL (172.11.2.200) [完成]
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| kl-kafka-ui | 172.11.2.200 | 172.10.2.200 | latest | |
+| kl-zoonavagitor | 172.11.2.201 | 172.10.2.201 | | |
+| kl-zoo | 172.11.2.202 | 172.10.2.202 | latest | |
+| kl-kafka | 172.11.2.203 | 172.10.2.203 | latest | |
+
+### KAFKA KRAFT LOCAL (172.11.2.205) [完成]
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| krl-kafka-ui | 172.11.2.205 | 172.10.2.205 | latest | |
+| krl-kafka | 172.11.2.206 | 172.10.2.206 | latest | |
+
+### KAFKA KRAFT CLUSTER (172.11.2.210) [完成]
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| krc-kafka-ui | 172.11.2.210 | 172.10.2.210 | latest | |
+| krc-kafka1 | 172.11.2.211 | 172.10.2.211 | latest | |
+| krc-kafka2 | 172.11.2.212 | 172.10.2.212 | latest | |
+| krc-kafka3 | 172.11.2.213 | 172.10.2.213 | latest | |
+| krc-kafka4 | 172.11.2.214 | 172.10.2.214 | latest | |
+| krc-kafka5 | 172.11.2.215 | 172.10.2.215 | latest | |
+| krc-kafka6 | 172.11.2.216 | 172.10.2.216 | latest | |
+
+### KAFKA CLUSTER (172.11.2.220) [待定]
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| kc-kafka-ui | 172.11.2.220 | 172.10.2.220 | latest | |
+| kc-zoonavagitor | 172.11.2.221 | 172.10.2.221 | | |
+| kc-zoo | 172.11.2.222 | 172.10.2.222 | latest | |
+| kc-kafka1 | 172.11.2.223 | 172.10.2.223 | latest | |
+| kc-kafka2 | 172.11.2.224 | 172.10.2.224 | latest | |
+| kc-kafka3 | 172.11.2.225 | 172.10.2.225 | latest | |
+| kc-kafka4 | 172.11.2.226 | 172.10.2.226 | latest | |
+| kc-kafka5 | 172.11.2.227 | 172.10.2.227 | latest | |
+| kc-kafka6 | 172.11.2.228 | 172.10.2.228 | latest | |
+
+### DEVOPS (172.11.3.3)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| gitlab | 172.19.150.110 | 172.19.140.110 | latest | |
+| gitlab-runner | 172.19.150.111 | 172.19.140.111 | latest | |
+| jenkins | 172.19.150.112 | 172.19.140.112 | latest | |
+| promethus | 172.19.150.113 | 172.19.140.113 | latest | |
+| grafana | 172.19.150.114 | 172.19.140.114 | latest | |
+| application | 172.19.150.115 | 172.19.140.115 | latest | |
+
+### Spider (172.11.3.60)
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | mysql | 172.19.150.80 | 172.19.140.80 | latest |
 | redis | 172.19.150.81 | 172.19.140.81 | latest |
 | mongo | 172.19.150.82 | 172.19.140.82 | latest |
 
-### DTM (172.19.150.90)
+### DTM (172.11.3.80)
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | dtm1 | 172.19.150.90 | 172.19.140.90 | latest |
@@ -69,7 +238,7 @@ make init_data_dir
 | mysql | 172.19.150.96 | 172.19.140.96 | latest |
 | redis | 172.19.150.97 | 172.19.140.97 | latest |
 
-### ELK (172.19.150.100)
+### ELK (172.11.3.90)
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | es-init | 172.19.150.100 | 172.19.140.100 | latest |
@@ -80,29 +249,8 @@ make init_data_dir
 | filebeat | 172.19.150.105 | 172.19.140.105 | latest |
 | go-stash | 172.19.150.106 | 172.19.140.106 | latest |
 
-### DEVOPS (172.19.150.110)
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| gitlab | 172.19.150.110 | 172.19.140.110 | latest | |
-| gitlab-runner | 172.19.150.111 | 172.19.140.111 | latest | |
-| jenkins | 172.19.150.112 | 172.19.140.112 | latest | |
-| promethus | 172.19.150.113 | 172.19.140.113 | latest | |
-| grafana | 172.19.150.114 | 172.19.140.114 | latest | |
-| application | 172.19.150.115 | 172.19.140.115 | latest | |
 
-### LNMP (172.19.150.120)
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| nginx | 172.19.150.120 | 172.19.140.120 | latest |
-| php-fpm | 172.19.150.121 | 172.19.140.121 | latest |
-
-### LAMP (172.19.150.120)
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| apache | 172.19.150.122 | 172.19.140.122 | latest |
-| php-fpm | 172.19.150.123 | 172.19.140.123 | latest |
-
-### ELASTIC STACK (172.19.150.130)
+### ELASTIC STACK (172.11.3.110)
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | es-setup | 172.19.150.130 | 172.19.140.130 | latest |
@@ -111,23 +259,45 @@ make init_data_dir
 | es03 | 172.19.150.133 | 172.19.140.133 | latest |
 | kibana | 172.19.150.134 | 172.19.140.134 | latest |
 
-### ETCD CLUSTER (172.19.150.140)
+
+### MEMCACHED CLUSTER (172.11.3.130)
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| etcd1 | 172.19.150.140 | 172.19.140.140 | v3.5.2 | |
-| etcd2 | 172.19.150.141 | 172.19.140.141 | v3.5.2 | |
-| etcd3 | 172.19.150.142 | 172.19.140.142 | v3.5.2 | |
-| etcd可视化 | 172.19.150.143 | 172.19.140.143 | | |
+| memcached1 | 172.19.150.180 | 172.19.140.180 | latest | |
+| memcached2 | 172.19.150.181 | 172.19.140.181 | latest | |
+| memcached3 | 172.19.150.182 | 172.19.140.182 | latest | |
+| haproxy1 | 172.19.150.183 | 172.19.140.183 | latest | |
 
-### ZOOKEEPER CLUSTER (172.19.150.150)
+### MINIO CLUSTER (172.11.3.140)
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| zoo1 | 172.19.150.150 | 172.19.140.150 | latest | |
-| zoo2 | 172.19.150.151 | 172.19.140.151 | latest | |
-| zoo3 | 172.19.150.152 | 172.19.140.152 | latest | |
-| zoonavagitor | 172.19.150.153 | 172.19.140.143 | | |
+| minio1 | 172.19.150.190 | 172.19.140.190 | latest | |
+| minio2 | 172.19.150.191 | 172.19.140.191 | latest | |
+| minio3 | 172.19.150.192 | 172.19.140.192 | latest | |
+| nginx | 172.19.150.193 | 172.19.140.193 | latest | |
 
-### REDIS MSR (172.19.150.160)
+### TRAEFIK (172.11.3.150)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| traefik | 172.19.150.250 | 172.19.140.250 | latest |
+| app1 | 172.19.150.251 | 172.19.140.251 | latest |
+| app2 | 172.19.150.252 | 172.19.140.252 | latest |
+| app3 | 172.19.150.253 | 172.19.140.253 | latest |
+
+### LNMP (172.11.3.160)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| nginx | 172.11.2.220 | 172.10.2.220 | latest |
+| php-fpm | 172.11.2.221 | 172.10.2.221 | latest |
+
+### LAMP (172.11.3.170)
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| apache | 172.11.2.230 | 172.10.2.230 | latest |
+| php-fpm | 172.11.2.231 | 172.10.2.231 | latest |
+
+
+### REDIS MSR (172.11.2.200)
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | redis_1 | 172.19.150.161 | 172.19.140.161 | latest | |
@@ -138,7 +308,7 @@ make init_data_dir
 | sentinel2 | 172.19.150.167 | 172.19.140.166 | latest | |
 | sentinel3 | 172.19.150.168 | 172.19.140.167 | latest | |
 
-### REDIS CLUSTER (172.19.150.170)
+### REDIS CLUSTER (172.11.2.210)
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | redis-box | 172.19.150.170 | 172.19.140.170 | latest | |
@@ -151,62 +321,6 @@ make init_data_dir
 | redis7 | 172.19.150.177 | 172.19.140.177 | latest | |
 | redis8 | 172.19.150.178 | 172.19.140.178 | latest | |
 | redis9 | 172.19.150.179 | 172.19.140.179 | latest | |
-
-### MEMCACHED CLUSTER (172.19.150.180)
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| memcached1 | 172.19.150.180 | 172.19.140.180 | latest | |
-| memcached2 | 172.19.150.181 | 172.19.140.181 | latest | |
-| memcached3 | 172.19.150.182 | 172.19.140.182 | latest | |
-| haproxy1 | 172.19.150.183 | 172.19.140.183 | latest | |
-
-### MINIO CLUSTER (172.19.150.190)
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| minio1 | 172.19.150.190 | 172.19.140.190 | latest | |
-| minio2 | 172.19.150.191 | 172.19.140.191 | latest | |
-| minio3 | 172.19.150.192 | 172.19.140.192 | latest | |
-| nginx | 172.19.150.193 | 172.19.140.193 | latest | |
-
-### NSQ CLUSTER (172.19.150.200)
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| nsqlookupd1 | 172.19.150.200 | 172.19.140.200 | latest | |
-| nsqlookupd2 | 172.19.150.201 | 172.19.140.201 | latest | |
-| nsqd1 | 172.19.150.202 | 172.19.140.202 | latest | |
-| nsqd2 | 172.19.150.203 | 172.19.140.203 | latest | |
-| nsqd3 | 172.19.150.204 | 172.19.140.204 | latest | |
-| nsqadmin | 172.19.150.205 | 172.19.140.205 | latest | |
-
-### RABBITMQ CLUSTER (172.19.150.210)
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| rabbitmq1 | 172.19.150.210 | 172.19.140.210 | latest | |
-| rabbitmq2 | 172.19.150.211 | 172.19.140.211 | latest | |
-| rabbitmq3 | 172.19.150.212 | 172.19.140.212 | latest | |
-
-### ROCKETMQ CLUSTER (172.19.150.220)
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| rocketmq1 | 172.19.150.220 | 172.19.140.220 | latest | |
-| rocketmq2 | 172.19.150.220 | 172.19.140.220 | latest | |
-| rocketmq3 | 172.19.150.220 | 172.19.140.220 | latest | |
-
-### NATS CLUSTER (172.19.150.230)
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| nats1 | 172.19.150.230 | 172.19.140.230 | latest | |
-| nats2 | 172.19.150.231 | 172.19.140.231 | latest | |
-| nats3 | 172.19.150.232 | 172.19.140.232 | latest | |
-| nats-box | 172.19.150.233 | 172.19.140.233 | latest | |
-
-### TRAEFIK (172.19.150.240)
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| traefik | 172.19.150.240 | 172.19.140.240 | latest |
-| app1 | 172.19.150.241 | 172.19.140.241 | latest |
-| app2 | 172.19.150.242 | 172.19.140.242 | latest |
-| app3 | 172.19.150.243 | 172.19.140.243 | latest |
 
 
 ## portainer

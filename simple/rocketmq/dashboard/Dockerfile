@@ -1,1 +1,0 @@
-FROM apacherocketmq/rocketmq-dashboard:latest

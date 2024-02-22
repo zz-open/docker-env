@@ -1,0 +1,88 @@
+version: '3.8'
+
+volumes:
+  krc-kafka1:
+    driver: ${VOLUMES_DRIVER}
+  krc-kafka2:
+    driver: ${VOLUMES_DRIVER}
+  krc-kafka3:
+    driver: ${VOLUMES_DRIVER}
+
+x-kafka-build: &kafka-build
+  build:
+    context: ${KAFKA_HOST_PATH}
+    args:
+      KAFKA_VERSION: ${KAFKA_VERSION}
+
+x-kafka-env: &kafka-env
+  TZ: ${TZ}
+  # KRaft settings
+  KAFKA_CFG_PROCESS_ROLES: "controller,broker"
+  KAFKA_KRAFT_CLUSTER_ID: ${KAFKA_KRAFT_CLUSTER_ID}
+  KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: ${KAFKA_CFG_CONTROLLER_QUORUM_VOTERS}
+  # Listeners
+  KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: "${KAFKA_CFG_NODE_ID}@${KAFKA_CONTAINER_NAME}:9093"
+  KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: "CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT"
+  KAFKA_CFG_LISTENERS: "PLAINTEXT://:9092,CONTROLLER://:9093"
+  KAFKA_CFG_ADVERTISED_LISTENERS: "PLAINTEXT://:9092"
+  KAFKA_CFG_CONTROLLER_LISTENER_NAMES: "CONTROLLER"
+  KAFKA_CFG_INTER_BROKER_LISTENER_NAME: "PLAINTEXT"
+  # Clustering
+  KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+  KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 3
+  KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR: 2
+
+services:
+### KAFKA NODE1 ##############################################
+  krc-kafka1:
+    <<: *kafka-build
+    container_name: ${KAFKA_CONTAINER_NAME_NODE1}
+    hostname: ${KAFKA_CONTAINER_NAME_NODE1}
+    privileged: true
+    user: root
+    ports:
+      - "${KAFKA_HOST_PORT_NODE1}:9092"
+    environment:
+      <<: *kafka-env
+      KAFKA_CFG_NODE_ID: ${KAFKA_CFG_NODE_ID_NODE1}
+    volumes:
+      - "${DATA_PATH_HOST}/${KAFKA_CONTAINER_NAME_NODE1}:/bitnami"
+    networks:
+      backend:
+        ipv4_address: ${KAFKA_BACKEND_IP_NODE1}
+
+### KAFKA NODE2 ##############################################
+  krc-kafka2:
+    <<: *kafka-build
+    container_name: ${KAFKA_CONTAINER_NAME_NODE2}
+    hostname: ${KAFKA_CONTAINER_NAME_NODE2}
+    privileged: true
+    user: root
+    ports:
+      - "${KAFKA_HOST_PORT_NODE2}:9092"
+    environment:
+      <<: *kafka-env
+      KAFKA_CFG_NODE_ID: ${KAFKA_CFG_NODE_ID_NODE2}
+    volumes:
+      - "${DATA_PATH_HOST}/${KAFKA_CONTAINER_NAME_NODE2}:/bitnami"
+    networks:
+      backend:
+        ipv4_address: ${KAFKA_BACKEND_IP_NODE2}
+
+### KAFKA NODE3 ##############################################
+  krc-kafka3:
+    <<: *kafka-build
+    container_name: ${KAFKA_CONTAINER_NAME_NODE3}
+    hostname: ${KAFKA_CONTAINER_NAME_NODE3}
+    privileged: true
+    user: root
+    ports:
+      - "${KAFKA_HOST_PORT_NODE3}:9092"
+    environment:
+      <<: *kafka-env
+      KAFKA_CFG_NODE_ID: ${KAFKA_CFG_NODE_ID_NODE3}
+    volumes:
+      - "${DATA_PATH_HOST}/${KAFKA_CONTAINER_NAME_NODE3}:/bitnami"
+    networks:
+      backend:
+        ipv4_address: ${KAFKA_BACKEND_IP_NODE3}

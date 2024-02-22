@@ -1,0 +1,24 @@
+version: '3.8'
+
+volumes:
+  nsqlookupd:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+### NSQLOOKUPD ##############################################
+  nsqlookupd:
+    build:
+      context: ${NSQLOOKUPD_HOST_PATH}
+    container_name: ${NSQLOOKUPD_CONTAINER_NAME}
+    hostname: ${NSQLOOKUPD_HOSTNAME}
+    privileged: true
+    user: root
+    command: "/nsqlookupd"
+    ports:
+      - "${NSQLOOKUPD_HOST_TCP_PORT}:4160"
+      - "${NSQLOOKUPD_HOST_HTTP_PORT}:4161"
+    environment:
+      TZ: ${TZ}
+    networks:
+      backend:
+        ipv4_address: ${NSQLOOKUPD_BACKEND_IP}

@@ -6,10 +6,11 @@ set -eu set -o pipefail
 CommonScriptFileDirPath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # 项目根路径
-ProjectRootPath=$(cd ${CommonScriptFileDirPath}/../..;pwd)
+ProjectRootPath=$(cd ${CommonScriptFileDirPath}/..;pwd)
 
 # 引入 .env
-EnvPath=${ProjectRootPath}/.env
+EnvPath=${CommonScriptFileDirPath}/.env
+source ${EnvPath}
 # ExampleEnvPath=${ProjectRootPath}/.env.example
 
 # envs=(${EnvPath} ${ExampleEnvPath})

@@ -24,6 +24,6 @@ start:
 
 reset:
 	@${DOCKER_COMPOSE_STOP}
-	rm -rf ${DATA_HOST_PATH}/mysql
-	rm -rf ${DATA_HOST_PATH}/redis
+	rm -rf ${DATA_PATH_HOST}/mysql
+	rm -rf ${DATA_PATH_HOST}/redis
 	@${DOCKER_COMPOSE_DOWN}

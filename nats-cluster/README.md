@@ -1,1 +1,1 @@
-# nats集群
+# nats cluster
