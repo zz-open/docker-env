@@ -1,12 +1,12 @@
 version: '3.8'
   
 volumes:
-  zc-zoonavigator:
+  zoonavigator:
     driver: ${VOLUMES_DRIVER}
 
 services:
 ### ZOONAVIGATOR ##############################################
-  zc-zoonavigator:
+  zoonavigator:
     build:
       context: ${ZOONAVIGATOR_HOST_PATH}
       args:

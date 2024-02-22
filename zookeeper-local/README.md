@@ -1,5 +1,6 @@
-# zookeeper cluster
+# zookeeper local
 [docker hub](https://hub.docker.com/_/zookeeper)
+
 ```text
   #docker exec -it --user root zookeeepr bash && cd /bin
 

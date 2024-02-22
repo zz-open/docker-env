@@ -1,13 +1,13 @@
 version: '3.8'
 
 volumes:
-  dtm-redis:
+  dl-redis:
     driver: ${VOLUMES_DRIVER}
 
 services:
 
 ### Redis ##############################################
-  dtm-redis:
+  dl-redis:
     build:
       context: ${REDIS_STACK_HOST_PATH}
       args:

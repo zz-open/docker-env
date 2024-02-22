@@ -1,11 +1,11 @@
 version: '3.8'
 
 volumes:
-  zoo1:
+  zc-zoo1:
     driver: ${VOLUMES_DRIVER}
-  zoo2:
+  zc-zoo2:
     driver: ${VOLUMES_DRIVER}
-  zoo3:
+  zc-zoo3:
     driver: ${VOLUMES_DRIVER}
 
 x-env: &env
@@ -21,11 +21,12 @@ x-build: &build
 
 services:
 ### ZOOKEEPER NODE1 ##############################################
-  zoo1:
+  zc-zoo1:
     <<: *build
     container_name: ${ZOOKEEPER_NAME_NODE1}
     hostname: ${ZOOKEEPER_NAME_NODE1}
     privileged: true
+    user: root
     ports:
       - "${ZOOKEEPER_HOST_PORT_NODE1}:2181"
     environment:
@@ -38,11 +39,12 @@ services:
       backend:
         ipv4_address: ${ZOOKEEPER_BACKEND_IP_NODE1}
 ### ZOOKEEPER NODE2 ##############################################
-  zoo2:
+  zc-zoo2:
     <<: *build
     container_name: ${ZOOKEEPER_NAME_NODE2}
     hostname: ${ZOOKEEPER_NAME_NODE2}
     privileged: true
+    user: root
     ports:
       - "${ZOOKEEPER_HOST_PORT_NODE2}:2181"
     environment:
@@ -55,11 +57,12 @@ services:
       backend:
         ipv4_address: ${ZOOKEEPER_BACKEND_IP_NODE2}
 ### ZOOKEEPER NODE3 ##############################################
-  zoo3:
+  zc-zoo3:
     <<: *build
     container_name: ${ZOOKEEPER_NAME_NODE3}
     hostname: ${ZOOKEEPER_NAME_NODE3}
     privileged: true
+    user: root
     ports:
       - "${ZOOKEEPER_HOST_PORT_NODE3}:2181"
     environment:
