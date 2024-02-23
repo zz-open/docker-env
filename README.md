@@ -56,41 +56,41 @@ make init_data_dir
 ### ROCKETMQ LOCAL (172.11.2.3) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| rocketmq-namesrv | 172.11.2.3 | 172.10.2.3 | latest | |
-| rocketmq-broker | 172.11.2.4 | 172.10.2.4 | latest | |
-| rocketmq-dashboard | 172.11.2.5 | 172.10.2.5 | latest | |
+| rocketmq-dashboard | 172.11.2.3 | 172.10.2.3 | latest | |
+| rocketmq-namesrv | 172.11.2.4 | 172.10.2.4 | 5.1 | |
+| rocketmq-broker | 172.11.2.5 | 172.10.2.5 | 5.1 | |
 
-### ROCKETMQ CLUSTER (172.11.2.11) [完成]
+### ROCKETMQ CLUSTER (172.11.2.11) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| rocketmq-namesrv1 | 172.11.2.11 | 172.10.2.3 | latest | |
-| rocketmq-namesrv2 | 172.11.2.11 | 172.10.2.4 | latest | |
-| rocketmq-namesrv3 | 172.11.2.11 | 172.10.2.5 | latest | |
-| rocketmq-proxy1 | 172.11.2.11 | 172.10.3.6 | latest | |
-| rocketmq-proxy2 | 172.11.2.11 | 172.10.3.7 | latest | |
-| rocketmq-proxy3 | 172.11.2.11 | 172.10.3.8 | latest | |
-| rocketmq-controller1 | 172.11.2.11 | 172.10.3.9 | latest | |
-| rocketmq-controller2 | 172.11.2.11 | 172.10.3.10 | latest | |
-| rocketmq-controller3 | 172.11.2.11 | 172.10.3.11 | latest | |
-| rocketmq-broker1 | 172.11.2.11 | 172.10.3.12 | latest | |
-| rocketmq-broker2 | 172.11.2.11 | 172.10.3.13 | latest | |
-| rocketmq-broker3 | 172.11.3.14 | 172.10.3.14 | latest | |
-| rocketmq-broker4 | 172.11.3.15 | 172.10.3.15 | latest | |
-| rocketmq-broker5 | 172.11.3.16 | 172.10.3.16 | latest | |
-| rocketmq-broker6 | 172.11.3.17 | 172.10.3.17 | latest | |
-| rocketmq-dashboard | 172.11.3.18 | 172.10.3.18 | latest | |
+| rocketmq-dashboard | 172.11.2.11 | 172.10.2.11 | latest | |
+| rocketmq-c-namesrv1 | 172.11.2.11 | 172.10.2.3 | latest | |
+| rocketmq-c-namesrv2 | 172.11.2.11 | 172.10.2.4 | latest | |
+| rocketmq-c-namesrv3 | 172.11.2.11 | 172.10.2.5 | latest | |
+| rocketmq-c-proxy1 | 172.11.2.11 | 172.10.3.6 | latest | |
+| rocketmq-c-proxy2 | 172.11.2.11 | 172.10.3.7 | latest | |
+| rocketmq-c-proxy3 | 172.11.2.11 | 172.10.3.8 | latest | |
+| rocketmq-c-controller1 | 172.11.2.11 | 172.10.3.9 | latest | |
+| rocketmq-c-controller2 | 172.11.2.11 | 172.10.3.10 | latest | |
+| rocketmq-c-controller3 | 172.11.2.11 | 172.10.3.11 | latest | |
+| rocketmq-c-broker1 | 172.11.2.11 | 172.10.3.12 | latest | |
+| rocketmq-c-broker2 | 172.11.2.11 | 172.10.3.13 | latest | |
+| rocketmq-c-broker3 | 172.11.3.14 | 172.10.3.14 | latest | |
+| rocketmq-c-broker4 | 172.11.3.15 | 172.10.3.15 | latest | |
+| rocketmq-c-broker5 | 172.11.3.16 | 172.10.3.16 | latest | |
+| rocketmq-c-broker6 | 172.11.3.17 | 172.10.3.17 | latest | |
 
 ### RABBITMQ LOCAL (172.11.2.30) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| rabbitmq | 172.11.2.30 | 172.10.2.30 | 5.1 | |
+| rabbitmq | 172.11.2.30 | 172.10.2.30 | 3.12 | |
 
-### RABBITMQ CLUSTER (172.11.2.40) [完成]
+### RABBITMQ CLUSTER (172.11.2.40) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| rabbitmq1 | 172.11.2.40 | 172.10.2.40 | 5.1 | |
-| rabbitmq2 | 172.11.2.41 | 172.10.2.41 | 5.1 | |
-| rabbitmq3 | 172.11.2.42 | 172.10.2.42 | 5.1 | |
+| rabbitmq1 | 172.11.2.40 | 172.10.2.40 | 3.12 | |
+| rabbitmq2 | 172.11.2.41 | 172.10.2.41 | 3.12 | |
+| rabbitmq3 | 172.11.2.42 | 172.10.2.42 | 3.12 | |
 
 ### Pulsar Local (172.11.2.60) [完成]
 | service | backend ip | frontend ip | version | 备注 |
@@ -98,7 +98,7 @@ make init_data_dir
 | pulsar-manager | 172.11.2.60 | 172.10.2.60 | 0.4.0 |
 | pulsar | 172.11.2.61 | 172.10.2.61 | latest |
 
-### Pulsar Cluster (172.11.2.80) [完成]
+### Pulsar Cluster (172.11.2.80) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | pulsar-manager | 172.11.2.82 | 172.10.2.82 | 0.4.0 |
@@ -118,7 +118,7 @@ make init_data_dir
 | nsqlookupd | 172.11.2.100 | 172.10.2.100 | latest | |
 | nsqd | 172.11.2.101 | 172.10.2.101 | latest | |
 
-### NSQ CLUSTER (172.11.2.110) [完成]
+### NSQ CLUSTER (172.11.2.110) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | nsqadmin | 172.11.2.110 | 172.10.2.110 | latest | |
@@ -135,33 +135,33 @@ make init_data_dir
 | nats-box | 172.11.2.130 | 172.10.2.130 | latest | |
 | nats | 172.11.2.131 | 172.10.2.131 | latest | |
 
-### NATS CLUSTER (172.11.2.140) [完成]
+### NATS CLUSTER (172.11.2.140) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| nats-box | 172.19.150.240 | 172.19.140.240 | latest | |
-| nats1 | 172.19.150.241 | 172.19.140.241 | latest | |
-| nats2 | 172.19.150.242 | 172.19.140.242 | latest | |
-| nats3 | 172.19.150.243 | 172.19.140.243 | latest | |
+| nats-box | 172.11.2.240 | 172.10.2.240 | latest | |
+| nats1 | 172.11.2.241 | 172.10.2.241 | latest | |
+| nats2 | 172.11.2.242 | 172.10.2.242 | latest | |
+| nats3 | 172.11.2.243 | 172.10.2.243 | latest | |
 
 ### ETCD LOCAL (172.11.2.160) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| etcd可视化 | 172.11.150.143 | 172.11.140.143 | | |
-| etcd | 172.11.150.140 | 172.11.140.140 | v3.5.2 | |
+| etcd-ui | 172.11.2.160 | 172.10.2.160 | | |
+| etcd | 172.11.2.161 | 172.10.2.161 | v3.5.2 | |
 
 ### ETCD CLUSTER (172.11.2.170) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| etcd可视化 | 172.11.150.143 | 172.11.140.143 | | |
-| etcd1 | 172.11.150.140 | 172.11.140.140 | v3.5.2 | |
-| etcd2 | 172.11.150.141 | 172.11.140.141 | v3.5.2 | |
-| etcd3 | 172.11.150.142 | 172.11.140.142 | v3.5.2 | |
+| ec-etcd-ui | 172.11.2.170 | 172.10.2.170 | | |
+| ec-etcd1 | 172.11.2.171 | 172.10.2.171 | v3.5.2 | |
+| ec-etcd2 | 172.11.2.172 | 172.10.2.172 | v3.5.2 | |
+| ec-etcd3 | 172.11.2.173 | 172.10.2.173 | v3.5.2 | |
 
 ### ZOOKEEPER LOCAL (172.11.2.180) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| zoonavagitor | 172.11.2.180 | 172.11.2.180 | | |
-| zookeeper | 172.11.2.181 | 172.11.2.181 | latest | |
+| zoonavagitor | 172.11.2.180 | 172.10.2.180 | | |
+| zookeeper | 172.11.2.181 | 172.10.2.181 | latest | |
 
 ### ZOOKEEPER CLUSTER (172.11.2.190) [完成]
 | service | backend ip | frontend ip | version | 备注 |
