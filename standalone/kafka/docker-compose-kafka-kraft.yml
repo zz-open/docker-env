@@ -1,7 +1,7 @@
 version: '3.8'
 
 volumes:
-  krl-kafka:
+  kafka:
     driver: ${VOLUMES_DRIVER}
 
 x-kafka-build: &kafka-build
@@ -12,7 +12,7 @@ x-kafka-build: &kafka-build
 
 services:
 ### KAFKA ##############################################
-  krl-kafka:
+  kafka:
     <<: *kafka-build
     container_name: ${KAFKA_CONTAINER_NAME}
     hostname: ${KAFKA_CONTAINER_NAME}

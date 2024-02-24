@@ -1,4 +1,4 @@
-# zookeeper local
+# zookeeper
 [docker hub](https://hub.docker.com/_/zookeeper)
 
 ```text

@@ -1,4 +1,4 @@
-# Rabbitmq Local
+# Rabbitmq
 - [rabbitmq-delayed-message-exchange github](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange)
 - [rabbitmq docker](https://github.com/docker-library/docs/tree/master/rabbitmq)
 

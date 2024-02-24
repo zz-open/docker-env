@@ -1,8 +1,0 @@
-version: '3.8'
-
-include:
-  - ../_common/docker-compose-common.yml
-  - ./docker-compose-kafka-ui.yml
-  - ./docker-compose-zoonavigator.yml
-  - ./docker-compose-zookeeper.yml
-  - ./docker-compose-kafka.yml

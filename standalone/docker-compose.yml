@@ -27,8 +27,18 @@ include:
   - ./rocketmq/docker-compose-broker.yml
   - ./rocketmq/docker-compose-dashboard.yml
   - ./rabbitmq/docker-compose-rabbitmq.yml
-
-
+  - ./kafka/docker-compose-kafka-ui.yml
+  - ./kafka/docker-compose-kafka-kraft.yml
+  - ./kafka/docker-compose-kafka-z.yml
+  - ./etcd/docker-compose-etcd-ui.yml
+  - ./etcd/docker-compose-etcd.yml
+  - ./pulsar/docker-compose-pulsar-manager.yml
+  - ./pulsar/docker-compose-pulsar.yml
+  - ./nsq/docker-compose-nsqadmin.yml
+  - ./nsq/docker-compose-nsqlookupd.yml
+  - ./nsq/docker-compose-nsqd.yml
+  - ./dtm/docker-compose-dtm.yml
+  - ./nacos/docker-compose-nacos.yml
 
 
 

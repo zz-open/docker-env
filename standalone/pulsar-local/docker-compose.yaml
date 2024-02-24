@@ -1,6 +1,0 @@
-version: '3.8'
-
-include:
-  - ../_common/docker-compose-common.yml
-  - ./docker-compose-pulsar-standalone.yml
-  - ./docker-compose-manager.yml

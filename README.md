@@ -34,11 +34,9 @@ docker-compose up -d mysql57
 # 启动 redis
 docker-compose up -d redis
 
-# 启动 postgres
+# 启动 postgres 
 docker-compose up -d postgres
 ```
-
-
 
 ### 常用命令
 项目使用Makefile管理常用命令，因为Makefile可以分别定义PHONY执行，SHELL相对比较麻烦
@@ -77,18 +75,18 @@ docker-compose up -d postgres
 | rabbitmq | 172.11.4.27 | 172.10.4.27 | 3.12 | |
 | kafka-ui | 172.11.4.28 | 172.10.4.28 | latest | |
 | kafka | 172.11.4.29 | 172.10.4.29 | 3.6 | |
-| kraft-kafka | 172.11.4.30 | 172.10.4.30 | 3.6 | |
+| kafka-z | 172.11.4.30 | 172.10.4.30 | 3.6 | |
 | etcd-ui | 172.11.4.31 | 172.10.4.31 | latest | |
 | etcd | 172.11.4.32 | 172.10.4.32 | v3.5.2 | |
 | nats-box | 172.11.4.33 | 172.10.4.33 | latest | |
 | nats | 172.11.4.34 | 172.10.4.34 | 2.10.11 | |
 | pulsar-manager | 172.11.4.35 | 172.10.4.35 | 0.4.0 |
 | pulsar | 172.11.4.36 | 172.10.4.36 | latest |
-| nsqadmin | 172.11.2.102 | 172.10.2.102 | latest | |
-| nsqlookupd | 172.11.2.100 | 172.10.2.100 | latest | |
-| nsqd | 172.11.2.101 | 172.10.2.101 | latest | |
-| dl-dtm | 172.11.3.72 | 172.10.3.72 | latest |
-| nacos | 172.11.3.201 | 172.10.3.201 | latest | |
+| nsqadmin | 172.11.2.37 | 172.10.2.37 | latest | |
+| nsqlookupd | 172.11.2.38 | 172.10.2.38 | latest | |
+| nsqd | 172.11.2.39 | 172.10.2.39 | latest | |
+| dtm | 172.11.3.40 | 172.10.3.40 | latest |
+| nacos | 172.11.3.41 | 172.10.3.41 | latest | |
 
 
 
