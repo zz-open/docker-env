@@ -1,7 +1,0 @@
-version: '3.8'
-
-include:
-  - ../_common/docker-compose-common.yml
-  - ./docker-compose-namesrv.yml
-  - ./docker-compose-broker.yml
-  - ./docker-compose-dashboard.yml

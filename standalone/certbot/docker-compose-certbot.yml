@@ -1,0 +1,27 @@
+version: '3.8'
+
+volumes:
+  certbot:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### Certbot ##############################################
+  certbot:
+    build:
+      context: ${CERTBOT_HOST_PATH}
+      args:
+        - CERTBOT_VERSION=${CERTBOT_VERSION}
+    container_name: ${CERTBOT_CONTAINER_NAME}
+    hostname: ${CERTBOT_HOSTNAME}
+    privileged: true
+    user: root
+    volumes:
+      - "${DATA_PATH_HOST}/${CERTBOT_CONTAINER_NAME}/certs:/var/certs"
+      - "${CERTBOT_HOST_PATH}/letsencrypt/:/var/www/letsencrypt"
+    environment:
+      CN: ${CERTBOT_CN}
+      EMAIL: ${CERTBOT_EMAIL}
+    networks:
+      backend:
+        ipv4_address: ${CERTBOT_BACKEND_IP}

@@ -1,0 +1,34 @@
+version: '3.8'
+
+volumes:
+  phpmyadmin:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### phpMyAdmin ###########################################
+  phpmyadmin:
+    build:
+      context: ${PMA_HOST_PATH}
+      args:
+        - PMA_VERSION=${PMA_VERSION}
+    container_name: ${PMA_CONTAINER_NAME}
+    hostname: ${PMA_HOSTNAME}
+    privileged: true
+    user: root
+    environment:
+      PMA_ARBITRARY: 1
+      MYSQL_USER: ${PMA_USER}
+      MYSQL_PASSWORD: ${PMA_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${PMA_ROOT_PASSWORD}
+      MAX_EXECUTION_TIME: ${PMA_MAX_EXECUTION_TIME}
+      MEMORY_LIMIT: ${PMA_MEMORY_LIMIT}
+      UPLOAD_LIMIT: ${PMA_UPLOAD_LIMIT}
+    ports:
+      - "${PMA_HOST_PORT}:80"
+    networks:
+      backend:
+        ipv4_address: ${PMA_BACKEND_IP}
+    # depends_on:
+    #   mysql57:
+    #     condition: service_healthy

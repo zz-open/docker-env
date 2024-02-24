@@ -1,0 +1,25 @@
+version: '3.8'
+
+volumes:
+  beanstalkd:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### Beanstalkd ###########################################
+  beanstalkd:
+    build:
+      context: ${BEANSTALKD_HOST_PATH}
+      args:
+        - BEANSTALKD_VERSION=${BEANSTALKD_VERSION}
+    container_name: ${BEANSTALKD_CONTAINER_NAME}
+    hostname: ${BEANSTALKD_HOSTNAME}
+    privileged: true
+    user: root
+    ports:
+      - "${BEANSTALKD_HOST_PORT}:11300"
+    environment:
+      TZ: ${TZ}
+    networks:
+      backend:
+        ipv4_address: ${BEANSTALKD_BACKEND_IP}

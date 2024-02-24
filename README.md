@@ -13,52 +13,110 @@
 
 Full development environment based on Docker.
 
-### Makefile
-所有项目使用Makefile管理常用命令，因为Makefile可以分别定义PHONY执行，SHELL相对麻烦
-
-- 初始化docker网络
+## 如何使用
+### 初始化网络
 ```shell
 make init_network
 ```
-
 - backend: 后端服务网络
-- frontend: 前端服务网络（暂时无用）
+- frontend: 前端服务网络（备用网络，可忽略）
 
-- 初始化数据目录
+数据目录存放在： ~/.docker-env
+日志目录存放在： 项目根路径/logs
+
+### 启动服务
 ```shell
-make init_data_dir
-```
-## 服务清单
+cd standalone
 
-### SIMPLE (172.11.4.3) [完成]
+# 启动 mysql5.7
+docker-compose up -d mysql57
+
+# 启动 redis
+docker-compose up -d redis
+
+# 启动 postgres
+docker-compose up -d postgres
+```
+
+
+
+### 常用命令
+项目使用Makefile管理常用命令，因为Makefile可以分别定义PHONY执行，SHELL相对比较麻烦
+
+
+## 服务清单
+### STANDALONE
+单体服务, 172.11.4.3
+
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| busybox | 172.11.4.3 | 172.10.4.3 | latest | |
-| portainer | 172.11.4.4 | 172.10.4.4 | latest | |
+| portainer | 172.11.4.3 | 172.10.4.3 | latest | |
+| busybox | 172.11.4.4 | 172.10.4.4 | latest | |
 | mysql57 | 172.11.4.5 | 172.10.4.5 | 5.7 | |
 | mysql | 172.11.4.6 | 172.10.4.6 | 8.0 | |
-| redis | 172.11.4.7 | 172.10.4.7 | 7.2 | |
-| redis-stack | 172.11.4.8 | 172.10.4.8 | 7.2 | |
-| memcached | 172.11.4.9 | 172.10.4.9 | latest | |
-| docker-in-docker | 172.11.4.10 | 172.10.4.10 | latest |
-| postgres | 172.11.4.11 | 172.10.4.11 | latest |
-| pgadmin | 172.11.4.12 | 172.10.4.12 | latest |
-| certbot | 172.11.4.13 | 172.10.4.13 | latest |
-| phpmyadmin | 172.11.4.14 | 172.10.4.14 | latest |
-| tomcat8 | 172.11.4.15 | 172.10.4.15 | 8.5.97 |
-| mongo | 172.11.4.16 | 172.10.4.16 | latest |
-| soketi | 172.11.4.18 | 172.10.4.18 | latest |
-| caddy | 172.11.4.20 | 172.10.4.20 | latest |
-| postgres-postgis | 172.11.4.21 | 172.10.4.21 | latest |
-| beanstalkd | 172.11.4.22 | 172.10.4.22 | latest |
-| beanstalkd-console | 172.11.4.23 | 172.10.4.23 | latest |
+| redis | 172.11.4.7 | 172.10.4.7 | latest | |
+| memcached | 172.11.4.8 | 172.10.4.8 | 1.6.23 | |
+| postgres | 172.11.4.9 | 172.10.4.9 | 16.2 | |
+| mongo | 172.11.4.10 | 172.10.4.10 | 7.0.5 | |
+| tomcat8 | 172.11.4.11 | 172.10.4.11 | 8.5.99 | 待定 |
+| postgres-postgis | 172.11.4.12 | 172.10.4.12 | latest | |
+| pgadmin | 172.11.4.13 | 172.10.4.13 | latest | |
+| phpmyadmin | 172.11.4.14 | 172.10.4.14 | 5.2.1 | |
+| soketi | 172.11.4.15 | 172.10.4.15 | latest | 待定 |
+| caddy | 172.11.4.16 | 172.10.4.16 | latest | 待定 |
+| beanstalkd | 172.11.4.17 | 172.10.4.17 | latest | 待定 |
+| beanstalkd-console | 172.11.4.18 | 172.10.4.18 | latest | 待定 |
+| traefik | 172.11.4.19 | 172.10.4.19 | v2.5 | 待定 |
+| certbot | 172.11.4.20 | 172.10.4.20 | latest | 待定 |
+| mongo-webui | 172.11.4.21 | 172.10.4.21 | latest | 待定 |
+| zookeeper | 172.11.4.22 | 172.10.4.22 | 3.9.1 | |
+| zoonavagitor | 172.11.4.23 | 172.10.4.23 | latest | |
+| rocketmq-dashboard | 172.11.4.24 | 172.10.4.24 | latest | |
+| rocketmq-broker | 172.11.4.25 | 172.10.4.25 | 5.1 | |
+| rocketmq-namesrv | 172.11.4.26 | 172.10.4.26 | 5.1 | |
+| rabbitmq | 172.11.4.27 | 172.10.4.27 | 3.12 | |
+| kafka-ui | 172.11.4.28 | 172.10.4.28 | latest | |
+| kafka | 172.11.4.29 | 172.10.4.29 | 3.6 | |
+| kraft-kafka | 172.11.4.30 | 172.10.4.30 | 3.6 | |
+| etcd-ui | 172.11.4.31 | 172.10.4.31 | latest | |
+| etcd | 172.11.4.32 | 172.10.4.32 | v3.5.2 | |
+| nats-box | 172.11.4.33 | 172.10.4.33 | latest | |
+| nats | 172.11.4.34 | 172.10.4.34 | 2.10.11 | |
+| pulsar-manager | 172.11.4.35 | 172.10.4.35 | 0.4.0 |
+| pulsar | 172.11.4.36 | 172.10.4.36 | latest |
+| nsqadmin | 172.11.2.102 | 172.10.2.102 | latest | |
+| nsqlookupd | 172.11.2.100 | 172.10.2.100 | latest | |
+| nsqd | 172.11.2.101 | 172.10.2.101 | latest | |
+| dl-dtm | 172.11.3.72 | 172.10.3.72 | latest |
+| nacos | 172.11.3.201 | 172.10.3.201 | latest | |
 
-### ROCKETMQ LOCAL (172.11.2.3) [完成]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| rocketmq-dashboard | 172.11.2.3 | 172.10.2.3 | latest | |
-| rocketmq-namesrv | 172.11.2.4 | 172.10.2.4 | 5.1 | |
-| rocketmq-broker | 172.11.2.5 | 172.10.2.5 | 5.1 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### CLUSTER
+集群服务
 
 ### ROCKETMQ CLUSTER (172.11.2.11) [待定]
 | service | backend ip | frontend ip | version | 备注 |
@@ -80,11 +138,6 @@ make init_data_dir
 | rocketmq-c-broker5 | 172.11.3.16 | 172.10.3.16 | latest | |
 | rocketmq-c-broker6 | 172.11.3.17 | 172.10.3.17 | latest | |
 
-### RABBITMQ LOCAL (172.11.2.30) [完成]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| rabbitmq | 172.11.2.30 | 172.10.2.30 | 3.12 | |
-
 ### RABBITMQ CLUSTER (172.11.2.40) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
@@ -92,11 +145,6 @@ make init_data_dir
 | rabbitmq2 | 172.11.2.41 | 172.10.2.41 | 3.12 | |
 | rabbitmq3 | 172.11.2.42 | 172.10.2.42 | 3.12 | |
 
-### Pulsar Local (172.11.2.60) [完成]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| pulsar-manager | 172.11.2.60 | 172.10.2.60 | 0.4.0 |
-| pulsar | 172.11.2.61 | 172.10.2.61 | latest |
 
 ### Pulsar Cluster (172.11.2.80) [待定]
 | service | backend ip | frontend ip | version | 备注 |
@@ -111,13 +159,6 @@ make init_data_dir
 | pulsar-broker2 | 172.11.2.87 | 172.10.2.87 | latest |
 | pulsar-broker3 | 172.11.2.88 | 172.10.2.88 | latest |
 
-### NSQ LOCAL (172.11.2.100) [完成]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| nsqadmin | 172.11.2.102 | 172.10.2.102 | latest | |
-| nsqlookupd | 172.11.2.100 | 172.10.2.100 | latest | |
-| nsqd | 172.11.2.101 | 172.10.2.101 | latest | |
-
 ### NSQ CLUSTER (172.11.2.110) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
@@ -129,11 +170,6 @@ make init_data_dir
 | nsqd2 | 172.11.2.101 | 172.10.2.101 | latest | |
 | nsqd3 | 172.11.2.101 | 172.10.2.101 | latest | |
 
-### NATS LOCAL (172.11.2.130) [完成]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| nats-box | 172.11.2.130 | 172.10.2.130 | latest | |
-| nats | 172.11.2.131 | 172.10.2.131 | latest | |
 
 ### NATS CLUSTER (172.11.2.140) [待定]
 | service | backend ip | frontend ip | version | 备注 |
@@ -143,12 +179,6 @@ make init_data_dir
 | nats2 | 172.11.2.242 | 172.10.2.242 | latest | |
 | nats3 | 172.11.2.243 | 172.10.2.243 | latest | |
 
-### ETCD LOCAL (172.11.2.160) [完成]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| etcd-ui | 172.11.2.160 | 172.10.2.160 | | |
-| etcd | 172.11.2.161 | 172.10.2.161 | v3.5.2 | |
-
 ### ETCD CLUSTER (172.11.2.170) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
@@ -157,33 +187,16 @@ make init_data_dir
 | ec-etcd2 | 172.11.2.172 | 172.10.2.172 | v3.5.2 | |
 | ec-etcd3 | 172.11.2.173 | 172.10.2.173 | v3.5.2 | |
 
-### ZOOKEEPER LOCAL (172.11.2.180) [完成]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| zoonavagitor | 172.11.2.180 | 172.10.2.180 | | |
-| zookeeper | 172.11.2.181 | 172.10.2.181 | latest | |
+
 
 ### ZOOKEEPER CLUSTER (172.11.2.190) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | zc-zoonavagitor | 172.11.2.190 | 172.10.2.190 | | |
-| zc-zoo1 | 172.11.2.191 | 172.10.2.191 | latest | |
-| zc-zoo2 | 172.11.2.192 | 172.10.2.192 | latest | |
-| zc-zoo3 | 172.11.2.193 | 172.10.2.193 | latest | |
+| zookeeper1 | 172.11.2.191 | 172.10.2.191 | latest | |
+| zookeeper2 | 172.11.2.192 | 172.10.2.192 | latest | |
+| zookeeper3 | 172.11.2.193 | 172.10.2.193 | latest | |
 
-### KAFKA LOCAL (172.11.2.200) [完成]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| kl-kafka-ui | 172.11.2.200 | 172.10.2.200 | latest | |
-| kl-zoonavagitor | 172.11.2.201 | 172.10.2.201 | latest | |
-| kl-zoo | 172.11.2.202 | 172.10.2.202 | latest | |
-| kl-kafka | 172.11.2.203 | 172.10.2.203 | 3.6 | |
-
-### KAFKA KRAFT LOCAL (172.11.2.205) [完成]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| krl-kafka-ui | 172.11.2.205 | 172.10.2.205 | latest | |
-| krl-kafka | 172.11.2.206 | 172.10.2.206 | 3.6 | |
 
 ### KAFKA KRAFT CLUSTER (172.11.2.210) [完成]
 | service | backend ip | frontend ip | version | 备注 |
@@ -209,32 +222,6 @@ make init_data_dir
 | kc-kafka5 | 172.11.2.227 | 172.10.2.227 | latest | |
 | kc-kafka6 | 172.11.2.228 | 172.10.2.228 | latest | |
 
-### DEVOPS (172.11.3.3) [完成]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| gitlab | 172.11.3.3 | 172.10.3.3 | latest | |
-| gitlab-runner | 172.11.3.4 | 172.10.3.4 | latest | |
-| jenkins | 172.11.3.5 | 172.10.3.5 | latest | |
-| devops-postgres | 172.11.3.6 | 172.10.3.6 | latest | |
-| devops-redis | 172.11.3.7 | 172.10.3.7 | latest | |
-| application | 172.11.3.8 | 172.10.3.8 | latest | |
-| promethus | 172.11.3.6 | 172.10.3.6 | latest | |
-| grafana | 172.11.3.7 | 172.10.3.7 | latest | |
-
-### Spider (172.11.3.60) [完成]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| mysql | 172.11.3.60 | 172.10.3.60 | latest |
-| redis | 172.11.3.61 | 172.10.3.61 | latest |
-| mongo | 172.11.3.62 | 172.10.3.62 | latest |
-
-### DTM LOCAL (172.11.3.70) [完成]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| dl-mysql | 172.11.3.70 | 172.10.3.70 | latest |
-| dl-redis | 172.11.3.71 | 172.10.3.71 | latest |
-| dl-dtm | 172.11.3.72 | 172.10.3.72 | latest |
-
 ### DTM CLUSTER (172.11.3.80) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
@@ -243,26 +230,6 @@ make init_data_dir
 | dc-dtm1 | 172.11.3.82 | 172.10.3.82 | latest |
 | dc-dtm2 | 172.11.3.83 | 172.10.3.83 | latest |
 | dc-dtm3 | 172.11.3.84 | 172.10.3.84 | latest |
-
-### ELK (172.11.3.90) [待定]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| es-init | 172.11.3.100 | 172.10.3.100 | latest |
-| es | 172.11.3.101 | 172.10.3.101 | latest |
-| kibana | 172.11.3.102 | 172.10.3.102 | latest |
-| logstash | 172.11.3.103 | 172.10.3.103 | latest |
-| elk-box | 172.11.3.104 | 172.10.3.104 | latest |
-| filebeat | 172.11.3.105 | 172.10.3.105 | latest |
-| go-stash | 172.11.3.106 | 172.10.3.106 | latest |
-
-### ELASTIC STACK (172.11.3.110) [待定]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| es-setup | 172.11.3.130 | 172.10.3.130 | latest |
-| es01 | 172.11.3.131 | 172.10.3.131 | latest |
-| es02 | 172.11.3.132 | 172.10.3.132 | latest |
-| es03 | 172.11.3.133 | 172.10.3.133 | latest |
-| kibana | 172.11.3.134 | 172.10.3.134 | latest |
 
 ### MEMCACHED CLUSTER (172.11.3.130) [待定]
 | service | backend ip | frontend ip | version | 备注 |
@@ -279,26 +246,6 @@ make init_data_dir
 | minio1 | 172.11.3.141 | 172.10.3.141 | latest | |
 | minio2 | 172.11.3.142 | 172.10.3.142 | latest | |
 | minio3 | 172.11.3.143 | 172.10.3.143 | latest | |
-
-### TRAEFIK (172.11.3.150) [待定]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| traefik | 172.11.3.250 | 172.10.3.250 | latest |
-| app1 | 172.11.3.251 | 172.10.3.251 | latest |
-| app2 | 172.11.3.252 | 172.10.3.252 | latest |
-| app3 | 172.11.3.253 | 172.10.3.253 | latest |
-
-### LNMP (172.11.3.160) [完成]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| nginx | 172.11.3.160 | 172.10.3.160 | latest |
-| php-fpm | 172.11.3.161 | 172.10.3.161 | latest |
-
-### LAMP (172.11.3.170) [完成]
-| service | backend ip | frontend ip | version | 备注 |
-|---|---|---|---|---|
-| apache | 172.11.3.170 | 172.10.2.170 | latest |
-| php-fpm | 172.11.3.171 | 172.10.2.171 | latest |
 
 ### REDIS MSR (172.11.3.180) [完成]
 | service | backend ip | frontend ip | version | 备注 |
@@ -325,9 +272,71 @@ make init_data_dir
 | redis8 | 172.11.3.198 | 172.10.3.198 | latest | |
 | redis9 | 172.11.3.199 | 172.10.3.199 | latest | |
 
-### portainer
-密码最少12个字符
-```text
-username: admin
-password: adminadminadmin
-```
+### NACOS CLUSTER (172.11.3.210) [待定]
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| nacos1 | 172.11.3.211 | 172.10.3.211 | latest | |
+| nacos2 | 172.11.3.211 | 172.10.3.211 | latest | |
+| nacos3 | 172.11.3.211 | 172.10.3.211 | latest | |
+
+### STACK
+全栈
+
+### DEVOPS (172.11.3.3) [完成]
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| gitlab | 172.11.3.3 | 172.10.3.3 | latest | |
+| gitlab-runner | 172.11.3.4 | 172.10.3.4 | latest | |
+| jenkins | 172.11.3.5 | 172.10.3.5 | latest | |
+| devops-postgres | 172.11.3.6 | 172.10.3.6 | latest | |
+| devops-redis | 172.11.3.7 | 172.10.3.7 | latest | |
+| application | 172.11.3.8 | 172.10.3.8 | latest | |
+| promethus | 172.11.3.6 | 172.10.3.6 | latest | |
+| grafana | 172.11.3.7 | 172.10.3.7 | latest | |
+
+### Spider (172.11.3.60) [完成]
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| mysql | 172.11.3.60 | 172.10.3.60 | latest |
+| redis | 172.11.3.61 | 172.10.3.61 | latest |
+| mongo | 172.11.3.62 | 172.10.3.62 | latest |
+
+### ELK (172.11.3.90) [待定]
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| es-init | 172.11.3.100 | 172.10.3.100 | latest |
+| es | 172.11.3.101 | 172.10.3.101 | latest |
+| kibana | 172.11.3.102 | 172.10.3.102 | latest |
+| logstash | 172.11.3.103 | 172.10.3.103 | latest |
+| elk-box | 172.11.3.104 | 172.10.3.104 | latest |
+| filebeat | 172.11.3.105 | 172.10.3.105 | latest |
+| go-stash | 172.11.3.106 | 172.10.3.106 | latest |
+
+### ELASTIC STACK (172.11.3.110) [待定]
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| es-setup | 172.11.3.130 | 172.10.3.130 | latest |
+| es01 | 172.11.3.131 | 172.10.3.131 | latest |
+| es02 | 172.11.3.132 | 172.10.3.132 | latest |
+| es03 | 172.11.3.133 | 172.10.3.133 | latest |
+| kibana | 172.11.3.134 | 172.10.3.134 | latest |
+
+### TRAEFIK (172.11.3.150) [待定]
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| traefik | 172.11.3.250 | 172.10.3.250 | latest |
+| app1 | 172.11.3.251 | 172.10.3.251 | latest |
+| app2 | 172.11.3.252 | 172.10.3.252 | latest |
+| app3 | 172.11.3.253 | 172.10.3.253 | latest |
+
+### LNMP (172.11.3.160) [完成]
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| nginx | 172.11.3.160 | 172.10.3.160 | latest |
+| php-fpm | 172.11.3.161 | 172.10.3.161 | latest |
+
+### LAMP (172.11.3.170) [完成]
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| apache | 172.11.3.170 | 172.10.2.170 | latest |
+| php-fpm | 172.11.3.171 | 172.10.2.171 | latest |
