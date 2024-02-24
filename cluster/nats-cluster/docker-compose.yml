@@ -1,6 +1,6 @@
 version: '3.8'
 
 include:
-  - ../_common/docker-compose-common.yml
+  - ../../_common/docker-compose-common.yml
   - ./docker-compose-nats.yml
   - ./docker-compose-nats-box.yml

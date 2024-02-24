@@ -1,7 +1,7 @@
 version: '3.8'
 
 include:
-  - ../_common/docker-compose-common.yml
+  - ../../_common/docker-compose-common.yml
   - ./docker-compose-init.yml
   - ./docker-compose-manager.yml
   - ./docker-compose-zookeeper.yml

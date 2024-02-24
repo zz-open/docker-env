@@ -1,7 +1,7 @@
 version: "3.8"
 
 include:
-  - ../_common/docker-compose-common.yml
+  - ../../_common/docker-compose-common.yml
   - ./docker-compose-application.yml
   - ./docker-compose-gitlab.yml
   - ./docker-compose-jenkins.yml

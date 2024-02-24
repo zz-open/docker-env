@@ -1,0 +1,21 @@
+version: '3.8'
+
+volumes:
+  jupyterhub-user:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### Jupyterhub ############################################
+  jupyterhub-user:
+    build:
+      context: ${JUPYTERHUB_USER_HOST_PATH}
+      dockerfile: Dockerfile.user
+    container_name: ${JUPYTERHUB_USER_CONTAINER_NAME}
+    hostname: ${JUPYTERHUB_USER_HOSTNAME}
+    privileged: true
+    user: root
+    command: ["sh", "-c", "echo \"build only\""]
+    networks:
+      backend:
+        ipv4_address: ${JUPYTERHUB_USER_BACKEND_IP}
