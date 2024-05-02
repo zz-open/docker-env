@@ -18,3 +18,18 @@
 - 建表的Engine=NDBCLUSTER, 不能修改
 - 大约20秒之后才可以启动完成
 - 注意windows,linux切换不同操作系统，配置项要做相应修改
+
+
+
+mc git:(main) ✗ dc logs -f mc-management
+mc-management  | [Entrypoint] MySQL Docker Image 8.0.32-1.2.11-cluster
+mc-management  | [Entrypoint] Starting ndb_mgmd
+mc-management  | WARNING: --ndb-connectstring is ignored when mgmd is started with -f or config-file.
+mc-management  | MySQL Cluster Management Server mysql-8.0.32 ndb-8.0.32
+mc-management  | 2024-05-03 00:35:02 [MgmtSrvr] INFO     -- The default config directory '/usr/mysql-cluster' does not exist. Trying to create it...
+mc-management  | 2024-05-03 00:35:02 [MgmtSrvr] INFO     -- Sucessfully created config directory
+mc-management  | 2024-05-03 00:35:02 [MgmtSrvr] WARNING  -- at line 4: [DB] IndexMemory is deprecated, will use Number bytes on each ndbd(DB) node allocated for storing indexes instead
+mc-management  | 2024-05-03 00:35:02 [MgmtSrvr] ERROR    -- at line 5: Parse error
+mc-management  | 2024-05-03 00:35:02 [MgmtSrvr] ERROR    -- at line 5: Could not parse name-value pair in config file.
+mc-management  | 2024-05-03 00:35:02 [MgmtSrvr] ERROR    -- Could not load configuration from '/etc/mysql-cluster.cnf'
+➜  mc git:(main) ✗ 
