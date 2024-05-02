@@ -89,7 +89,6 @@ docker-compose up -d postgres
 | nacos | 172.11.4.41 | 172.10.4.41 | v2.3.0 | |
 
 
-
 ### CLUSTER
 集群服务, 172.11.2.3
 
@@ -269,7 +268,6 @@ docker-compose up -d postgres
 | mc-sql1 | 172.11.2.215 | 172.10.2.215 | latest |
 | mc-sql2 | 172.11.2.216 | 172.10.2.216 | latest |
 | mc-management | 172.11.2.217 | 172.10.2.217 | latest |
-
 
 ### STACK
 全栈
