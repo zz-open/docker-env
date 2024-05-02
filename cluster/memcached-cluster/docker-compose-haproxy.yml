@@ -18,9 +18,9 @@ services:
     environment:
       - TZ=${TZ}
     extra_hosts:
-      - "${MEMCACHED_CONTAINER_NAME_NODE1}:${MEMCACHED_BACKEND_IP_NODE1}"
-      - "${MEMCACHED_CONTAINER_NAME_NODE2}:${MEMCACHED_BACKEND_IP_NODE2}"
-      - "${MEMCACHED_CONTAINER_NAME_NODE3}:${MEMCACHED_BACKEND_IP_NODE3}"
+      - "${MEMCACHED_HOST_NAME_NODE1}:${MEMCACHED_BACKEND_IP_NODE1}"
+      - "${MEMCACHED_HOST_NAME_NODE2}:${MEMCACHED_BACKEND_IP_NODE2}"
+      - "${MEMCACHED_HOST_NAME_NODE3}:${MEMCACHED_BACKEND_IP_NODE3}"
     volumes:
       - "${HAPROXY_HOST_PATH}/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
     networks:

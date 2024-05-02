@@ -38,10 +38,10 @@ x-labels: &labels
   - "traefik.http.services.minio.loadbalancer.passhostheader=true"
 
 x-extra_hosts: &extra_hosts
-  - "${MINIO_CONTAINER_NAME_NODE1}:${MINIO_BACKEND_IP_NODE1}"
-  - "${MINIO_CONTAINER_NAME_NODE2}:${MINIO_BACKEND_IP_NODE2}"
-  - "${MINIO_CONTAINER_NAME_NODE3}:${MINIO_BACKEND_IP_NODE3}"
-  - "${MINIO_CONTAINER_NAME_NODE4}:${MINIO_BACKEND_IP_NODE4}"
+  - "${MINIO_HOSTNAME_NODE1}:${MINIO_BACKEND_IP_NODE1}"
+  - "${MINIO_HOSTNAME_NODE2}:${MINIO_BACKEND_IP_NODE2}"
+  - "${MINIO_HOSTNAME_NODE3}:${MINIO_BACKEND_IP_NODE3}"
+  - "${MINIO_HOSTNAME_NODE4}:${MINIO_BACKEND_IP_NODE4}"
 
 services:
 ### MINIO NODE1 ##############################################

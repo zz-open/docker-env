@@ -18,9 +18,9 @@ x-build: &build
       NATS_VERSION: ${NATS_VERSION}
 
 x-extra_hosts: &extra_hosts
-  - "${NATS_CONTAINER_NAME_NODE1}:${NATS_BACKEND_IP_NODE1}"
-  - "${NATS_CONTAINER_NAME_NODE2}:${NATS_BACKEND_IP_NODE2}"
-  - "${NATS_CONTAINER_NAME_NODE3}:${NATS_BACKEND_IP_NODE3}"
+  - "${NATS_HOSTNAME_NODE1}:${NATS_BACKEND_IP_NODE1}"
+  - "${NATS_HOSTNAME_NODE2}:${NATS_BACKEND_IP_NODE2}"
+  - "${NATS_HOSTNAME_NODE3}:${NATS_BACKEND_IP_NODE3}"
 
 services:
 ### NATS NODE1 ##############################################
