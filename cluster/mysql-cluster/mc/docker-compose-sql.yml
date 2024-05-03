@@ -9,7 +9,7 @@ volumes:
 x-env: &env
   TZ: ${TZ}
   MYSQL_ROOT_PASSWORD: ${MYSQL_CLUSTER_ROOT_PASSWORD}
-  SERVICE_NAME: ${MYSQL_CLUSTER_SERVICE_NAME}
+  MYSQL_RANDOM_ROOT_PASSWORD: ${MYSQL_RANDOM_ROOT_PASSWORD}
 
 x-build: &build
   build:
@@ -17,8 +17,7 @@ x-build: &build
     args:
       MYSQL_CLUSTER_VERSION: ${MYSQL_CLUSTER_VERSION}
 
-x-command1: &command1 "mysqld --ndb-nodeid=6 --ndb-connectstring ${MYSQL_CLUSTER_MANAGEMENT_CONTAINER_NAME} --default-storage-engine=NDBCLUSTER"
-x-command2: &command2 "mysqld --ndb-nodeid=7 --ndb-connectstring ${MYSQL_CLUSTER_MANAGEMENT_CONTAINER_NAME} --default-storage-engine=NDBCLUSTER"
+x-command: &command "mysqld"
 
 services:
 ### MYSQL CLUSTER SQL NODE1 ##############################################
@@ -26,13 +25,14 @@ services:
     <<: *build
     container_name: ${MYSQL_CLUSTER_SQL_CONTAINER_NAME_NODE1}
     hostname: ${MYSQL_CLUSTER_SQL_HOSTNAME_NODE1}
-    command: *command1
+    command: *command
     user: root
     privileged: true
     volumes:
       - "${DATA_PATH_HOST}/${MYSQL_CLUSTER_SQL_CONTAINER_NAME_NODE1}/:/var/lib/mysql/"
+      - "${MY_CNF_HOST_PATH}:/etc/my.cnf"
       - "${MYSQL_CLUSTER_CNF_HOST_PATH}:/etc/mysql-cluster.cnf"
-      - "${MYSQL_CLUSTER_SQL_ENTRYPOINT_INITDB_NODE1}:/docker-entrypoint-initdb.d/"
+      - "${MYSQL_CLUSTER_SQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d/"
     ports:
       - "${MYSQL_CLUSTER_SQL_HOST_PORT_NODE1}:3306"
     environment:
@@ -40,19 +40,25 @@ services:
     networks:
       backend:
         ipv4_address: ${MYSQL_CLUSTER_SQL_BACKEND_IP_NODE1}
+    depends_on:
+      - ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE1}
+      - ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE2}
+      - ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE3}
+      - ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE4}
 
 ### MYSQL CLUSTER SQL NODE2 ##############################################
   mc-sql2:
     <<: *build
     container_name: ${MYSQL_CLUSTER_SQL_CONTAINER_NAME_NODE2}
     hostname: ${MYSQL_CLUSTER_SQL_HOSTNAME_NODE2}
-    command: *command2
+    command: *command
     user: root
     privileged: true
     volumes:
       - "${DATA_PATH_HOST}/${MYSQL_CLUSTER_SQL_CONTAINER_NAME_NODE2}/:/var/lib/mysql/"
+      - "${MY_CNF_HOST_PATH}:/etc/my.cnf"
       - "${MYSQL_CLUSTER_CNF_HOST_PATH}:/etc/mysql-cluster.cnf"
-      - "${MYSQL_CLUSTER_SQL_ENTRYPOINT_INITDB_NODE2}:/docker-entrypoint-initdb.d/"
+      - "${MYSQL_CLUSTER_SQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d/"
     ports:
       - "${MYSQL_CLUSTER_SQL_HOST_PORT_NODE2}:3306"
     environment:
@@ -60,3 +66,8 @@ services:
     networks:
       backend:
         ipv4_address: ${MYSQL_CLUSTER_SQL_BACKEND_IP_NODE2}
+    depends_on:
+      - ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE1}
+      - ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE2}
+      - ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE3}
+      - ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE4}

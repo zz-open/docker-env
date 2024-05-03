@@ -1,17 +1,3 @@
--- SELECT
--- 	COLUMN_NAME 列名,
--- 	COLUMN_TYPE 数据类型,
--- 	DATA_TYPE 字段类型,
--- 	CHARACTER_MAXIMUM_LENGTH 长度,
--- 	IS_NULLABLE 是否为空,
--- 	COLUMN_DEFAULT 默认值,
--- 	COLUMN_COMMENT 备注 
--- FROM
--- 	INFORMATION_SCHEMA.COLUMNS 
--- WHERE
--- 	table_schema = 'plat' 
--- 	AND table_name = 'plat_orders'
-
 CREATE DATABASE IF NOT EXISTS `plat`;
 USE `plat`;
 
@@ -41,6 +27,11 @@ CREATE TABLE `plat` (
   PRIMARY KEY (`id`)
 ) ENGINE=NDBCLUSTER DEFAULT CHARSET=utf8mb4 COMMENT='植物表';
 
+INSERT INTO `plat`.`plat` (`id`, `plant_classification_ids`, `name`, `cover`, `latin_name`, `alias`, `section`, `subfamily`, `circles`, `family`, `door`, `genus`, `outline`, `species`, `sub_outline`, `distribution_area`, `description`, `creator`, `updater`, `created_at`, `updated_at`) VALUES (1, '3', '菊花', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2024-05-04 00:30:01', '2024-05-04 00:30:01');
+INSERT INTO `plat`.`plat` (`id`, `plant_classification_ids`, `name`, `cover`, `latin_name`, `alias`, `section`, `subfamily`, `circles`, `family`, `door`, `genus`, `outline`, `species`, `sub_outline`, `distribution_area`, `description`, `creator`, `updater`, `created_at`, `updated_at`) VALUES (2, '1', '梅花', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2024-05-04 00:30:09', '2024-05-04 00:30:09');
+INSERT INTO `plat`.`plat` (`id`, `plant_classification_ids`, `name`, `cover`, `latin_name`, `alias`, `section`, `subfamily`, `circles`, `family`, `door`, `genus`, `outline`, `species`, `sub_outline`, `distribution_area`, `description`, `creator`, `updater`, `created_at`, `updated_at`) VALUES (3, '2', '甘蔗', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2024-05-04 00:30:25', '2024-05-04 00:30:25');
+
+
 DROP TABLE IF EXISTS `plant_classification`;
 CREATE TABLE `plant_classification` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -51,6 +42,11 @@ CREATE TABLE `plant_classification` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=NDBCLUSTER DEFAULT CHARSET=utf8mb4 COMMENT='植物分类表';
+
+INSERT INTO `plat`.`plant_classification` (`id`, `name`, `creator`, `updater`, `created_at`, `updated_at`) VALUES (1, '类别1', '管理员', '管理员', '2024-05-04 00:30:54', '2024-05-04 00:30:54');
+INSERT INTO `plat`.`plant_classification` (`id`, `name`, `creator`, `updater`, `created_at`, `updated_at`) VALUES (2, '类别2', '管理员', '管理员', '2024-05-04 00:30:59', '2024-05-04 00:30:59');
+INSERT INTO `plat`.`plant_classification` (`id`, `name`, `creator`, `updater`, `created_at`, `updated_at`) VALUES (3, '类别3', '管理员', '管理员', '2024-05-04 00:31:06', '2024-05-04 00:31:06');
+
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -64,6 +60,10 @@ CREATE TABLE `user` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=NDBCLUSTER DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+
+INSERT INTO `plat`.`user` (`id`, `name`, `username`, `password`, `creator`, `updater`, `created_at`, `updated_at`) VALUES (1, '用户1', 'user1', 'password1', '管理员', '管理员', '2024-05-04 00:29:05', '2024-05-04 00:29:05');
+INSERT INTO `plat`.`user` (`id`, `name`, `username`, `password`, `creator`, `updater`, `created_at`, `updated_at`) VALUES (2, '用户2', 'user2', 'password2', '管理员', '管理员', '2024-05-04 00:29:18', '2024-05-04 00:29:18');
+
 
 DROP TABLE IF EXISTS `plat_orders`;
 CREATE TABLE `plat_orders` (
@@ -79,3 +79,6 @@ CREATE TABLE `plat_orders` (
   KEY `user_id` (`user_id`),
   KEY `plat_id` (`plat_id`)
 ) ENGINE=NDBCLUSTER DEFAULT CHARSET=utf8mb4 COMMENT='植物商品订单表';
+
+INSERT INTO `plat`.`plat_orders` (`id`, `user_id`, `plat_id`, `price`, `creator`, `updater`, `created_at`, `updated_at`) VALUES (1, 1, 1, 1000, '管理员', '管理员', '2024-05-04 00:31:57', '2024-05-04 00:31:57');
+INSERT INTO `plat`.`plat_orders` (`id`, `user_id`, `plat_id`, `price`, `creator`, `updater`, `created_at`, `updated_at`) VALUES (2, 2, 2, 2000, '管理员', '管理员', '2024-05-04 00:32:03', '2024-05-04 00:32:03');

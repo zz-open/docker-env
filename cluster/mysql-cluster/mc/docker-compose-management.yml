@@ -13,7 +13,7 @@ services:
         MYSQL_CLUSTER_VERSION: ${MYSQL_CLUSTER_VERSION}
     container_name: ${MYSQL_CLUSTER_MANAGEMENT_CONTAINER_NAME}
     hostname: ${MYSQL_CLUSTER_MANAGEMENT_HOSTNAME}
-    command: "ndb_mgmd --ndb-nodeid=1 --reload --initial"
+    command: "ndb_mgmd"
     user: root
     privileged: true
     volumes:
