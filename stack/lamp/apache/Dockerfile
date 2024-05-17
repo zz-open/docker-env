@@ -24,7 +24,8 @@ WORKDIR /var/www/
 COPY vhost.conf /etc/apache2/sites-enabled/vhost.conf
 
 # 自定义安装区域
-COPY volces-ubuntu-bionic-sources.list /etc/apt/sources.list
+# COPY volces-ubuntu-bionic-sources.list /etc/apt/sources.list
+COPY tsinghua-ubuntu-bionic-sources.list /etc/apt/sources.list
 
 RUN set -xe; \
     apt-get update -yqq && \

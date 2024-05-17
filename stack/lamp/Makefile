@@ -1,5 +1,5 @@
 include .env
-include ../_common/common.mk
+include ../../_common/common.mk
 
 CONTAINERS=${PHP_FPM_CONTAINER_NAME} ${APACHE_CONTAINER_NAME}
 
@@ -22,14 +22,14 @@ build:
 start:
 	@${DOCKER_COMPOSE_UP} -d ${CONTAINERS}
 
-enter-php-fpm:
+enter_php_fpm:
 	@${DOCKER_COMPOSE_EXEC} ${PHP_FPM_CONTAINER_NAME} bash
 
-enter-apache:
+enter_apache:
 	@${DOCKER_COMPOSE_EXEC} ${APACHE_CONTAINER_NAME} bash
 
-cat-apache-hosts:
+cat_apache_hosts:
 	@${DOCKER_COMPOSE_EXEC} ${APACHE_CONTAINER_NAME} cat /etc/hosts
 
-cat-php-fpm-hosts:
+cat_php_fpm_hosts:
 	@${DOCKER_COMPOSE_EXEC} ${APACHE_CONTAINER_NAME} cat /etc/host
