@@ -87,6 +87,7 @@ docker-compose up -d postgres
 | nsqd | 172.11.4.39 | 172.10.4.39 | latest | |
 | dtm | 172.11.4.40 | 172.10.4.40 | latest |
 | nacos | 172.11.4.41 | 172.10.4.41 | v2.3.0 | |
+| mssql | 172.11.4.42 | 172.10.4.42 | 2022 | |
 
 
 ### CLUSTER

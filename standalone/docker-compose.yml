@@ -39,8 +39,9 @@ include:
   - ./nsq/docker-compose-nsqd.yml
   - ./dtm/docker-compose-dtm.yml
   - ./nacos/docker-compose-nacos.yml
-  - ./jupyterhub/docker-compose-jupyterhub.yml
-  - ./jupyterhub/docker-compose-jupyterhub-user.yml
+  - ./mssql/docker-compose-mssql.yml
+  # - ./jupyterhub/docker-compose-jupyterhub.yml
+  # - ./jupyterhub/docker-compose-jupyterhub-user.yml
 
 
 
