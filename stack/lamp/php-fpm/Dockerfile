@@ -71,7 +71,8 @@ RUN set -xe; \
     apt-get install -yqq \
       vim \
       net-tools \
-      iputils-ping
+      iputils-ping \
+      procps
 #
 #--------------------------------------------------------------------------
 # Optional Software's Installation

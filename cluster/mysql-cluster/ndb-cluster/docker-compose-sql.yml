@@ -1,0 +1,73 @@
+version: '3.8'
+
+volumes:
+  mc-sql1:
+    driver: ${VOLUMES_DRIVER}
+  mc-sql2:
+    driver: ${VOLUMES_DRIVER}
+
+x-env: &env
+  TZ: ${TZ}
+  MYSQL_ROOT_PASSWORD: ${MYSQL_CLUSTER_ROOT_PASSWORD}
+  MYSQL_RANDOM_ROOT_PASSWORD: ${MYSQL_RANDOM_ROOT_PASSWORD}
+
+x-build: &build
+  build:
+    context: ${MYSQL_CLUSTER_HOST_PATH}
+    args:
+      MYSQL_CLUSTER_VERSION: ${MYSQL_CLUSTER_VERSION}
+
+x-command: &command "mysqld"
+
+services:
+### MYSQL CLUSTER SQL NODE1 ##############################################
+  mc-sql1:
+    <<: *build
+    container_name: ${MYSQL_CLUSTER_SQL_CONTAINER_NAME_NODE1}
+    hostname: ${MYSQL_CLUSTER_SQL_HOSTNAME_NODE1}
+    command: *command
+    user: root
+    privileged: true
+    volumes:
+      - "${DATA_PATH_HOST}/${MYSQL_CLUSTER_SQL_CONTAINER_NAME_NODE1}/:/var/lib/mysql/"
+      - "${MY_CNF_HOST_PATH}:/etc/my.cnf"
+      - "${MYSQL_CLUSTER_CNF_HOST_PATH}:/etc/mysql-cluster.cnf"
+      - "${MYSQL_CLUSTER_SQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d/"
+    ports:
+      - "${MYSQL_CLUSTER_SQL_HOST_PORT_NODE1}:3306"
+    environment:
+      <<: *env
+    networks:
+      backend:
+        ipv4_address: ${MYSQL_CLUSTER_SQL_BACKEND_IP_NODE1}
+    depends_on:
+      - ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE1}
+      - ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE2}
+      - ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE3}
+      - ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE4}
+
+### MYSQL CLUSTER SQL NODE2 ##############################################
+  mc-sql2:
+    <<: *build
+    container_name: ${MYSQL_CLUSTER_SQL_CONTAINER_NAME_NODE2}
+    hostname: ${MYSQL_CLUSTER_SQL_HOSTNAME_NODE2}
+    command: *command
+    user: root
+    privileged: true
+    volumes:
+      - "${DATA_PATH_HOST}/${MYSQL_CLUSTER_SQL_CONTAINER_NAME_NODE2}/:/var/lib/mysql/"
+      - "${MY_CNF_HOST_PATH}:/etc/my.cnf"
+      - "${MYSQL_CLUSTER_CNF_HOST_PATH}:/etc/mysql-cluster.cnf"
+      - "${MYSQL_CLUSTER_SQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d/"
+    ports:
+      - "${MYSQL_CLUSTER_SQL_HOST_PORT_NODE2}:3306"
+    environment:
+      <<: *env
+    networks:
+      backend:
+        ipv4_address: ${MYSQL_CLUSTER_SQL_BACKEND_IP_NODE2}
+    depends_on:
+      - ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE1}
+      - ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE2}
+      - ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE3}
+      - ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE4}
