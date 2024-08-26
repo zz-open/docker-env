@@ -258,7 +258,7 @@ docker-compose up -d postgres
 | es02 | 172.11.2.203 | 172.10.2.203 | latest |
 | es03 | 172.11.2.204 | 172.10.2.204 | latest |
 
-#### MYSQL CLUSTER (172.11.2.210) [完成]
+#### MYSQL NDB CLUSTER (172.11.2.210) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | mc-pma | 172.11.2.210 | 172.10.2.210 | latest |
