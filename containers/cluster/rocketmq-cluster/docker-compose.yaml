@@ -1,0 +1,7 @@
+include:
+  - ../../_common/docker-compose-common.yml
+  # - ./docker-compose-namesrv.yml
+  #- ./docker-compose-proxy.yml
+  # - ./docker-compose-controller.yml
+  # - ./docker-compose-broker-master.yml
+  # - ./docker-compose-dashboard.yml

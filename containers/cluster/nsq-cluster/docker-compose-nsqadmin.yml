@@ -1,0 +1,23 @@
+volumes:
+  nsqadmin:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+### NSQ ADMIN ##############################################
+  nsqadmin:
+    build:
+      context: ${NSQADMIN_HOST_PATH}
+    container_name: ${NSQADMIN_CONTAINER_NAME}
+    hostname: ${NSQADMIN_HOSTNAME}
+    command: "/nsqadmin --lookupd-http-address=${NSQLOOPUPD_CONTAINER_NAME_NODE1}:${NSQLOOKUPD_HTTP_PORT_CONTAINER} --lookupd-http-address=${NSQLOOPUPD_CONTAINER_NAME_NODE2}:${NSQLOOKUPD_HTTP_PORT_CONTAINER}"
+    privileged: true
+    ports:
+      - "${NSQADMIN_HOST_HTTP_PORT}:4171"
+    environment:
+      - TZ=${TZ}
+    networks:
+      backend:
+        ipv4_address: ${NSQADMIN_BACKEND_IP}
+    depends_on:
+      - ${NSQLOOPUPD_CONTAINER_NAME_NODE1}
+      - ${NSQLOOPUPD_CONTAINER_NAME_NODE2}

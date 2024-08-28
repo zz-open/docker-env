@@ -1,0 +1,29 @@
+volumes:
+  jenkins:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### Jenkins ################################################
+  jenkins:
+    build:
+      context: ${JENKINS_HOST_PATH}
+      args:
+        - JENKINS_VERSION=${JENKINS_VERSION}
+    container_name: ${JENKINS_CONTAINER_NAME}
+    hostname: ${JENKINS_HOSTNAME}
+    privileged: true
+    environment:
+      - JAVA_OPTS="-Djava.awt.headless=true"
+      - TZ=${TZ}
+    ports:
+      - "${JENKINS_HOST_SLAVE_AGENT_PORT}:50000"
+      - "${JENKINS_HOST_HTTP_PORT}:8080"
+    volumes:
+      - ${DOCKER_SOCK_PATH_HOST}:/var/run/docker.sock
+      - ${DOCKER_BIN_PATH_HOST}:/usr/bin/docker
+      - ${DOCKER_DAEMON_PATH_HOST}:/etc/docker/daemon.json
+      - ${DATA_PATH_HOST}/${JENKINS_CONTAINER_NAME}/jenkins_home:/var/jenkins_home
+    networks:
+      backend:
+        ipv4_address: ${JENKINS_BACKEND_IP}

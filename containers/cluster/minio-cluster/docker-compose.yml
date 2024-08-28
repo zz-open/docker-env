@@ -1,0 +1,4 @@
+include:
+  - ../../_common/docker-compose-common.yml
+  - ./docker-compose-minio.yml
+  - ./docker-compose-traefik.yml

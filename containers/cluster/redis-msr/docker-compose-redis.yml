@@ -1,0 +1,93 @@
+volumes:
+  redis1:
+    driver: ${VOLUMES_DRIVER}
+  redis2:
+    driver: ${VOLUMES_DRIVER}
+  redis3:
+    driver: ${VOLUMES_DRIVER}
+  redis4:
+    driver: ${VOLUMES_DRIVER}
+
+x-build: &build
+  build:
+    context: ${REDIS_HOST_PATH}
+    args:
+      REDIS_VERSION: ${REDIS_VERSION}
+
+services:
+
+### REDIS NODE1 ##############################################
+  redis_1:
+    <<: *build
+    container_name: ${REDIS_CONTAINER_NAME_NODE1}
+    hostname: ${REDIS_HOSTNAME_NODE1}
+    privileged: true
+    volumes:
+      - "${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE1}:/data"
+      - "${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE1}:/var/log/redis"
+    environment:
+      - "TZ=${TZ}"
+      - "REDIS_ARGS=${REDIS_COMMAND}"
+      - "REDIS_REPLICA_PARAMS=--replica-announce-ip ${REDIS_BACKEND_IP_NODE1} --replica-announce-port ${REDIS_CONTAINER_PORT}"
+    ports:
+      - "${REDIS_HOST_PORT_NODE1}:${REDIS_CONTAINER_PORT}"
+    networks:
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP_NODE1}
+
+### REDIS NODE2 ##############################################
+  redis_2:
+    <<: *build
+    container_name: ${REDIS_CONTAINER_NAME_NODE2}
+    hostname: ${REDIS_HOSTNAME_NODE2}
+    privileged: true
+    volumes:
+      - "${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE2}:/data"
+      - "${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE2}:/var/log/redis"
+    environment:
+      - "TZ=${TZ}"
+      - "REDIS_ARGS=${REDIS_COMMAND}"
+      - "REDIS_REPLICA_PARAMS=--replica-announce-ip ${REDIS_BACKEND_IP_NODE2} --replica-announce-port ${REDIS_CONTAINER_PORT}"
+    ports:
+      - "${REDIS_HOST_PORT_NODE2}:${REDIS_CONTAINER_PORT}"
+    networks:
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP_NODE2}
+
+### REDIS NODE3 ##############################################
+  redis_3:
+    <<: *build
+    container_name: ${REDIS_CONTAINER_NAME_NODE3}
+    hostname: ${REDIS_HOSTNAME_NODE3}
+    privileged: true
+    environment:
+      - "TZ=${TZ}"
+      - "REDIS_ARGS=${REDIS_COMMAND}"
+      - "REDIS_REPLICA_PARAMS=--replica-announce-ip ${REDIS_BACKEND_IP_NODE3} --replica-announce-port ${REDIS_CONTAINER_PORT}"
+    volumes:
+      - "${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE3}:/data"
+      - "${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE3}:/var/log/redis"
+    ports:
+      - "${REDIS_HOST_PORT_NODE3}:${REDIS_CONTAINER_PORT}"
+    networks:
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP_NODE3}
+
+### REDIS NODE4 ##############################################
+  redis_4:
+    <<: *build
+    container_name: ${REDIS_CONTAINER_NAME_NODE4}
+    hostname: ${REDIS_HOSTNAME_NODE4}
+    privileged: true
+    volumes:
+      - "${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE4}:/data"
+      - "${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE4}:/var/log/redis"
+    environment:
+      - "TZ=${TZ}"
+      - "REDIS_ARGS=${REDIS_COMMAND}"
+      - "REDIS_REPLICA_PARAMS=--replica-announce-ip ${REDIS_BACKEND_IP_NODE4} --replica-announce-port ${REDIS_CONTAINER_PORT}"
+    ports:
+      - "${REDIS_HOST_PORT_NODE4}:${REDIS_CONTAINER_PORT}"
+    networks:
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP_NODE4}

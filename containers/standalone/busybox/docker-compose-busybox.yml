@@ -1,0 +1,23 @@
+volumes:
+  busybox:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### Busybox ################################################
+  busybox:
+    build:
+      context: ${BUSYBOX_HOST_PATH}
+      args:
+        - BUSYBOX_VERSION=${BUSYBOX_VERSION}
+    container_name: ${BUSYBOX_CONTAINER_NAME}
+    hostname: ${BUSYBOX_HOSTNAME}
+    privileged: true
+    stdin_open: true
+    user: root
+    tty: true
+    networks:
+      frontend:
+        ipv4_address: ${BUSYBOX_FRONTEND_IP}
+      backend:
+        ipv4_address: ${BUSYBOX_BACKEND_IP}

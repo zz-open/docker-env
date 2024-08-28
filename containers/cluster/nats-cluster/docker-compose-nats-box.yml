@@ -1,0 +1,21 @@
+volumes:
+  nats-box:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+### NATS BOX ##############################################
+  nats-box:
+    build:
+      context: ${NATS_BOX_HOST_PATH}
+    container_name: ${NATS_BOX_CONTAINER_NAME}
+    hostname: ${NATS_BOX_HOSTNAME}
+    privileged: true
+    stdin_open: true
+    tty: true
+    environment:
+      TZ: ${TZ}
+    networks:
+      frontend:
+        ipv4_address: ${NATS_BOX_FRONTEND_IP}
+      backend:
+        ipv4_address: ${NATS_BOX_BACKEND_IP}

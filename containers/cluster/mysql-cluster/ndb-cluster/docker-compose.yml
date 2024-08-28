@@ -1,0 +1,6 @@
+include:
+  - ../../../_common/docker-compose-common.yml
+  - ./docker-compose-management.yml
+  - ./docker-compose-data.yml
+  - ./docker-compose-sql.yml
+  - ./docker-compose-phpmyadmin.yml

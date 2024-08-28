@@ -1,0 +1,24 @@
+volumes:
+  rocketmq-dashboard:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### ROCKETMQ DASHBOARD ##############################################
+  rocketmq-dashboard:
+    build:
+      context: ${ROCKETMQ_DASHBOARD_HOST_PATH}
+      args:
+        ROCKETMQ_DASHBOARD_VERSION: ${ROCKETMQ_DASHBOARD_VERSION}
+    container_name: ${ROCKETMQ_DASHBOARD_CONTAINER_NAME}
+    hostname: ${ROCKETMQ_DASHBOARD_HOSTNAME}
+    user: root
+    privileged: true
+    environment:
+      TZ: ${TZ}
+      JAVA_OPTS: "-Drocketmq.namesrv.addr=${ROCKETMQ_NAMESRV_ADDRESS}; -Xms256m -Xmx256m"
+    ports:
+      - "${ROCKETMQ_DASHBOARD_HOST_HTTP_PORT}:8080"
+    networks:
+      backend:
+        ipv4_address: ${ROCKETMQ_DASHBOARD_BACKEND_IP}

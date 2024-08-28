@@ -1,0 +1,74 @@
+volumes:
+  zookeeper1:
+    driver: ${VOLUMES_DRIVER}
+  zookeeper2:
+    driver: ${VOLUMES_DRIVER}
+  zookeeper3:
+    driver: ${VOLUMES_DRIVER}
+
+x-env: &env
+  TZ: ${TZ}
+  ZOO_SERVERS: ${ZOOKEEPER_SERVERS}
+  ZOO_4LW_COMMANDS_WHITELIST: \* #stat,conf,envi
+
+x-build: &build
+  build:
+    context: ${ZOOKEEPER_HOST_PATH}
+    args:
+      ZOOKEEPER_VERSION: ${ZOOKEEPER_VERSION}
+
+services:
+### ZOOKEEPER NODE1 ##############################################
+  zookeeper1:
+    <<: *build
+    container_name: ${ZOOKEEPER_NAME_NODE1}
+    hostname: ${ZOOKEEPER_NAME_NODE1}
+    privileged: true
+    user: root
+    ports:
+      - "${ZOOKEEPER_HOST_PORT_NODE1}:2181"
+    environment:
+      <<: *env
+      ZOO_MY_ID: ${ZOOKEEPER_ID_NODE1}
+    volumes:
+      - ${DATA_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE1}:/data
+      - ${LOG_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE1}:/datalog
+    networks:
+      backend:
+        ipv4_address: ${ZOOKEEPER_BACKEND_IP_NODE1}
+### ZOOKEEPER NODE2 ##############################################
+  zookeeper2:
+    <<: *build
+    container_name: ${ZOOKEEPER_NAME_NODE2}
+    hostname: ${ZOOKEEPER_NAME_NODE2}
+    privileged: true
+    user: root
+    ports:
+      - "${ZOOKEEPER_HOST_PORT_NODE2}:2181"
+    environment:
+      <<: *env
+      ZOO_MY_ID: ${ZOOKEEPER_ID_NODE2}
+    volumes:
+      - ${DATA_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE2}:/data
+      - ${LOG_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE2}:/datalog
+    networks:
+      backend:
+        ipv4_address: ${ZOOKEEPER_BACKEND_IP_NODE2}
+### ZOOKEEPER NODE3 ##############################################
+  zookeeper3:
+    <<: *build
+    container_name: ${ZOOKEEPER_NAME_NODE3}
+    hostname: ${ZOOKEEPER_NAME_NODE3}
+    privileged: true
+    user: root
+    ports:
+      - "${ZOOKEEPER_HOST_PORT_NODE3}:2181"
+    environment:
+      <<: *env
+      ZOO_MY_ID: ${ZOOKEEPER_ID_NODE3}
+    volumes:
+      - ${DATA_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE3}:/data
+      - ${LOG_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE3}:/datalog
+    networks:
+      backend:
+        ipv4_address: ${ZOOKEEPER_BACKEND_IP_NODE3}

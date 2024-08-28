@@ -1,0 +1,101 @@
+volumes:
+  mc-data1:
+    driver: ${VOLUMES_DRIVER}
+  mc-data2:
+    driver: ${VOLUMES_DRIVER}
+  mc-data3:
+    driver: ${VOLUMES_DRIVER}
+  mc-data4:
+    driver: ${VOLUMES_DRIVER}
+
+x-env: &env
+  TZ: ${TZ}
+
+x-build: &build
+  build:
+    context: ${MYSQL_CLUSTER_HOST_PATH}
+    args:
+      MYSQL_CLUSTER_VERSION: ${MYSQL_CLUSTER_VERSION}
+
+x-command: &command "ndbd"
+
+services:
+### MYSQL CLUSTER DATA NODE1 ##############################################
+  mc-data1:
+    <<: *build
+    container_name: ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE1}
+    hostname: ${MYSQL_CLUSTER_DATA_HOSTNAME_NODE1}
+    command: *command
+    user: root
+    privileged: true
+    volumes:
+      - "${DATA_PATH_HOST}/${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE1}/:/var/lib/mysql/"
+      - "${MY_CNF_HOST_PATH}:/etc/my.cnf"
+      - "${MYSQL_CLUSTER_CNF_HOST_PATH}:/etc/mysql-cluster.cnf"
+    environment:
+      <<: *env
+    networks:
+      backend:
+        ipv4_address: ${MYSQL_CLUSTER_DATA_BACKEND_IP_NODE1}
+    depends_on:
+      - ${MYSQL_CLUSTER_MANAGEMENT_CONTAINER_NAME}
+
+### MYSQL CLUSTER DATA NODE2 ##############################################
+  mc-data2:
+    <<: *build
+    container_name: ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE2}
+    hostname: ${MYSQL_CLUSTER_DATA_HOSTNAME_NODE2}
+    command: *command
+    user: root
+    privileged: true
+    volumes:
+      - "${DATA_PATH_HOST}/${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE2}/:/var/lib/mysql/"
+      - "${MY_CNF_HOST_PATH}:/etc/my.cnf"
+      - "${MYSQL_CLUSTER_CNF_HOST_PATH}:/etc/mysql-cluster.cnf"
+    environment:
+      <<: *env
+    networks:
+      backend:
+        ipv4_address: ${MYSQL_CLUSTER_DATA_BACKEND_IP_NODE2}
+    depends_on:
+      - ${MYSQL_CLUSTER_MANAGEMENT_CONTAINER_NAME}
+
+### MYSQL CLUSTER DATA NODE3 ##############################################
+  mc-data3:
+    <<: *build
+    container_name: ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE3}
+    hostname: ${MYSQL_CLUSTER_DATA_HOSTNAME_NODE3}
+    command: *command
+    user: root
+    privileged: true
+    volumes:
+      - "${DATA_PATH_HOST}/${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE3}/:/var/lib/mysql/"
+      - "${MY_CNF_HOST_PATH}:/etc/my.cnf"
+      - "${MYSQL_CLUSTER_CNF_HOST_PATH}:/etc/mysql-cluster.cnf"
+    environment:
+      <<: *env
+    networks:
+      backend:
+        ipv4_address: ${MYSQL_CLUSTER_DATA_BACKEND_IP_NODE3}
+    depends_on:
+      - ${MYSQL_CLUSTER_MANAGEMENT_CONTAINER_NAME}
+
+### MYSQL CLUSTER DATA NODE4 ##############################################
+  mc-data4:
+    <<: *build
+    container_name: ${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE4}
+    hostname: ${MYSQL_CLUSTER_DATA_HOSTNAME_NODE4}
+    command: *command
+    user: root
+    privileged: true
+    volumes:
+      - "${DATA_PATH_HOST}/${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE4}/:/var/lib/mysql/"
+      - "${MY_CNF_HOST_PATH}:/etc/my.cnf"
+      - "${MYSQL_CLUSTER_CNF_HOST_PATH}:/etc/mysql-cluster.cnf"
+    environment:
+      <<: *env
+    networks:
+      backend:
+        ipv4_address: ${MYSQL_CLUSTER_DATA_BACKEND_IP_NODE4}
+    depends_on:
+      - ${MYSQL_CLUSTER_MANAGEMENT_CONTAINER_NAME}

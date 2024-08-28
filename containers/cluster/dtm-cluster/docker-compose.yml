@@ -1,0 +1,5 @@
+include:
+  - ../../_common/docker-compose-common.yml
+  - ./docker-compose-dtm.yml
+  - ./docker-compose-mysql.yml
+  - ./docker-compose-redis.yml

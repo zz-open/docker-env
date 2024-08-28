@@ -1,0 +1,67 @@
+volumes:
+  sentinel1:
+    driver: ${VOLUMES_DRIVER}
+  sentinel2:
+    driver: ${VOLUMES_DRIVER}
+  sentinel3:
+    driver: ${VOLUMES_DRIVER}
+
+x-build: &build
+  build:
+    context: ${SENTINEL_HOST_PATH}
+    args:
+      REDIS_VERSION: ${REDIS_VERSION}
+
+x-env: &env
+  TZ: ${TZ}
+  SENTINEL_ANNOUNCE_PORT: ${SENTINEL_PORT_CONTAINER}
+  MASTER_IP: ${REDIS_BACKEND_IP_NODE1}
+  MASTER_PORT: ${REDIS_CONTAINER_PORT}
+  MASTER_PASSWORD: ${REDIS_PASSWORD}
+
+services:
+
+### SENTINEL NODE1 ##############################################
+  sentinel1:
+    <<: *build
+    container_name: ${REDIS_CONTAINER_NAME_SENTINEL1}
+    hostname: ${REDIS_HOSTNAME_SENTINEL1}
+    privileged: true
+    environment:
+      <<: *env
+      SENTINEL_ANNOUNCE_IP: ${REDIS_BACKEND_IP_SENTINEL1}
+    ports:
+      - "${REDIS_HOST_PORT_SENTINEL1}:${SENTINEL_PORT_CONTAINER}"
+    networks:
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP_SENTINEL1}
+
+### SENTINEL NODE2 ##############################################
+  sentinel2:
+    <<: *build
+    container_name: ${REDIS_CONTAINER_NAME_SENTINEL2}
+    hostname: ${REDIS_HOSTNAME_SENTINEL2}
+    privileged: true
+    environment:
+      <<: *env
+      SENTINEL_ANNOUNCE_IP: ${REDIS_BACKEND_IP_SENTINEL2}
+    ports:
+      - "${REDIS_HOST_PORT_SENTINEL2}:${SENTINEL_PORT_CONTAINER}"
+    networks:
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP_SENTINEL2}
+
+### SENTINEL NODE3 ##############################################
+  sentinel3:
+    <<: *build
+    container_name: ${REDIS_CONTAINER_NAME_SENTINEL3}
+    hostname: ${REDIS_HOSTNAME_SENTINEL3}
+    privileged: true
+    environment:
+      <<: *env
+      SENTINEL_ANNOUNCE_IP: ${REDIS_BACKEND_IP_SENTINEL3}
+    ports:
+      - "${REDIS_HOST_PORT_SENTINEL3}:${SENTINEL_PORT_CONTAINER}"
+    networks:
+      backend:
+        ipv4_address: ${REDIS_BACKEND_IP_SENTINEL3}

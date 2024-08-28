@@ -1,0 +1,16 @@
+networks:
+  frontend:
+    name: "${FRONTEND_NETWORK_NAME}"
+    driver: ${NETWORKS_DRIVER}
+    ipam:
+      config:
+        - subnet: "${FRONTEND_SUBNET}"
+          gateway: "${FRONTEND_SUBNET_GATEWAY}"
+
+  backend:
+    name: "${BACKEND_NETWORK_NAME}"
+    driver: ${NETWORKS_DRIVER}
+    ipam:
+      config:
+        - subnet: "${BACKEND_SUBNET}"
+          gateway: "${BACKEND_SUBNET_GATEWAY}"

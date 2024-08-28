@@ -1,6 +1,0 @@
-version: '3.8'
-
-include:
-  - ../../_common/docker-compose-common.yml
-  - ../../_common/php-fpm/docker-compose.yml
-  - ./docker-compose-nginx.yml

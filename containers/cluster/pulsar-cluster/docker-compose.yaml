@@ -1,0 +1,7 @@
+include:
+  - ../../_common/docker-compose-common.yml
+  - ./docker-compose-init.yml
+  - ./docker-compose-manager.yml
+  - ./docker-compose-zookeeper.yml
+  - ./docker-compose-bookie.yml
+  - ./docker-compose-broker.yml

@@ -1,0 +1,40 @@
+volumes:
+  nsqlookupd1:
+    driver: ${VOLUMES_DRIVER}
+  nsqlookupd2:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+### NSQLOOKUPD NODE1 ##############################################
+  nsqlookupd1:
+    build:
+      context: ${NSQ_HOST_PATH}
+    container_name: ${NSQLOOKUPD_CONTAINER_NAME_NODE1}
+    hostname: ${NSQLOOKUPD_HOSTNAME_NODE1}
+    command: "/nsqlookupd -broadcast-address=${NSQLOOKUPD_CONTAINER_NAME_NODE1} ${NSQLOOKUPD_COMMAND_OPT}"
+    privileged: true
+    ports:
+      - "${NSQLOOKUPD_HOST_TCP_PORT_NODE1}:${NSQLOOKUPD_TCP_PORT_CONTAINER}"
+      - "${NSQLOOKUPD_HOST_HTTP_PORT_NODE1}:${NSQLOOKUPD_HTTP_PORT_CONTAINER}"
+    environment:
+      - TZ=${TZ}
+    networks:
+      backend:
+        ipv4_address: ${NSQLOOKUPD_BACKEND_IP_NODE1}
+
+### NSQLOOKUPD NODE2 ##############################################
+  nsqlookupd1:
+    build:
+      context: ${NSQ_HOST_PATH}
+    container_name: ${NSQLOOKUPD_CONTAINER_NAME_NODE2}
+    hostname: ${NSQLOOKUPD_HOSTNAME_NODE2}
+    command: "/nsqlookupd -broadcast-address=${NSQLOOKUPD_CONTAINER_NAME_NODE2} ${NSQLOOKUPD_COMMAND_OPT}"
+    privileged: true
+    ports:
+      - "${NSQLOOKUPD_HOST_TCP_PORT_NODE2}:${NSQLOOKUPD_TCP_PORT_CONTAINER}"
+      - "${NSQLOOKUPD_HOST_HTTP_PORT_NODE2}:${NSQLOOKUPD_HTTP_PORT_CONTAINER}"
+    environment:
+      - TZ=${TZ}
+    networks:
+      backend:
+        ipv4_address: ${NSQLOOKUPD_BACKEND_IP_NODE2}

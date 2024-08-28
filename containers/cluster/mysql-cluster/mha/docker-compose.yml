@@ -1,0 +1,68 @@
+networks:
+  backend:
+    external: true
+
+x-mysql-env: &mysql-env
+  TZ: ${TZ}
+  MYSQL_DATABASE: ${MYSQL_DATABASE}
+  MYSQL_USER: ${MYSQL_USER}
+  MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+
+x-mysql-build: &mysql-build
+  build:
+    context: ./mysql
+    args:
+      MYSQL_VERSION: ${MYSQL_VERSION}
+
+services:
+  mysql-master1:
+    <<: *mysql-build
+    hostname: ${MYSQL_MASTER_1_CONTAINER_NAME}
+    container_name: ${MYSQL_MASTER_1_CONTAINER_NAME}
+    volumes:
+      - ${MYSQL_MASTER_1_PATH}/data:/var/lib/mysql
+      - ${MYSQL_MASTER_1_PATH}/logs:/var/log
+      - ${MYSQL_MASTER_1_PATH}/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ${MYSQL_MASTER_1_PATH}/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "${MYSQL_MASTER_1_PORT}:3306"
+    environment:
+      <<: *mysql-env
+    networks:
+      backend:
+        ipv4_address: ${MYSQL_MASTER_1_IP}
+
+  mysql-slave1:
+    <<: *mysql-build
+    hostname: ${MYSQL_SLAVE_1_CONTAINER_NAME}
+    container_name: ${MYSQL_SLAVE_1_CONTAINER_NAME}
+    volumes:
+      - ${MYSQL_SLAVE_1_PATH}/data:/var/lib/mysql
+      - ${MYSQL_SLAVE_1_PATH}/logs:/var/log
+      - ${MYSQL_SLAVE_1_PATH}/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ${MYSQL_SLAVE_1_PATH}/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "${MYSQL_SLAVE_1_PORT}:3306"
+    environment:
+      <<: *mysql-env
+    networks:
+      backend:
+        ipv4_address: ${MYSQL_SLAVE_1_IP}
+
+  mysql-slave2:
+    <<: *mysql-build
+    hostname: ${MYSQL_SLAVE_2_CONTAINER_NAME}
+    container_name: ${MYSQL_SLAVE_2_CONTAINER_NAME}
+    volumes:
+      - ${MYSQL_SLAVE_2_PATH}/data:/var/lib/mysql
+      - ${MYSQL_SLAVE_2_PATH}/logs:/var/log
+      - ${MYSQL_SLAVE_2_PATH}/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ${MYSQL_SLAVE_2_PATH}/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "${MYSQL_SLAVE_2_PORT}:3306"
+    environment:
+      <<: *mysql-env
+    networks:
+      backend:
+        ipv4_address: ${MYSQL_SLAVE_2_IP}

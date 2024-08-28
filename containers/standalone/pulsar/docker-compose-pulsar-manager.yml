@@ -1,0 +1,28 @@
+volumes:
+  pulsar-manager:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### PULSAR MANAGER ##############################################
+  pulsar-manager:
+    build:
+      context: ${PULSAR_MANAGER_HOST_PATH}
+      args:
+        PULSAR_MANAGER_VERSION: ${PULSAR_MANAGER_VERSION}
+    container_name: ${PULSAR_MANAGER_CONTAINER_NAME}
+    hostname: ${PULSAR_MANAGER_HOSTNAME}
+    user: root
+    privileged: true
+    # volumes:
+    #   - "${PULSAR_MANAGER_HOST_PATH}/application.properties:/pulsar-manager/pulsar-manager/application.properties"
+    #   - "${PULSAR_MANAGER_HOST_PATH}/private.key:/pulsar-manager/private.key"
+    environment:
+      TZ: ${TZ}
+      SPRING_CONFIGURATION_FILE: "/pulsar-manager/pulsar-manager/application.properties"
+    ports:
+      - "9527:9527"
+      - "7750:7750"
+    networks:
+      backend:
+        ipv4_address: ${PULSAR_MANAGER_BACKEND_IP}

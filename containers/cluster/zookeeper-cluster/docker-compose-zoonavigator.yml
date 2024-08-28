@@ -1,0 +1,24 @@
+volumes:
+  zc-zoonavigator:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+### ZOONAVIGATOR ##############################################
+  zc-zoonavigator:
+    build:
+      context: ${ZOONAVIGATOR_HOST_PATH}
+      args:
+        - ZOONAVIGATOR_VERSION=${ZOONAVIGATOR_VERSION}
+    container_name: ${ZOONAVIGATOR_CONTAINER_NAME}
+    hostname: ${ZOONAVIGATOR_HOSTNAME}
+    privileged: true
+    user: root
+    ports:
+      - "${ZOONAVIGATOR_HOST_PORT}:9000"
+    environment:
+      TZ: ${TZ}
+      CONNECTION_LOCALZK_NAME: ${ZOOKEEPER_NAME}
+      CONNECTION_LOCALZK_CONN: ${ZOOKEEPER_CONN}
+    networks:
+      backend:
+        ipv4_address: ${ZOONAVIGATOR_BACKEND_IP}

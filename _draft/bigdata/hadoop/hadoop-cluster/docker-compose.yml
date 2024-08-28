@@ -1,5 +1,3 @@
-version: '3.4'
-
 services:
   big-data-1:
     image: jasonkay/big-data-1:v1.0

@@ -1,0 +1,29 @@
+volumes:
+  pulsar-init:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### PULSAR BOOKIE ##############################################
+  pulsar-init:
+    build:
+      context: ${PULSAR_INIT_HOST_PATH}
+      args:
+        PULSAR_VERSION: ${PULSAR_VERSION}
+    container_name: ${PULSAR_INIT_CONTAINER_NAME}
+    hostname: ${PULSAR_INIT_HOSTNAME}
+    privileged: true
+    user: root
+    command: >
+      bin/pulsar initialize-cluster-metadata \
+               --cluster ${PULSAR_CLUSTER_NAME} \
+               --zookeeper ${PULSAR_ZOOKEEPER_CONTAINER_NAME}:2181 \
+               --configuration-store ${PULSAR_ZOOKEEPER_CONTAINER_NAME}:2181 \
+               --web-service-url http://${PULSAR_BROKER_CONTAINER_NAME_NODE1}:8080 \
+               --broker-service-url pulsar://${PULSAR_BROKER_CONTAINER_NAME_NODE1}:6650
+    networks:
+      backend:
+        ipv4_address: ${PULSAR_INIT_BACKEND_IP}
+    depends_on:
+      pulsar-zookeeper:
+        condition: service_healthy

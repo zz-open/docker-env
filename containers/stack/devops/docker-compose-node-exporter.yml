@@ -1,0 +1,62 @@
+volumes:
+  gitlab:
+    driver: ${VOLUMES_DRIVER}
+
+configs:
+  gitlab_rb:
+    file: ${GITLAB_HOST_PATH}/gitlab.rb
+secrets:
+  gitlab_root_password:
+    file: ${GITLAB_HOST_PATH}/root_password.txt
+
+services:
+
+### Gitlab ################################################
+  gitlab:
+    build:
+      context: ${GITLAB_HOST_PATH}
+      args:
+        - GITLAB_VERSION=${GITLAB_VERSION}
+    container_name: ${GITLAB_CONTAINER_NAME}
+    hostname: ${GITLAB_HOSTNAME}
+    privileged: true
+    environment:
+      GITLAB_OMNIBUS_CONFIG: "from_file('/omnibus_config.rb')"
+    ports:
+      - "${GITLAB_HOST_HTTP_PORT}:${GITLAB_HOST_HTTP_PORT}"
+      - "${GITLAB_HOST_HTTPS_PORT}:443"
+      - "${GITLAB_HOST_SSH_PORT}:22"
+    volumes:
+      - ${DATA_PATH_HOST}/${GITLAB_CONTAINER_NAME}/config:/etc/gitlab
+      - ${DATA_PATH_HOST}/${GITLAB_CONTAINER_NAME}/data:/var/opt/gitlab
+      - ${LOG_PATH_HOST}/gitlab:/var/log/gitlab
+    configs:
+      - source: gitlab_rb
+        target: /omnibus_config.rb
+    secrets:
+      - gitlab_root_password
+    shm_size: '1gb'
+    logging: 
+      driver: "json-file"
+      options: 
+        max-size: "2g"
+        max-file: "2"
+    networks:
+      frontend:
+        ipv4_address: ${GITLAB_FRONTEND_IP}
+      backend:
+        ipv4_address: ${GITLAB_BACKEND_IP}
+
+  
+  node-exporter:
+    build:
+      context: ./node-exporter
+      args:
+        NODE_EXPORTER_VERSION: ${NODE_EXPORTER_VERSION}
+    container_name: ${NODE_EXPORTER_CONTAINER_NAME}
+    hostname: ${NODE_EXPORTER_CONTAINER_NAME}
+    ports:
+      - "${NODE_EXPORTER_PORT}:9100"
+    networks:
+      backend:
+        ipv4_address: ${NODE_EXPORTER_IP}

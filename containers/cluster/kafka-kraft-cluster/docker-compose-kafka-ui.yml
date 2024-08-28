@@ -1,0 +1,27 @@
+volumes:
+  krc-kafka-ui:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+### KAFKA UI ##############################################
+  krc-kafka-ui:
+    build:
+      context: ${KAFKA_UI_HOST_PATH}
+      args:
+        - KAFKA_UI_VERSION=${KAFKA_UI_VERSION}
+    container_name: ${KAFKA_UI_CONTAINER_NAME}
+    hostname: ${KAFKA_UI_HOSTNAME}
+    privileged: true
+    user: root
+    ports:
+      - "${KAFKA_UI_HOST_HTTP_PORT}:9000"
+    environment:
+      TZ: ${TZ}
+      KAFKA_BROKERCONNECT: ${KAFKA_BROKERS}
+    networks:
+      backend:
+        ipv4_address: ${KAFKA_UI_BACKEND_IP}
+    depends_on:
+      - "${KAFKA_CONTAINER_NAME_NODE1}"
+      - "${KAFKA_CONTAINER_NAME_NODE2}"
+      - "${KAFKA_CONTAINER_NAME_NODE3}"

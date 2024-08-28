@@ -1,9 +1,0 @@
-version: '3.8'
-
-networks:
-  frontend:
-    external: true
-    name: zz-frontend
-  backend:
-    external: true
-    name: zz-backend

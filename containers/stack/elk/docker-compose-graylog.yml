@@ -1,0 +1,34 @@
+volumes:
+  graylog:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+### Graylog #############################################  
+ graylog:
+    build:
+      context: ${GRAYLOG_HOST_PATH}
+      args:
+        - FILEBEAT_VERSION=${ELASTIC_STACK_VERSION}
+    container_name: ${GRAYLOG_CONTAINER_NAME}
+    hostname: ${GRAYLOG_HOSTNAME}
+    environment:
+      - GRAYLOG_PASSWORD_SECRET=${GRAYLOG_PASSWORD}
+      - GRAYLOG_ROOT_PASSWORD_SHA2=${GRAYLOG_SHA256_PASSWORD}
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:${GRAYLOG_PORT}/
+    ports:
+      # Graylog web interface and REST API
+      - ${GRAYLOG_PORT}:9000
+      # Syslog TCP
+      - ${GRAYLOG_SYSLOG_TCP_PORT}:514
+      # Syslog UDP
+      - ${GRAYLOG_SYSLOG_UDP_PORT}:514/udp
+      # GELF TCP
+      - ${GRAYLOG_GELF_TCP_PORT}:12201
+      # GELF UDP
+      - ${GRAYLOG_GELF_UDP_PORT}:12201/udp
+    user: graylog
+    volumes:
+      - ./graylog/data:/usr/share/graylog/data
+    networks:
+      backend:
+        ipv4_address: ${GRAYLOG_BACKEND_IP}

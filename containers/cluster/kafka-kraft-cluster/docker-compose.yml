@@ -1,0 +1,4 @@
+include:
+  - ../../_common/docker-compose-common.yml
+  - ./docker-compose-kafka.yml
+  - ./docker-compose-kafka-ui.yml

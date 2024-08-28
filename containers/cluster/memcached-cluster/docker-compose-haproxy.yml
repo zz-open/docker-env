@@ -1,0 +1,26 @@
+volumes:
+  haproxy1:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+### HAPROXY ##############################################
+  haproxy1:
+    build:
+      context: ${HAPROXY_HOST_PATH}
+    hostname: ${HAPROXY_HOSTNAME_NODE1}
+    container_name: ${HAPROXY_CONTAINER_NAME_NODE1}
+    privileged: true
+    ports:
+      - "${HAPROXY_HOST_HTTP_PORT_NODE1}:8085"
+      - "11210:11211"
+    environment:
+      - TZ=${TZ}
+    extra_hosts:
+      - "${MEMCACHED_HOST_NAME_NODE1}:${MEMCACHED_BACKEND_IP_NODE1}"
+      - "${MEMCACHED_HOST_NAME_NODE2}:${MEMCACHED_BACKEND_IP_NODE2}"
+      - "${MEMCACHED_HOST_NAME_NODE3}:${MEMCACHED_BACKEND_IP_NODE3}"
+    volumes:
+      - "${HAPROXY_HOST_PATH}/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
+    networks:
+      backend:
+        ipv4_address: ${HAPROXY_BACKEND_IP_NODE1}

@@ -1,0 +1,29 @@
+volumes:
+  pulsar:
+    driver: ${VOLUMES_DRIVER}
+
+x-build: &build
+  build:
+    context: ${PULSAR_HOST_PATH}
+    args:
+      PULSAR_VERSION: ${PULSAR_VERSION}
+
+services:
+
+### PULSAR BROKER ##############################################
+  pulsar:
+    <<: *build
+    container_name: ${PULSAR_CONTAINER_NAME}
+    hostname: ${PULSAR_HOSTNAME}
+    user: root
+    privileged: true
+    command: "bin/pulsar standalone"
+    environment:
+      TZ: ${TZ}
+      PULSAR_MEM: "-Xms512m -Xmx512m -XX:MaxDirectMemorySize=256m"
+    ports:
+      - "6650:6650"
+      - "8080:8080"
+    networks:
+      backend:
+        ipv4_address: ${PULSAR_BACKEND_IP}

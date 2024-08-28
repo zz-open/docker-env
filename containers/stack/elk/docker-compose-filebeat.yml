@@ -1,0 +1,27 @@
+volumes:
+  filebeat:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+### Filebeat #############################################  
+  filebeat:
+    build:
+      context: ${FILEBEAT_HOST_PATH}
+      args:
+        - FILEBEAT_VERSION=${ELASTIC_STACK_VERSION}
+    container_name: ${FILEBEAT_CONTAINER_NAME}
+    hostname: ${FILEBEAT_HOSTNAME}
+    privileged: true
+    user: root
+    volumes:
+      - ${FILEBEAT_PATH}/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ${FILEBEAT_PATH}/modules.d:/usr/share/filebeat/modules.d
+      - ${DOCKER_SOCK_PATH_HOST}:/var/run/docker.sock
+      - ${DOCKER_BIN_PATH_HOST}:/usr/bin/docker
+      - ${DOCKER_DAEMON_PATH_HOST}:/etc/docker/daemon.json
+    environment:
+      strict.perms: false
+    mem_limit: ${MEM_LIMIT}
+    networks:
+      backend:
+        ipv4_address: ${FILEBEAT_BACKEND_IP}

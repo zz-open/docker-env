@@ -1,0 +1,5 @@
+include:
+  - ../../_common/docker-compose-common.yml
+  - ./docker-compose-nsqd.yml
+  - ./docker-compose-nsqlookupd.yml
+  - ./docker-compose-nsqadmin.yml

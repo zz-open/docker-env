@@ -1,0 +1,18 @@
+volumes:
+  elk-box:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### Busybox ################################################
+  elk-box:
+    image: busybox:latest
+    container_name: ${ELK_BOX_CONTAINER_NAME}
+    hostname: ${ELK_BOX_HOSTNAME}
+    privileged: true
+    user: root
+    stdin_open: true
+    tty: true
+    networks:
+      backend:
+        ipv4_address: ${ELK_BOX_BACKEND_IP}

@@ -1,0 +1,45 @@
+volumes:
+  pulsar-broker1:
+    driver: ${VOLUMES_DRIVER}
+
+x-build: &build
+  build:
+    context: ${PULSAR_BROKER_HOST_PATH}
+    args:
+      PULSAR_VERSION: ${PULSAR_VERSION}
+
+x-broker-env: &broker-env
+  TZ: ${TZ}
+  metadataStoreUrl: "zk:${PULSAR_ZOOKEEPER_CONTAINER_NAME}:2181"
+  zookeeperServers: "${PULSAR_ZOOKEEPER_CONTAINER_NAME}:2181"
+  clusterName: ${PULSAR_CLUSTER_NAME}
+  managedLedgerDefaultEnsembleSize: 1
+  managedLedgerDefaultWriteQuorum: 1
+  managedLedgerDefaultAckQuorum: 1
+  PULSAR_MEM: "-Xms512m -Xmx512m -XX:MaxDirectMemorySize=256m"
+
+services:
+
+### PULSAR BROKER ##############################################
+  pulsar-broker1:
+    <<: *build
+    container_name: ${PULSAR_BROKER_CONTAINER_NAME_NODE1}
+    hostname: ${PULSAR_BROKER_HOSTNAME_NODE1}
+    user: root
+    privileged: true
+    command: bash -c "bin/apply-config-from-env.py conf/broker.conf && exec bin/pulsar broker"
+    environment:
+      <<: *broker-env
+      advertisedAddress: "${PULSAR_BROKER_CONTAINER_NAME_NODE1}"
+      advertisedListeners: "external:pulsar://127.0.0.1:6650"
+    ports:
+      - "6650:6650"
+      - "8080:8080"
+    networks:
+      backend:
+        ipv4_address: ${PULSAR_BROKER_BACKEND_IP_NODE1}
+    depends_on:
+      pulsar-zookeeper:
+        condition: service_healthy
+      pulsar-bookie1:
+        condition: service_started

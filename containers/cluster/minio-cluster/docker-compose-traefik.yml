@@ -1,0 +1,47 @@
+volumes:
+  traefik:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+### TRAEFIK ##############################################
+  traefik:
+    build:
+      context: ${TRAEFIK_HOST_PATH}
+      args:
+        TRAEFIK_VERSION: ${TRAEFIK_VERSION}
+    container_name: ${TRAEFIK_CONTAINER_NAME}
+    hostname: ${TRAEFIK_HOSTNAME}
+    privileged: true
+    labels:
+      - "traefik.http.routers.traefik-dashboard.entrypoints=http"
+      - "traefik.http.routers.traefik-dashboard.rule=Host(`${TRAEFIK_DOMAIN}`)"
+      - "traefik.http.routers.traefik-dashboard.service=dashboard@internal"
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--api=true"
+      - "--api.dashboard=true"
+      - "--ping=true"
+      - "--entrypoints.http.address=:80"
+      - "--providers.docker.endpoint=unix:///var/run/docker.sock"
+      - "--entrypoints.${TRAEFIK_ENTRYPOINTS_MINIO_API}.address=:${TRAEFIK_MINIO_API_HOST_HTTP_PORT}"
+    ports:
+      - "${TRAEFIK_HOST_HTTP_PORT}:80"
+      - "${TRAEFIK_HOST_WEBUI_PORT}:8080"
+      - "${TRAEFIK_MINIO_API_HOST_HTTP_PORT}:${TRAEFIK_MINIO_API_HOST_HTTP_PORT}"
+    volumes:
+      - "${DOCKER_SOCK_PATH_HOST}:/var/run/docker.sock"
+    environment:
+      - "TZ=${TZ}"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider --proxy off localhost:8080/ping || exit 1"]
+      interval: 3s
+      retries: 10
+    networks:
+      backend:
+        ipv4_address: ${TRAEFIK_BACKEND_IP}
+    depends_on:
+      - ${MINIO_CONTAINER_NAME_NODE1}
+      - ${MINIO_CONTAINER_NAME_NODE2}
+      - ${MINIO_CONTAINER_NAME_NODE3}
+      - ${MINIO_CONTAINER_NAME_NODE4}

@@ -1,0 +1,26 @@
+volumes:
+  logstash:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+### Logstash #############################################  
+  logstash:
+    build:
+      context: ${LOGSTASH_HOST_PATH}
+      args:
+        - LOGSTASH_VERSION=${ELASTIC_STACK_VERSION}
+    container_name: ${LOGSTASH_CONTAINER_NAME}
+    hostname: ${LOGSTASH_HOSTNAME}
+    privileged: true
+    user: root
+    volumes:
+      - ${LOGSTASH_PATH}/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ${LOGSTASH_PATH}/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
+      - ${LOGSTASH_PATH}/pipeline/:/usr/share/logstash/pipeline/
+    environment:
+      http.host: "0.0.0.0"
+      MONITORING_ENABLED: false
+    mem_limit: ${MEM_LIMIT}
+    networks:
+      backend:
+        ipv4_address: ${LOGSTASH_BACKEND_IP}

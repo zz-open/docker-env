@@ -1,0 +1,35 @@
+volumes:
+  rocketmq-namesrv:
+    driver: ${VOLUMES_DRIVER}
+
+x-build: &build
+  build:
+    context: ${ROCKETMQ_HOST_PATH}
+    args:
+      ROCKETMQ_VERSION: ${ROCKETMQ_VERSION}
+
+x-namesrv-env: &namesrv-env
+  TZ: ${TZ}
+
+x-command: &command "sh mqnamesrv -c /home/rocketmq/nameserver.conf"
+
+services:
+
+### ROCKETMQ NAMESRV ##############################################
+  rocketmq-namesrv:
+    <<: *build
+    container_name: ${ROCKETMQ_NAMESRV_CONTAINER_NAME}
+    hostname: ${ROCKETMQ_NAMESRV_HOSTNAME}
+    user: root
+    privileged: true
+    command: *command
+    environment:
+      <<: *namesrv-env
+    volumes:
+      - "${LOG_PATH_HOST}/${ROCKETMQ_NAMESRV_CONTAINER_NAME}:/home/rocketmq/logs"
+      - "${ROCKETMQ_CONF_HOST_PATH}/nameserver.conf:/home/rocketmq/nameserver.conf"
+    ports:
+      - "${ROCKETMQ_NAMESRV_HOST_PORT}:9876"
+    networks:
+      backend:
+        ipv4_address: ${ROCKETMQ_NAMESRV_BACKEND_IP}

@@ -1,0 +1,4 @@
+include:
+  - ../../_common/docker-compose-common.yml
+  - ./docker-compose-zookeeper.yml
+  - ./docker-compose-zoonavigator.yml

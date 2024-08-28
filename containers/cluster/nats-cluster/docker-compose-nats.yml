@@ -1,0 +1,81 @@
+volumes:
+  nats1:
+    driver: ${VOLUMES_DRIVER}
+  nats2:
+    driver: ${VOLUMES_DRIVER}
+  nats3:
+    driver: ${VOLUMES_DRIVER}
+
+x-env: &env
+  TZ: ${TZ}
+
+x-build: &build
+  build:
+    context: ${NATS_HOST_PATH}
+    args:
+      NATS_VERSION: ${NATS_VERSION}
+
+x-extra_hosts: &extra_hosts
+  - "${NATS_HOSTNAME_NODE1}:${NATS_BACKEND_IP_NODE1}"
+  - "${NATS_HOSTNAME_NODE2}:${NATS_BACKEND_IP_NODE2}"
+  - "${NATS_HOSTNAME_NODE3}:${NATS_BACKEND_IP_NODE3}"
+
+services:
+### NATS NODE1 ##############################################
+  nats1:
+    <<: *build
+    container_name: ${NATS_CONTAINER_NAME_NODE1}
+    hostname: ${NATS_HOSTNAME_NODE1}
+    command: 
+      - "--cluster_name=${NATS_CLUSTER_NAME}"
+      - "--cluster=${NATS_CLUSTER_ADDRESS}"
+      - "--http_port=8222"
+    extra_hosts: *extra_hosts
+    privileged: true
+    ports:
+      - "${NATS_CLIENT_HOST_PORT_NODE1}:4222"
+      - "${NATS_MONITORING_HOST_PORT_NODE1}:6222"
+      - "${NATS_ROUTE_HOST_PORT_NODE1}:8222"
+    environment:
+      <<: *env
+    networks:
+      backend:
+        ipv4_address: ${NATS_BACKEND_IP_NODE1}
+
+### NATS NODE2 ##############################################
+  nats2:
+    <<: *build
+    container_name: ${NATS_CONTAINER_NAME_NODE2}
+    hostname: ${NATS_HOSTNAME_NODE2}
+    command:
+      - "--cluster_name=${NATS_CLUSTER_NAME}"
+      - "--cluster=${NATS_CLUSTER_ADDRESS}"
+      - "--routes=nats://ruser:${NATS_RUSER}@${NATS_CONTAINER_NAME_NODE1}:6222"
+    extra_hosts: *extra_hosts
+    privileged: true
+    environment:
+      <<: *env
+    networks:
+      backend:
+        ipv4_address: ${NATS_BACKEND_IP_NODE2}
+    depends_on:
+      - "${NATS_CONTAINER_NAME_NODE1}"
+
+### NATS NODE3 ##############################################
+  nats3:
+    <<: *build
+    container_name: ${NATS_CONTAINER_NAME_NODE3}
+    hostname: ${NATS_HOSTNAME_NODE3}
+    command: 
+      - "--cluster_name=${NATS_CLUSTER_NAME}"
+      - "--cluster=${NATS_CLUSTER_ADDRESS}"
+      - "--routes=nats://ruser:${NATS_RUSER}@${NATS_CONTAINER_NAME_NODE1}:6222"
+    extra_hosts: *extra_hosts
+    privileged: true
+    environment:
+      <<: *env
+    networks:
+      backend:
+        ipv4_address: ${NATS_BACKEND_IP_NODE3}
+    depends_on:
+      - "${NATS_CONTAINER_NAME_NODE1}"

@@ -1,0 +1,28 @@
+volumes:
+  nginx:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+### NGINX ##############################################
+  nginx:
+    build:
+      context: ${NGINX_HOST_PATH}
+      args:
+        NGINX_VERSION: ${NGINX_VERSION}
+    container_name: ${NGINX_CONTAINER_NAME}
+    hostname: ${NGINX_HOSTNAME}
+    privileged: true
+    ports:
+      - "${NGINX_HOST_HTTP_PORT}:9000"
+    volumes:
+      - "${NGINX_HOST_PATH}/nginx.conf:/etc/nginx/nginx.conf"
+    environment:
+      - "TZ=${TZ}"
+    networks:
+      backend:
+        ipv4_address: ${NGINX_BACKEND_IP}
+    depends_on:
+      - ${MINIO_CONTAINER_NAME_NODE1}
+      - ${MINIO_CONTAINER_NAME_NODE2}
+      - ${MINIO_CONTAINER_NAME_NODE3}
+      - ${MINIO_CONTAINER_NAME_NODE4}

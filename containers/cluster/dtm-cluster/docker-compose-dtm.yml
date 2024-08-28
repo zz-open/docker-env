@@ -1,0 +1,65 @@
+volumes:
+  dtm1:
+    driver: ${VOLUMES_DRIVER}
+
+x-env: &env
+  TZ: ${TZ}
+  STORE_DRIVER: ${DTM_STORE_DRIVE}
+  STORE_HOST: ${DTM_STORE_HOST}
+  STORE_USER: ${DTM_STORE_USER}
+  STORE_PASSWORD: ${DTM_STORE_PASSWORD}
+  STORE_PORT: ${DTM_STORE_PORT}
+
+x-build: &build
+  build:
+    context: ${DTM_HOST_PATH}
+    args:
+      - DTM_VERSION=${DTM_VERSION}
+
+services:
+### DTM NODE1 ################################################
+  dtm1:
+    <<: *build
+    hostname: ${DTM_HOSTNAME_NODE1}
+    container_name: ${DTM_CONTAINER_NAME_NODE1}
+    privileged: true
+    user: root
+    environment:
+      <<: *env
+    ports:
+      - "${DTM_HTTP_PORT_NODE1}:36789"
+      - "${DTM_GRPC_PORT_NODE1}:36790"
+    networks:
+      backend:
+        ipv4_address: ${DTM_BACKEND_IP_NODE1}
+
+### DTM NODE2 ################################################
+  dtm2:
+    <<: *build
+    hostname: ${DTM_HOSTNAME_NODE2}
+    container_name: ${DTM_CONTAINER_NAME_NODE2}
+    privileged: true
+    user: root
+    environment:
+      <<: *env
+    ports:
+      - "${DTM_HTTP_PORT_NODE2}:36789"
+      - "${DTM_GRPC_PORT_NODE2}:36790"
+    networks:
+      backend:
+        ipv4_address: ${DTM_BACKEND_IP_NODE2}
+### DTM NODE3 ################################################
+  dtm2:
+    <<: *build
+    hostname: ${DTM_HOSTNAME_NODE3}
+    container_name: ${DTM_CONTAINER_NAME_NODE3}
+    privileged: true
+    user: root
+    environment:
+      <<: *env
+    ports:
+      - "${DTM_HTTP_PORT_NODE3}:36789"
+      - "${DTM_GRPC_PORT_NODE3}:36790"
+    networks:
+      backend:
+        ipv4_address: ${DTM_BACKEND_IP_NODE3}

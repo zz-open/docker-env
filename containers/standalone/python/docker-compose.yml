@@ -1,0 +1,20 @@
+networks:
+  backend:
+    external: true
+
+services:
+  python-latest:
+    build:
+      context: ./python
+    hostname: python
+    container_name: python
+    privileged: true
+    stdin_open: true
+    tty: true
+    volumes:
+      - ${APP_CODE_PATH}:${APP_CODE_PATH_CONTAINER}
+    environment:
+      - TZ=${TZ}
+    networks:
+      backend:
+        ipv4_address: ${PYTHON_IP}
