@@ -4,6 +4,7 @@ include:
   - ./busybox/docker-compose-busybox.yml
   - ./mysql57/docker-compose-mysql.yml
   - ./mysql8/docker-compose-mysql.yml
+  - ./mysql/docker-compose-mysql.yml
   - ./redis/docker-compose-redis.yml
   - ./memcached/docker-compose-memcached.yml
   - ./postgres/docker-compose-postgres.yml
@@ -38,35 +39,7 @@ include:
   - ./dtm/docker-compose-dtm.yml
   - ./nacos/docker-compose-nacos.yml
   - ./mssql/docker-compose-mssql.yml
-  # - ./jupyterhub/docker-compose-jupyterhub.yml
-  # - ./jupyterhub/docker-compose-jupyterhub-user.yml
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### Grafana ##############################################
-### MongoWebUI ###########################################
-### JupyterHub ###########################################
-### OpenResty Server #####################################
-### Metabase #############################################
-### SONARQUBE ############################################
-### kafka ################################################
-### kafka-manager ########################################
-### keycloak #############################################
-### tarantool ###########################################
+  - ./nginx/docker-compose-nginx.yml
+  - ./node/docker-compose-node.yml
+  - ./jdk17/docker-compose-jdk.yml
+  - ./jdk8/docker-compose-jdk.yml

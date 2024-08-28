@@ -1,0 +1,21 @@
+volumes:
+  node:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### Node ################################################
+  node:
+    build:
+      context: ${NODE_HOST_PATH}
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+    hostname: ${NODE_HOSTNAME}
+    container_name: ${NODE_CONTAINER_NAME}
+    privileged: true
+    user: root
+    environment:
+      - TZ=${TZ}
+    networks:
+      backend:
+        ipv4_address: ${NODE_BACKEND_IP}

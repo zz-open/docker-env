@@ -1,5 +1,5 @@
 services:
-  nginx:
+  lnmp-nginx:
     ports:
       - "8211:8211"
       - "8212:8212"

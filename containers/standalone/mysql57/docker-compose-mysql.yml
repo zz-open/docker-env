@@ -17,7 +17,7 @@ services:
     volumes:
       - ${DATA_PATH_HOST}/${MYSQL57_CONTAINER_NAME}:/var/lib/mysql # 需要777权限
       - ${LOG_PATH_HOST}/${MYSQL57_CONTAINER_NAME}:/var/log
-      - ${MYSQL57_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+      - ${MYSQL57_HOST_PATH}/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     ports:
       - "${MYSQL57_HOST_PORT}:3306"
     environment:

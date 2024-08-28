@@ -11,7 +11,7 @@
 - [清华 alpine](https://mirrors.tuna.tsinghua.edu.cn/help/alpine/)
 - [北大 debian](https://mirrors.pku.edu.cn/Help/Debian)
 
-Full development environment based on Docker.
+Full Stack development environment based on Docker.
 
 ## 如何使用
 ### 初始化网络
@@ -51,7 +51,8 @@ docker-compose up -d postgres
 | portainer | 172.11.4.3 | 172.10.4.3 | latest | |
 | busybox | 172.11.4.4 | 172.10.4.4 | latest | |
 | mysql57 | 172.11.4.5 | 172.10.4.5 | 5.7 | |
-| mysql | 172.11.4.6 | 172.10.4.6 | 8.3~9.0 | |
+| mysql8 | 172.11.4.6 | 172.10.4.6 | 8.0~8.3 | |
+| mysql | 172.11.4.46 | 172.10.4.46 | 8.4~9.0 | |
 | redis | 172.11.4.7 | 172.10.4.7 | latest | |
 | memcached | 172.11.4.8 | 172.10.4.8 | 1.6.23 | |
 | postgres | 172.11.4.9 | 172.10.4.9 | 16.2 | |
@@ -88,6 +89,11 @@ docker-compose up -d postgres
 | dtm | 172.11.4.40 | 172.10.4.40 | latest |
 | nacos | 172.11.4.41 | 172.10.4.41 | v2.3.0 | |
 | mssql | 172.11.4.42 | 172.10.4.42 | 2022 | |
+| nginx | 172.11.4.43 | 172.10.4.43 | latest | |
+| jdk17 | 172.11.4.44 | 172.10.4.44 | 17 | |
+| jdk8 | 172.11.4.45 | 172.10.4.45 | 8 | |
+| node | 172.11.4.47 | 172.10.4.47 | node20 | |
+
 
 
 ### CLUSTER

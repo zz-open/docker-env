@@ -1,0 +1,21 @@
+volumes:
+  jdk17:
+    driver: ${VOLUMES_DRIVER}
+
+x-build: &build
+  build:
+    context: ${JDK17_HOST_PATH}
+    args:
+      - JDK_VERSION=${JDK17_VERSION}
+
+services:
+### JDK17 ##############################################
+  jdk17:
+    <<: *build
+    container_name: ${JDK17_CONTAINER_NAME}
+    hostname: ${JDK17_HOSTNAME}
+    environment:
+      TZ: ${TZ}
+    networks:
+      backend:
+        ipv4_address: ${JDK17_BACKEND_IP}

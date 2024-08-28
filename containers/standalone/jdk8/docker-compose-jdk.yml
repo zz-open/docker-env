@@ -1,0 +1,21 @@
+volumes:
+  jdk8:
+    driver: ${VOLUMES_DRIVER}
+
+x-build: &build
+  build:
+    context: ${JDK8__HOST_PATH}
+    args:
+      - JDK_VERSION=${JDK8_VERSION}
+
+services:
+### JDK8 ##############################################
+  jdk8:
+    <<: *build
+    container_name: ${JDK8_CONTAINER_NAME}
+    hostname: ${JDK8_HOSTNAME}
+    environment:
+      TZ: ${TZ}
+    networks:
+      backend:
+        ipv4_address: ${JDK8_BACKEND_IP}

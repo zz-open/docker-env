@@ -1,15 +1,17 @@
-ARG NODE_VERSION=14
-FROM node:${NODE_VERSION}
+ARG NODE_VERSION=20
+FROM node:${NODE_VERSION} as build
 
-WORKDIR /usr/src/app
+LABEL maintainer="zz <373045134@qq.com>"
 
-# 自定义安装脚本
-COPY ./install.sh /install.sh
-RUN chmod +x /install.sh
-#RUN bash /install.sh && rm /install.sh
+WORKDIR /app
 
-RUN npm install node-sass && npm install
+COPY . ./
+RUN npm run build
 
-EXPOSE 3000
+FROM nginx:alpine
 
-CMD ["npm", "start"]
+COPY --from=build /app/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
