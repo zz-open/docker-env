@@ -4,7 +4,7 @@ volumes:
 
 x-build: &build
   build:
-    context: ${JDK8__HOST_PATH}
+    context: ${JDK8_HOST_PATH}
     args:
       - JDK_VERSION=${JDK8_VERSION}
 
