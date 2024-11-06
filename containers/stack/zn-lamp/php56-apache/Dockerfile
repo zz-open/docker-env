@@ -25,6 +25,7 @@ RUN pecl channel-update pecl.php.net
 RUN apt-get install -y --allow-unauthenticated \
       vim \
       net-tools \
+      iputils-ping \
       apt-utils \
       gnupg2 \
       git \
@@ -158,3 +159,10 @@ RUN set -eux; \
       docker-php-ext-enable event &&\
       php -m  | grep -q 'event' \
 ;fi
+
+RUN a2enmod rewrite
+ADD ./apache/startup.sh /opt/startup.sh
+
+CMD ["/bin/bash", "/opt/startup.sh"]
+
+EXPOSE 80 443
