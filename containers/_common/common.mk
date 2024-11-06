@@ -1,10 +1,10 @@
 # Docker ############################################################
-DOCKER=/usr/bin/docker
+DOCKER=$(shell command -v docker)
 DOCKER_INSPECT=${DOCKER} inspect
 DOCKER_PUSH=${DOCKER} push
 DOCKER_TAG=${DOCKER} tag
 
-DOCKER_COMPOSE=/usr/local/bin/docker-compose
+DOCKER_COMPOSE=$(shell command -v docker-compose)
 DOCKER_COMPOSE_EXEC=${DOCKER_COMPOSE} exec -it
 DOCKER_COMPOSE_BUILD=${DOCKER_COMPOSE} build
 DOCKER_COMPOSE_UP=${DOCKER_COMPOSE} up

@@ -39,12 +39,11 @@ docker-compose up -d postgres
 ```
 
 ### 常用命令
-项目使用Makefile管理常用命令，因为Makefile可以分别定义PHONY执行，SHELL相对比较麻烦
-
+项目使用Makefile管理常用命令，因为Makefile可以分别定义PHONY执行，SHELL相对比较复杂
 
 ## 服务清单
 ### STANDALONE
-单体服务, 172.11.4.3
+单体服务, 172.11.4.3开始
 
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
@@ -52,7 +51,6 @@ docker-compose up -d postgres
 | busybox | 172.11.4.4 | 172.10.4.4 | latest | |
 | mysql57 | 172.11.4.5 | 172.10.4.5 | 5.7 | |
 | mysql8 | 172.11.4.6 | 172.10.4.6 | 8.0~8.3 | |
-| mysql | 172.11.4.46 | 172.10.4.46 | 8.4~9.0 | |
 | redis | 172.11.4.7 | 172.10.4.7 | latest | |
 | memcached | 172.11.4.8 | 172.10.4.8 | 1.6.23 | |
 | postgres | 172.11.4.9 | 172.10.4.9 | 16.2 | |
@@ -92,12 +90,11 @@ docker-compose up -d postgres
 | nginx | 172.11.4.43 | 172.10.4.43 | latest | |
 | jdk17 | 172.11.4.44 | 172.10.4.44 | 17 | |
 | jdk8 | 172.11.4.45 | 172.10.4.45 | 8 | |
+| mysql | 172.11.4.46 | 172.10.4.46 | 8.4~9.0 | |
 | node | 172.11.4.47 | 172.10.4.47 | node20 | |
 
-
-
 ### CLUSTER
-集群服务, 172.11.2.3
+集群环境, 172.11.2.3开始
 
 #### RABBITMQ CLUSTER (172.11.2.3) [待定]
 | service | backend ip | frontend ip | version | 备注 |
@@ -277,7 +274,7 @@ docker-compose up -d postgres
 | mc-management | 172.11.2.217 | 172.10.2.217 | latest |
 
 ### STACK
-全栈
+集成环境, 172.11.3.3 开始, 例如lamp, lnmp等 
 
 #### DEVOPS (172.11.3.3) [完成]
 | service | backend ip | frontend ip | version | 备注 |
@@ -326,5 +323,10 @@ docker-compose up -d postgres
 #### LAMP (172.11.3.90) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
-| apache | 172.11.3.90 | 172.10.2.90 | latest |
-| php-fpm | 172.11.3.91 | 172.10.2.91 | latest |
+| apache | 172.11.3.90 | 172.10.3.90 | latest |
+| php-fpm | 172.11.3.91 | 172.10.3.91 | latest |
+
+#### ZN-LAMP (172.11.3.93) [完成]
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| php5.6.40+apache | 172.11.3.93 | 172.10.3.93 | php5.6.40, 支持arm64 |
