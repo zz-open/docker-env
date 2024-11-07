@@ -160,7 +160,8 @@ RUN set -eux; \
       php -m  | grep -q 'event' \
 ;fi
 
-RUN a2enmod rewrite
+RUN a2enmod rewrite headers
+#  a2enmod proxy proxy_html proxy_http xml2enc ssl http2
 ADD ./apache/startup.sh /opt/startup.sh
 
 CMD ["/bin/bash", "/opt/startup.sh"]
