@@ -15,7 +15,7 @@ help:
 test:
 	@echo "test ..."
 
-.PHONY: build start
+.PHONY: build start grep_module
 build:
 	@${DOCKER_COMPOSE_BUILD} ${CONTAINERS}
 
@@ -27,3 +27,7 @@ enter_php_apache:
 
 cat_php_apache_hosts:
 	@${DOCKER_COMPOSE_EXEC} ${PHP_APACHE_CONTAINER_NAME} cat /etc/hosts
+
+grep_module:
+	@apachectl -M | grep rewrite 
+	@apachectl -M | grep headers
