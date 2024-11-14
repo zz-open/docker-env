@@ -12,7 +12,9 @@ help:
 test:
 	@echo "test ..."
 
-.PHONY: enter_redis enter_postgres enter_mongo download_redis_conf
+.PHONY: enter_redis enter_postgres enter_mongo download_redis_conf enter_mysql8
+enter_mysql8:
+	@${DOCKER_COMPOSE_EXEC} ${MYSQL8_CONTAINER_NAME} bash
 enter_redis:
 	@${DOCKER_COMPOSE_EXEC} ${REDIS_CONTAINER_NAME} bash
 enter_postgres:

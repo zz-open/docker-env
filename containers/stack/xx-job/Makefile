@@ -1,7 +1,7 @@
 include .env
 include ../../_common/common.mk
 
-CONTAINERS=${PHP_APACHE_CONTAINER_NAME}
+CONTAINERS=
 
 .PHONY: help test
 help:

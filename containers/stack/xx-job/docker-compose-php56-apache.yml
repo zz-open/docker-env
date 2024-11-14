@@ -1,0 +1,28 @@
+volumes:
+  zn-php56-apache:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### ZN PHP56-APACHE ########################################
+  zn-php56-apache:
+    build:
+      context: ${PHP_APACHE_HOST_PATH}
+      args:
+        - DOCUMENT_ROOT=${APACHE_DOCUMENT_ROOT}
+        - INSTALL_SOAP=${PHP_INSTALL_SOAP}
+        - INSTALL_EVENT=${PHP_INSTALL_EVENT}
+        - INSTALL_PHPREDIS=${PHP_INSTALL_REDIS}
+        - INSTALL_MEMCACHED=${PHP_INSTALL_MEMCACHED}
+    container_name: ${PHP_APACHE_CONTAINER_NAME}
+    hostname: ${PHP_APACHE_HOSTNAME}
+    volumes:
+      - "${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}"
+      - "${LOG_PATH_HOST}/apache:/var/log/apache2"
+      - "${APACHE_SITES_PATH}:/etc/apache2/sites-other"
+    ports:
+      - "${APACHE_HOST_HTTP_PORT}:80"
+      - "${APACHE_HOST_HTTPS_PORT}:443"
+    networks:
+      backend:
+        ipv4_address: ${PHP_APACHE_BACKEND_IP}
