@@ -1,0 +1,32 @@
+volumes:
+  xxjob:
+    driver: ${VOLUMES_DRIVER}
+
+x-variable:
+  PARAMS: &PARAMS '--spring.datasource.username=root --spring.datasource.password=${MYSQL_ROOT_PASSWORD} --spring.datasource.url=jdbc:mysql://${MYSQL_CONTAINER_NAME}:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai'
+
+services:
+
+### xxjob ########################################
+  xxjob:
+    build:
+      context: ${XXJOB_HOST_PATH}
+      args:
+        - XXJOB_VERSION=${XXJOB_VERSION}
+    container_name: ${XXJOB_CONTAINER_NAME}
+    hostname: ${XXJOB_HOSTNAME}
+    privileged: true
+    user: root
+    volumes:
+      - "${DATA_PATH_HOST}/${XXJOB_CONTAINER_NAME}:/tmp:/data/applogs"
+    ports:
+      - "${XXJOB_HOST_HTTP_PORT}:8080"
+    environment:
+      PARAMS: *PARAMS
+    networks:
+      backend:
+        ipv4_address: ${XXJOB_BACKEND_IP}
+    links:
+      - ${MYSQL_CONTAINER_NAME}
+    depends_on:
+      - ${MYSQL_CONTAINER_NAME}
