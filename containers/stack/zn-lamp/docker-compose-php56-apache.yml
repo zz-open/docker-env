@@ -16,6 +16,8 @@ services:
         - INSTALL_MEMCACHED=${PHP_INSTALL_MEMCACHED}
     container_name: ${PHP_APACHE_CONTAINER_NAME}
     hostname: ${PHP_APACHE_HOSTNAME}
+    privileged: true
+    user: root
     volumes:
       - "${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}"
       - "${LOG_PATH_HOST}/apache:/var/log/apache2"

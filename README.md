@@ -330,3 +330,9 @@ docker-compose up -d postgres
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | php5.6.40+apache | 172.11.3.93 | 172.10.3.93 | php5.6.40, 支持arm64 |
+
+#### XXJOB (172.11.3.100) [完成]
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| xxjob | 172.11.3.100 | 172.10.3.100 | xxjob, 支持arm64 |
+| xxjob-mysql | 172.11.3.101 | 172.10.3.101 | mysql8.3 |
