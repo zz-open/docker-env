@@ -336,3 +336,9 @@ docker-compose up -d postgres
 |---|---|---|---|---|
 | xxjob | 172.11.3.100 | 172.10.3.100 | xxjob, 支持arm64 |
 | xxjob-mysql | 172.11.3.101 | 172.10.3.101 | mysql8.3 |
+
+#### METING API (172.11.3.110) [完成]
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| meting-api | 172.11.3.110 | 172.10.3.110 | latest |
+| caddy | 172.11.3.111 | 172.10.3.111 | latest |

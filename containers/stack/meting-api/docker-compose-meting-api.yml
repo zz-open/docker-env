@@ -1,0 +1,21 @@
+volumes:
+  xxjob:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### METING API ########################################
+  meting-api:
+    build:
+      context: ${METING_API_HOST_PATH}
+    container_name: ${METING_API_CONTAINER_NAME}
+    hostname: ${METING_API_HOSTNAME}
+    privileged: true
+    user: root
+    ports:
+      - "${METING_API_HOST_HTTP_PORT}:3000"
+    environment:
+      TZ: "${TZ}"
+    networks:
+      backend:
+        ipv4_address: ${METING_API_BACKEND_IP}
