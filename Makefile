@@ -11,6 +11,7 @@ help:
 
 test:
 	@echo "test ..."
+	@echo ${DOCKER}
 
 .PHONY: init_network reset_docker push
 init_network:
