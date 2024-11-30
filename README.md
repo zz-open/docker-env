@@ -1,15 +1,16 @@
 # docker-env
 - [docker-compose 文档](https://docs.docker.com/compose/compose-file/)
-- [清华 docker](https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/)
-- [阿里 docker](https://developer.aliyun.com/mirror/docker-ce?spm=a2c6h.13651102.0.0.57e31b11IGkBRU)
-- [网易 docker](https://mirrors.163.com/docker-ce)
-- [网易 debian](https://mirrors.163.com/.help/debian.html)
-- [火山 docker](https://developer.volcengine.com/articles/7119384305456906277)
-- [清华 ubuntu](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
-- [清华 debian](https://mirrors.tuna.tsinghua.edu.cn/help/debian/)
-- [清华 centos](https://mirrors.tuna.tsinghua.edu.cn/help/centos/)
-- [清华 alpine](https://mirrors.tuna.tsinghua.edu.cn/help/alpine/)
-- [北大 debian](https://mirrors.pku.edu.cn/Help/Debian)
+- [清华源 docker](https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/)
+- [阿里源 docker](https://developer.aliyun.com/mirror/docker-ce?spm=a2c6h.13651102.0.0.57e31b11IGkBRU)
+- [网易源 docker](https://mirrors.163.com/docker-ce)
+- [火山源 docker](https://developer.volcengine.com/articles/7119384305456906277)
+
+- [网易源 debian](https://mirrors.163.com/.help/debian.html)
+- [北大源 debian](https://mirrors.pku.edu.cn/Help/Debian)
+- [清华源源 debian](https://mirrors.tuna.tsinghua.edu.cn/help/debian/)
+- [清华源 ubuntu](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
+- [清华源 centos](https://mirrors.tuna.tsinghua.edu.cn/help/centos/)
+- [清华源 alpine](https://mirrors.tuna.tsinghua.edu.cn/help/alpine/)
 
 Full Stack development environment based on Docker Compose.
 
@@ -24,15 +25,28 @@ make init_network
 数据目录存放在： ~/.docker-env
 日志目录存放在： containers/logs
 
+## 为docker compose创建别名
+```shell
+make print
+
+# 拷贝 DC_OPTIONS
+echo 'alias dec="docker compose --env-file=/root/jungle/github/zz-open/docker-env/conf/mk/.env.common --env-file=.env"' >> ~/.zshrc
+
+# 拷贝 DC_WITH_LOCAL_OPTIONS
+echo 'alias decl="docker compose --env-file=/root/jungle/github/zz-open/docker-env/conf/mk/.env.common --env-file=.env --env-file=.env.local"' >> ~/.zshrc
+
+source ~/.zshrc
+```
+
 ## 启动服务
 ```shell
 cd standalone
 
 # 启动 mysql5.7
-make start-mysql57
+dec start-mysql57
 
 # 启动 redis
-make start-redis
+dec start-redis
 ```
 
 ## 关于Makefile

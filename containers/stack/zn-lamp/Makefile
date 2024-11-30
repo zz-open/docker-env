@@ -2,7 +2,7 @@ include .env
 include .env.local
 include ../../../conf/mk/common.mk
 
-CONTAINERS := ${PHP_APACHE_CONTAINER_NAME}
+CONTAINERS=${PHP_APACHE_CONTAINER_NAME}
 
 .PHONY: help test build start
 help:
@@ -31,5 +31,6 @@ enter_newenglish:
 	$(call FUNC_DC_EXEC,${PHP_APACHE_CONTAINER_NAME},/bin/bash -c, "cd /var/www/newenglish && pwd")
 
 grep_module:
-	@apachectl -M | grep rewrite 
-	@apachectl -M | grep headers
+	$(call FUNC_DC_EXEC,${PHP_APACHE_CONTAINER_NAME},/bin/bash -c, "apachectl -M")
+	$(call FUNC_DC_EXEC,${PHP_APACHE_CONTAINER_NAME},/bin/bash -c, "apachectl -M | grep rewrite ")
+	$(call FUNC_DC_EXEC,${PHP_APACHE_CONTAINER_NAME},/bin/bash -c, "apachectl -M | grep headers")
