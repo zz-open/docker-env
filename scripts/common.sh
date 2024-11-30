@@ -8,8 +8,8 @@ CommonScriptFileDirPath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # 项目根路径
 ProjectRootPath=$(cd ${CommonScriptFileDirPath}/..;pwd)
 
-# 引入 .env
-EnvPath=${CommonScriptFileDirPath}/.env
+# 引入公共 .env
+EnvPath=${CommonScriptFileDirPath}/../conf/mk/.env.common
 source ${EnvPath}
 # ExampleEnvPath=${ProjectRootPath}/.env.example
 

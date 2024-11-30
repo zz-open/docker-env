@@ -1,5 +1,5 @@
 include .env
-include ../_common/common.mk
+include ../../../conf/mk/common.mk
 
 ES_CONTAINERS=${ES_CONTAINER_NAME_NODE1} ${ES_CONTAINER_NAME_NODE2} ${ES_CONTAINER_NAME_NODE3} ${ES_CONTAINER_NAME_SETUP} 
 CONTAINERS=${KIBANA_CONTAINER_NAME}

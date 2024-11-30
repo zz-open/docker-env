@@ -1,5 +1,5 @@
 include .env
-include ../_common/common.mk
+include ../../../conf/mk/common.mk
 
 ETCDCTL_BIN_PATH=/usr/local/bin/etcdctl
 CONTAINERS=${ETCD_CONTAINER_NAME_NODE1} ${ETCD_CONTAINER_NAME_NODE2} ${ETCD_CONTAINER_NAME_NODE3}

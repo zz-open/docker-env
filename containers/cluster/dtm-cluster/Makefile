@@ -1,5 +1,5 @@
 include .env
-include ../_common/common.mk
+include ../../../conf/mk/common.mk
 
 CONTAINERS=${DTM_CONTAINER_NAME_NODE1} ${MYSQL_CONTAINER_NAME} ${REDIS_STACK_CONTAINER_NAME}
 

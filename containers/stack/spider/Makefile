@@ -1,29 +1,27 @@
 include .env
-include ../_common/common.mk
+include ../../../conf/mk/common.mk
 
 CONTAINERS=${MYSQL_CONTAINER_NAME} ${REDIS_STACK_CONTAINER_NAME}
 
-.PHONY: help test
+.PHONY: help test build start
 help:
 	@echo "usage: make <option>"
 	@echo "options and effects:"
 	@echo "    help                     : Show help"
 	@echo "    test                     : Test ..."
-	@echo "    build      				: build"
+	@echo "    build      				: 构建所有服务"
 	@echo "    start                    : 启动所有服务"
 
 test:
 	@echo "test ..."
-
-.PHONY: build start
 build:
-	@${DOCKER_COMPOSE_BUILD} ${CONTAINERS}
-
+	$(call FUNC_DC_BUILD,${CONTAINERS})
 start:
-	@${DOCKER_COMPOSE_UP} -d ${CONTAINERS}
+	$(call FUNC_DC_UP,${CONTAINERS})
 
+.PHONY: reset
 reset:
-	@${DOCKER_COMPOSE_STOP}
+	$(call FUNC_DC_STOP,${CONTAINERS})
 	rm -rf ${DATA_PATH_HOST}/mysql
 	rm -rf ${DATA_PATH_HOST}/redis
-	@${DOCKER_COMPOSE_DOWN}
+	$(call FUNC_DC_DOWN,${CONTAINERS})

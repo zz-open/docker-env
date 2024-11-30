@@ -1,5 +1,5 @@
 include:
-  - ../../_common/docker-compose-common.yml
+  - ../../../conf/compose/docker-compose-common.yml
   - ./docker-compose-application.yml
   - ./docker-compose-gitlab.yml
   - ./docker-compose-jenkins.yml

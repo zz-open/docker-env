@@ -1,5 +1,5 @@
 include .env
-include ../_common/common.mk
+include ../../conf/mk/common.mk
 
 .PHONY: help test
 help:
@@ -8,18 +8,17 @@ help:
 	@echo "    help                     : Show help"
 	@echo "    test                     : Test ..."
 
-
 test:
 	@echo "test ..."
 
 .PHONY: enter_redis enter_postgres enter_mongo download_redis_conf enter_mysql8
 enter_mysql8:
-	@${DOCKER_COMPOSE_EXEC} ${MYSQL8_CONTAINER_NAME} bash
+	$(call FUNC_DC_EXEC,${MYSQL8_CONTAINER_NAME},bash)
 enter_redis:
-	@${DOCKER_COMPOSE_EXEC} ${REDIS_CONTAINER_NAME} bash
+	$(call FUNC_DC_EXEC,${REDIS_CONTAINER_NAME},bash)
 enter_postgres:
-	@${DOCKER_COMPOSE_EXEC} ${POSTGRES_CONTAINER_NAME} bash
+	$(call FUNC_DC_EXEC,${POSTGRES_CONTAINER_NAME},bash)
 enter_mongo:
-	@${DOCKER_COMPOSE_EXEC} ${MONGO_CONTAINER_NAME} bash
+	$(call FUNC_DC_EXEC,${MONGO_CONTAINER_NAME},bash)
 download_redis_conf:
 	@wget -O "./redis.conf" "https://github.com/redis/redis/blob/7.2/redis.conf"

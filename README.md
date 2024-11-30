@@ -11,10 +11,10 @@
 - [清华 alpine](https://mirrors.tuna.tsinghua.edu.cn/help/alpine/)
 - [北大 debian](https://mirrors.pku.edu.cn/Help/Debian)
 
-Full Stack development environment based on Docker.
+Full Stack development environment based on Docker Compose.
 
-## 如何使用
-### 初始化网络
+# 如何使用
+## 初始化网络
 ```shell
 make init_network
 ```
@@ -22,27 +22,27 @@ make init_network
 - frontend: 前端服务网络（备用网络，可忽略）
 
 数据目录存放在： ~/.docker-env
-日志目录存放在： 项目根路径/logs
+日志目录存放在： containers/logs
 
-### 启动服务
+## 启动服务
 ```shell
 cd standalone
 
 # 启动 mysql5.7
-docker-compose up -d mysql57
+make start-mysql57
 
 # 启动 redis
-docker-compose up -d redis
-
-# 启动 postgres 
-docker-compose up -d postgres
+make start-redis
 ```
 
-### 常用命令
-项目使用Makefile管理常用命令，因为Makefile可以分别定义PHONY执行，SHELL相对比较复杂
+## 关于Makefile
+项目使用Makefile管理常用命令
 
-## 服务清单
-### STANDALONE
+## 关于.env
+可以创建.env.local覆盖已定义好的变量
+
+# 服务清单
+## STANDALONE
 单体服务, 172.11.4.3开始
 
 | service | backend ip | frontend ip | version | 备注 |
@@ -93,17 +93,17 @@ docker-compose up -d postgres
 | jdk8 | 172.11.4.45 | 172.10.4.45 | 8 | |
 | node | 172.11.4.47 | 172.10.4.47 | node20 | |
 
-### CLUSTER
+## CLUSTER
 集群环境, 172.11.2.3开始
 
-#### RABBITMQ CLUSTER (172.11.2.3) [待定]
+### RABBITMQ CLUSTER (172.11.2.3) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | rabbitmq1 | 172.11.2.3 | 172.10.2.3 | 3.12 | |
 | rabbitmq2 | 172.11.2.4 | 172.10.2.4 | 3.12 | |
 | rabbitmq3 | 172.11.2.5 | 172.10.2.5 | 3.12 | |
 
-#### KAFKA KRAFT CLUSTER (172.11.2.13) [完成]
+### KAFKA KRAFT CLUSTER (172.11.2.13) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | krc-kafka-ui | 172.11.2.13 | 172.10.2.210 | 3.6 | |
@@ -114,7 +114,7 @@ docker-compose up -d postgres
 | krc-kafka5 | 172.11.2.13 | 172.10.2.215 | 3.6 | |
 | krc-kafka6 | 172.11.2.13 | 172.10.2.216 | 3.6 | |
 
-#### KAFKA CLUSTER (172.11.2.30) [完成]
+### KAFKA CLUSTER (172.11.2.30) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | kc-kafka-ui | 172.11.2.220 | 172.10.2.220 | latest | |
@@ -127,7 +127,7 @@ docker-compose up -d postgres
 | kc-kafka5 | 172.11.2.227 | 172.10.2.227 | latest | |
 | kc-kafka6 | 172.11.2.228 | 172.10.2.228 | latest | |
 
-#### ROCKETMQ CLUSTER (172.11.2.50) [待定]
+### ROCKETMQ CLUSTER (172.11.2.50) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | rocketmq-dashboard | 172.11.2.11 | 172.10.2.11 | latest | |
@@ -147,7 +147,7 @@ docker-compose up -d postgres
 | rocketmq-c-broker5 | 172.11.3.16 | 172.10.3.16 | latest | |
 | rocketmq-c-broker6 | 172.11.3.17 | 172.10.3.17 | latest | |
 
-#### Pulsar Cluster (172.11.2.70) [待定]
+### Pulsar Cluster (172.11.2.70) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | pulsar-manager | 172.11.2.82 | 172.10.2.82 | 0.4.0 |
@@ -160,7 +160,7 @@ docker-compose up -d postgres
 | pulsar-broker2 | 172.11.2.87 | 172.10.2.87 | latest |
 | pulsar-broker3 | 172.11.2.88 | 172.10.2.88 | latest |
 
-#### NSQ CLUSTER (172.11.2.90) [待定]
+### NSQ CLUSTER (172.11.2.90) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | nsqadmin | 172.11.2.110 | 172.10.2.110 | latest | |
@@ -171,7 +171,7 @@ docker-compose up -d postgres
 | nsqd2 | 172.11.2.101 | 172.10.2.101 | latest | |
 | nsqd3 | 172.11.2.101 | 172.10.2.101 | latest | |
 
-#### NATS CLUSTER (172.11.2.100) [待定]
+### NATS CLUSTER (172.11.2.100) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | nats-box | 172.11.2.240 | 172.10.2.240 | latest | |
@@ -179,7 +179,7 @@ docker-compose up -d postgres
 | nats2 | 172.11.2.242 | 172.10.2.242 | latest | |
 | nats3 | 172.11.2.243 | 172.10.2.243 | latest | |
 
-#### ETCD CLUSTER (172.11.2.110) [完成]
+### ETCD CLUSTER (172.11.2.110) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | ec-etcd-ui | 172.11.2.170 | 172.10.2.170 | | |
@@ -187,7 +187,7 @@ docker-compose up -d postgres
 | ec-etcd2 | 172.11.2.172 | 172.10.2.172 | v3.5.2 | |
 | ec-etcd3 | 172.11.2.173 | 172.10.2.173 | v3.5.2 | |
 
-#### ZOOKEEPER CLUSTER (172.11.2.120) [完成]
+### ZOOKEEPER CLUSTER (172.11.2.120) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | zc-zoonavagitor | 172.11.2.190 | 172.10.2.190 | | |
@@ -195,7 +195,7 @@ docker-compose up -d postgres
 | zookeeper2 | 172.11.2.192 | 172.10.2.192 | latest | |
 | zookeeper3 | 172.11.2.193 | 172.10.2.193 | latest | |
 
-#### DTM CLUSTER (172.11.2.130) [完成]
+### DTM CLUSTER (172.11.2.130) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | dtm-mysql | 172.11.3.80 | 172.10.3.80 | latest |
@@ -204,7 +204,7 @@ docker-compose up -d postgres
 | dtm2 | 172.11.3.83 | 172.10.3.83 | latest |
 | dtm3 | 172.11.3.84 | 172.10.3.84 | latest |
 
-#### MEMCACHED CLUSTER (172.11.2.140) [待定]
+### MEMCACHED CLUSTER (172.11.2.140) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | memcached1 | 172.11.3.180 | 172.10.3.180 | latest | |
@@ -212,7 +212,7 @@ docker-compose up -d postgres
 | memcached3 | 172.11.3.182 | 172.10.3.182 | latest | |
 | haproxy1 | 172.11.3.183 | 172.10.3.183 | latest | |
 
-#### MINIO CLUSTER (172.11.2.150) [待定]
+### MINIO CLUSTER (172.11.2.150) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | nginx | 172.11.3.140 | 172.10.3.140 | latest | |
@@ -220,7 +220,7 @@ docker-compose up -d postgres
 | minio2 | 172.11.3.142 | 172.10.3.142 | latest | |
 | minio3 | 172.11.3.143 | 172.10.3.143 | latest | |
 
-#### REDIS MSR (172.11.2.160) [完成]
+### REDIS MSR (172.11.2.160) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | redis_1 | 172.11.3.180 | 172.10.3.180 | latest | |
@@ -231,7 +231,7 @@ docker-compose up -d postgres
 | sentinel2 | 172.11.3.185 | 172.10.3.185 | latest | |
 | sentinel3 | 172.11.3.186 | 172.10.3.186 | latest | |
 
-#### REDIS CLUSTER (172.11.2.170) [完成]
+### REDIS CLUSTER (172.11.2.170) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | redis-box | 172.11.3.190 | 172.10.3.190 | latest | |
@@ -245,14 +245,14 @@ docker-compose up -d postgres
 | redis8 | 172.11.3.198 | 172.10.3.198 | latest | |
 | redis9 | 172.11.3.199 | 172.10.3.199 | latest | |
 
-#### NACOS CLUSTER (172.11.2.190) [待定]
+### NACOS CLUSTER (172.11.2.190) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | nacos1 | 172.11.3.211 | 172.10.3.211 | latest | |
 | nacos2 | 172.11.3.211 | 172.10.3.211 | latest | |
 | nacos3 | 172.11.3.211 | 172.10.3.211 | latest | |
 
-#### ELASTIC CLUSTER (172.11.2.200) [待定]
+### ELASTIC CLUSTER (172.11.2.200) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | es-setup | 172.11.2.200 | 172.10.2.200 | latest |
@@ -261,7 +261,7 @@ docker-compose up -d postgres
 | es02 | 172.11.2.203 | 172.10.2.203 | latest |
 | es03 | 172.11.2.204 | 172.10.2.204 | latest |
 
-#### MYSQL NDB CLUSTER (172.11.2.210) [完成]
+### MYSQL NDB CLUSTER (172.11.2.210) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | mc-pma | 172.11.2.210 | 172.10.2.210 | latest |
@@ -273,10 +273,10 @@ docker-compose up -d postgres
 | mc-sql2 | 172.11.2.216 | 172.10.2.216 | latest |
 | mc-management | 172.11.2.217 | 172.10.2.217 | latest |
 
-### STACK
+## STACK
 集成环境, 172.11.3.3 开始, 例如lamp, lnmp等 
 
-#### DEVOPS (172.11.3.3) [完成]
+### DEVOPS (172.11.3.3) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | gitlab | 172.11.3.3 | 172.10.3.3 | latest | |
@@ -288,14 +288,14 @@ docker-compose up -d postgres
 | promethus | 172.11.3.6 | 172.10.3.6 | latest | |
 | grafana | 172.11.3.7 | 172.10.3.7 | latest | |
 
-#### Spider (172.11.3.50) [完成]
+### Spider (172.11.3.50) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | mysql | 172.11.3.50 | 172.10.3.50 | latest |
 | redis | 172.11.3.51 | 172.10.3.51 | latest |
 | mongo | 172.11.3.52 | 172.10.3.52 | latest |
 
-#### ELK (172.11.3.60) [待定]
+### ELK (172.11.3.60) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | es-init | 172.11.3.60 | 172.10.3.60 | latest |
@@ -306,7 +306,7 @@ docker-compose up -d postgres
 | filebeat | 172.11.3.65 | 172.10.3.65 | latest |
 | go-stash | 172.11.3.66 | 172.10.3.66 | latest |
 
-#### TRAEFIK (172.11.3.70) [待定]
+### TRAEFIK (172.11.3.70) [待定]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | traefik | 172.11.3.70 | 172.10.3.70 | latest |
@@ -314,30 +314,30 @@ docker-compose up -d postgres
 | app2 | 172.11.3.72 | 172.10.3.72 | latest |
 | app3 | 172.11.3.73 | 172.10.3.73 | latest |
 
-#### LNMP (172.11.3.80) [废弃]
+### LNMP (172.11.3.80) [废弃]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | nginx | 172.11.3.80 | 172.10.3.80 | latest |
 | php-fpm | 172.11.3.81 | 172.10.3.81 | latest |
 
-#### LAMP (172.11.3.90) [废弃]
+### LAMP (172.11.3.90) [废弃]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | apache | 172.11.3.90 | 172.10.3.90 | latest |
 | php-fpm | 172.11.3.91 | 172.10.3.91 | latest |
 
-#### ZN-LAMP (172.11.3.93) [完成]
+### ZN-LAMP (172.11.3.93) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | php5.6.40+apache | 172.11.3.93 | 172.10.3.93 | php5.6.40, 支持arm64 |
 
-#### XXJOB (172.11.3.100) [完成]
+### XXJOB (172.11.3.100) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | xxjob | 172.11.3.100 | 172.10.3.100 | xxjob, 支持arm64 |
 | xxjob-mysql | 172.11.3.101 | 172.10.3.101 | mysql8.3 |
 
-#### METING API (172.11.3.110) [完成]
+### METING API (172.11.3.110) [完成]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | meting-api | 172.11.3.110 | 172.10.3.110 | latest |

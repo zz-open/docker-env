@@ -1,5 +1,5 @@
 include .env
-include ../_common/common.mk
+include ../../../conf/mk/common.mk
 
 CONTAINERS=${ES_CONTAINER_NAME} ${KIBANA_CONTAINER_NAME}
 HOST_CA_CRT_PATH=${ES_PATH}/certs/ca/ca.crt

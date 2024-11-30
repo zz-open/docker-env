@@ -1,5 +1,5 @@
-include ./containers/_common/common.mk
-include ./containers/_common/.env
+include ./conf/mk/common.mk
+include ./conf/mk/.env.common
 
 .PHONY: help test
 help:
@@ -7,11 +7,10 @@ help:
 	@echo "options and effects:"
 	@echo "    help                     : Show help"
 	@echo "    test                     : Test ..."
-	@echo "    init_network             : 初始化网络，所有项目使用同一个子网"
+	@echo "    init_network             : 初始化网络，所有容器分配固定ip"
 
 test:
 	@echo "test ..."
-	@echo ${DOCKER}
 
 .PHONY: init_network reset_docker push
 init_network:

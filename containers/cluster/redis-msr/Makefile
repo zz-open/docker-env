@@ -1,5 +1,5 @@
 include .env
-include ../_common/common.mk
+include ../../../conf/mk/common.mk
 
 REDIS_CONN=redis-cli -a ${REDIS_PASSWORD} -p ${REDIS_CONTAINER_PORT}
 

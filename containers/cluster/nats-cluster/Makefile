@@ -1,5 +1,5 @@
 include .env
-include ../_common/common.mk
+include ../../../conf/mk/common.mk
 
 CONTAINERS=${NATS_CONTAINER_NAME_NODE1} ${NATS_CONTAINER_NAME_NODE2} ${NATS_CONTAINER_NAME_NODE3} ${NATS_BOX_CONTAINER_NAME}
 

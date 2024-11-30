@@ -1,5 +1,5 @@
 include:
-  - ../_common/docker-compose-common.yml
+  - ../../conf/compose/docker-compose-common.yml
   - ./portainer/docker-compose-portainer.yml
   - ./busybox/docker-compose-busybox.yml
   - ./mysql57/docker-compose-mysql.yml

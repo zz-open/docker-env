@@ -1,5 +1,5 @@
 include:
-  - ../../_common/docker-compose-common.yml
+  - ../../../conf/compose/docker-compose-common.yml
   - ./docker-compose-elasticsearch.yml
   - ./docker-compose-kibana.yml
   - ./docker-compose-logstash.yml

@@ -1,5 +1,5 @@
 include .env
-include ../_common/common.mk
+include ../../../conf/mk/common.mk
 
 CONTAINERS=${MEMCACHED_CONTAINER_NAME_NODE1} ${MEMCACHED_CONTAINER_NAME_NODE2} ${MEMCACHED_CONTAINER_NAME_NODE3} ${HAPROXY_CONTAINER_NAME}
 

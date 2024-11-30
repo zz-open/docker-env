@@ -1,5 +1,5 @@
 include .env
-include ../_common/common.mk
+include ../../../conf/mk/common.mk
 
 CONTAINERS=${ZOOKEEPER_CONTAINER_NAME_NODE1} ${ZOOKEEPER_CONTAINER_NAME_NODE2} ${ZOOKEEPER_CONTAINER_NAME_NODE3}
 
