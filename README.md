@@ -314,13 +314,13 @@ docker-compose up -d postgres
 | app2 | 172.11.3.72 | 172.10.3.72 | latest |
 | app3 | 172.11.3.73 | 172.10.3.73 | latest |
 
-#### LNMP (172.11.3.80) [完成]
+#### LNMP (172.11.3.80) [废弃]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | nginx | 172.11.3.80 | 172.10.3.80 | latest |
 | php-fpm | 172.11.3.81 | 172.10.3.81 | latest |
 
-#### LAMP (172.11.3.90) [完成]
+#### LAMP (172.11.3.90) [废弃]
 | service | backend ip | frontend ip | version | 备注 |
 |---|---|---|---|---|
 | apache | 172.11.3.90 | 172.10.3.90 | latest |
