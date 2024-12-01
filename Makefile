@@ -12,7 +12,7 @@ help:
 test:
 	@echo "test ..."
 
-.PHONY: init_network reset_docker push
+.PHONY: init_network reset_docker push append_alias
 init_network:
 	@${DOCKER} network ls
 	@${DOCKER} network create --driver ${NETWORKS_DRIVER} --subnet=${FRONTEND_SUBNET} --gateway=${FRONTEND_SUBNET_GATEWAY} ${FRONTEND_NETWORK_NAME}
@@ -29,3 +29,9 @@ push:
 	@git add .
 	@git commit -m "脚本自动push"
 	@git push origin main
+
+append_alias:
+	@echo 'alias dce="${DC_OPTIONS}"' >> ~/.zshrc
+	@echo 'alias dcel="${DC_WITH_LOCAL_OPTIONS}"' >> ~/.zshrc
+	@source ~/.zshrc
+	@echo "追加别名命令成功"

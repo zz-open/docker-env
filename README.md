@@ -25,35 +25,30 @@ make init_network
 数据目录存放在： ~/.docker-env
 日志目录存放在： containers/logs
 
-## 为docker compose创建别名
-```shell
-make print
-
-# 拷贝 DC_OPTIONS
-echo 'alias dec="docker compose --env-file=/root/jungle/github/zz-open/docker-env/conf/mk/.env.common --env-file=.env"' >> ~/.zshrc
-
-# 拷贝 DC_WITH_LOCAL_OPTIONS
-echo 'alias decl="docker compose --env-file=/root/jungle/github/zz-open/docker-env/conf/mk/.env.common --env-file=.env --env-file=.env.local"' >> ~/.zshrc
-
-source ~/.zshrc
-```
-
-## 启动服务
-```shell
-cd standalone
-
-# 启动 mysql5.7
-dec start-mysql57
-
-# 启动 redis
-dec start-redis
-```
-
 ## 关于Makefile
 项目使用Makefile管理常用命令
 
 ## 关于.env
 可以创建.env.local覆盖已定义好的变量
+
+## 为docker compose创建别名
+```shell
+make append_alias
+
+source ~/.zshrc
+```
+
+## 启动服务
+如果使用了.env.local，则替换命令为`dcel`，否则使用`dce`
+```shell
+cd standalone
+
+# 启动 mysql5.7
+dce start-mysql57
+
+# 启动 redis
+dce start-redis
+```
 
 # 服务清单
 ## STANDALONE
@@ -356,3 +351,14 @@ dec start-redis
 |---|---|---|---|---|
 | meting-api | 172.11.3.110 | 172.10.3.110 | latest |
 | caddy | 172.11.3.111 | 172.10.3.111 | latest |
+
+
+## MIDDLEWARE
+多版本容器，比如mysql5.7, mysql8.0, redis3.2, redis5.0等 
+
+| service | backend ip | frontend ip | version | 备注 |
+|---|---|---|---|---|
+| mysql57 | 172.11.4.5 | 172.10.4.5 | 5.7 | |
+| mysql8 | 172.11.4.6 | 172.10.4.6 | 8.0~8.3 | |
+| mysql | 172.11.4.46 | 172.10.4.46 | 8.4~9.0 | |
+| redis | 172.11.4.7 | 172.10.4.7 | latest | |
