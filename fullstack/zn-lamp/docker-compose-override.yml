@@ -22,3 +22,6 @@ services:
       - "newenglish.web.zz:${PHP_APACHE_BACKEND_IP}"
       - "yaf.a.com:${PHP_APACHE_BACKEND_IP}"
       - "yaf.a.cn:${PHP_APACHE_BACKEND_IP}"
+    env_file:
+      - ".env"
+      - ".env.local"

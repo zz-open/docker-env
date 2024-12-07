@@ -15,6 +15,7 @@ help:
 
 test:
 	@echo "test ..."
+	export COMPOSE_ENV_FILES=.env,.env.local
 build:
 	$(call FUNC_DC_BUILD,${CONTAINERS})
 start:

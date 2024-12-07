@@ -9,7 +9,7 @@ services:
     build:
       context: ${REDIS_HOST_PATH}
       args:
-        - REDIS_STACK_VERSION=${REDIS_STACK_VERSION}
+        - REDIS_VERSION=${REDIS_VERSION}
     hostname: ${REDIS_HOSTNAME}
     container_name: ${REDIS_CONTAINER_NAME}
     privileged: true
