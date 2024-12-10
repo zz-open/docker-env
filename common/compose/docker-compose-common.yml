@@ -1,7 +1,7 @@
 networks:
   frontend:
     external: true
-    name: "${FRONTEND_NETWORK_NAME}"
+    name: "zz-frontend"
   backend:
     external: true
-    name: "${BACKEND_NETWORK_NAME}"
+    name: "zz-backend"

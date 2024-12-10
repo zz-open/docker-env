@@ -1,0 +1,3 @@
+include:
+  - ../common/compose/docker-compose-common.yml
+  - ./nginx/docker-compose-nginx.yml
