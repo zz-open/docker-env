@@ -1,0 +1,31 @@
+volumes:
+  nacos:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+### NACOS ##############################################
+  nacos:
+    build:
+      context: ${NACOS_HOST_PATH}
+      args:
+        NACOS_VERSION: ${NACOS_VERSION}
+    container_name: ${NACOS_CONTAINER_NAME}
+    hostname: ${NACOS_HOSTNAME}
+    privileged: true
+    user: root
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+    volumes:
+      - "${LOG_HOST_PATH}/${NACOS_HOST_PATH}:/home/nacos/logs"
+      # - "${CONF_HOST_PATH}/application.properties:/home/nacos/conf/application.properties"
+    environment:
+      TZ: ${TZ}
+      MODE: "standalone"
+      PREFER_HOST_MODE: "hostname"
+      NACOS_AUTH_IDENTITY_KEY: "serverIdentity"
+      NACOS_AUTH_IDENTITY_VALUE: "security"
+      NACOS_AUTH_TOKEN: "SecretKey012345678901234567890123456789012345678901234567890123456789"
+    networks:
+      backend:
+        ipv4_address: ${NACOS_BACKEND_IP}

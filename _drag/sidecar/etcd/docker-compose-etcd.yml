@@ -1,0 +1,72 @@
+volumes:
+  etcd:
+    driver: ${VOLUMES_DRIVER}
+
+x-variable:
+  etcd-bin: &etcd-bin '/usr/local/bin/etcd'
+  data-dir: &data-dir '--data-dir=/etcd_data'
+  initial-cluster: &initial-cluster '--initial-cluster=${ETCD_NAME}=${ETCD_API_PROTOCOL}://0.0.0.0:2380'
+  initial-cluster-token: &initial-cluster-token '--initial-cluster-token=${ETCD_INITIAL_CLUSTER_TOKEN}'
+  initial-cluster-state: &initial-cluster-state '--initial-cluster-state=${ETCD_INITIAL_CLUSTER_STATE}'
+  enable-pprof: &enable-pprof '--enable-pprof=true'
+  log-level: &log-level '--log-level=info'
+  logger: &logger '--logger=zap'
+  log-outputs: &log-outputs '--log-outputs=stderr'
+  # client-cert-auth: &client-cert-auth '--client-cert-auth'
+  # peer-client-cert-auth: &peer-client-cert-auth '--peer-client-cert-auth'
+  # trusted-ca-file: &trusted-ca-file '--trusted-ca-file=/etcd-ssl-certs-dir/ca.pem'
+  # cert-file: &cert-file '--cert-file=/etcd-ssl-certs-dir/${ETCD_CERT_PREFIX}.pem'
+  # key-file: &key-file '--key-file=/etcd-ssl-certs-dir/${ETCD_CERT_PREFIX}-key.pem'
+  # peer-trusted-ca-file: &peer-trusted-ca-file '--peer-trusted-ca-file=/etcd-ssl-certs-dir/ca.pem'
+  # peer-cert-file: &peer-cert-file '--peer-cert-file=/etcd-ssl-certs-dir/${ETCD_CERT_PREFIX}.pem'
+  # peer-key-file: &peer-key-file '--peer-key-file=/etcd-ssl-certs-dir/${ETCD_CERT_PREFIX}-key.pem'
+  
+
+x-build: &build
+  build:
+    context: ${ETCD_HOST_PATH}
+    args:
+      ETCD_VERSION: ${ETCD_VERSION}
+
+services:
+
+### ETCD ##############################################
+  etcd:
+    <<: *build
+    container_name: ${ETCD_CONTAINER_NAME}
+    hostname: ${ETCD_HOSTNAME}
+    privileged: true
+    user: root
+    command:
+      - *etcd-bin
+      - *data-dir
+      - *initial-cluster
+      - *log-level
+      - *logger
+      - *log-outputs
+      - *enable-pprof
+      - *initial-cluster-token
+      - *initial-cluster-state
+      - "--name=${ETCD_NAME}"
+      - "--listen-client-urls=${ETCD_API_PROTOCOL}://0.0.0.0:2379"
+      - "--advertise-client-urls=${ETCD_API_PROTOCOL}://0.0.0.0:2379"
+      - "--listen-peer-urls=${ETCD_API_PROTOCOL}://0.0.0.0:2380"
+      - "--initial-advertise-peer-urls=${ETCD_API_PROTOCOL}://0.0.0.0:2380"
+      # - *client-cert-auth
+      # - *peer-client-cert-auth
+      # - *trusted-ca-file
+      # - *cert-file
+      # - *key-file
+      # - *peer-trusted-ca-file
+      # - *peer-cert-file
+      # - *peer-key-file
+    volumes:
+      - "${DATA_HOST_PATH}/${ETCD_CONTAINER_NAME}:/etcd_data"
+    environment:
+      TZ: ${TZ}
+    ports:
+      - "${ETCD_HOST_PORT}:2379"
+      - "${ETCD_HOST_REVERSE_PORT}:2380"
+    networks:
+      backend:
+        ipv4_address: ${ETCD_BACKEND_IP}

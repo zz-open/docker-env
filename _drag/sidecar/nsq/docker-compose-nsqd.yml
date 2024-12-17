@@ -1,0 +1,30 @@
+volumes:
+  nsqd:
+    driver: ${VOLUMES_DRIVER}
+
+x-build: &build
+  build:
+    context: ${NSQD_HOST_PATH}
+    args:
+      NSQ_VERSION: ${NSQ_VERSION}
+
+services:
+
+### NSQD ##############################################
+  nsqd:
+    <<: *build
+    container_name: ${NSQD_CONTAINER_NAME}
+    hostname: ${NSQD_HOSTNAME}
+    privileged: true
+    user: root
+    command: "/nsqd --lookupd-tcp-address=${NSQLOOKUPD_CONTAINER_NAME}:4160 -data-path=/data"
+    volumes:
+      - "${DATA_HOST_PATH}/${NSQD_CONTAINER_NAME}:/data"
+    ports:
+      - "${NSQD_HOST_TCP_PORT}:4150"
+      - "${NSQD_HOST_HTTP_PORT}:4151"
+    environment:
+      TZ: ${TZ}
+    networks:
+      backend:
+        ipv4_address: ${NSQD_BACKEND_IP}

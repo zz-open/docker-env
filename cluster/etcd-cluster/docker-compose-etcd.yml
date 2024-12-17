@@ -58,7 +58,7 @@ services:
       - *peer-cert-file
       - *peer-key-file
     volumes:
-      - "${DATA_PATH_HOST}/${ETCD_CONTAINER_NAME_NODE1}:/etcd_data"
+      - "${DATA_HOST_PATH}/${ETCD_CONTAINER_NAME_NODE1}:/etcd_data"
       - "${ETCD_HOST_PATH}/certs:${ETCD_SSL_CERTS_PATH_CONTAINER}"
       - "${ETCD_HOST_PATH}/peer-certs:${ETCD_SSL_PEER_CERTS_PATH_CONTAINER}"
     environment:
@@ -97,7 +97,7 @@ services:
       - *peer-cert-file
       - *peer-key-file
     volumes:
-      - "${DATA_PATH_HOST}/${ETCD_CONTAINER_NAME_NODE2}:/etcd_data"
+      - "${DATA_HOST_PATH}/${ETCD_CONTAINER_NAME_NODE2}:/etcd_data"
       - "${ETCD_HOST_PATH}/certs:${ETCD_SSL_CERTS_PATH_CONTAINER}"
       - "${ETCD_HOST_PATH}/peer-certs:${ETCD_SSL_PEER_CERTS_PATH_CONTAINER}"
     environment:
@@ -137,7 +137,7 @@ services:
       - *peer-cert-file
       - *peer-key-file
     volumes:
-      - "${DATA_PATH_HOST}/${ETCD_CONTAINER_NAME_NODE3}:/etcd_data"
+      - "${DATA_HOST_PATH}/${ETCD_CONTAINER_NAME_NODE3}:/etcd_data"
       - "${ETCD_HOST_PATH}/certs:${ETCD_SSL_CERTS_PATH_CONTAINER}"
       - "${ETCD_HOST_PATH}/peer-certs:${ETCD_SSL_PEER_CERTS_PATH_CONTAINER}"
     environment:

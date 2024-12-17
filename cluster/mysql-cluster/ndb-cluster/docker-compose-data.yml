@@ -29,7 +29,7 @@ services:
     user: root
     privileged: true
     volumes:
-      - "${DATA_PATH_HOST}/${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE1}/:/var/lib/mysql/"
+      - "${DATA_HOST_PATH}/${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE1}/:/var/lib/mysql/"
       - "${MY_CNF_HOST_PATH}:/etc/my.cnf"
       - "${MYSQL_CLUSTER_CNF_HOST_PATH}:/etc/mysql-cluster.cnf"
     environment:
@@ -49,7 +49,7 @@ services:
     user: root
     privileged: true
     volumes:
-      - "${DATA_PATH_HOST}/${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE2}/:/var/lib/mysql/"
+      - "${DATA_HOST_PATH}/${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE2}/:/var/lib/mysql/"
       - "${MY_CNF_HOST_PATH}:/etc/my.cnf"
       - "${MYSQL_CLUSTER_CNF_HOST_PATH}:/etc/mysql-cluster.cnf"
     environment:
@@ -69,7 +69,7 @@ services:
     user: root
     privileged: true
     volumes:
-      - "${DATA_PATH_HOST}/${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE3}/:/var/lib/mysql/"
+      - "${DATA_HOST_PATH}/${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE3}/:/var/lib/mysql/"
       - "${MY_CNF_HOST_PATH}:/etc/my.cnf"
       - "${MYSQL_CLUSTER_CNF_HOST_PATH}:/etc/mysql-cluster.cnf"
     environment:
@@ -89,7 +89,7 @@ services:
     user: root
     privileged: true
     volumes:
-      - "${DATA_PATH_HOST}/${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE4}/:/var/lib/mysql/"
+      - "${DATA_HOST_PATH}/${MYSQL_CLUSTER_DATA_CONTAINER_NAME_NODE4}/:/var/lib/mysql/"
       - "${MY_CNF_HOST_PATH}:/etc/my.cnf"
       - "${MYSQL_CLUSTER_CNF_HOST_PATH}:/etc/mysql-cluster.cnf"
     environment:

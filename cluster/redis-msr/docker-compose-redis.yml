@@ -23,8 +23,8 @@ services:
     hostname: ${REDIS_HOSTNAME_NODE1}
     privileged: true
     volumes:
-      - "${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE1}:/data"
-      - "${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE1}:/var/log/redis"
+      - "${DATA_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE1}:/data"
+      - "${LOG_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE1}:/var/log/redis"
     environment:
       - "TZ=${TZ}"
       - "REDIS_ARGS=${REDIS_COMMAND}"
@@ -42,8 +42,8 @@ services:
     hostname: ${REDIS_HOSTNAME_NODE2}
     privileged: true
     volumes:
-      - "${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE2}:/data"
-      - "${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE2}:/var/log/redis"
+      - "${DATA_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE2}:/data"
+      - "${LOG_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE2}:/var/log/redis"
     environment:
       - "TZ=${TZ}"
       - "REDIS_ARGS=${REDIS_COMMAND}"
@@ -65,8 +65,8 @@ services:
       - "REDIS_ARGS=${REDIS_COMMAND}"
       - "REDIS_REPLICA_PARAMS=--replica-announce-ip ${REDIS_BACKEND_IP_NODE3} --replica-announce-port ${REDIS_CONTAINER_PORT}"
     volumes:
-      - "${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE3}:/data"
-      - "${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE3}:/var/log/redis"
+      - "${DATA_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE3}:/data"
+      - "${LOG_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE3}:/var/log/redis"
     ports:
       - "${REDIS_HOST_PORT_NODE3}:${REDIS_CONTAINER_PORT}"
     networks:
@@ -80,8 +80,8 @@ services:
     hostname: ${REDIS_HOSTNAME_NODE4}
     privileged: true
     volumes:
-      - "${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE4}:/data"
-      - "${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE4}:/var/log/redis"
+      - "${DATA_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE4}:/data"
+      - "${LOG_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE4}:/var/log/redis"
     environment:
       - "TZ=${TZ}"
       - "REDIS_ARGS=${REDIS_COMMAND}"

@@ -1,0 +1,29 @@
+volumes:
+  mssql:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### MSSQL ################################################
+  mssql:
+    build:
+      context: ${MSSQL_HOST_PATH}
+      args:
+        - MSSQL_VERSION=${MSSQL_VERSION}
+    hostname: ${MSSQL_HOSTNAME}
+    container_name: ${MSSQL_CONTAINER_NAME}
+    privileged: true
+    user: root
+    volumes:
+      - ${DATA_HOST_PATH}/${MSSQL_CONTAINER_NAME}:/var/opt/mssql # 需要777权限
+    ports:
+      - "${MSSQL_HOST_PORT}:1433"
+    environment:
+      TZ: ${TZ}
+      MSSQL_PID: ${MSSQL_PID}
+      MSSQL_DATABASE: ${MSSQL_DATABASE}
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+      ACCEPT_EULA: ${MSSQL_ACCEPT_EULA}
+    networks:
+      backend:
+        ipv4_address: ${MSSQL_BACKEND_IP}

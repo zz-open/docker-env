@@ -19,7 +19,7 @@ services:
               bin/generate-zookeeper-config.sh conf/zookeeper.conf && \
               exec bin/pulsar zookeeper"
     volumes:
-      - "${DATA_PATH_HOST}/${PULSAR_ZOOKEEPER_CONTAINER_NAME}:/pulsar/data/zookeeper"
+      - "${DATA_HOST_PATH}/${PULSAR_ZOOKEEPER_CONTAINER_NAME}:/pulsar/data/zookeeper"
     environment:
       - "TZ=${TZ}"
       - "metadataStoreUrl=zk:${PULSAR_ZOOKEEPER_CONTAINER_NAME}:2181"

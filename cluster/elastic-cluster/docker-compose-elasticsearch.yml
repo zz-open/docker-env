@@ -120,7 +120,7 @@ services:
     hostname: ${ES_HOSTNAME_NODE1}
     volumes:
       - ${ES_PATH}/certs:/usr/share/elasticsearch/config/certs
-      - ${DATA_PATH_HOST}/${ES_CONTAINER_NAME_NODE1}:/usr/share/elasticsearch/data # 需要777权限
+      - ${DATA_HOST_PATH}/${ES_CONTAINER_NAME_NODE1}:/usr/share/elasticsearch/data # 需要777权限
     environment:
       <<: *es-env
       TZ: ${TZ}
@@ -143,7 +143,7 @@ services:
     hostname: ${ES_HOSTNAME_NODE2}
     volumes:
       - ${ES_PATH}/certs:/usr/share/elasticsearch/config/certs
-      - ${DATA_PATH_HOST}/${ES_CONTAINER_NAME_NODE2}:/usr/share/elasticsearch/data # 需要777权限
+      - ${DATA_HOST_PATH}/${ES_CONTAINER_NAME_NODE2}:/usr/share/elasticsearch/data # 需要777权限
     environment:
       <<: *es-env
       TZ: ${TZ}
@@ -165,7 +165,7 @@ services:
     hostname: ${ES_HOSTNAME_NODE3}
     volumes:
       - ${ES_PATH}/certs:/usr/share/elasticsearch/config/certs
-      - ${DATA_PATH_HOST}/${ES_CONTAINER_NAME_NODE3}:/usr/share/elasticsearch/data # 需要777权限
+      - ${DATA_HOST_PATH}/${ES_CONTAINER_NAME_NODE3}:/usr/share/elasticsearch/data # 需要777权限
     environment:
       <<: *es-env
       TZ: ${TZ}

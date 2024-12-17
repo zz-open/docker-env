@@ -17,7 +17,7 @@ services:
       DOCKER_TLS_SAN: DNS:${DIND_CONTAINER_NAME}
     volumes:
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
-      - ${DATA_PATH_HOST}/docker-in-docker/certs/client:/certs/client
+      - ${DATA_HOST_PATH}/docker-in-docker/certs/client:/certs/client
     expose:
       - 2375
     networks:

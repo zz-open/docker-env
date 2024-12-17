@@ -31,8 +31,8 @@ services:
       <<: *env
       ZOO_MY_ID: ${ZOOKEEPER_ID_NODE1}
     volumes:
-      - ${DATA_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE1}:/data
-      - ${LOG_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE1}:/datalog
+      - ${DATA_HOST_PATH}/${ZOOKEEPER_CONTAINER_NAME_NODE1}:/data
+      - ${LOG_HOST_PATH}/${ZOOKEEPER_CONTAINER_NAME_NODE1}:/datalog
     networks:
       backend:
         ipv4_address: ${ZOOKEEPER_BACKEND_IP_NODE1}
@@ -49,8 +49,8 @@ services:
       <<: *env
       ZOO_MY_ID: ${ZOOKEEPER_ID_NODE2}
     volumes:
-      - ${DATA_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE2}:/data
-      - ${LOG_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE2}:/datalog
+      - ${DATA_HOST_PATH}/${ZOOKEEPER_CONTAINER_NAME_NODE2}:/data
+      - ${LOG_HOST_PATH}/${ZOOKEEPER_CONTAINER_NAME_NODE2}:/datalog
     networks:
       backend:
         ipv4_address: ${ZOOKEEPER_BACKEND_IP_NODE2}
@@ -67,8 +67,8 @@ services:
       <<: *env
       ZOO_MY_ID: ${ZOOKEEPER_ID_NODE3}
     volumes:
-      - ${DATA_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE3}:/data
-      - ${LOG_PATH_HOST}/${ZOOKEEPER_CONTAINER_NAME_NODE3}:/datalog
+      - ${DATA_HOST_PATH}/${ZOOKEEPER_CONTAINER_NAME_NODE3}:/data
+      - ${LOG_HOST_PATH}/${ZOOKEEPER_CONTAINER_NAME_NODE3}:/datalog
     networks:
       backend:
         ipv4_address: ${ZOOKEEPER_BACKEND_IP_NODE3}

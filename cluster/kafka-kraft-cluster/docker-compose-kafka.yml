@@ -44,7 +44,7 @@ services:
       <<: *kafka-env
       KAFKA_CFG_NODE_ID: ${KAFKA_CFG_NODE_ID_NODE1}
     volumes:
-      - "${DATA_PATH_HOST}/${KAFKA_CONTAINER_NAME_NODE1}:/bitnami"
+      - "${DATA_HOST_PATH}/${KAFKA_CONTAINER_NAME_NODE1}:/bitnami"
     networks:
       backend:
         ipv4_address: ${KAFKA_BACKEND_IP_NODE1}
@@ -62,7 +62,7 @@ services:
       <<: *kafka-env
       KAFKA_CFG_NODE_ID: ${KAFKA_CFG_NODE_ID_NODE2}
     volumes:
-      - "${DATA_PATH_HOST}/${KAFKA_CONTAINER_NAME_NODE2}:/bitnami"
+      - "${DATA_HOST_PATH}/${KAFKA_CONTAINER_NAME_NODE2}:/bitnami"
     networks:
       backend:
         ipv4_address: ${KAFKA_BACKEND_IP_NODE2}
@@ -80,7 +80,7 @@ services:
       <<: *kafka-env
       KAFKA_CFG_NODE_ID: ${KAFKA_CFG_NODE_ID_NODE3}
     volumes:
-      - "${DATA_PATH_HOST}/${KAFKA_CONTAINER_NAME_NODE3}:/bitnami"
+      - "${DATA_HOST_PATH}/${KAFKA_CONTAINER_NAME_NODE3}:/bitnami"
     networks:
       backend:
         ipv4_address: ${KAFKA_BACKEND_IP_NODE3}

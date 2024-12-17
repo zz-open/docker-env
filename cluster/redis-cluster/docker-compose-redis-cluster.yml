@@ -19,8 +19,8 @@ services:
     hostname: ${REDIS_HOSTNAME_NODE1}
     privileged: true
     volumes:
-      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE1}:/data
-      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE1}:/var/log/redis
+      - ${DATA_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE1}:/data
+      - ${LOG_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE1}:/var/log/redis
       - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE1}.conf:/redis-stack.conf
     ports:
       - "${REDIS_HOST_PORT_NODE1}:${REDIS_CONTAINER_PORT}"
@@ -36,8 +36,8 @@ services:
     hostname: ${REDIS_HOSTNAME_NODE2}
     privileged: true
     volumes:
-      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE2}:/data
-      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE2}:/var/log/redis
+      - ${DATA_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE2}:/data
+      - ${LOG_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE2}:/var/log/redis
       - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE2}.conf:/redis-stack.conf
     ports:
       - "${REDIS_HOST_PORT_NODE2}:${REDIS_CONTAINER_PORT}"
@@ -54,8 +54,8 @@ services:
     hostname: ${REDIS_HOSTNAME_NODE3}
     privileged: true
     volumes:
-      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE3}:/data
-      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE3}:/var/log/redis
+      - ${DATA_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE3}:/data
+      - ${LOG_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE3}:/var/log/redis
       - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE3}.conf:/redis-stack.conf
     ports:
       - "${REDIS_HOST_PORT_NODE3}:${REDIS_CONTAINER_PORT}"
@@ -72,8 +72,8 @@ services:
     hostname: ${REDIS_HOSTNAME_NODE4}
     privileged: true
     volumes:
-      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE4}:/data
-      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE4}:/var/log/redis
+      - ${DATA_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE4}:/data
+      - ${LOG_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE4}:/var/log/redis
       - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE4}.conf:/redis-stack.conf
     ports:
       - "${REDIS_HOST_PORT_NODE4}:${REDIS_CONTAINER_PORT}"
@@ -90,8 +90,8 @@ services:
     hostname: ${REDIS_HOSTNAME_NODE5}
     privileged: true
     volumes:
-      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE5}:/data
-      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE5}:/var/log/redis
+      - ${DATA_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE5}:/data
+      - ${LOG_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE5}:/var/log/redis
       - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE5}.conf:/redis-stack.conf
     ports:
       - "${REDIS_HOST_PORT_NODE5}:${REDIS_CONTAINER_PORT}"
@@ -108,8 +108,8 @@ services:
     hostname: ${REDIS_HOSTNAME_NODE6}
     privileged: true
     volumes:
-      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE6}:/data
-      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE6}:/var/log/redis
+      - ${DATA_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE6}:/data
+      - ${LOG_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE6}:/var/log/redis
       - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE6}.conf:/redis-stack.conf
     ports:
       - "${REDIS_HOST_PORT_NODE6}:${REDIS_CONTAINER_PORT}"
@@ -126,8 +126,8 @@ services:
     hostname: ${REDIS_HOSTNAME_NODE7}
     privileged: true
     volumes:
-      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE7}:/data
-      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE7}:/var/log/redis
+      - ${DATA_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE7}:/data
+      - ${LOG_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE7}:/var/log/redis
       - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE7}.conf:/redis-stack.conf
     ports:
       - "${REDIS_HOST_PORT_NODE7}:${REDIS_CONTAINER_PORT}"
@@ -144,8 +144,8 @@ services:
     hostname: ${REDIS_HOSTNAME_NODE8}
     privileged: true
     volumes:
-      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE8}:/data
-      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE8}:/var/log/redis
+      - ${DATA_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE8}:/data
+      - ${LOG_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE8}:/var/log/redis
       - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE8}.conf:/redis-stack.conf
     ports:
       - "${REDIS_HOST_PORT_NODE8}:${REDIS_CONTAINER_PORT}"
@@ -162,8 +162,8 @@ services:
     hostname: ${REDIS_HOSTNAME_NODE9}
     privileged: true
     volumes:
-      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE9}:/data
-      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME_NODE9}:/var/log/redis
+      - ${DATA_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE9}:/data
+      - ${LOG_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE9}:/var/log/redis
       - ${REDIS_CONF_HOST_PATH}/${REDIS_CONTAINER_NAME_NODE9}.conf:/redis-stack.conf
     ports:
       - "${REDIS_HOST_PORT_NODE9}:${REDIS_CONTAINER_PORT}"

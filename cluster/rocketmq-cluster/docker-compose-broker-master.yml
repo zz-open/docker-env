@@ -25,9 +25,9 @@ services:
     privileged: true
     command: *command
     volumes:
-      - "${LOG_PATH_HOST}/${ROCKETMQ_BROKER_CONTAINER_NAME_NODE1}:/home/rocketmq/logs"
+      - "${LOG_HOST_PATH}/${ROCKETMQ_BROKER_CONTAINER_NAME_NODE1}:/home/rocketmq/logs"
       - "${ROCKETMQ_CONF_HOST_PATH}/broker.conf:/home/rocketmq/broker.conf"
-      - "${DATA_PATH_HOST}/${ROCKETMQ_BROKER_CONTAINER_NAME_NODE1}:/home/rocketmq/store"
+      - "${DATA_HOST_PATH}/${ROCKETMQ_BROKER_CONTAINER_NAME_NODE1}:/home/rocketmq/store"
     environment:
       <<: *broker-env
     ports:

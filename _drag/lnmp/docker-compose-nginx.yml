@@ -23,7 +23,7 @@ services:
       - "host.docker.internal:host-gateway"
     volumes:
       - "${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}"
-      - "${LOG_PATH_HOST}/lnmp/nginx:/var/log/nginx"
+      - "${LOG_HOST_PATH}/lnmp/nginx:/var/log/nginx"
       - "${NGINX_HOST_PATH}/sites:/etc/nginx/sites-available"
       - "${NGINX_HOST_PATH}/ssl:/etc/nginx/ssl"
     ports:

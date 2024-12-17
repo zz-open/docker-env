@@ -73,7 +73,7 @@ services:
     user: root
     volumes:
       - ${ES_PATH}/certs:/usr/share/elasticsearch/config/certs
-      - ${DATA_PATH_HOST}/${ES_CONTAINER_NAME}:/usr/share/elasticsearch/data # 需要777权限
+      - ${DATA_HOST_PATH}/${ES_CONTAINER_NAME}:/usr/share/elasticsearch/data # 需要777权限
     environment:
       TZ: ${TZ}
       discovery.type: single-node

@@ -1,0 +1,25 @@
+volumes:
+  memcached:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### Memcached ############################################
+  memcached:
+    build:
+      context: ${MEMCACHED_HOST_PATH}
+      args:
+        - MEMCACHED_VERSION=${MEMCACHED_VERSION}
+    container_name: ${MEMCACHED_CONTAINER_NAME}
+    hostname: ${MEMCACHED_HOSTNAME}
+    privileged: true
+    user: root
+    ports:
+      - "${MEMCACHED_HOST_PORT}:11211"
+    environment:
+      TZ: "${TZ}"
+    volumes:
+      - ${DATA_HOST_PATH}/${MEMCACHED_CONTAINER_NAME}:/var/lib/memcached
+    networks:
+      backend:
+        ipv4_address: ${MEMCACHED_BACKEND_IP}

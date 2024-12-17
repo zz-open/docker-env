@@ -1,0 +1,29 @@
+volumes:
+  pgadmin:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### pgAdmin ##############################################
+  pgadmin:
+    build:
+      context: ${PGADMIN_HOST_PATH}
+      args:
+        - PGADMIN_VERSION=${PGADMIN_VERSION}
+    container_name: ${PGADMIN_CONTAINER_NAME}
+    hostname: ${PGADMIN_HOSTNAME}
+    privileged: true
+    user: root
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEFAULT_EMAIL}"
+      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEFAULT_PASSWORD}"
+    ports:
+      - "${PGADMIN_HOST_PORT}:80"
+    volumes:
+      - ${DATA_HOST_PATH}/${PGADMIN_CONTAINER_NAME}:/var/lib/pgadmin"
+    networks:
+      backend:
+        ipv4_address: ${PGADMIN_BACKEND_IP}
+    # depends_on:
+    #   postgres:
+    #     condition: service_healthy

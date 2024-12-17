@@ -27,7 +27,7 @@ services:
     environment:
       <<: *env
     volumes:
-     - ${DATA_PATH_HOST}/${MEMCACHED_CONTAINER_NAME_NODE1}/data:/var/lib/memcached
+     - ${DATA_HOST_PATH}/${MEMCACHED_CONTAINER_NAME_NODE1}/data:/var/lib/memcached
     networks:
       backend:
         ipv4_address: ${MEMCACHED_BACKEND_IP_NODE1}
@@ -43,7 +43,7 @@ services:
     environment:
       <<: *env
     volumes:
-     - ${DATA_PATH_HOST}/${MEMCACHED_CONTAINER_NAME_NODE2}/data:/var/lib/memcached
+     - ${DATA_HOST_PATH}/${MEMCACHED_CONTAINER_NAME_NODE2}/data:/var/lib/memcached
     networks:
       backend:
         ipv4_address: ${MEMCACHED_BACKEND_IP_NODE2}
@@ -59,7 +59,7 @@ services:
     environment:
       <<: *env
     volumes:
-     - ${DATA_PATH_HOST}/${MEMCACHED_CONTAINER_NAME_NODE3}/data:/var/lib/memcached
+     - ${DATA_HOST_PATH}/${MEMCACHED_CONTAINER_NAME_NODE3}/data:/var/lib/memcached
     networks:
       backend:
         ipv4_address: ${MEMCACHED_BACKEND_IP_NODE3}

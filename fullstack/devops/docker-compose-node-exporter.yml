@@ -27,9 +27,9 @@ services:
       - "${GITLAB_HOST_HTTPS_PORT}:443"
       - "${GITLAB_HOST_SSH_PORT}:22"
     volumes:
-      - ${DATA_PATH_HOST}/${GITLAB_CONTAINER_NAME}/config:/etc/gitlab
-      - ${DATA_PATH_HOST}/${GITLAB_CONTAINER_NAME}/data:/var/opt/gitlab
-      - ${LOG_PATH_HOST}/gitlab:/var/log/gitlab
+      - ${DATA_HOST_PATH}/${GITLAB_CONTAINER_NAME}/config:/etc/gitlab
+      - ${DATA_HOST_PATH}/${GITLAB_CONTAINER_NAME}/data:/var/opt/gitlab
+      - ${LOG_HOST_PATH}/gitlab:/var/log/gitlab
     configs:
       - source: gitlab_rb
         target: /omnibus_config.rb

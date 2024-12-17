@@ -19,7 +19,7 @@ services:
         - REGISTER_NON_INTERACTIVE=${GITLAB_REGISTER_NON_INTERACTIVE}
         - RUNNER_EXECUTOR=shell
       volumes:
-        - ${DATA_PATH_HOST}/gitlab-runner/runner:/etc/gitlab-runner
+        - ${DATA_HOST_PATH}/gitlab-runner/runner:/etc/gitlab-runner
         - ${DOCKER_SOCK_PATH_HOST}:/var/run/docker.sock:rw
       networks:
         backend:

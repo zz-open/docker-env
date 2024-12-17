@@ -24,7 +24,7 @@ services:
     privileged: true
     command: *command
     volumes:
-      - "${LOG_PATH_HOST}/${ROCKETMQ_PROXY_CONTAINER_NAME_NODE1}:/home/rocketmq/logs"
+      - "${LOG_HOST_PATH}/${ROCKETMQ_PROXY_CONTAINER_NAME_NODE1}:/home/rocketmq/logs"
       - "${ROCKETMQ_CONF_HOST_PATH}/rmq-proxy.json:/home/rocketmq/rmq-proxy.json"
     environment:
       <<: *proxy-env

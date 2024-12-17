@@ -1,0 +1,33 @@
+volumes:
+  postgres-postgis:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### PostgreSQL Postgis ###########################################
+  postgres-postgis:
+    build:
+      context: ${POSTGIS_HOST_PATH}
+      args:
+        - POSTGIS_VERSION=${POSTGIS_VERSION}
+        - INSTALL_PGSQL_HTTP_FOR_POSTGIS13=${POSTGIS_INSTALL_PGSQL_HTTP_FOR_POSTGIS13}
+    container_name: ${POSTGIS_CONTAINER_NAME}
+    hostname: ${POSTGIS_HOSTNAME}
+    privileged: true
+    user: root
+    environment:
+      POSTGRES_DB: ${POSTGIS_POSTGRES_DB}
+      POSTGRES_USER: ${POSTGIS_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGIS_POSTGRES_PASSWORD}
+    volumes:
+      - ${DATA_HOST_PATH}/${POSTGIS_CONTAINER_NAME}/postgres:/var/lib/postgresql/data
+    ports:
+      - "${POSTGIS_HOST_PORT}:5432"
+    networks:
+      backend:
+        ipv4_address: ${POSTGIS_BACKEND_IP}
+    healthcheck:
+      test: [ "CMD", "pg_isready" ,"-U", "${POSTGIS_POSTGRES_USER}", "-d", "${POSTGIS_POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

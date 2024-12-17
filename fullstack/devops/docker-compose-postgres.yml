@@ -22,7 +22,7 @@ services:
       - GITLAB_POSTGRES_PASSWORD=${GITLAB_POSTGRES_PASSWORD}
       - GITLAB_POSTGRES_DB=${GITLAB_POSTGRES_DB}
     volumes:
-      - ${DATA_PATH_HOST}/${POSTGRES_CONTAINER_NAME}:/var/lib/postgresql/data
+      - ${DATA_HOST_PATH}/${POSTGRES_CONTAINER_NAME}:/var/lib/postgresql/data
       - ${POSTGRES_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
       - "${POSTGRES_HOST_PORT}:5432"

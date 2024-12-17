@@ -14,8 +14,8 @@ services:
     container_name: ${REDIS_CONTAINER_NAME}
     privileged: true
     volumes:
-      - ${DATA_PATH_HOST}/${REDIS_CONTAINER_NAME}:/data
-      - ${LOG_PATH_HOST}/${REDIS_CONTAINER_NAME}:/var/log/redis
+      - ${DATA_HOST_PATH}/${REDIS_CONTAINER_NAME}:/data
+      - ${LOG_HOST_PATH}/${REDIS_CONTAINER_NAME}:/var/log/redis
     ports:
       - "${REDIS_HOST_PORT}:6379"
       - "${REDIS_INSIGHT_PORT}:8001"

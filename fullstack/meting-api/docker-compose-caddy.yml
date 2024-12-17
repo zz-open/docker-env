@@ -16,8 +16,8 @@ services:
     user: root
     volumes:
       - ${CADDY_SSL_HOST_PATH}:/etc/caddy/ssl
-      - ${LOG_PATH_HOST}/${CADDY_CONTAINER_NAME}:/var/log/caddy
-      - ${DATA_PATH_HOST}/${CADDY_CONTAINER_NAME}:/root/.caddy
+      - ${LOG_HOST_PATH}/${CADDY_CONTAINER_NAME}:/var/log/caddy
+      - ${DATA_HOST_PATH}/${CADDY_CONTAINER_NAME}:/root/.caddy
       - ${CADDY_CONFIG_PATH}:/etc/caddy
     ports:
       - "${CADDY_HOST_HTTP_PORT}:80"

@@ -15,8 +15,8 @@ services:
     privileged: true
     user: root
     volumes:
-      - ${DATA_PATH_HOST}/redis:/data
-      - ${LOG_PATH_HOST}/redis:/var/log/redis
+      - ${DATA_HOST_PATH}/redis:/data
+      - ${LOG_HOST_PATH}/redis:/var/log/redis
     ports:
       - "${REDIS_STACK_HOST_PORT}:6379"
       - "${REDIS_STACK_INSIGHT_PORT}:8001"

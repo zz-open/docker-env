@@ -1,0 +1,41 @@
+volumes:
+  rocketmq-broker:
+    driver: ${VOLUMES_DRIVER}
+
+x-build: &build
+  build:
+    context: ${ROCKETMQ_HOST_PATH}
+    args:
+      ROCKETMQ_VERSION: ${ROCKETMQ_VERSION}
+
+x-broker-env: &broker-env
+  TZ: ${TZ}
+  JAVA_OPT_EXT: "-server -Xms256m -Xmx256m -Xmn128m"
+
+x-command: &command "sh mqbroker -n ${ROCKETMQ_NAMESRV_ADDRESS} --enable-proxy -c /home/rocketmq/broker.conf"
+
+services:
+
+### ROCKETMQ BROKER ##############################################
+  rocketmq-broker:
+    <<: *build
+    container_name: ${ROCKETMQ_BROKER_CONTAINER_NAME}
+    hostname: ${ROCKETMQ_BROKER_HOSTNAME}
+    user: root
+    privileged: true
+    command: *command
+    volumes:
+      - "${LOG_HOST_PATH}/${ROCKETMQ_BROKER_CONTAINER_NAME}:/home/rocketmq/logs"
+      - "${ROCKETMQ_CONF_HOST_PATH}/broker.conf:/home/rocketmq/broker.conf"
+      - "${DATA_HOST_PATH}/${ROCKETMQ_BROKER_CONTAINER_NAME}:/home/rocketmq/store"
+    environment:
+      <<: *broker-env
+    ports:
+      - "10909:10909"
+      - "10911:10911"
+      - "10912:10912"
+    networks:
+      backend:
+        ipv4_address: ${ROCKETMQ_BROKER_BACKEND_IP}
+    depends_on:
+      - ${ROCKETMQ_NAMESRV_CONTAINER_NAME}

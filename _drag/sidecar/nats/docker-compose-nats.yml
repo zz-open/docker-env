@@ -1,0 +1,29 @@
+volumes:
+  nats:
+    driver: ${VOLUMES_DRIVER}
+
+x-build: &build
+  build:
+    context: ${NATS_HOST_PATH}
+    args:
+      NATS_VERSION: ${NATS_VERSION}
+
+services:
+### NATS ##############################################
+  nats:
+    <<: *build
+    container_name: ${NATS_CONTAINER_NAME}
+    hostname: ${NATS_HOSTNAME}
+    command: "-c /container/nats-server.conf"
+    volumes:
+      - "${NATS_CONF_HOST_PATH}/nats-server.conf:/container/nats-server.conf"
+      - "${DATA_HOST_PATH}/${NATS_CONTAINER_NAME}:/nats"
+    ports:
+      - "${NATS_CLIENT_HOST_PORT}:4222"
+      - "${NATS_ROUTING_HOST_PORT}:6222"
+      - "${NATS_HTTP_MANAGEMENT_HOST_PORT}:8222"
+    environment:
+      TZ: ${TZ}
+    networks:
+      backend:
+        ipv4_address: ${NATS_BACKEND_IP}

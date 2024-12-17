@@ -27,7 +27,7 @@ services:
     user: root
     privileged: true
     volumes:
-      - "${DATA_PATH_HOST}/${MYSQL_CLUSTER_SQL_CONTAINER_NAME_NODE1}/:/var/lib/mysql/"
+      - "${DATA_HOST_PATH}/${MYSQL_CLUSTER_SQL_CONTAINER_NAME_NODE1}/:/var/lib/mysql/"
       - "${MY_CNF_HOST_PATH}:/etc/my.cnf"
       - "${MYSQL_CLUSTER_CNF_HOST_PATH}:/etc/mysql-cluster.cnf"
       - "${MYSQL_CLUSTER_SQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d/"
@@ -53,7 +53,7 @@ services:
     user: root
     privileged: true
     volumes:
-      - "${DATA_PATH_HOST}/${MYSQL_CLUSTER_SQL_CONTAINER_NAME_NODE2}/:/var/lib/mysql/"
+      - "${DATA_HOST_PATH}/${MYSQL_CLUSTER_SQL_CONTAINER_NAME_NODE2}/:/var/lib/mysql/"
       - "${MY_CNF_HOST_PATH}:/etc/my.cnf"
       - "${MYSQL_CLUSTER_CNF_HOST_PATH}:/etc/mysql-cluster.cnf"
       - "${MYSQL_CLUSTER_SQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d/"
