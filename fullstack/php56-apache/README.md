@@ -1,4 +1,4 @@
-# zn-lamp
+# php56-apache
 集成环境
 - php5.6.40+apache debian9 stretch
 

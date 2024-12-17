@@ -6,7 +6,6 @@ include:
   - ./mysql8/docker-compose-mysql.yml
   - ./redis-stack/docker-compose-redis-stack.yml
   # - ./redis/docker-compose-redis.yml
-  # - ./memcached/docker-compose-memcached.yml
-  # - ./mongo/docker-compose-mongo.yml
+  - ./memcached/docker-compose-memcached.yml
+  - ./mongo/docker-compose-mongo.yml
   # - ./mongo/docker-compose-mongo-webui.yml
-  # - ./nginx/docker-compose-nginx.yml
