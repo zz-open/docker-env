@@ -1,5 +1,13 @@
+networks:
+  frontend:
+    external: true
+    name: ${FRONTEND_NETWORK_NAME}
+  backend:
+    external: true
+    name: ${BACKEND_NETWORK_NAME}
+
 include:
-  - ../common/compose/docker-compose-common.yml
+  - ../docker-compose-common.yml
   - ./portainer/docker-compose-portainer.yml
   - ./busybox/docker-compose-busybox.yml
   - ./mysql57/docker-compose-mysql.yml

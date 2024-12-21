@@ -6,6 +6,3 @@ COMMON_ROOT_DIR_PATH := $(_COMMON_MKFILE_DIR_PATH)
 COMMON_ENV_FILE_PATH := $(COMMON_ROOT_DIR_PATH).env.common
 COMMON_MKFILE_PATH := $(COMMON_ROOT_DIR_PATH)common.mk
 PWD=${CURDIR}
-
-# Linux ############################################################
-MV=mv

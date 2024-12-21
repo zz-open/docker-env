@@ -3,13 +3,12 @@ set -eu set -o pipefail
 
 CurrentDirPath="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ProjectRootPath=$(
-  cd ${CurrentDirPath}/..
+  cd ${CurrentDirPath}
   pwd
 )
 
 # 引入当前目录下的sh source $(dirname $0)/common.sh
-source "${ProjectRootPath}/common/env/.env.common"
-source "${ProjectRootPath}/common/env/.env.custom"
+source "${ProjectRootPath}/.env"
 
 initFrontendNetwork() {
   local networkName=${FRONTEND_NETWORK_NAME}

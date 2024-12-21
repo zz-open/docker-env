@@ -1,7 +1,5 @@
 COMMON_ROOT_DIR_PATH=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 include ${COMMON_ROOT_DIR_PATH}base.mk
-include ${COMMON_ROOT_DIR_PATH}docker.mk
-include ${COMMON_ROOT_DIR_PATH}other.mk
 
 # PHONY ############################################################
 .PHONY: print
